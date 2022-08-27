@@ -25,12 +25,12 @@
         "lodash": "^4.17.19",
         "postcss": "^8.4.16",
         "pusher-js": "^7.0.3",
-        "sweetalert2": "^11.4.29"
+        "sweetalert2": "^11.4.29",
+        "laravel-echo": "^1.13.1"
     },
     "dependencies": {
         "babel-plugin-transform-class-properties": "^6.24.1",
         "babel-preset-env": "^1.7.0",
-        "chart.js": "^3.9.1",
         "datatables.net-dt": "^1.12.1",
         "fslightbox": "^3.3.1",
         "jquery": "^3.6.0",

@@ -33,9 +33,6 @@
                                     <th class="nk-tb-col tb-col-md">
                                         <span class="sub-text">Code Transaction</span>
                                     </th>
-                                    <th class="nk-tb-col tb-col-md">
-                                        <span class="sub-text">Code Maison</span>
-                                    </th>
                                     <th class="nk-tb-col">
                                         <span class="sub-text">Actions</span>
                                     </th>
@@ -55,9 +52,6 @@
                                         </td>
                                         <td class="nk-tb-col tb-col-md">
                                             <span>{{ $client->transaction->code_transaction ?? 0 }}</span>
-                                        </td>
-                                        <td class="nk-tb-col tb-col-md">
-                                            <span>{{ $client->reservation->house->reference ?? 0 }}</span>
                                         </td>
                                         <td class="nk-tb-col">
                                             <span class="tb-lead">

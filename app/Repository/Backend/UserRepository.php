@@ -7,6 +7,7 @@ namespace App\Repository\Backend;
 use App\Contracts\UserRepositoryInterface;
 use App\Enums\UserRoleEnum;
 use App\Models\User;
+use App\Services\ToastService;
 use App\Traits\ImageUploader;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -16,11 +17,23 @@ class UserRepository implements UserRepositoryInterface
 {
     use ImageUploader;
 
+    public function __construct(private readonly ToastService $service)
+    {
+    }
+
     public function getContents(): Collection|array
     {
         return User::query()
+            ->select([
+                'id',
+                'name',
+                'role_id',
+                'images',
+                'email',
+                'phone_number'
+            ])
             ->where('role_id', '=', UserRoleEnum::DEALER_ROLE)
-            ->with(['commissioner', 'reservations'])
+            ->with('commissioner')
             ->get();
     }
 
@@ -38,6 +51,8 @@ class UserRepository implements UserRepositoryInterface
             $this->removePathOfImages($user);
         }
         $user->delete();
+
+        $this->service->success("Commissionnaire supprimer avec succes");
 
         return $user;
     }

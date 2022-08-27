@@ -46,11 +46,11 @@
 
                                     <div class="nk-ecwg8-ck">
                                         <canvas
-                                            class="ecommerce-line-chart-s4 chartjs-render-monitor"
-                                            id="salesStatistics"
-                                            width="798"
-                                            height="300"
-                                            style="display: block; width: 798px; height: 200px;"
+                                                class="ecommerce-line-chart-s4 chartjs-render-monitor"
+                                                id="salesStatistics"
+                                                width="798"
+                                                height="300"
+                                                style="display: block; width: 798px; height: 200px;"
                                         ></canvas>
                                     </div>
                                 </div>

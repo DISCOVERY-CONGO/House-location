@@ -18,6 +18,8 @@ class Reservation extends Model
         'house_id',
         'status',
         'messages',
+        'user_id',
+        'client_id'
     ];
 
     public function house(): BelongsTo
@@ -39,5 +41,4 @@ class Reservation extends Model
     {
         return $this->hasOne(Transaction::class);
     }
-
 }

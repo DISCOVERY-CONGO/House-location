@@ -21,15 +21,14 @@ class ImageCommissionerRepository implements ImageCommissionerRepositoryInterfac
     {
     }
 
-    public function getContents(): Collection
+    public function getImages(): Collection
     {
         return Image::query()
             ->select([
-                'images',
-                'user_id',
                 'house_id',
                 'id'
             ])
+            ->where('user_id', '=', auth()->id())
             ->with([
                 'user',
                 'houses'

@@ -36,14 +36,12 @@ trait ImageCrud
 
     public function created($attributes): Model|Builder
     {
-        $image = new Image();
-        foreach ($attributes->file('images') as $images) {
-            $path = self::uploadMultiple($images);
-            $image->images = json_encode($path);
-        }
-        $image->house_id = $attributes->input('house');
-        $image->user_id = auth()->id();
-        $image->save();
+        $image = Image::query()
+            ->create([
+                'user_id' => auth()->id(),
+                'house_id' => $attributes->input('house'),
+                'images' => self::uploadFiles($attributes)
+            ]);
 
         $this->service->success('Images ajouter avec succes');
 
@@ -56,7 +54,7 @@ trait ImageCrud
         $this->removePathOfImages($image);
         $image->update([
             'images' => self::uploadFiles($attributes),
-            'house_id' => $attributes->input('house_id'),
+            'house_id' => $attributes->input('house'),
         ]);
         $this->service->success('Images modifier avec succes');
 

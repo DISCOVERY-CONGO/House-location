@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Repository\Backend\ConfirmRepository;
+use App\Repository\Backend\BookingConfirmationRepository;
 use Illuminate\Http\RedirectResponse;
 
 class ConfirmBookingController extends Controller
 {
-    public function __construct(protected ConfirmRepository $repository)
+    public function __construct(protected BookingConfirmationRepository $repository)
     {
     }
 

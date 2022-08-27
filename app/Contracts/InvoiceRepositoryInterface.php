@@ -6,5 +6,5 @@ namespace App\Contracts;
 
 interface InvoiceRepositoryInterface
 {
-    public function download(int $key);
+    public function download($invoiceRequest);
 }

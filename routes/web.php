@@ -59,6 +59,7 @@ Route::group([
 
     Route::get('transactions', [TransactionBackendController::class, 'index'])->name('transaction.index');
     Route::get('transaction/{key}', [TransactionBackendController::class, 'show'])->name('transaction.show');
+    Route::delete('transaction/{key}', [TransactionBackendController::class, 'destroy'])->name('transaction.destroy');
 
     Route::get('clients', [ClientBackendController::class, 'index'])->name('client.index');
     Route::get('client/{key}', [ClientBackendController::class, 'show'])->name('client.show');
@@ -95,7 +96,7 @@ Route::group([
 ], function () {
     Route::resource('users', HomeUserController::class);
     Route::put('updateUser/{key}/update', UpdateUserController::class)->name('update.users');
-    Route::get('invoice/{key}', InvoiceUserController::class)->name('invoice.download');
+    Route::get('downloadPDF/{key}', [InvoiceUserController::class, 'downloadInvoice'])->name('invoice.download');
     Route::delete('cancel/{key}', [CancellingBookingController::class, 'cancel'])->name('reservation.cancel');
 });
 

@@ -20,7 +20,7 @@ class BookingController extends Controller
     {
         $reservation = $this->repository->stored(attributes: $request);
 
-        return redirect()->route('reservation.show', $reservation->key);
+        return redirect()->route('reservation.show', $reservation->id);
     }
 
     public function show(string $key): Renderable

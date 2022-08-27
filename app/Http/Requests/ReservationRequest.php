@@ -18,7 +18,7 @@ class ReservationRequest extends FormRequest
     public function rules()
     {
         return [
-            'apartment' => ['required', Rule::exists(House::class, 'key')],
+            'apartment' => ['required', Rule::exists(House::class, 'id')],
             'username' => ['required', 'string', 'min:3'],
             'email' => ['nullable', 'email', 'regex:/(.+)@(.+)\.(.+)/i'],
             'phone_number' => ['required', 'numeric', 'min:10', 'regex:/^([0-9\s\-\+\(\)]*)$/'],

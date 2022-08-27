@@ -21,7 +21,7 @@ class ImageCommissionerController extends Controller
 
     public function index(): Renderable
     {
-        $images = $this->repository->getContents();
+        $images = $this->repository->getImages();
 
         return view('dealers.domain.images.index', compact('images'));
     }
@@ -42,7 +42,7 @@ class ImageCommissionerController extends Controller
     {
         $image = $this->repository->show(key: $key);
 
-        return view('dealers.domain.images.create', compact( 'image'));
+        return view('dealers.domain.images.edit', compact( 'image'));
     }
 
     public function update(string $key, ImageRequest $attributes): RedirectResponse

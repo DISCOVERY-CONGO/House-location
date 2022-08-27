@@ -37,9 +37,8 @@
                                                     <div class="form-file">
                                                         <input
                                                             type="file"
-                                                            multiple
                                                             class="form-control-file form-control"
-                                                            name="images[]"
+                                                            name="images"
                                                             id="images">
                                                     </div>
                                                 </div>

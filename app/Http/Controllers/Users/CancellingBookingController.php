@@ -17,7 +17,6 @@ class CancellingBookingController extends Controller
     public function cancel(string $key): RedirectResponse
     {
         $this->repository->cancelReservation(key: $key);
-        flash('La reservation a ete annuler..!!')->success();
 
         return back();
     }

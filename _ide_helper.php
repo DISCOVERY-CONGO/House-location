@@ -17740,6 +17740,795 @@
      
 }
 
+    namespace RealRashid\SweetAlert\Facades { 
+            /**
+     * 
+     *
+     */ 
+        class Alert {
+                    /**
+         * The default configuration for middleware alert.
+         *
+         * @return \RealRashid\SweetAlert\$config 
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function middleware()
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->middleware();
+        }
+                    /**
+         * Flash an alert message.
+         *
+         * @param string $title
+         * @param string $text
+         * @param array $icon
+         * @return void 
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function alert($title = '', $text = '', $icon = null)
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        $instance->alert($title, $text, $icon);
+        }
+                    /**
+         * Display a success typed alert message with a text and a title.
+         *
+         * @param string $title
+         * @param string $text
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function success($title = '', $text = '')
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->success($title, $text);
+        }
+                    /**
+         * Display a info typed alert message with a text and a title.
+         *
+         * @param string $title
+         * @param string $text
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function info($title = '', $text = '')
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->info($title, $text);
+        }
+                    /**
+         * Display a warning typed alert message with a text and a title.
+         *
+         * @param string $title
+         * @param string $text
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function warning($title = '', $text = '')
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->warning($title, $text);
+        }
+                    /**
+         * Display a question typed alert message with a text and a title.
+         *
+         * @param string $title
+         * @param string $text
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function question($title = '', $text = '')
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->question($title, $text);
+        }
+                    /**
+         * Display a error typed alert message with a text and a title.
+         *
+         * @param string $title
+         * @param string $text
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function error($title = '', $text = '')
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->error($title, $text);
+        }
+                    /**
+         * Display a message with a custom image and CSS animation disabled.
+         *
+         * @param string $title
+         * @param string $text
+         * @param string $imageUrl
+         * @param integer $imageWidth
+         * @param integer $imageHeight
+         * @param string $imageAlt
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function image($title, $text, $imageUrl, $imageWidth, $imageHeight, $imageAlt = null)
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->image($title, $text, $imageUrl, $imageWidth, $imageHeight, $imageAlt);
+        }
+                    /**
+         * Display a html typed alert message with html code.
+         *
+         * @param string $title
+         * @param string $code
+         * @param string $icon
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function html($title = '', $code = '', $icon = '')
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->html($title, $code, $icon);
+        }
+                    /**
+         * Display a toast message
+         *
+         * @param string $title
+         * @param string $icon
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function toast($title = '', $icon = '')
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->toast($title, $icon);
+        }
+                    /**
+         * Convert any alert modal to Toast
+         *
+         * @param string $position
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function toToast($position = '')
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->toToast($position);
+        }
+                    /**
+         * Convert any alert modal to html
+         *
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function toHtml()
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->toHtml();
+        }
+                    /**
+         * Add a custom image to alert
+         *
+         * @param string $imageUrl
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function addImage($imageUrl)
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->addImage($imageUrl);
+        }
+                    /**
+         * Add footer section to alert()
+         *
+         * @param string $code
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function footer($code)
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->footer($code);
+        }
+                    /**
+         * positioned alert dialog
+         *
+         * @param string $position
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function position($position = 'top-end')
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->position($position);
+        }
+                    /**
+         * Modal window width
+         * including paddings
+         * (box-sizing: border-box).
+         * 
+         * Can be in px or %. The default width is 32rem
+         *
+         * @param string $width
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function width($width = '32rem')
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->width($width);
+        }
+                    /**
+         * Modal window padding.
+         * 
+         * The default padding is 1.25rem.
+         *
+         * @param string $padding
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function padding($padding = '1.25rem')
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->padding($padding);
+        }
+                    /**
+         * Modal window background
+         * (CSS background property).
+         * 
+         * The default background is '#fff'.
+         *
+         * @param string $background
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function background($background = '#fff')
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->background($background);
+        }
+                    /**
+         * Set to false if you want to
+         * focus the first element in tab
+         * order instead of "Confirm"-button by default.
+         *
+         * @param boolean $focus
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function focusConfirm($focus = true)
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->focusConfirm($focus);
+        }
+                    /**
+         * Set to true if you want to focus the
+         * "Cancel"-button by default.
+         *
+         * @param boolean $focus
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function focusCancel($focus = false)
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->focusCancel($focus);
+        }
+                    /**
+         * Custom animation with [Animate.css](https://daneden.github.io/animate.css/)
+         * CSS classes for animations when showing a popup (fade in):
+         * CSS classes for animations when hiding a popup (fade out):
+         *
+         * @param string $showAnimation
+         * @param string $hideAnimation
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function animation($showAnimation, $hideAnimation)
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->animation($showAnimation, $hideAnimation);
+        }
+                    /**
+         * Persistent the alert modal
+         *
+         * @param boolean $showConfirmBtn
+         * @param boolean $showCloseBtn
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function persistent($showConfirmBtn = true, $showCloseBtn = false)
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->persistent($showConfirmBtn, $showCloseBtn);
+        }
+                    /**
+         * auto close alert modal after
+         * specifid time
+         *
+         * @param integer $milliseconds
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function autoClose($milliseconds = 5000)
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->autoClose($milliseconds);
+        }
+                    /**
+         * Display confirm button
+         *
+         * @param string $btnText
+         * @param string $btnColor
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function showConfirmButton($btnText = 'Ok', $btnColor = '#3085d6')
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->showConfirmButton($btnText, $btnColor);
+        }
+                    /**
+         * Display cancel button
+         *
+         * @param string $btnText
+         * @param string $btnColor
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function showCancelButton($btnText = 'Cancel', $btnColor = '#aaa')
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->showCancelButton($btnText, $btnColor);
+        }
+                    /**
+         * Display close button
+         *
+         * @param string $closeButtonAriaLabel
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function showCloseButton($closeButtonAriaLabel = 'aria-label')
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->showCloseButton($closeButtonAriaLabel);
+        }
+                    /**
+         * Hide close button from alert or toast
+         *
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function hideCloseButton()
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->hideCloseButton();
+        }
+                    /**
+         * Apply default styling to buttons.
+         * 
+         * If you want to use your own classes (e.g. Bootstrap classes)
+         * set this parameter to false.
+         *
+         * @param boolean $buttonsStyling
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function buttonsStyling($buttonsStyling)
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->buttonsStyling($buttonsStyling);
+        }
+                    /**
+         * Use any HTML inside icons (e.g. Font Awesome)
+         *
+         * @param string $iconHtml
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function iconHtml($iconHtml)
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->iconHtml($iconHtml);
+        }
+                    /**
+         * If set to true, the timer will have a progress bar at the bottom of a popup.
+         * 
+         * Mostly, this feature is useful with toasts.
+         *
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function timerProgressBar()
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->timerProgressBar();
+        }
+                    /**
+         * Reverse buttons position
+         *
+         * @author Faber44 <https://github.com/Faber44>
+         * @static 
+         */ 
+        public static function reverseButtons()
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->reverseButtons();
+        }
+                    /**
+         * Flash the config options for alert.
+         *
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function flash()
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->flash();
+        }
+                    /**
+         * Build Flash config options for flashing.
+         *
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function buildConfig()
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->buildConfig();
+        }
+         
+    }
+     
+}
+
+    namespace Barryvdh\DomPDF\Facade { 
+            /**
+     * 
+     *
+     * @method static \Barryvdh\DomPDF\PDF setPaper($paper, $orientation = 'portrait')
+     * @method static \Barryvdh\DomPDF\PDF setBaseHost(string $baseHost)
+     * @method static \Barryvdh\DomPDF\PDF setProtocol(string $protocol)
+     * @method static \Barryvdh\DomPDF\PDF setHttpContext($httpContext)
+     * @method static \Barryvdh\DomPDF\PDF setCallbacks(array $callbacks)
+     */ 
+        class Pdf {
+                    /**
+         * Get the DomPDF instance
+         *
+         * @return \Dompdf\Dompdf 
+         * @static 
+         */ 
+        public static function getDomPDF()
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->getDomPDF();
+        }
+                    /**
+         * Show or hide warnings
+         *
+         * @static 
+         */ 
+        public static function setWarnings($warnings)
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->setWarnings($warnings);
+        }
+                    /**
+         * Load a HTML string
+         *
+         * @param string|null $encoding Not used yet
+         * @static 
+         */ 
+        public static function loadHTML($string, $encoding = null)
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->loadHTML($string, $encoding);
+        }
+                    /**
+         * Load a HTML file
+         *
+         * @static 
+         */ 
+        public static function loadFile($file)
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->loadFile($file);
+        }
+                    /**
+         * Add metadata info
+         *
+         * @param \Barryvdh\DomPDF\array<string,  string> $info
+         * @return static 
+         * @static 
+         */ 
+        public static function addInfo($info)
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->addInfo($info);
+        }
+                    /**
+         * Load a View and convert to HTML
+         *
+         * @param \Barryvdh\DomPDF\array<string,  mixed> $data
+         * @param \Barryvdh\DomPDF\array<string,  mixed> $mergeData
+         * @param string|null $encoding Not used yet
+         * @static 
+         */ 
+        public static function loadView($view, $data = [], $mergeData = [], $encoding = null)
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->loadView($view, $data, $mergeData, $encoding);
+        }
+                    /**
+         * Set/Change an option (or array of options) in Dompdf
+         *
+         * @param \Barryvdh\DomPDF\array<string,  mixed>|string $attribute
+         * @param null|mixed $value
+         * @return \Barryvdh\DomPDF\PDF 
+         * @static 
+         */ 
+        public static function setOption($attribute, $value = null)
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->setOption($attribute, $value);
+        }
+                    /**
+         * Replace all the Options from DomPDF
+         *
+         * @deprecated Use setOption to override individual options.
+         * @param \Barryvdh\DomPDF\array<string,  mixed> $options
+         * @static 
+         */ 
+        public static function setOptions($options)
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->setOptions($options);
+        }
+                    /**
+         * Output the PDF as a string.
+         * 
+         * The options parameter controls the output. Accepted options are:
+         * 
+         * 'compress' = > 1 or 0 - apply content stream compression, this is
+         *    on (1) by default
+         *
+         * @param \Barryvdh\DomPDF\array<string,  int> $options
+         * @return string The rendered PDF as string
+         * @static 
+         */ 
+        public static function output($options = [])
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->output($options);
+        }
+                    /**
+         * Save the PDF to a file
+         *
+         * @static 
+         */ 
+        public static function save($filename)
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->save($filename);
+        }
+                    /**
+         * Make the PDF downloadable by the user
+         *
+         * @static 
+         */ 
+        public static function download($filename = 'document.pdf')
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->download($filename);
+        }
+                    /**
+         * Return a response with the PDF to show in the browser
+         *
+         * @static 
+         */ 
+        public static function stream($filename = 'document.pdf')
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->stream($filename);
+        }
+                    /**
+         * Render the PDF
+         *
+         * @static 
+         */ 
+        public static function render()
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->render();
+        }
+                    /**
+         * 
+         *
+         * @param \Barryvdh\DomPDF\array<string> $pc
+         * @static 
+         */ 
+        public static function setEncryption($password, $ownerpassword = '', $pc = [])
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->setEncryption($password, $ownerpassword, $pc);
+        }
+         
+    }
+            /**
+     * 
+     *
+     * @method static \Barryvdh\DomPDF\PDF setPaper($paper, $orientation = 'portrait')
+     * @method static \Barryvdh\DomPDF\PDF setBaseHost(string $baseHost)
+     * @method static \Barryvdh\DomPDF\PDF setProtocol(string $protocol)
+     * @method static \Barryvdh\DomPDF\PDF setHttpContext($httpContext)
+     * @method static \Barryvdh\DomPDF\PDF setCallbacks(array $callbacks)
+     */ 
+        class Pdf {
+                    /**
+         * Get the DomPDF instance
+         *
+         * @return \Dompdf\Dompdf 
+         * @static 
+         */ 
+        public static function getDomPDF()
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->getDomPDF();
+        }
+                    /**
+         * Show or hide warnings
+         *
+         * @static 
+         */ 
+        public static function setWarnings($warnings)
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->setWarnings($warnings);
+        }
+                    /**
+         * Load a HTML string
+         *
+         * @param string|null $encoding Not used yet
+         * @static 
+         */ 
+        public static function loadHTML($string, $encoding = null)
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->loadHTML($string, $encoding);
+        }
+                    /**
+         * Load a HTML file
+         *
+         * @static 
+         */ 
+        public static function loadFile($file)
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->loadFile($file);
+        }
+                    /**
+         * Add metadata info
+         *
+         * @param \Barryvdh\DomPDF\array<string,  string> $info
+         * @return static 
+         * @static 
+         */ 
+        public static function addInfo($info)
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->addInfo($info);
+        }
+                    /**
+         * Load a View and convert to HTML
+         *
+         * @param \Barryvdh\DomPDF\array<string,  mixed> $data
+         * @param \Barryvdh\DomPDF\array<string,  mixed> $mergeData
+         * @param string|null $encoding Not used yet
+         * @static 
+         */ 
+        public static function loadView($view, $data = [], $mergeData = [], $encoding = null)
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->loadView($view, $data, $mergeData, $encoding);
+        }
+                    /**
+         * Set/Change an option (or array of options) in Dompdf
+         *
+         * @param \Barryvdh\DomPDF\array<string,  mixed>|string $attribute
+         * @param null|mixed $value
+         * @return \Barryvdh\DomPDF\PDF 
+         * @static 
+         */ 
+        public static function setOption($attribute, $value = null)
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->setOption($attribute, $value);
+        }
+                    /**
+         * Replace all the Options from DomPDF
+         *
+         * @deprecated Use setOption to override individual options.
+         * @param \Barryvdh\DomPDF\array<string,  mixed> $options
+         * @static 
+         */ 
+        public static function setOptions($options)
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->setOptions($options);
+        }
+                    /**
+         * Output the PDF as a string.
+         * 
+         * The options parameter controls the output. Accepted options are:
+         * 
+         * 'compress' = > 1 or 0 - apply content stream compression, this is
+         *    on (1) by default
+         *
+         * @param \Barryvdh\DomPDF\array<string,  int> $options
+         * @return string The rendered PDF as string
+         * @static 
+         */ 
+        public static function output($options = [])
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->output($options);
+        }
+                    /**
+         * Save the PDF to a file
+         *
+         * @static 
+         */ 
+        public static function save($filename)
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->save($filename);
+        }
+                    /**
+         * Make the PDF downloadable by the user
+         *
+         * @static 
+         */ 
+        public static function download($filename = 'document.pdf')
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->download($filename);
+        }
+                    /**
+         * Return a response with the PDF to show in the browser
+         *
+         * @static 
+         */ 
+        public static function stream($filename = 'document.pdf')
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->stream($filename);
+        }
+                    /**
+         * Render the PDF
+         *
+         * @static 
+         */ 
+        public static function render()
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->render();
+        }
+                    /**
+         * 
+         *
+         * @param \Barryvdh\DomPDF\array<string> $pc
+         * @static 
+         */ 
+        public static function setEncryption($password, $ownerpassword = '', $pc = [])
+        {
+                        /** @var \Barryvdh\DomPDF\PDF $instance */
+                        return $instance->setEncryption($password, $ownerpassword, $pc);
+        }
+         
+    }
+     
+}
+
     namespace Collective\Html { 
             /**
      * 
@@ -18901,6 +19690,110 @@
         public static function customLabel($name, $value, $options = [], $escape_html = true)
         {
                         return \Collective\Html\FormBuilder::customLabel($name, $value, $options, $escape_html);
+        }
+         
+    }
+     
+}
+
+    namespace Milon\Barcode\Facades { 
+            /**
+     * 
+     *
+     */ 
+        class DNS1DFacade {
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function setStorPath($path)
+        {
+                        /** @var \Milon\Barcode\DNS1D $instance */
+                        return $instance->setStorPath($path);
+        }
+         
+    }
+            /**
+     * 
+     *
+     */ 
+        class DNS2DFacade {
+                    /**
+         * Return a SVG string representation of barcode.
+         * 
+         * <li>$arrcode['code'] code to be printed on text label</li>
+         * <li>$arrcode['num_rows'] required number of rows</li>
+         * <li>$arrcode['num_cols'] required number of columns</li>
+         * <li>$arrcode['bcode'][$r][$c] value of the cell is $r row and $c column (0 = transparent, 1 = black)</li></ul>
+         *
+         * @param $code (string) code to print
+         * @param $type (string) type of barcode: <ul><li>DATAMATRIX : Datamatrix (ISO/IEC 16022)</li><li>PDF417 : PDF417 (ISO/IEC 15438:2006)</li><li>PDF417,a,e,t,s,f,o0,o1,o2,o3,o4,o5,o6 : PDF417 with parameters: a = aspect ratio (width/height); e = error correction level (0-8); t = total number of macro segments; s = macro segment index (0-99998); f = file ID; o0 = File Name (text); o1 = Segment Count (numeric); o2 = Time Stamp (numeric); o3 = Sender (text); o4 = Addressee (text); o5 = File Size (numeric); o6 = Checksum (numeric). NOTES: Parameters t, s and f are required for a Macro Control Block, all other parametrs are optional. To use a comma character ',' on text options, replace it with the character 255: "\xff".</li><li>QRCODE : QRcode Low error correction</li><li>QRCODE,L : QRcode Low error correction</li><li>QRCODE,M : QRcode Medium error correction</li><li>QRCODE,Q : QRcode Better error correction</li><li>QRCODE,H : QR-CODE Best error correction</li><li>RAW: raw mode - comma-separad list of array rows</li><li>RAW2: raw mode - array rows are surrounded by square parenthesis.</li><li>TEST : Test matrix</li></ul>
+         * @param $w (int) Width of a single rectangle element in user units.
+         * @param $h (int) Height of a single rectangle element in user units.
+         * @param $color (string) Foreground color (in SVG format) for bar elements (background is transparent).
+         * @return string SVG code.
+         * @protected 
+         * @static 
+         */ 
+        public static function getBarcodeSVG($code, $type, $w = 3, $h = 3, $color = 'black')
+        {
+                        /** @var \Milon\Barcode\DNS2D $instance */
+                        return $instance->getBarcodeSVG($code, $type, $w, $h, $color);
+        }
+                    /**
+         * Return an HTML representation of barcode.
+         * 
+         * <li>$arrcode['code'] code to be printed on text label</li>
+         * <li>$arrcode['num_rows'] required number of rows</li>
+         * <li>$arrcode['num_cols'] required number of columns</li>
+         * <li>$arrcode['bcode'][$r][$c] value of the cell is $r row and $c column (0 = transparent, 1 = black)</li></ul>
+         *
+         * @param $code (string) code to print
+         * @param $type (string) type of barcode: <ul><li>DATAMATRIX : Datamatrix (ISO/IEC 16022)</li><li>PDF417 : PDF417 (ISO/IEC 15438:2006)</li><li>PDF417,a,e,t,s,f,o0,o1,o2,o3,o4,o5,o6 : PDF417 with parameters: a = aspect ratio (width/height); e = error correction level (0-8); t = total number of macro segments; s = macro segment index (0-99998); f = file ID; o0 = File Name (text); o1 = Segment Count (numeric); o2 = Time Stamp (numeric); o3 = Sender (text); o4 = Addressee (text); o5 = File Size (numeric); o6 = Checksum (numeric). NOTES: Parameters t, s and f are required for a Macro Control Block, all other parametrs are optional. To use a comma character ',' on text options, replace it with the character 255: "\xff".</li><li>QRCODE : QRcode Low error correction</li><li>QRCODE,L : QRcode Low error correction</li><li>QRCODE,M : QRcode Medium error correction</li><li>QRCODE,Q : QRcode Better error correction</li><li>QRCODE,H : QR-CODE Best error correction</li><li>RAW: raw mode - comma-separad list of array rows</li><li>RAW2: raw mode - array rows are surrounded by square parenthesis.</li><li>TEST : Test matrix</li></ul>
+         * @param $w (int) Width of a single rectangle element in pixels.
+         * @param $h (int) Height of a single rectangle element in pixels.
+         * @param $color (string) Foreground color for bar elements (background is transparent).
+         * @return string HTML code.
+         * @protected 
+         * @static 
+         */ 
+        public static function getBarcodeHTML($code, $type, $w = 10, $h = 10, $color = 'black')
+        {
+                        /** @var \Milon\Barcode\DNS2D $instance */
+                        return $instance->getBarcodeHTML($code, $type, $w, $h, $color);
+        }
+                    /**
+         * Return a PNG image representation of barcode (requires GD or Imagick library).
+         * 
+         * <li>$arrcode['code'] code to be printed on text label</li>
+         * <li>$arrcode['num_rows'] required number of rows</li>
+         * <li>$arrcode['num_cols'] required number of columns</li>
+         * <li>$arrcode['bcode'][$r][$c] value of the cell is $r row and $c column (0 = transparent, 1 = black)</li></ul>
+         *
+         * @param $code (string) code to print
+         * @param $type (string) type of barcode: <ul><li>DATAMATRIX : Datamatrix (ISO/IEC 16022)</li><li>PDF417 : PDF417 (ISO/IEC 15438:2006)</li><li>PDF417,a,e,t,s,f,o0,o1,o2,o3,o4,o5,o6 : PDF417 with parameters: a = aspect ratio (width/height); e = error correction level (0-8); t = total number of macro segments; s = macro segment index (0-99998); f = file ID; o0 = File Name (text); o1 = Segment Count (numeric); o2 = Time Stamp (numeric); o3 = Sender (text); o4 = Addressee (text); o5 = File Size (numeric); o6 = Checksum (numeric). NOTES: Parameters t, s and f are required for a Macro Control Block, all other parametrs are optional. To use a comma character ',' on text options, replace it with the character 255: "\xff".</li><li>QRCODE : QRcode Low error correction</li><li>QRCODE,L : QRcode Low error correction</li><li>QRCODE,M : QRcode Medium error correction</li><li>QRCODE,Q : QRcode Better error correction</li><li>QRCODE,H : QR-CODE Best error correction</li><li>RAW: raw mode - comma-separad list of array rows</li><li>RAW2: raw mode - array rows are surrounded by square parenthesis.</li><li>TEST : Test matrix</li></ul>
+         * @param $w (int) Width of a single rectangle element in pixels.
+         * @param $h (int) Height of a single rectangle element in pixels.
+         * @param $color (array) RGB (0-255) foreground color for bar elements (background is transparent).
+         * @return \Milon\Barcode\path or false in case of error.
+         * @protected 
+         * @static 
+         */ 
+        public static function getBarcodePNG($code, $type, $w = 3, $h = 3, $color = [])
+        {
+                        /** @var \Milon\Barcode\DNS2D $instance */
+                        return $instance->getBarcodePNG($code, $type, $w, $h, $color);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function setStorPath($path)
+        {
+                        /** @var \Milon\Barcode\DNS2D $instance */
+                        return $instance->setStorPath($path);
         }
          
     }
@@ -23487,8 +24380,13 @@ namespace  {
             class FormBuilder extends \Kris\LaravelFormBuilder\Facades\FormBuilder {}
             class Debugbar extends \Barryvdh\Debugbar\Facades\Debugbar {}
             class Socialite extends \Laravel\Socialite\Facades\Socialite {}
+            class Alert extends \RealRashid\SweetAlert\Facades\Alert {}
+            class PDF extends \Barryvdh\DomPDF\Facade\Pdf {}
+            class Pdf extends \Barryvdh\DomPDF\Facade\Pdf {}
             class Form extends \Collective\Html\FormFacade {}
             class Html extends \Collective\Html\HtmlFacade {}
+            class DNS1D extends \Milon\Barcode\Facades\DNS1DFacade {}
+            class DNS2D extends \Milon\Barcode\Facades\DNS2DFacade {}
             class Flasher extends \Flasher\Laravel\Facade\Flasher {}
             class SweetAlert extends \Flasher\SweetAlert\Laravel\Facade\SweetAlert {}
             class Flare extends \Spatie\LaravelIgnition\Facades\Flare {}

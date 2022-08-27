@@ -74,6 +74,12 @@
                         'name' => 'Commissionnaire',
                         'icon' => 'ni-user-alt'
                     ])
+
+                    @include('backend.components._link', [
+                        'route' => route('admins.notification.index'),
+                        'name' => 'Notification',
+                        'icon' => 'ni-bell'
+                    ])
                 </ul>
             </div>
         </div>

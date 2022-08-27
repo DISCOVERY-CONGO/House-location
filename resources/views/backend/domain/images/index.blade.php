@@ -53,10 +53,11 @@
                                 @foreach($images as $image)
                                     <tr class="nk-tb-item">
                                         <td class="nk-tb-col tb-col-sm">
-                                                <span class="tb-product text-center">
-                                                    <img src="{{ asset('storage/'.$image->images) }}"
-                                                         alt="{{ $image->key }}" class="thumb">
-                                                </span>
+                                            <span class="tb-product text-center">
+                                                <img
+                                                    src="{{ asset('storage/'.$image->images) }}"
+                                                    alt="{{ $image->id }}" class="thumb">
+                                            </span>
                                         </td>
                                         <td class="nk-tb-col tb-col-md">
                                             <span>{{ $image->houses->reference ?? "" }}</span>
@@ -70,12 +71,14 @@
                                                     <a href="{{ route('admins.image.edit', $image->id) }}" class="btn btn-dim btn-primary btn-sm">
                                                         <em class="icon ni ni-edit"></em>
                                                     </a>
-                                                    <form action="{{ route('admins.image.destroy', $image->id) }}" method="POST" onsubmit="return confirm('Voulez vous supprimer');">
+                                                     <a
+                                                         class="btn btn-dim btn-danger btn-sm"
+                                                         href="#"
+                                                         onclick="deleteConfirm('delete-images-{{$image->id}}')"
+                                                     ><em class="icon ni ni-trash"></em></a>
+                                                    <form action="{{ route('admins.image.destroy', $image->id) }}" method="POST" id="delete-images-{{$image->id}}">
                                                         @method('DELETE')
                                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                        <button type="submit" class="btn btn-dim btn-danger btn-sm">
-                                                            <em class="icon ni ni-trash"></em>
-                                                        </button>
                                                     </form>
                                                 </div>
                                             </span>

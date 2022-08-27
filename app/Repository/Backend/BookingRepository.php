@@ -6,12 +6,17 @@ namespace App\Repository\Backend;
 
 use App\Contracts\BookingRepositoryInterface;
 use App\Models\Reservation;
+use App\Services\ToastService;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 class BookingRepository implements BookingRepositoryInterface
 {
+    public function __construct(protected ToastService $service)
+    {
+    }
+
     public function getContents(): Collection|array
     {
         return Reservation::query()
@@ -22,6 +27,7 @@ class BookingRepository implements BookingRepositoryInterface
                 'client_id',
             ])
             ->with(['house:id,reference,images', 'client:id,name,phones_number'])
+            ->orderByDesc('created_at')
             ->get();
     }
 
@@ -34,10 +40,12 @@ class BookingRepository implements BookingRepositoryInterface
 
     public function deleted(string $key): Model|Builder|null
     {
-        $user = $this->getReservation(key: $key);
-        $user->delete();
+        $reservation = $this->getReservation(key: $key);
+        $reservation->delete();
 
-        return $user;
+        $this->service->success("La reservation $reservation->id a ete supprimer");
+
+        return $reservation;
     }
 
     private function getReservation(string $key): null|Builder|Model

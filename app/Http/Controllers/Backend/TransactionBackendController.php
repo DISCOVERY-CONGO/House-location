@@ -10,6 +10,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class TransactionBackendController extends Controller
 {
@@ -29,5 +30,12 @@ class TransactionBackendController extends Controller
         $transaction = $this->repository->showTransaction(key:  $key);
 
         return view('backend.domain.transactions.show', compact('transaction'));
+    }
+
+    public function destroy(int $key): RedirectResponse
+    {
+        $this->repository->deleteTransaction($key);
+
+        return back();
     }
 }

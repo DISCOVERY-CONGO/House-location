@@ -21,7 +21,10 @@
         "pusher/pusher-php-server": "^7.0.2",
         "spatie/laravel-cookie-consent": "^3.2",
         "spatie/laravel-newsletter": "^4.11",
-        "tonysm/turbo-laravel": "^1.5"
+        "tonysm/turbo-laravel": "^1.5",
+        "barryvdh/laravel-dompdf": "^2.0",
+        "milon/barcode": "^9.0",
+        "realrashid/sweet-alert": "^5.1"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7.0",

@@ -37,6 +37,10 @@ class ApartmentNotification extends Notification implements ShouldQueue
     {
         return [
             //
+            'commune' => $this->apartment->commune,
+            'user' => $this->apartment->user->name,
+            'email' => $this->apartment->user->email,
+            'user_id' => $this->apartment->user->id
         ];
     }
 }

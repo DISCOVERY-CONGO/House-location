@@ -1,3 +1,4 @@
+@php use App\Enums\ReservationEnum; @endphp
 @extends('backend.layout.backend')
 
 @section('title')
@@ -43,57 +44,113 @@
                                 </thead>
                                 <tbody>
                                 @foreach($reservations as $reservation)
-                                    <tr class="nk-tb-item text-center">
-                                        <td class="nk-tb-col tb-col-md font-weight-bold">
+                                    @if($reservation->status == ReservationEnum::CONFIRMED_RESERVATION)
+                                        <tr class="nk-tb-item text-center alert alert-primary">
+                                            <td class="nk-tb-col tb-col-md ">
                                             <span>
                                                 <img
                                                     src="{{ asset('storage/'.$reservation->house->images) }}"
                                                     class="img-fluid rounded"
+                                                    height="18%"
+                                                    width="18%"
                                                     alt="{{ $reservation->house_id }}">
                                             </span>
-                                        </td>
-                                        <td class="nk-tb-col tb-col-md font-weight-bold">
-                                            <span>{{ $reservation->house->reference ?? "Pas de code maison" }}</span>
-                                        </td>
-                                        <td class="nk-tb-col tb-col-md">
-                                            <span>{{ ucfirst($reservation->client->name) ?? "" }}</span>
-                                        </td>
-                                        <td class="nk-tb-col tb-col-md">
-                                            <span>{{ $reservation->address ?? "" }}</span>
-                                        </td>
-                                        <td class="nk-tb-col tb-col-md">
-                                            <span>{{ $reservation->client->phones_number ?? "" }}</span>
-                                        </td>
-                                        <td class="nk-tb-col tb-col-md">
-                                            @if($reservation->status == \App\Enums\ReservationEnum::CONFIRMED_RESERVATION)
-                                                <span class="dot bg-success d-mb-none"></span>
-                                                <span class="badge badge-sm badge-dot has-bg badge-success d-none d-mb-inline-flex">
+                                            </td>
+                                            <td class="nk-tb-col tb-col-md">
+                                                <span>{{ $reservation->house->reference ?? "Pas de code maison" }}</span>
+                                            </td>
+                                            <td class="nk-tb-col tb-col-md">
+                                                <span>{{ ucfirst($reservation->client->name) ?? "" }}</span>
+                                            </td>
+                                            <td class="nk-tb-col tb-col-md">
+                                                <span>{{ $reservation->client->phones_number ?? "" }}</span>
+                                            </td>
+                                            <td class="nk-tb-col tb-col-md">
+                                                @if($reservation->status == \App\Enums\ReservationEnum::CONFIRMED_RESERVATION)
+                                                    <span class="dot bg-success d-mb-none"></span>
+                                                    <span class="badge badge-sm badge-dot has-bg badge-success d-none d-mb-inline-flex">
                                                     Confirmer
                                                 </span>
-                                            @else
-                                                <span class="dot bg-warning d-mb-none"></span>
-                                                <span class="badge badge-sm badge-dot has-bg badge-warning d-none d-mb-inline-flex">
+                                                @else
+                                                    <span class="dot bg-warning d-mb-none"></span>
+                                                    <span class="badge badge-sm badge-dot has-bg badge-warning d-none d-mb-inline-flex">
                                                     En attente
                                                 </span>
-                                            @endif
-                                        </td>
-                                        <td class="nk-tb-col">
+                                                @endif
+                                            </td>
+                                            <td class="nk-tb-col">
                                              <span class="tb-lead">
                                                 <div class="d-flex justify-content-center">
                                                     <a href="{{ route('admins.reservations.show', $reservation->id) }}" class="btn btn-dim btn-primary btn-sm">
                                                         <em class="icon ni ni-eye"></em>
                                                     </a>
-                                                    <form action="{{ route('admins.reservations.destroy', $reservation->id) }}" method="POST" onsubmit="return confirm('Voulez vous supprimer');">
+                                                    <a
+                                                        class="btn btn-dim btn-danger btn-sm"
+                                                        href="#"
+                                                        onclick="deleteConfirm('delete-reservation-{{$reservation->id}}')"
+                                                    ><em class="icon ni ni-trash"></em></a>
+                                                    <form action="{{ route('admins.reservations.destroy', $reservation->id) }}" method="POST" id="delete-reservation-{{$reservation->id}}">
                                                         @method('DELETE')
                                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                        <button type="submit" class="btn btn-dim btn-danger btn-sm">
-                                                            <em class="icon ni ni-trash"></em>
-                                                        </button>
                                                     </form>
                                                 </div>
                                             </span>
-                                        </td>
-                                    </tr>
+                                            </td>
+                                        </tr>
+                                    @else
+                                        <tr class="nk-tb-item text-center alert alert-danger">
+                                            <td class="nk-tb-col tb-col-md">
+                                            <span>
+                                                <img
+                                                    src="{{ asset('storage/'.$reservation->house->images) }}"
+                                                    class="img-fluid rounded"
+                                                    height="18%"
+                                                    width="18%"
+                                                    alt="{{ $reservation->house_id }}">
+                                            </span>
+                                            </td>
+                                            <td class="nk-tb-col tb-col-md ">
+                                                <span>{{ $reservation->house->reference ?? "Pas de code maison" }}</span>
+                                            </td>
+                                            <td class="nk-tb-col tb-col-md">
+                                                <span>{{ ucfirst($reservation->client->name) ?? "" }}</span>
+                                            </td>
+                                            <td class="nk-tb-col tb-col-md">
+                                                <span>{{ $reservation->client->phones_number ?? "" }}</span>
+                                            </td>
+                                            <td class="nk-tb-col tb-col-md">
+                                                @if($reservation->status == \App\Enums\ReservationEnum::CONFIRMED_RESERVATION)
+                                                    <span class="dot bg-success d-mb-none"></span>
+                                                    <span class="badge badge-sm badge-dot has-bg badge-success d-none d-mb-inline-flex">
+                                                    Confirmer
+                                                </span>
+                                                @else
+                                                    <span class="dot bg-warning d-mb-none"></span>
+                                                    <span class="badge badge-sm badge-dot has-bg badge-warning d-none d-mb-inline-flex">
+                                                    En attente
+                                                </span>
+                                                @endif
+                                            </td>
+                                            <td class="nk-tb-col">
+                                             <span class="tb-lead">
+                                                <div class="d-flex justify-content-center">
+                                                    <a href="{{ route('admins.reservations.show', $reservation->id) }}" class="btn btn-dim btn-primary btn-sm">
+                                                        <em class="icon ni ni-eye"></em>
+                                                    </a>
+                                                    <a
+                                                        class="btn btn-dim btn-danger btn-sm"
+                                                        href="#"
+                                                        onclick="deleteConfirm('delete-reservation-{{$reservation->id}}')"
+                                                    ><em class="icon ni ni-trash"></em></a>
+                                                    <form action="{{ route('admins.reservations.destroy', $reservation->id) }}" method="POST" id="delete-reservation-{{$reservation->id}}">
+                                                        @method('DELETE')
+                                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                    </form>
+                                                </div>
+                                            </span>
+                                            </td>
+                                        </tr>
+                                    @endif
                                 @endforeach
                                 </tbody>
                             </table>

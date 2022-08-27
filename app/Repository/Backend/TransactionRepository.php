@@ -7,12 +7,17 @@ namespace App\Repository\Backend;
 use App\Contracts\TransactionRepositoryInterface;
 use App\Enums\ReservationEnum;
 use App\Models\Transaction;
+use App\Services\ToastService;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 class TransactionRepository implements TransactionRepositoryInterface
 {
+    public function __construct(protected ToastService $service)
+    {
+    }
+
     public function getTransactions(): Collection|array
     {
         return Transaction::query()
@@ -56,5 +61,14 @@ class TransactionRepository implements TransactionRepositoryInterface
                 'house:id,commune,town,prices',
             ],
         ]);
+    }
+
+    public function deleteTransaction(int $key): Model|Builder
+    {
+        $transaction = $this->showTransaction($key);
+        $transaction->delete();
+
+        $this->service->success("La transaction $transaction->code_transaction a ete annuler");
+        return $transaction;
     }
 }

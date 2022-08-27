@@ -28,9 +28,6 @@
                                         <span class="sub-text">N° Telephone</span>
                                     </th>
                                     <th class="nk-tb-col tb-col-md">
-                                        <span class="sub-text">Email</span>
-                                    </th>
-                                    <th class="nk-tb-col tb-col-md">
                                         <span class="sub-text">Date Transaction</span>
                                     </th>
                                     <th class="nk-tb-col tb-col-md">
@@ -54,7 +51,7 @@
                                             <span>{{ $client->phones_number ?? 0 }}</span>
                                         </td>
                                         <td class="nk-tb-col tb-col-md">
-                                            <span>{{ $client->email ?? "" }}</span>
+                                            <span>{{ $client->transaction->payment_date ?? "" }}</span>
                                         </td>
                                         <td class="nk-tb-col tb-col-md">
                                             <span>{{ $client->transaction->code_transaction ?? 0 }}</span>

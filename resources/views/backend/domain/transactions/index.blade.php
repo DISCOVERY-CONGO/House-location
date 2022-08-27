@@ -59,6 +59,15 @@
                                                     <a href="{{ route('admins.transaction.show', $transaction->id) }}" class="btn btn-dim btn-primary btn-sm">
                                                         <em class="icon ni ni-eye"></em>
                                                     </a>
+                                                    <a
+                                                        class="btn btn-dim btn-danger btn-sm"
+                                                        href="#"
+                                                        onclick="deleteConfirm('delete-transaction-{{$transaction->id}}')"
+                                                    ><em class="icon ni ni-trash"></em></a>
+                                                    <form action="{{ route('admins.transaction.destroy', $transaction->id) }}" method="POST" id="delete-transaction-{{$transaction->id}}">
+                                                        @method('DELETE')
+                                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                    </form>
                                                 </div>
                                             </span>
                                         </td>

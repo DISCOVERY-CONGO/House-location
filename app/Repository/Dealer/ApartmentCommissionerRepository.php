@@ -7,6 +7,7 @@ namespace App\Repository\Dealer;
 use App\Contracts\ApartmentCommissionerRepositoryInterface;
 use App\Enums\UserRoleEnum;
 use App\Models\House;
+use App\Services\ToastService;
 use App\Traits\ApartmentCrud;
 use App\Traits\ImageUploader;
 use App\Traits\RandomValues;
@@ -17,6 +18,10 @@ use Illuminate\Database\Eloquent\Model;
 class ApartmentCommissionerRepository implements ApartmentCommissionerRepositoryInterface
 {
     use ImageUploader, RandomValues, ApartmentCrud;
+
+    public function __construct(protected ToastService $service)
+    {
+    }
 
     public function getContents(): Collection|array
     {

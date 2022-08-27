@@ -1,6 +1,9 @@
 <form action="{{ route('reservation.store') }}" method="post" class="w-full">
     @csrf
-    <input type="hidden" name="apartment" value="{{ $apartment->key }}">
+    <input
+        type="hidden"
+        name="apartment"
+        value="{{ $apartment->id }}">
     <div class="flex flex-col gap-6 w-full">
         <h1 class="text-xl font-semibold text-gray-600">Reservation</h1>
         <div class="flex flex-col gap-4">

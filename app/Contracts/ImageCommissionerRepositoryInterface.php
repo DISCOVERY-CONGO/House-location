@@ -6,7 +6,7 @@ namespace App\Contracts;
 
 interface ImageCommissionerRepositoryInterface
 {
-    public function getContents();
+    public function getImages();
 
     public function show(string $key);
 

@@ -8,11 +8,14 @@ use App\Contracts\BookingHouseRepositoryInterface;
 use App\Enums\HouseEnum;
 use App\Enums\ReservationEnum;
 use App\Jobs\ReservationJob;
+use App\Models\Client;
 use App\Models\House;
 use App\Models\Reservation;
 use App\Traits\RandomValues;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use LaravelIdea\Helper\App\Models\_IH_Client_QB;
+use LaravelIdea\Helper\App\Models\_IH_Reservation_QB;
 
 class BookingRepository implements BookingHouseRepositoryInterface
 {
@@ -22,19 +25,13 @@ class BookingRepository implements BookingHouseRepositoryInterface
     {
         $house = $this->getHouse(attributes: $attributes);
 
-        $reservation = Reservation::query()
-            ->create([
-                'house_id' => $house->id,
-                'user_id' => auth()->id() ?? null,
-                'status' => ReservationEnum::PENDING_RESERVATION,
-                'name' => $attributes->input('username'),
-                'address' => $attributes->input('email'),
-                'phones' => $attributes->input('phone_number'),
-                'messages' => $attributes->input('messages'),
-                'transaction_code' => $this->generateRandomTransaction(6),
-            ]);
+        $client = $this->storeClients($attributes);
+
+        $reservation = $this->createReservation($house, $attributes, $client);
 
         dispatch(new ReservationJob($reservation))->delay(now()->addSecond(10));
+
+        alert()->success('Felicitation','Votre reservation a ete envoyer avec success');
 
         return $reservation;
     }
@@ -64,5 +61,28 @@ class BookingRepository implements BookingHouseRepositoryInterface
                 fn ($builder) => $builder->where('status', HouseEnum::VALIDATED_HOUSE)
             )
             ->first();
+    }
+
+    private function storeClients($attributes): Model|Builder|Client|_IH_Client_QB
+    {
+        return Client::query()
+            ->create([
+                'name' => $attributes->input('username'),
+                'last_name' => $attributes->input('email'),
+                'phones_number' => $attributes->input('phone_number'),
+                'email' => $attributes->input('email'),
+            ]);
+    }
+
+    private function createReservation($house, $attributes, $client): _IH_Reservation_QB|Reservation|Builder|Model
+    {
+        return Reservation::query()
+            ->create([
+                'house_id' => $house->id,
+                'user_id' => auth()->id() ?? null,
+                'status' => ReservationEnum::PENDING_RESERVATION,
+                'messages' => $attributes->input('messages'),
+                'client_id' => $client->id
+            ]);
     }
 }

@@ -25,7 +25,8 @@
         "lodash": "^4.17.19",
         "postcss": "^8.4.16",
         "pusher-js": "^7.0.3",
-        "sweetalert2": "^11.4.29"
+        "sweetalert2": "^11.4.29",
+        "laravel-echo": "^1.13.1"
     },
     "dependencies": {
         "babel-plugin-transform-class-properties": "^6.24.1",

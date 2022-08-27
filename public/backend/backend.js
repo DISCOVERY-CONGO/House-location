@@ -66,6 +66,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var leaflet__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(leaflet__WEBPACK_IMPORTED_MODULE_0__);
 
 var Location = function Location(element, view, zoom) {
+  if (element == null) {
+    return;
+  }
+
   var map = leaflet__WEBPACK_IMPORTED_MODULE_0___default().map(element).setView(view, zoom);
   leaflet__WEBPACK_IMPORTED_MODULE_0___default().tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: ''

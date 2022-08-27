@@ -23,9 +23,10 @@ class ClientRepository implements ClientRepositoryInterface
                 'phones_number',
                 'email',
             ])
-            ->with(['reservation' => function ($builder) {
+            ->with(['reservations' => function ($builder) {
                 $builder->where('status', ReservationEnum::CONFIRMED_RESERVATION);
             }, 'transaction'])
+            ->orderBy('created_at', 'desc')
             ->get();
     }
 
@@ -44,10 +45,8 @@ class ClientRepository implements ClientRepositoryInterface
             ->firstOrFail();
 
         return $client->load([
-            'reservation' => [
-                'house',
-            ],
-            'transactions',
+            'reservations',
+            'transaction',
         ]);
     }
 }

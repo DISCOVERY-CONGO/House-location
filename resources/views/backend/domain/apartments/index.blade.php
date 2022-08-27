@@ -1,4 +1,4 @@
-@php use App\Models\House; @endphp
+@php use App\Enums\HouseEnum;use App\Models\House; @endphp
 @extends('backend.layout.backend')
 
 @section('title')
@@ -64,38 +64,43 @@
                                 </thead>
                                 <tbody>
                                 @foreach($rooms as $room)
-                                    <tr class="nk-tb-item">
-                                        <td class="nk-tb-col tb-col-sm">
+                                    @if($room->status == HouseEnum::VALIDATED_HOUSE)
+                                        <tr class="nk-tb-item alert alert-primary">
+                                            <td class="nk-tb-col tb-col-sm">
                                             <span class="tb-product text-center">
                                                 <img src="{{ asset('storage/'.$room->images) }}"
                                                      alt="{{ $room->commune }}" class="thumb">
                                             </span>
-                                        </td>
-                                        <td class="nk-tb-col tb-col-md">
-                                            <span>{{ ucfirst($room->town) ?? "" }}</span>
-                                        </td>
-                                        <td class="nk-tb-col tb-col-md">
-                                            <span>{{ ucfirst($room->commune) ?? "" }}</span>
-                                        </td>
-                                        <td class="nk-tb-col tb-col-md">
-                                            @if($room->status == \App\Enums\HouseEnum::VALIDATED_HOUSE)
-                                                <span class="dot bg-success d-mb-none"></span>
-                                                <span class="badge badge-sm badge-dot has-bg badge-success d-none d-mb-inline-flex">Confirmer</span>
-                                            @else
-                                                <span class="dot bg-warning d-mb-none"></span>
-                                                <span class="badge badge-sm badge-dot has-bg badge-warning d-none d-mb-inline-flex">En attente</span>
-                                            @endif
-                                        </td>
-                                        <td class="nk-tb-col tb-col-md">
-                                            <span>{{ $room->phone_number ?? "" }}</span>
-                                        </td>
-                                        <td class="nk-tb-col">
+                                            </td>
+                                            <td class="nk-tb-col tb-col-md">
+                                                <span>{{ ucfirst($room->town) ?? "" }}</span>
+                                            </td>
+                                            <td class="nk-tb-col tb-col-md">
+                                                <span>{{ ucfirst($room->commune) ?? "" }}</span>
+                                            </td>
+                                            <td class="nk-tb-col tb-col-md">
+                                                @if($room->status == \App\Enums\HouseEnum::VALIDATED_HOUSE)
+                                                    <span class="dot bg-success d-mb-none"></span>
+                                                    <span
+                                                        class="badge badge-sm badge-dot has-bg badge-success d-none d-mb-inline-flex">Confirmer</span>
+                                                @else
+                                                    <span class="dot bg-warning d-mb-none"></span>
+                                                    <span
+                                                        class="badge badge-sm badge-dot has-bg badge-warning d-none d-mb-inline-flex">En attente</span>
+                                                @endif
+                                            </td>
+                                            <td class="nk-tb-col tb-col-md">
+                                                <span>{{ $room->phone_number ?? "" }}</span>
+                                            </td>
+                                            <td class="nk-tb-col">
                                             <span class="tb-lead">
                                                 <div class="d-flex justify-content-center">
-                                                    <a href="{{ route('admins.houses.show', $room->id) }}" class="btn btn-dim btn-primary btn-sm">
+                                                    <a href="{{ route('admins.houses.show', $room->id) }}"
+                                                       class="btn btn-dim btn-primary btn-sm">
                                                         <em class="icon ni ni-eye"></em>
                                                     </a>
-                                                    <a href="{{ route('admins.houses.edit', $room->id) }}" class="btn btn-dim btn-primary btn-sm">
+                                                    <a href="{{ route('admins.houses.edit', $room->id) }}"
+                                                       class="btn btn-dim btn-primary btn-sm">
                                                         <em class="icon ni ni-edit"></em>
                                                     </a>
                                                     <a
@@ -104,14 +109,70 @@
                                                         onclick="deleteConfirm('delete-apartment-{{$room->id}}')"
                                                     ><em class="icon ni ni-trash"></em></a>
 
-                                                    <form action="{{ route('admins.houses.destroy', $room->id) }}" method="POST" id="delete-apartment-{{$room->id}}">
+                                                    <form action="{{ route('admins.houses.destroy', $room->id) }}"
+                                                          method="POST" id="delete-apartment-{{$room->id}}">
                                                         @method('DELETE')
                                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                     </form>
                                                 </div>
                                             </span>
-                                        </td>
-                                    </tr>
+                                            </td>
+                                        </tr>
+                                    @else
+                                        <tr class="nk-tb-item alert alert-danger">
+                                            <td class="nk-tb-col tb-col-sm">
+                                            <span class="tb-product text-center">
+                                                <img src="{{ asset('storage/'.$room->images) }}"
+                                                     alt="{{ $room->commune }}" class="thumb">
+                                            </span>
+                                            </td>
+                                            <td class="nk-tb-col tb-col-md">
+                                                <span>{{ ucfirst($room->town) ?? "" }}</span>
+                                            </td>
+                                            <td class="nk-tb-col tb-col-md">
+                                                <span>{{ ucfirst($room->commune) ?? "" }}</span>
+                                            </td>
+                                            <td class="nk-tb-col tb-col-md">
+                                                @if($room->status == \App\Enums\HouseEnum::VALIDATED_HOUSE)
+                                                    <span class="dot bg-success d-mb-none"></span>
+                                                    <span
+                                                        class="badge badge-sm badge-dot has-bg badge-success d-none d-mb-inline-flex">Confirmer</span>
+                                                @else
+                                                    <span class="dot bg-warning d-mb-none"></span>
+                                                    <span
+                                                        class="badge badge-sm badge-dot has-bg badge-warning d-none d-mb-inline-flex">En attente</span>
+                                                @endif
+                                            </td>
+                                            <td class="nk-tb-col tb-col-md">
+                                                <span>{{ $room->phone_number ?? "" }}</span>
+                                            </td>
+                                            <td class="nk-tb-col">
+                                            <span class="tb-lead">
+                                                <div class="d-flex justify-content-center">
+                                                    <a href="{{ route('admins.houses.show', $room->id) }}"
+                                                       class="btn btn-dim btn-primary btn-sm">
+                                                        <em class="icon ni ni-eye"></em>
+                                                    </a>
+                                                    <a href="{{ route('admins.houses.edit', $room->id) }}"
+                                                       class="btn btn-dim btn-primary btn-sm">
+                                                        <em class="icon ni ni-edit"></em>
+                                                    </a>
+                                                    <a
+                                                        class="btn btn-dim btn-danger btn-sm"
+                                                        href="#"
+                                                        onclick="deleteConfirm('delete-apartment-{{$room->id}}')"
+                                                    ><em class="icon ni ni-trash"></em></a>
+
+                                                    <form action="{{ route('admins.houses.destroy', $room->id) }}"
+                                                          method="POST" id="delete-apartment-{{$room->id}}">
+                                                        @method('DELETE')
+                                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                    </form>
+                                                </div>
+                                            </span>
+                                            </td>
+                                        </tr>
+                                    @endif
                                 @endforeach
                                 </tbody>
                             </table>

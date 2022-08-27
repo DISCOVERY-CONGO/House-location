@@ -9,4 +9,6 @@ interface TransactionRepositoryInterface
     public function getTransactions();
 
     public function showTransaction(int $key);
+
+    public function deleteTransaction(int $key);
 }

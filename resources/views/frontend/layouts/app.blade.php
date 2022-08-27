@@ -31,7 +31,7 @@
 
 <script src="{{ asset('app/swipper.js') }}"></script>
 <script src="{{ asset('app/swipper-config.js') }}"></script>
-
+@include('sweetalert::alert')
 @yield("scripts")
 </body>
 </html>

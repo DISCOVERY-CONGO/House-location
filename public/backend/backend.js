@@ -1,53 +1,13 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./resources/js/backend/deleteHouse.js":
-/*!*********************************************!*\
-  !*** ./resources/js/backend/deleteHouse.js ***!
-  \*********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);
+/***/ "./resources/js/backend/chart/statistic.js":
+/*!*************************************************!*\
+  !*** ./resources/js/backend/chart/statistic.js ***!
+  \*************************************************/
+/***/ (() => {
 
 
-window.deleteConfirm = function (formId) {
-  sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
-    icon: 'warning',
-    text: 'Do you want to delete this?',
-    showCancelButton: true,
-    confirmButtonText: 'Delete',
-    confirmButtonColor: '#e3342f'
-  }).then(function (result) {
-    if (result.isConfirmed) {
-      document.getElementById(formId).submit();
-    }
-  });
-};
-
-/***/ }),
-
-/***/ "./resources/js/backend/filepont.js":
-/*!******************************************!*\
-  !*** ./resources/js/backend/filepont.js ***!
-  \******************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var filepond__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! filepond */ "./node_modules/filepond/dist/filepond.js");
-/* harmony import */ var filepond__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(filepond__WEBPACK_IMPORTED_MODULE_0__);
-
-
-var ready = function ready(callback) {
-  if (document.readyState !== "loading") callback();else document.addEventListener("DOMContentLoaded", callback);
-};
-
-ready(function () {
-  (0,filepond__WEBPACK_IMPORTED_MODULE_0__.parse)(document.body);
-});
 
 /***/ }),
 
@@ -103,6 +63,68 @@ var Location = function Location(element, view, zoom) {
 
 /***/ }),
 
+/***/ "./resources/js/backend/libs/deleteHouse.js":
+/*!**************************************************!*\
+  !*** ./resources/js/backend/libs/deleteHouse.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);
+
+
+window.deleteConfirm = function (formId) {
+  sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
+    icon: 'warning',
+    text: 'Do you want to delete this?',
+    showCancelButton: true,
+    confirmButtonText: 'Delete',
+    confirmButtonColor: '#e3342f'
+  }).then(function (result) {
+    if (result.isConfirmed) {
+      document.getElementById(formId).submit();
+    }
+  });
+};
+
+/***/ }),
+
+/***/ "./resources/js/backend/libs/filepont.js":
+/*!***********************************************!*\
+  !*** ./resources/js/backend/libs/filepont.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var filepond__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! filepond */ "./node_modules/filepond/dist/filepond.js");
+/* harmony import */ var filepond__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(filepond__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var ready = function ready(callback) {
+  if (document.readyState !== "loading") callback();else document.addEventListener("DOMContentLoaded", callback);
+};
+
+ready(function () {
+  (0,filepond__WEBPACK_IMPORTED_MODULE_0__.parse)(document.body);
+});
+
+/***/ }),
+
+/***/ "./resources/js/backend/libs/uploadImages.js":
+/*!***************************************************!*\
+  !*** ./resources/js/backend/libs/uploadImages.js ***!
+  \***************************************************/
+/***/ (() => {
+
+var uploadImages = function uploadImages() {
+  console.log("salut");
+};
+
+/***/ }),
+
 /***/ "./resources/js/backend/socket/server.js":
 /*!***********************************************!*\
   !*** ./resources/js/backend/socket/server.js ***!
@@ -115,18 +137,6 @@ if (localStorage.getItem("token")) {
     console.log(notification);
   });
 }
-
-/***/ }),
-
-/***/ "./resources/js/backend/uploadImages.js":
-/*!**********************************************!*\
-  !*** ./resources/js/backend/uploadImages.js ***!
-  \**********************************************/
-/***/ (() => {
-
-var uploadImages = function uploadImages() {
-  console.log("salut");
-};
 
 /***/ }),
 
@@ -31162,12 +31172,15 @@ var __webpack_exports__ = {};
   \*****************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _leaflet_location__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./leaflet/location */ "./resources/js/backend/leaflet/location.js");
-/* harmony import */ var _uploadImages__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./uploadImages */ "./resources/js/backend/uploadImages.js");
-/* harmony import */ var _uploadImages__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_uploadImages__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _deleteHouse__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./deleteHouse */ "./resources/js/backend/deleteHouse.js");
-/* harmony import */ var _filepont__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./filepont */ "./resources/js/backend/filepont.js");
+/* harmony import */ var _libs_uploadImages__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./libs/uploadImages */ "./resources/js/backend/libs/uploadImages.js");
+/* harmony import */ var _libs_uploadImages__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_libs_uploadImages__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _libs_deleteHouse__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./libs/deleteHouse */ "./resources/js/backend/libs/deleteHouse.js");
+/* harmony import */ var _libs_filepont__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./libs/filepont */ "./resources/js/backend/libs/filepont.js");
 /* harmony import */ var _socket_server__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./socket/server */ "./resources/js/backend/socket/server.js");
 /* harmony import */ var _socket_server__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_socket_server__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _chart_statistic__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./chart/statistic */ "./resources/js/backend/chart/statistic.js");
+/* harmony import */ var _chart_statistic__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_chart_statistic__WEBPACK_IMPORTED_MODULE_5__);
+
 
 
 

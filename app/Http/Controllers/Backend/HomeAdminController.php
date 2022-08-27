@@ -16,15 +16,9 @@ class HomeAdminController extends Controller
 
     public function index(): Renderable
     {
-        $data = [];
+        $confirmedReservation = $this->repository->getBookingConfirmed();
+        $unconfirmedReservation = $this->repository->getBookingUnConfirmed();
 
-        foreach ($this->repository->getReservationPerWeek() as $row) {
-            $data['label'][] = $row->day_name;
-            $data['data'][] = (int) $row->count;
-        }
-
-        $data['chart_data'] = json_encode($data);
-
-        return view('backend.dashboard', compact('data'));
+        return view('backend.dashboard', compact('confirmedReservation', 'unconfirmedReservation'));
     }
 }

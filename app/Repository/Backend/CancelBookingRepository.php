@@ -36,8 +36,6 @@ class CancelBookingRepository
 
         $this->service->success("La reservation $reservation->id, a ete supprimer");
 
-        alert()->info('Information',"Votre reservation pour la maison a ete annuler");
-
         return $reservation;
     }
 }

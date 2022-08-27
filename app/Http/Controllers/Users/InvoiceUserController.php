@@ -18,11 +18,9 @@ class InvoiceUserController extends Controller
 
     public function downloadInvoice(InvoiceRequest $invoiceRequest): Response
     {
-        {
-            $invoices = $this->repository->download($invoiceRequest);
-            $pdf = PDF::loadView('testPDF', $invoices);
-            $invoice = now().'_invoice.pdf';
-            return $pdf->download("$invoice");
-        }
+        $invoices = $this->repository->download($invoiceRequest);
+        $pdf = PDF::loadView('testPDF', $invoices);
+        $invoice = now().'_invoice.pdf';
+        return $pdf->download("$invoice");
     }
 }

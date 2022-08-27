@@ -19,7 +19,7 @@ class ApartmentNotification extends Notification implements ShouldQueue
 
     public function via(mixed $notifiable): array
     {
-        return ['database'];
+        return ['database', 'broadcast'];
     }
 
     public function toDatabase($notifiable): array
@@ -36,7 +36,6 @@ class ApartmentNotification extends Notification implements ShouldQueue
     public function toArray(mixed $notifiable): array
     {
         return [
-            //
             'commune' => $this->apartment->commune,
             'user' => $this->apartment->user->name,
             'email' => $this->apartment->user->email,

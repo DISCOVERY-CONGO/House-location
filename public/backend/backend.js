@@ -103,6 +103,21 @@ var Location = function Location(element, view, zoom) {
 
 /***/ }),
 
+/***/ "./resources/js/backend/socket/server.js":
+/*!***********************************************!*\
+  !*** ./resources/js/backend/socket/server.js ***!
+  \***********************************************/
+/***/ (() => {
+
+if (localStorage.getItem("token")) {
+  var decoded = jwt_decode(localStorage.getItem("token"));
+  window.Echo["private"]("App.User." + decoded.sub).notification(function (notification) {
+    console.log(notification);
+  });
+}
+
+/***/ }),
+
 /***/ "./resources/js/backend/uploadImages.js":
 /*!**********************************************!*\
   !*** ./resources/js/backend/uploadImages.js ***!
@@ -31151,6 +31166,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _uploadImages__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_uploadImages__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _deleteHouse__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./deleteHouse */ "./resources/js/backend/deleteHouse.js");
 /* harmony import */ var _filepont__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./filepont */ "./resources/js/backend/filepont.js");
+/* harmony import */ var _socket_server__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./socket/server */ "./resources/js/backend/socket/server.js");
+/* harmony import */ var _socket_server__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_socket_server__WEBPACK_IMPORTED_MODULE_4__);
+
 
 
 

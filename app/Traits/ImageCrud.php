@@ -51,6 +51,7 @@ trait ImageCrud
     public function updated(string $key, $attributes): Model|Builder|null
     {
         $image = $this->show(key: $key);
+
         $this->removePathOfImages($image);
         $image->update([
             'images' => self::uploadFiles($attributes),

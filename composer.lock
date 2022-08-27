@@ -5,6 +5,7 @@
         "This file is @generated automatically"
     ],
     "content-hash": "9da3b41dfd9f35d565bd001227a439a1",
+
     "packages": [
         {
             "name": "asm89/stack-cors",

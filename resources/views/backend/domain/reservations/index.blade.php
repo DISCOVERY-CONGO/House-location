@@ -89,6 +89,7 @@
                                                         href="#"
                                                         onclick="deleteConfirm('delete-reservation-{{$reservation->id}}')"
                                                     ><em class="icon ni ni-trash"></em></a>
+
                                                     <form action="{{ route('admins.reservations.destroy', $reservation->id) }}" method="POST" id="delete-reservation-{{$reservation->id}}">
                                                         @method('DELETE')
                                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">

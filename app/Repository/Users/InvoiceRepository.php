@@ -14,7 +14,7 @@ class InvoiceRepository implements InvoiceRepositoryInterface
 {
     public function download($invoiceRequest): Model|Builder|Reservation|_IH_Reservation_QB
     {
-        $invoice = Reservation::query()
+        $invoice =  Reservation::query()
             ->select([
                 'client_id',
                 'user_id',

@@ -13,14 +13,14 @@
 </head>
 
 <body class="overflow-hidden overflow-y-auto min-h-screen  bg-[#F9FAFB] flex items-center justify-center md:flex-none py-10">
-    <div class="w-full h-full z-100 flex justify-center">
-        <div class="w-full flex justify-center md:justify-start px-4 small:px-6 md:px-10 lg:px-8 z-50">
-            <div class="z-100 w-full max-w-md mx-auto flex flex-col items-center gap-4">
+<div class="w-full h-full z-100 flex justify-center">
+    <div class="w-full flex justify-center md:justify-start px-4 small:px-6 md:px-10 lg:px-8 z-50">
+        <div class="z-100 w-full max-w-md mx-auto flex flex-col items-center gap-4">
             @yield('content')
-            </div>
         </div>
     </div>
+</div>
 
-    <script src="{{ assert('js/app.js') }}"></script>
+<script src="{{ assert('js/app.js') }}"></script>
 </body>
 </html>

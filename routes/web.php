@@ -109,7 +109,6 @@ Route::get('localisation', LocationController::class)->name('location.index');
 Route::get('contact', [ContactController::class, 'index'])->name('contact.index');
 Route::post('contact', [ContactController::class, 'store'])->name('contact.store');
 Route::get('search', [SearchLocationController::class, 'searching'])->name('search.house');
-Route::get('maisons', HouseController::class)->name('house.index');
 Route::get('/maisons/{key}', [HouseController::class, 'show'])->name('house.show');
 Route::post('news-letters', [NewsLetterController::class, 'index'])->name('newsletters.send');
 Route::controller(BookingController::class)->group(function () {

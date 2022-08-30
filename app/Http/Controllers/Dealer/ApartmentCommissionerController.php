@@ -7,7 +7,7 @@ namespace App\Http\Controllers\Dealer;
 use App\Contracts\ApartmentCommissionerRepositoryInterface;
 use App\Forms\ApartmentForm;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ApartmentRequest;
+use App\Http\Requests\UpdateApartmentRequest;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Contracts\View\Factory;
@@ -40,7 +40,7 @@ class ApartmentCommissionerController extends Controller
         return view('dealers.domain.houses.create', compact('form'));
     }
 
-    public function store(ApartmentRequest $request): RedirectResponse
+    public function store(UpdateApartmentRequest $request): RedirectResponse
     {
         $this->repository->created(attributes: $request);
 
@@ -67,7 +67,7 @@ class ApartmentCommissionerController extends Controller
         return view('dealers.domain.houses.create', compact('form', 'room'));
     }
 
-    public function update(ApartmentRequest $request, string $key): RedirectResponse
+    public function update(UpdateApartmentRequest $request, string $key): RedirectResponse
     {
         $this->repository->updated(key: $key, attributes: $request);
 

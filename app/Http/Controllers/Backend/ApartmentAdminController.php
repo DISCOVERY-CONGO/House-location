@@ -8,6 +8,7 @@ use App\Contracts\ApartmentRepositoryInterface;
 use App\Forms\ApartmentForm;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ApartmentRequest;
+use App\Http\Requests\UpdateApartmentRequest;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Contracts\View\Factory;
@@ -67,7 +68,7 @@ class ApartmentAdminController extends Controller
         return view('backend.domain.apartments.create', compact('form', 'room'));
     }
 
-    public function update(ApartmentRequest $request, string $key): RedirectResponse
+    public function update(UpdateApartmentRequest $request, string $key): RedirectResponse
     {
         $this->repository->updated(key: $key, attributes: $request);
 

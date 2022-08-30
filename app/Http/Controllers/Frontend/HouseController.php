@@ -18,14 +18,6 @@ class HouseController extends Controller
     ) {
     }
 
-    public function __invoke(): Renderable
-    {
-        $apartments = $this->repository->getContent();
-        $apartment_notes = $this->repository->getHouseWithManyNotes();
-
-        return view('frontend.domain.houses.index', compact('apartments', 'apartment_notes'));
-    }
-
     public function show(string $key): Factory|View|Application
     {
         $apartment = $this->repository->showApartment($key);

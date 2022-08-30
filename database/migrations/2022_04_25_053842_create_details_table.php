@@ -20,11 +20,7 @@ return new class extends Migration
                 ->cascadeOnDelete();
             $table->integer('number_rooms')->nullable();
             $table->integer('number_pieces')->nullable();
-            $table->enum('toilet', [
-                ToiletEnum::INTERNE,
-                ToiletEnum::EXTERNE,
-                ToiletEnum::INTERNE_EXTERNE,
-            ])
+            $table->string('toilet')
                 ->default(ToiletEnum::INTERNE);
             $table->boolean('electricity')
                 ->default(ElectricityEnum::NOT_EXIST_ELECTRICITY);

@@ -1,4 +1,3 @@
-@php use App\Enums\HouseEnum; @endphp
 @extends('backend.layout.backend')
 
 @section('title', "Administration des appartements")
@@ -49,7 +48,7 @@
 
             <div class="nk-block nk-block-lg">
                 <div class="nk-block">
-                    @if($room->status == HouseEnum::INVALIDATED_HOUSE)
+                    @if($room->status == \App\Enums\HouseEnum::INVALIDATED_HOUSE)
                         <div class="alert alert-danger alert-icon mb-3" role="alert">
                             <em class="icon ni ni-alert-circle"></em>
                             Cette salle ne pas encore activé. Veillez l'activer pour qu'elle soie visible
@@ -146,38 +145,34 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    @if($room->image)
-                        <div id="carouselExFade" class="carousel slide carousel-fade mt-3" data-bs-ride="carousel">
-                            <div class="carousel-inner">
+                        @if($room->image)
+                        <div id="carouselExCap" class="carousel slide" data-bs-ride="carousel">
+                            <ol class="carousel-indicators">
+                                @foreach($room->image as $key => $images)
+                                <li data-bs-target="#carouselExCap" data-bs-slide-to="{{ $key }}" class="active"></li>
+                                @endforeach
+                            </ol>
+                            <div class="carousel-inner text-light">
+                                @foreach($room->image as $images)
                                 <div class="carousel-item active">
                                     <img
-                                        src="{{ asset('storage/'. $room->images) }}"
+                                        src="{{ asset('storage/'.$images->images) }}"
                                         class="d-block w-100"
-                                        alt="{{ $room->id }}">
+                                        alt="{{ $images->id ?? "" }}">
                                 </div>
+                                @endforeach
                             </div>
-                            @foreach($room->image as $images)
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <img
-                                            src="{{ asset('storage/'. $images->images) }}"
-                                            class="d-block w-100"
-                                            alt="{{ $images->id }}">
-                                    </div>
-                                </div>
-                            @endforeach
-                            <a class="carousel-control-prev" href="#carouselExFade" role="button" data-bs-slide="prev">
+                            <a class="carousel-control-prev" href="#carouselExCap" role="button" data-bs-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Previous</span>
                             </a>
-                            <a class="carousel-control-next" href="#carouselExFade" role="button" data-bs-slide="next">
+                            <a class="carousel-control-next" href="#carouselExCap" role="button" data-bs-slide="next">
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Next</span>
                             </a>
                         </div>
-                    @endif
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>

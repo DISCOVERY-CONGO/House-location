@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Traits;
 
+use App\Enums\UserRoleEnum;
 use App\Models\Detail;
+use App\Models\House;
 use App\Notifications\ApartmentNotification;
 use App\Services\ToastService;
 use Illuminate\Database\Eloquent\Builder;
@@ -100,12 +102,20 @@ trait ApartmentCrud
         $department = Detail::query()
             ->where('house_id', '=', $house->id)
             ->firstOrFail();
+
         $department->update([
             'number_rooms' => $attributes->input('number_rooms'),
             'number_pieces' => $attributes->input('number_pieces'),
             'toilet' => $attributes->input('toilet'),
             'electricity' => $attributes->input('electricity'),
-            'description' => $attributes->input('description'),
+            'description' => $attributes->input('description')
         ]);
+    }
+
+    private function getHouse(string $key): Builder|Model
+    {
+        return House::query()
+            ->where('id', '=', $key)
+            ->firstOrFail();
     }
 }

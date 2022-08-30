@@ -45,12 +45,4 @@ class ApartmentCommissionerRepository implements ApartmentCommissionerRepository
 
         return $room;
     }
-
-    private function getHouse(string $key): Builder|Model
-    {
-        return House::query()
-            ->where('user_id', '=', UserRoleEnum::DEALER_ROLE)
-            ->where('id', '=', $key)
-            ->firstOrFail();
-    }
 }

@@ -198,7 +198,7 @@
                 title: {
                     display: true,
                     position: "top",
-                    text: "Last Week Registered Users -  Day Wise Count",
+                    text: "",
                     fontSize: 18,
                     fontColor: "#111"
                 },

@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:resources/views/backend/domain/slides/create.blade.php
 @extends('backend.layout.backend')
-========
-@extends('backend.layout.admin')
->>>>>>>> 9b43f2e9a7052b85344481473c59fc8acbd66731:resources/views/backend/pages/slides/create.blade.php
 
 @section('title')
     Creation de slide
@@ -31,11 +27,7 @@
                         <div class="row justify-content-center">
                             <div class="col-md-7">
                                 @include('backend.components.errors')
-<<<<<<<< HEAD:resources/views/backend/domain/slides/create.blade.php
                                 @include('backend.domain.slides._form')
-========
-                                @include('backend.pages.slides._form')
->>>>>>>> 9b43f2e9a7052b85344481473c59fc8acbd66731:resources/views/backend/pages/slides/create.blade.php
                             </div>
                         </div>
                     </div>

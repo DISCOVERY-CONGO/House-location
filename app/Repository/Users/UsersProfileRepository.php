@@ -27,13 +27,7 @@ class UsersProfileRepository implements UpdateUserRepositoryInterface
             ->where('user_id', '=', $user->id)
             ->first();
 
-        if ($user->role_id == UserRoleEnum::USERS_ROLE) {
-            if ($client) {
-                $this->updateClient($client, $request);
-            } else {
-                $this->createClient($user, $request);
-            }
-        }
+        $this->updateClient($client, $request);
 
         $user->update([
             'email' => $request->input('email'),
@@ -41,6 +35,9 @@ class UsersProfileRepository implements UpdateUserRepositoryInterface
             'images' => self::uploadFiles($request),
             'password' => Hash::make($request->input('password')),
         ]);
+
+
+        alert()->info('Information',"Votre compte vien d'etre modifier avec success");
 
         return back();
     }

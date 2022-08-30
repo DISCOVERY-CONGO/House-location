@@ -18,7 +18,6 @@
         let zoomMaps = {{ config('leaflet.zoom_level') }}
     </script>
     @yield('styles')
-    @flasher_render
 </head>
 
 <body class="nk-body bg-lighter npc-general has-sidebar ">

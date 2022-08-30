@@ -18,16 +18,18 @@ return new class extends Migration
                 ->constrained()
                 ->cascadeOnDelete();
             $table->integer('prices');
-            $table->integer('warranty_price');
-            $table->string('commune');
-            $table->string('town');
-            $table->string('district');
-            $table->string('address');
-            $table->string('phone_number');
-            $table->string('email')->unique();
+            $table->integer('warranty_price')->nullable();
+            $table->string('commune')->nullable();
+            $table->string('town')->nullable();
+            $table->string('district')->nullable();
+            $table->string('address')->nullable();
+            $table->string('phone_number')
+                ->nullable()
+                ->default("+243990416691");
+            $table->string('email')->nullable();
             $table->decimal('latitude')->nullable();
             $table->decimal('longitude')->nullable();
-            $table->string('images');
+            $table->text('images');
             $table->boolean('status')
                 ->default(HouseEnum::PENDING_HOUSE);
             $table->string('reference')->unique();

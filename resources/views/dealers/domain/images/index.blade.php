@@ -53,10 +53,12 @@
                                 @foreach($images as $image)
                                     <tr class="nk-tb-item">
                                         <td class="nk-tb-col tb-col-sm">
-                                                <span class="tb-product text-center">
-                                                    <img src="{{ asset('storage/'.$image->images) }}"
-                                                         alt="{{ $image->id }}" class="thumb">
-                                                </span>
+                                            <span class="tb-product text-center">
+                                                <img
+                                                    src="{{ asset('storage/'.$image->images) }}"
+                                                    alt="{{ $image->id }}"
+                                                    class="thumb">
+                                            </span>
                                         </td>
                                         <td class="nk-tb-col tb-col-md">
                                             <span>{{ $image->houses->reference ?? "" }}</span>

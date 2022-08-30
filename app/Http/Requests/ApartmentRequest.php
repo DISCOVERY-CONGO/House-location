@@ -23,10 +23,9 @@ class ApartmentRequest extends FormRequest
             'town' => ['required', 'string', 'max:255'],
             'commune' => ['required', 'string', 'max:255'],
             'district' => ['required', 'string', 'max:255'],
-            'address' => ['required', 'string', 'regex:/(^[-0-9A-Za-z.,\/ ]+$)/', Rule::unique(House::class, 'address')],
-            'email' => ['required', 'email', 'regex:/(.+)@(.+)\.(.+)/i', Rule::unique(House::class, 'email')],
-            'phone_number' => ['required', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'min:10', Rule::unique(House::class, 'phone_number')],
-            // deuxieme steppers
+            'address' => ['required', 'string', 'regex:/(^[-0-9A-Za-z.,\/ ]+$)/'],
+            'email' => ['required', 'email', 'regex:/(.+)@(.+)\.(.+)/i'],
+            'phone_number' => ['nullable', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'min:10'],
             'prices' => ['required', 'numeric'],
             'warranty_price' => ['required', 'numeric'],
             'number_rooms' => ['required', 'numeric'],
@@ -35,7 +34,6 @@ class ApartmentRequest extends FormRequest
             'categories' => ['required'],
             'categories.*' => ['integer', Rule::exists(Category::class, 'id')],
             'type' => ['required', Rule::exists(Type::class, 'id')],
-            // troisieme steppers
             'latitude' => ['nullable', 'required_with:longitude', 'max:15'],
             'longitude' => ['nullable', 'required_with:latitude', 'max:15'],
             'electricity' => ['required', 'string'],

@@ -1,4 +1,4 @@
-{!! form_start($form, $options = ['attr' => ['class' => 'nk-wizard nk-wizard-simple is-alter']]) !!}
+{!! form_start($form) !!}
     <div class="row gy-3">
         <div class="col-md-6">
             <div class="form-group">
@@ -31,19 +31,10 @@
         <div class="col-md-6">
             <div class="form-group">
                 <div class="form-control-wrap">
-                    {!! form_row($form->phone_number) !!}
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <div class="form-control-wrap">
                     {!! form_row($form->email) !!}
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row gy-3">
         <div class="col-md-6">
             <div class="form-group">
                 <div class="form-control-wrap">
@@ -51,6 +42,8 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="row gy-3">
         <div class="col-md-6">
             <div class="form-group">
                 <div class="form-control-wrap">

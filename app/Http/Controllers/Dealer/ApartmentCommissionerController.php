@@ -6,7 +6,9 @@ namespace App\Http\Controllers\Dealer;
 
 use App\Contracts\ApartmentCommissionerRepositoryInterface;
 use App\Forms\ApartmentForm;
+use App\Forms\DealerForm;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ApartmentRequest;
 use App\Http\Requests\UpdateApartmentRequest;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Support\Renderable;
@@ -32,7 +34,7 @@ class ApartmentCommissionerController extends Controller
 
     public function create(): Factory|View|Application
     {
-        $form = $this->builder->create(ApartmentForm::class, [
+        $form = $this->builder->create(DealerForm::class, [
             'method' => 'POST',
             'url' => route('commissioner.houses.store'),
         ]);
@@ -40,7 +42,7 @@ class ApartmentCommissionerController extends Controller
         return view('dealers.domain.houses.create', compact('form'));
     }
 
-    public function store(UpdateApartmentRequest $request): RedirectResponse
+    public function store(ApartmentRequest $request): RedirectResponse
     {
         $this->repository->created(attributes: $request);
 

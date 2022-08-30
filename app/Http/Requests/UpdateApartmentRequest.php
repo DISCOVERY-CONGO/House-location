@@ -25,7 +25,7 @@ class UpdateApartmentRequest extends FormRequest
             'district' => ['required', 'string', 'max:255'],
             'address' => ['required', 'string', 'regex:/(^[-0-9A-Za-z.,\/ ]+$)/'],
             'email' => ['required', 'email', 'regex:/(.+)@(.+)\.(.+)/i'],
-            'phone_number' => ['required', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'min:10'],
+            'phone_number' => ['nullable', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'min:10'],
             // deuxieme steppers
             'prices' => ['required', 'numeric'],
             'warranty_price' => ['required', 'numeric'],

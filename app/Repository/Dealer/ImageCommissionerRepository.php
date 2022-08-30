@@ -26,14 +26,15 @@ class ImageCommissionerRepository implements ImageCommissionerRepositoryInterfac
         return Image::query()
             ->select([
                 'house_id',
-                'id'
+                'id',
+                'user_id'
             ])
             ->where('user_id', '=', auth()->id())
             ->with([
                 'user',
                 'houses'
             ])
-            ->orderBy('created_at', 'desc')
+            ->orderByDesc('created_at')
             ->get();
     }
 }

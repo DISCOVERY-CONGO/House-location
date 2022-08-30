@@ -18,17 +18,17 @@ class UsersProfileRepository implements UpdateUserRepositoryInterface
 
     public function updated(string $key, $request): RedirectResponse
     {
+
         $user = User::query()
             ->where('id', '=', $key)
             ->first();
 
         $client = Client::query()
-            ->where('user_id', '=', auth()->id())
-            ->firstOrFail();
+            ->where('user_id', '=', $user->id)
+            ->first();
 
         if ($user->role_id == UserRoleEnum::USERS_ROLE) {
             if ($client) {
-                $this->removePathOfImages($user);
                 $this->updateClient($client, $request);
             } else {
                 $this->createClient($user, $request);

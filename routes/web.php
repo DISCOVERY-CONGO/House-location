@@ -65,6 +65,7 @@ Route::group([
     Route::get('client/{key}', [ClientBackendController::class, 'show'])->name('client.show');
 
     Route::get('notification', [NotificationAdminController::class, 'index'])->name('notification.index');
+    Route::post('notification/{key}', [NotificationAdminController::class, 'index'])->name('notification.read');
     Route::delete('notification/{key}', [NotificationAdminController::class, 'delete'])->name('notification.delete');
     Route::get('notification/markRead', [NotificationAdminController::class, 'markAllReads'])->name('notification.markReads');
 

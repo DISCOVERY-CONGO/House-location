@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Traits;
 
 use App\Enums\UserRoleEnum;
+use App\Events\ApartmentCreateEvent;
 use App\Models\Detail;
 use App\Models\House;
 use App\Notifications\ApartmentNotification;
@@ -45,7 +46,7 @@ trait ApartmentCrud
 
         $user = auth()->user();
 
-        Notification::sendNow($user, new ApartmentNotification($apartment));
+        ApartmentCreateEvent::dispatch($apartment);
 
         $this->service->success(
             messages: 'Un nouveau appartement à été ajouter'

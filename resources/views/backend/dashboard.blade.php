@@ -7,6 +7,16 @@
 @section('content')
     <div class="nk-content-inner">
         <div class="nk-content-body">
+            @if($notifications->count() > 0)
+            <div class="alert alert-danger alert-icon" role="alert">
+                <em class="icon ni ni-cross-circle"></em>
+                <a href="{{ route('admins.notification.index') }}" class="text-danger">
+                    <strong>Information</strong>.
+                    Vous avez <span>{{ $notifications->count() }}</span> nouvelle notifications veillez consulter
+                </a>
+            </div>
+            @endif
+
             <div class="nk-block-head nk-block-head-sm">
                 <div class="nk-block-between">
                     <div class="nk-block-head-content">

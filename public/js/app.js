@@ -2522,9 +2522,12 @@ if (token) {
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
-  key: "8b7ca4c0da2460a5a75d",
+  key: "c4898b5cb524160dc8b2",
   cluster: "mt1",
   forceTLS: true
+});
+window.Echo["private"]('App.Models.User.' + User.id).notification(function (notification) {
+  console.log(notification.type);
 });
 
 /***/ }),
@@ -16694,6 +16697,7 @@ var Connector = /*#__PURE__*/function () {
       },
       broadcaster: 'pusher',
       csrfToken: null,
+      bearerToken: null,
       host: null,
       key: null,
       namespace: 'App.Events'
@@ -16715,6 +16719,13 @@ var Connector = /*#__PURE__*/function () {
       if (token) {
         this.options.auth.headers['X-CSRF-TOKEN'] = token;
         this.options.userAuthentication.headers['X-CSRF-TOKEN'] = token;
+      }
+
+      token = this.options.bearerToken;
+
+      if (token) {
+        this.options.auth.headers['Authorization'] = 'Bearer ' + token;
+        this.options.userAuthentication.headers['Authorization'] = 'Bearer ' + token;
       }
 
       return options;

@@ -15,7 +15,11 @@
             {{ request('latitude', config('leaflet.map_center_latitude')) }},
             {{ request('longitude', config('leaflet.map_center_longitude')) }}
         ];
-        let zoomMaps = {{ config('leaflet.zoom_level') }}
+        let zoomMaps = {{ config('leaflet.zoom_level') }};
+
+        window.User = {
+            id: {{ optional(auth()->user())->id }}
+        }
     </script>
     @yield('styles')
 </head>

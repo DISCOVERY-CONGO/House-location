@@ -15,7 +15,7 @@
                 <ul class="nk-quick-nav">
                     <li class="dropdown notification-dropdown">
                         <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-bs-toggle="dropdown" aria-expanded="false">
-                            <div class="icon-status icon-status-info">
+                            <div class="@if(auth()->user()->unreadNotifications->count() > 0) icon-status icon-status-info @endif">
                                 <em class="icon ni ni-bell"></em>
                             </div>
                         </a>
@@ -26,21 +26,29 @@
                             </div>
                             <div class="dropdown-body">
                                 <div class="nk-notification">
-                                    @foreach(auth()->user()->unreadNotifications as $notification)
+                                    @forelse(auth()->user()->unreadNotifications as $notification)
                                         <div class="nk-notification-item dropdown-inner">
                                             <div class="nk-notification-icon">
                                                 <em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
                                             </div>
                                             <div class="nk-notification-content">
                                                 <div class="nk-notification-text">
-                                                    {{ $notification->type}}
+                                                    {{ $notification->data['email'] }} vient d'ajoutez une nouvelle maison
                                                 </div>
                                                 <div class="nk-notification-time">
                                                     {{$notification->created_at->diffForHumans()}}
                                                 </div>
                                             </div>
                                         </div>
-                                    @endforeach
+                                    @empty
+                                        <div class="nk-notification-item dropdown-inner">
+                                            <div class="nk-notification-content">
+                                                <div class="nk-notification-text">
+                                                    Pas des notifications
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforelse
                                 </div>
                             </div>
                             <div class="dropdown-foot center">

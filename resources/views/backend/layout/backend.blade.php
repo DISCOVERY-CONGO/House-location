@@ -35,6 +35,11 @@
             </div>
         </div>
     </div>
+    <script>
+        window.User = {
+            id: {{ optional(auth()->user())->id }}
+        }
+    </script>
     <script src="{{ asset('admins/js/bundle.js') }}"></script>
     <script src="{{ asset('admins/js/scripts.js') }}"></script>
     <script src="{{ asset('backend/backend.js') }}"></script>

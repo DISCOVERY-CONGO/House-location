@@ -26,3 +26,8 @@ window.Echo = new Echo({
     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
     forceTLS: true
 });
+
+window.Echo.private('App.Models.User.' + User.id)
+    .notification((notification) => {
+        console.log(notification.type);
+    });

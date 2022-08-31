@@ -6,6 +6,7 @@ namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Notification;
 
 class ApartmentNotification extends Notification implements ShouldQueue
@@ -22,17 +23,6 @@ class ApartmentNotification extends Notification implements ShouldQueue
         return ['database', 'broadcast'];
     }
 
-    public function toDatabase($notifiable): array
-    {
-        return [
-            'id' => $this->apartment->id,
-            'commune' => $this->apartment->commune,
-            'town' => $this->apartment->town,
-            'user' => $this->apartment->user->name,
-            'email' => $this->apartment->user->email,
-        ];
-    }
-
     public function toArray(mixed $notifiable): array
     {
         return [
@@ -41,5 +31,13 @@ class ApartmentNotification extends Notification implements ShouldQueue
             'email' => $this->apartment->user->email,
             'user_id' => $this->apartment->user->id
         ];
+    }
+
+    public function toBroadcast(mixed $notifiable): BroadcastMessage
+    {
+        return new BroadcastMessage([
+            'user_id' => $this->apartment->user->id,
+            'email' => $this->apartment->user->email
+        ]);
     }
 }

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Repository\Backend;
 
 use App\Contracts\BookingRepositoryInterface;
+use App\Events\ReservationCancelEvent;
 use App\Models\Reservation;
 use App\Services\ToastService;
 use Illuminate\Database\Eloquent\Builder;
@@ -41,6 +42,7 @@ class BookingRepository implements BookingRepositoryInterface
     public function deleted(string $key): Model|Builder|null
     {
         $reservation = $this->getReservation(key: $key);
+        ReservationCancelEvent::dispatch($reservation);
         $reservation->delete();
 
         $this->service->success("La reservation $reservation->id a ete supprimer");

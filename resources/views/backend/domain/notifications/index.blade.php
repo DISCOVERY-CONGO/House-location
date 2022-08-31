@@ -21,12 +21,20 @@
                         <div class="card-inner">
                             @if(auth()->user()->role_id == UserRoleEnum::ADMINS_ROLE)
                                 @forelse($notifications as $notification)
+                                    @if($notification->type == "App\Notifications\ApartmentNotification")
                                     <div class="alert alert-success alert-icon alert-dismissible mb-1">
                                         <em class="icon ni ni-cross-circle"></em>
                                         <strong>[[{{ $notification->created_at }}]]</strong>
                                         L'utilisateur {{ $notification->data['email'] }} vient d'ajoutez une nouvelle maison
                                         <a href="#" class="close mark-as-read" data-bs-dismiss="alert" data-id="{{ $notification->id }}"></a>
                                     </div>
+                                    @else
+                                        <div class="alert alert-success alert-icon">
+                                            <em class="icon ni ni-check-circle"></em>
+                                            <strong>[[{{ $notification->created_at }}]]</strong>.
+                                            La reservation vient d'etre confirmez.
+                                        </div>
+                                    @endif
                                     @if($loop->last)
                                         <a href="#" id="mark-all">
                                             Marquez comme tout lis

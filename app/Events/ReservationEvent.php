@@ -14,18 +14,13 @@ class ReservationEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public function __construct(public $apartments)
+    public function __construct(public $reservation, public $transaction)
     {
         //
     }
 
-    /**
-     * Get the channels the event should broadcast on.
-     *
-     * @return Channel|PrivateChannel|array
-     */
     public function broadcastOn(): Channel|PrivateChannel|array
     {
-        return new PrivateChannel('house-create');
+        return new PrivateChannel('reservation-confirmed');
     }
 }

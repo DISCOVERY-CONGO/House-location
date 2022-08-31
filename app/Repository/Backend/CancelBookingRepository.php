@@ -32,8 +32,6 @@ class CancelBookingRepository
             ->where('client_id','=', $reservation->client_id)
             ->delete();
 
-        dispatch(new ConfirmedReservationJob($reservation))->delay(now()->addSecond(15));
-
         $this->service->success("La reservation $reservation->id, a ete supprimer");
 
         return $reservation;

@@ -9,7 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Notification;
 
-class ApartmentNotification extends Notification implements ShouldQueue
+class ApartmentNotification extends Notification
 {
     use Queueable;
 

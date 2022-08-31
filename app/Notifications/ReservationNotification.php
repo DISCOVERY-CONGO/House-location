@@ -13,31 +13,33 @@ class ReservationNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public function __construct(public $reservation)
+    public function __construct(public $reservation, public $transaction)
     {
         //
     }
 
     public function via($notifiable): array
     {
-        return ['mail'];
+        return ['database', 'mail'];
     }
 
-    public function toMail($notifiable): MailMessage
+    public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->line('The introduction to the notification.')
-            ->view('')
-            ->action('Notification Action', url('/'))
-            ->line('Thank you for using our application!');
+            ->subject('Order Status')
+            ->from(env('MAIL_FROM_ADDRESS'), 'Sender')
+            ->greeting('Hello!')
+            ->line('Your order status has been updated')
+            ->action('Check it out', url('/'))
+            ->line('Best regards!');
     }
 
     public function toArray($notifiable): array
     {
         return [
-            'transaction_code' => $this->reservation->transaction_code,
-            'address' => $this->reservation->address,
-            'price' => $this->reservation->house->price,
+            'transaction_code' => $this->transaction->code_transaction,
+            'email' => $this->reservation->client->email,
+            'price' => $this->reservation->house->prices
         ];
     }
 }

@@ -23,6 +23,7 @@ class ApartmentCreateListener
         $admin = User::query()
             ->where('role_id', '=', UserRoleEnum::ADMINS_ROLE)
             ->first();
+
         Notification::send($admin, new ApartmentNotification($event->apartment));
     }
 }

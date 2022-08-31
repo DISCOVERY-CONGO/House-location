@@ -36,9 +36,36 @@
                                 </a>
                             </li>
                         </ul>
+                        @php
+                            $client = \App\Models\Client::query()
+                                ->where('user_id', '=', auth()->id())
+                                ->firstOrFail();
+                            $notifications = $client->unreadNotifications
+                        @endphp
                     </div>
                     <div class="flex flex-col gap-10 w-full h-full min-h-screen py-4 lg:px-5 md:pr-5">
                         <div class="flex flex-col gap-6">
+                            @foreach($notifications as $notification)
+                                @if($notification->type == "App\Notifications\ReservationNotification")
+                                    <div class="bg-green-100 rounded-lg py-2 px-4 text-base text-green-700 inline-flex items-center w-full" role="alert">
+                                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check-circle" class="w-4 h-4 mr-2 fill-current" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                            <path fill="currentColor" d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"></path>
+                                        </svg>
+                                        <a href="" class="bg-none position-absolute">
+                                            <strong class="mr-1">[[ {{ $notification->created_at }} ]]</strong> Votre reservation a ete confirmer.
+                                        </a>
+                                    </div>
+                                @else
+                                    <div class="bg-red-100 rounded-lg py-2 px-4 text-base text-red-700 inline-flex items-center w-full" role="alert">
+                                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check-circle" class="w-4 h-4 mr-2 fill-current" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                            <path fill="currentColor" d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"></path>
+                                        </svg>
+                                        <a href="" class="bg-none position-absolute">
+                                            <strong class="mr-1">[[ {{ $notification->created_at }} ]]</strong> Votre reservation a ete supprimer par faute de confirmation.
+                                        </a>
+                                    </div>
+                                @endif
+                            @endforeach
                             <div class="flex">
                                 <h2 class="text-xl font-semibold ">Mes reservations</h2>
                             </div>

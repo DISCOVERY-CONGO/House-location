@@ -3,11 +3,14 @@
 namespace App\Providers;
 
 use App\Events\ApartmentCreateEvent;
+use App\Events\ReservationCancelEvent;
+use App\Events\ReservationEvent;
 use App\Listeners\ApartmentCreateListener;
+use App\Listeners\ReservationCancelListener;
+use App\Listeners\ReservationListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -22,6 +25,12 @@ class EventServiceProvider extends ServiceProvider
         ],
         ApartmentCreateEvent::class => [
             ApartmentCreateListener::class
+        ],
+        ReservationEvent::class => [
+            ReservationListener::class
+        ],
+        ReservationCancelEvent::class => [
+            ReservationCancelListener::class
         ]
     ];
 

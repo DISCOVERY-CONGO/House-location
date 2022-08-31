@@ -32,9 +32,15 @@
                                                 <em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
                                             </div>
                                             <div class="nk-notification-content">
-                                                <div class="nk-notification-text">
-                                                    {{ $notification->data['email'] }} vient d'ajoutez une nouvelle maison
-                                                </div>
+                                                @if($notification->type == "App\Notifications\ApartmentNotification")
+                                                    <div class="nk-notification-text">
+                                                        {{ $notification->data['email'] }} vient d'ajoutez une nouvelle maison
+                                                    </div>
+                                                @else
+                                                    <div class="nk-notification-text">
+                                                        {{ $notification->data['transaction_code'] }} vient d'etre confirmer
+                                                    </div>
+                                                @endif
                                                 <div class="nk-notification-time">
                                                     {{$notification->created_at->diffForHumans()}}
                                                 </div>

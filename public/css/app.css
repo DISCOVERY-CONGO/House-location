@@ -2061,7 +2061,7 @@ video {
   --tw-rotate: 180deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
-.select-box .option, 
+.select-box .option,
     .selected{
   cursor: pointer;
   padding-left: 1rem;

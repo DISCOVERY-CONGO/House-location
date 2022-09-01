@@ -22,18 +22,29 @@
                             @if(auth()->user()->role_id == UserRoleEnum::ADMINS_ROLE)
                                 @forelse($notifications as $notification)
                                     @if($notification->type == "App\Notifications\ApartmentNotification")
-                                    <div class="alert alert-success alert-icon alert-dismissible mb-1">
-                                        <em class="icon ni ni-cross-circle"></em>
-                                        <strong>[[{{ $notification->created_at }}]]</strong>
-                                        L'utilisateur {{ $notification->data['email'] }} vient d'ajoutez une nouvelle maison
-                                        <a href="#" class="close mark-as-read" data-bs-dismiss="alert" data-id="{{ $notification->id }}"></a>
-                                    </div>
+                                        <a href="#" onclick="notification('{{ $notification->id }}')">
+                                            <div class="alert alert-success alert-icon alert-dismissible mb-1">
+                                                <em class="icon ni ni-cross-circle"></em>
+                                                <strong>[[{{ $notification->created_at }}]]</strong>
+                                                L'utilisateur {{ $notification->data['email'] }} vient d'ajoutez une nouvelle maison
+                                            </div>
+                                        </a>
+                                    @elseif($notification->type == "App\Notifications\ReservationCancelNotification")
+                                        <a href="#" onclick="notification('{{ $notification->id }}')">
+                                            <div class="alert alert-warning alert-icon mb-1">
+                                                <em class="icon ni ni-alert-circle"></em>
+                                                <strong>[[{{ $notification->data['user'] }}]]</strong>.
+                                                Vient d'annuler sa reservation.
+                                            </div>
+                                        </a>
                                     @else
-                                        <div class="alert alert-success alert-icon">
-                                            <em class="icon ni ni-check-circle"></em>
-                                            <strong>[[{{ $notification->created_at }}]]</strong>.
-                                            La reservation vient d'etre confirmez.
-                                        </div>
+                                        <a href="#" onclick="notification('{{ $notification->id }}')">
+                                            <div class="alert alert-success alert-icon mb-1">
+                                                <em class="icon ni ni-check-circle"></em>
+                                                <strong>[[{{ $notification->created_at }}]]</strong>.
+                                                La reservation vient d'etre confirmez.
+                                            </div>
+                                        </a>
                                     @endif
                                     @if($loop->last)
                                         <a href="#" id="mark-all">

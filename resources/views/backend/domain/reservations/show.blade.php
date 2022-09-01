@@ -75,37 +75,31 @@
                                             <div class="profile-ud-item">
                                                 <div class="profile-ud wider">
                                                     <span class="profile-ud-label">Nom client</span>
-                                                    <span class="profile-ud-value">{{ $reservation->name ?? "" }}</span>
+                                                    <span class="profile-ud-value">{{ $reservation->client->name ?? "" }}</span>
                                                 </div>
                                             </div>
                                             <div class="profile-ud-item">
                                                 <div class="profile-ud wider">
                                                     <span class="profile-ud-label">Email client</span>
-                                                    <span class="profile-ud-value">{{ $reservation->address ?? "" }}</span>
+                                                    <span class="profile-ud-value">{{ $reservation->client->email ?? "" }}</span>
                                                 </div>
                                             </div>
                                             <div class="profile-ud-item">
                                                 <div class="profile-ud wider">
                                                     <span class="profile-ud-label">Phone client</span>
-                                                    <span class="profile-ud-value">{{ $reservation->phones ?? "" }}</span>
+                                                    <span class="profile-ud-value">{{ $reservation->client->phones_number ?? "" }}</span>
                                                 </div>
                                             </div>
                                             <div class="profile-ud-item">
                                                 <div class="profile-ud wider">
                                                     <span class="profile-ud-label">Reference</span>
-                                                    <span class="profile-ud-value">{{ $reservation->transaction_code ?? "" }}</span>
+                                                    <span class="profile-ud-value">{{ $reservation->house->reference ?? "" }}</span>
                                                 </div>
                                             </div>
                                             <div class="profile-ud-item">
                                                 <div class="profile-ud wider">
                                                     <span class="profile-ud-label">Commune maison</span>
                                                     <span class="profile-ud-value">{{ $reservation->house->commune ?? "" }}</span>
-                                                </div>
-                                            </div>
-                                            <div class="profile-ud-item">
-                                                <div class="profile-ud wider">
-                                                    <span class="profile-ud-label">Phone maison</span>
-                                                    <span class="profile-ud-value">{{ $reservation->house->email ?? "" }}</span>
                                                 </div>
                                             </div>
                                             <div class="profile-ud-item">
@@ -117,13 +111,13 @@
                                             <div class="profile-ud-item">
                                                 <div class="profile-ud wider">
                                                     <span class="profile-ud-label">Nombre des pieces</span>
-                                                    <span class="profile-ud-value">{{ $reservation->house->detail->room_number ?? "" }} pieces</span>
+                                                    <span class="profile-ud-value">{{ $reservation->house->detail->number_rooms ?? "" }} pieces</span>
                                                 </div>
                                             </div>
                                             <div class="profile-ud-item">
                                                 <div class="profile-ud wider">
                                                     <span class="profile-ud-label">Garantie</span>
-                                                    <span class="profile-ud-value">{{ $reservation->house->guarantees ?? "" }} $</span>
+                                                    <span class="profile-ud-value">{{ $reservation->house->warranty_price ?? "" }} $</span>
                                                 </div>
                                             </div>
                                         </div>

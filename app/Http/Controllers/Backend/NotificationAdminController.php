@@ -22,6 +22,20 @@ class NotificationAdminController extends Controller
         return view('backend.domain.notifications.index', compact('notifications'));
     }
 
+    public function readNotification(string $id)
+    {
+        $notifications = $this->repository->getNotifications();
+
+        foreach ($notifications as $notification) {
+            $notify = $notification->where('id', $id)->first();
+            $notify->markAsRead();
+            return response()->json([
+                'success' => 'Data is successfully added',
+                'notifications' => $notifications
+            ]);
+        }
+    }
+
     public function markAllReads(): RedirectResponse
     {
         $this->repository->marReadNotification();

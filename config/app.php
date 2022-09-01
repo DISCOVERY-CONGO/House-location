@@ -93,7 +93,12 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => 'fr',
+
+    'available_locales' => [
+        'English' => 'en',
+        'French' => 'fr',
+    ],
 
     /*
     |--------------------------------------------------------------------------

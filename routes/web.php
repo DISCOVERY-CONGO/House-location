@@ -65,7 +65,7 @@ Route::group([
     Route::get('client/{key}', [ClientBackendController::class, 'show'])->name('client.show');
 
     Route::get('notification', [NotificationAdminController::class, 'index'])->name('notification.index');
-    Route::post('notification/{key}', [NotificationAdminController::class, 'index'])->name('notification.read');
+    Route::post('notification/{key}', [NotificationAdminController::class, 'readNotification'])->name('notification.read');
     Route::delete('notification/{key}', [NotificationAdminController::class, 'delete'])->name('notification.delete');
     Route::get('notification/markRead', [NotificationAdminController::class, 'markAllReads'])->name('notification.markReads');
 
@@ -125,6 +125,9 @@ Route::group([
     Route::get('callback/facebook', [FacebookAuthController::class, 'authToFacebook'])->name('facebook.callback');
 });
 
-Route::get('welcome/{locale}', function ($locale) {
-    App::setLocale($locale);
+Route::get('language/{locale}', function ($locale) {
+    app()->setLocale($locale);
+    session()->put('locale', $locale);
+
+    return redirect()->back();
 });

@@ -1,26 +1,24 @@
-function sendMarkRequest(id = null){
-    return $.ajax("notification/" + id, {
-        method: 'post',
+import $ from "jquery";
+
+window.notification = (id) => {
+    readNotification(id)
+}
+
+let readNotification = (notification) => {
+    $.ajax({
+        type: "post",
+        url: "notification/" + notification,
         data: {
-            token: document.head.querySelector('meta[name="csrf-token"]'),
-            id: id
+            notification: notification,
+            _token: $('meta[name="csrf-token"]').attr('content')
+        },
+        dataType: 'json',
+        delay: 220,
+        autofocus: true,
+        success: function (response) {
+            window.setInterval(function() {
+                $('div.alert').addClass('alert-dismissible')
+            }, 1000);
         }
     })
 }
-
-$(function () {
-    $('.mark-as-read').on('click', () => {
-        let request = $(this).data('id')
-        request.done(() => {
-            $(this).parents('div.alert').remove()
-        })
-    })
-
-    $('#mark-all').click(() => {
-        let request = sendMarkRequest()
-        request.done(() => {
-            $('div.alert').remove()
-        })
-    })
-
-})

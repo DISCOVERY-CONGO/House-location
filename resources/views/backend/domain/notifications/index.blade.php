@@ -45,6 +45,14 @@
                                                  la confirmation de votre maison vient d'etre effectuer
                                             </div>
                                         </a>
+                                    @elseif($notification->type == "App\Notifications\BookingNotification")
+                                        <a href="#" onclick="notification('{{ $notification->id }}')">
+                                            <div class="alert alert-warning alert-icon mb-1">
+                                                <em class="icon ni ni-alert-circle"></em>
+                                                <strong>{{ $notification->data['reference'] }}</strong>.
+                                                 une reservation a ete effectuer
+                                            </div>
+                                        </a>
                                     @else
                                         <a href="#" onclick="notification('{{ $notification->id }}')">
                                             <div class="alert alert-success alert-icon mb-1">

@@ -1,6 +1,8 @@
 @extends('backend.layout.backend')
 
-@section('title', "Administration des appartements")
+@section('title')
+    Detail de l'appartement
+@endsection
 
 @section('content')
     <div class="nk-content-inner">

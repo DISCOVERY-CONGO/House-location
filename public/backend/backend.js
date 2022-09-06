@@ -48684,9 +48684,6 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_7__["default"]({
   cluster: "mt1",
   forceTLS: true
 });
-window.Echo["private"]('App.Models.User.' + User.id).notification(function (notification) {
-  console.log(notification.type);
-});
 })();
 
 /******/ })()

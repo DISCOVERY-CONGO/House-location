@@ -20,7 +20,7 @@ class ApartmentNotification extends Notification
 
     public function via(mixed $notifiable): array
     {
-        return ['database', 'broadcast'];
+        return ['database'];
     }
 
     public function toArray(mixed $notifiable): array
@@ -31,13 +31,5 @@ class ApartmentNotification extends Notification
             'email' => $this->apartment->user->email,
             'user_id' => $this->apartment->user->id
         ];
-    }
-
-    public function toBroadcast(mixed $notifiable): BroadcastMessage
-    {
-        return new BroadcastMessage([
-            'user_id' => $this->apartment->user->id,
-            'email' => $this->apartment->user->email
-        ]);
     }
 }

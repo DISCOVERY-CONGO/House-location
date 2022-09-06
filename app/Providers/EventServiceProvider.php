@@ -1,10 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Providers;
 
+use App\Events\ActivateApartmentEvent;
 use App\Events\ApartmentCreateEvent;
 use App\Events\ReservationCancelEvent;
 use App\Events\ReservationEvent;
+use App\Listeners\ActivateApartmentListener;
 use App\Listeners\ApartmentCreateListener;
 use App\Listeners\ReservationCancelListener;
 use App\Listeners\ReservationListener;
@@ -31,6 +35,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         ReservationCancelEvent::class => [
             ReservationCancelListener::class
+        ],
+        ActivateApartmentEvent::class => [
+            ActivateApartmentListener::class
         ]
     ];
 

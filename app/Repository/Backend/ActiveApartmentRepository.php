@@ -6,6 +6,7 @@ namespace App\Repository\Backend;
 
 use App\Contracts\ActiveApartmentRepositoryInterface;
 use App\Enums\HouseEnum;
+use App\Events\ActivateApartmentEvent;
 use App\Jobs\ActivateApartmentJob;
 use App\Models\House;
 use App\Services\ToastService;
@@ -27,7 +28,7 @@ class ActiveApartmentRepository implements ActiveApartmentRepositoryInterface
             'status' => HouseEnum::VALIDATED_HOUSE,
         ]);
         $this->service->success("Maison $room->id activer avec success");
-        dispatch(new ActivateApartmentJob($room))->delay(now()->addSecond(14));
+        ActivateApartmentEvent::dispatch($room);
 
         return $room;
     }

@@ -40,6 +40,10 @@
                                                     <div class="nk-notification-text">
                                                         {{ $notification->data['user'] }} vient d'annuler sa reservation
                                                     </div>
+                                                @elseif($notification->type == "App\Notifications\ActivateApartmentNotification")
+                                                    <div class="nk-notification-text">
+                                                        {{ $notification->data['email'] }} la confirmation de votre maison vient d'etre effectuer
+                                                    </div>
                                                 @else
                                                     <div class="nk-notification-text">
                                                         {{ $notification->data['transaction_code'] }} vient d'etre confirmer

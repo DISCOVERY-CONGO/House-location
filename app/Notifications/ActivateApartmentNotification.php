@@ -19,7 +19,7 @@ class ActivateApartmentNotification extends Notification
 
     public function via($notifiable): array
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     public function toMail($notifiable): MailMessage
@@ -27,14 +27,16 @@ class ActivateApartmentNotification extends Notification
         return (new MailMessage)
             ->greeting('Hello!')
             ->line('One of your invoices has been paid!')
-            ->view('')
+            ->view('frontend.domain.email.reservation')
             ->line('Thank you for using our application!');
     }
 
     public function toArray($notifiable): array
     {
         return [
-            //
+            'reference' => $this->room->reference,
+            'email' => $this->room->email,
+            'user' => $this->room->user->name
         ];
     }
 }

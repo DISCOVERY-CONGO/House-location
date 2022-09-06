@@ -19,7 +19,7 @@ class ActivateApartmentNotification extends Notification
 
     public function via($notifiable): array
     {
-        return ['database'];
+        return ['mail', 'database'];
     }
 
     public function toMail($notifiable): MailMessage

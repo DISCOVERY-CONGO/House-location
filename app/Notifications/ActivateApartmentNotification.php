@@ -19,7 +19,7 @@ class ActivateApartmentNotification extends Notification
 
     public function via($notifiable): array
     {
-        return ['database'];
+        return ['mail', 'database'];
     }
 
     public function toMail($notifiable): MailMessage
@@ -36,7 +36,7 @@ class ActivateApartmentNotification extends Notification
         return [
             'reference' => $this->room->reference,
             'email' => $this->room->email,
-            'user' => $this->room->user->name
+            'user' => $this->room->user->email
         ];
     }
 }

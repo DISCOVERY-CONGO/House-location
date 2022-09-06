@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\ReservationCommand;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -13,7 +14,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        ReservationCommand::class
     ];
 
     /**
@@ -22,9 +23,14 @@ class Kernel extends ConsoleKernel
      * @param  Schedule  $schedule
      * @return void
      */
-    protected function schedule(Schedule $schedule)
+    protected function schedule(Schedule $schedule): void
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->command('reservation:cancel')
+            ->dailyAt('00:00');
+
+        $schedule->command('queue:work --tries=3')
+            ->everyMinute()
+            ->withoutOverlapping();
     }
 
     /**

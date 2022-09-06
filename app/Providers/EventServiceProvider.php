@@ -6,10 +6,12 @@ namespace App\Providers;
 
 use App\Events\ActivateApartmentEvent;
 use App\Events\ApartmentCreateEvent;
+use App\Events\BookingEvent;
 use App\Events\ReservationCancelEvent;
 use App\Events\ReservationEvent;
 use App\Listeners\ActivateApartmentListener;
 use App\Listeners\ApartmentCreateListener;
+use App\Listeners\BookingListener;
 use App\Listeners\ReservationCancelListener;
 use App\Listeners\ReservationListener;
 use Illuminate\Auth\Events\Registered;
@@ -38,6 +40,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         ActivateApartmentEvent::class => [
             ActivateApartmentListener::class
+        ],
+        BookingEvent::class => [
+            BookingListener::class
         ]
     ];
 

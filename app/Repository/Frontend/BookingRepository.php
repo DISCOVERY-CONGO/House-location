@@ -7,6 +7,7 @@ namespace App\Repository\Frontend;
 use App\Contracts\BookingHouseRepositoryInterface;
 use App\Enums\HouseEnum;
 use App\Enums\ReservationEnum;
+use App\Events\BookingEvent;
 use App\Jobs\ReservationJob;
 use App\Models\Client;
 use App\Models\House;
@@ -29,7 +30,7 @@ class BookingRepository implements BookingHouseRepositoryInterface
 
         $reservation = $this->createReservation($house, $attributes, $client);
 
-        dispatch(new ReservationJob($reservation))->delay(now()->addSecond(10));
+        BookingEvent::dispatch($reservation);
 
         alert()->success('Felicitation','Votre reservation a ete envoyer avec success');
 

@@ -39,7 +39,7 @@
                                         </a>
                                     @elseif($notification->type == "App\Notifications\ActivateApartmentNotification")
                                         <a href="#" onclick="notification('{{ $notification->id }}')">
-                                            <div class="alert alert-warning alert-icon mb-1">
+                                            <div class="alert alert-info alert-icon mb-1">
                                                 <em class="icon ni ni-alert-circle"></em>
                                                 <strong>{{ $notification->data['email'] }}</strong>.
                                                  la confirmation de votre maison vient d'etre effectuer
@@ -47,7 +47,7 @@
                                         </a>
                                     @elseif($notification->type == "App\Notifications\BookingNotification")
                                         <a href="#" onclick="notification('{{ $notification->id }}')">
-                                            <div class="alert alert-warning alert-icon mb-1">
+                                            <div class="alert alert-danger alert-icon mb-1">
                                                 <em class="icon ni ni-alert-circle"></em>
                                                 <strong>{{ $notification->data['reference'] }}</strong>.
                                                  une reservation a ete effectuer
@@ -55,7 +55,7 @@
                                         </a>
                                     @else
                                         <a href="#" onclick="notification('{{ $notification->id }}')">
-                                            <div class="alert alert-success alert-icon mb-1">
+                                            <div class="alert alert-primary alert-icon mb-1">
                                                 <em class="icon ni ni-check-circle"></em>
                                                 <strong>[[{{ $notification->created_at }}]]</strong>.
                                                 La reservation vient d'etre confirmez.

@@ -34,7 +34,6 @@ class ReservationCancelNotification extends Notification
     public function toArray($notifiable): array
     {
         return [
-            'user' => $this->reservation->user->email,
             'house' => $this->reservation->house->reference,
         ];
     }

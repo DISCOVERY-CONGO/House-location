@@ -33,7 +33,7 @@
                                         <a href="#" onclick="notification('{{ $notification->id }}')">
                                             <div class="alert alert-warning alert-icon mb-1">
                                                 <em class="icon ni ni-alert-circle"></em>
-                                                <strong>[[{{ $notification->data['user'] }}]]</strong>.
+                                                <strong>[[{{ $notification->data['house'] }}]]</strong>.
                                                 Vient d'annuler sa reservation.
                                             </div>
                                         </a>

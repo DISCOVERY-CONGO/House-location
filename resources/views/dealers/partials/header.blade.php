@@ -38,7 +38,7 @@
                                                     </div>
                                                 @elseif($notification->type == "App\Notifications\ReservationCancelNotification")
                                                     <div class="nk-notification-text">
-                                                        {{ $notification->data['user'] }} vient d'annuler sa reservation
+                                                        {{ $notification->data['house'] }} vient d'annuler sa reservation
                                                     </div>
                                                 @elseif($notification->type == "App\Notifications\ActivateApartmentNotification")
                                                     <div class="nk-notification-text">

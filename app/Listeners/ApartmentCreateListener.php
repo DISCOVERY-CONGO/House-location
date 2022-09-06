@@ -25,14 +25,6 @@ class ApartmentCreateListener
             ->where('role_id', '=', UserRoleEnum::ADMINS_ROLE)
             ->first();
 
-        $manager = User::query()
-            ->where('role_id', '=', UserRoleEnum::DEALER_ROLE)
-            ->first();
-
-        $apartment = House::query()
-            ->where('user_id', '=', $manager->id)
-            ->first();
-
-        Notification::send([$admin, $apartment], new ApartmentNotification($event->apartment));
+        Notification::send($admin, new ApartmentNotification($event->apartment));
     }
 }

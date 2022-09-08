@@ -5,7 +5,6 @@
     <meta name="author" content="Softnio">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="that especially build for developers and programmers.">
-    <meta http-equiv="refresh" content="60">
     <link rel="shortcut icon" href="{{ asset('app/images/logo.png') }}">
     <title>{{ config('app.name') }} | @yield('title')</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">

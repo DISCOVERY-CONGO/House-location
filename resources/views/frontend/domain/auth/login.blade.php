@@ -42,6 +42,15 @@
                 <span class="block w-max mx-auto -mt-3 px-4 text-center font-semibold text-gray-500 bg-white">Ou</span>
             </div>
         </div>
+        @if ($errors->any())
+            <div class="flex bg-red-100 rounded-lg p-4 mb-4 text-sm text-red-700 mt-2" role="alert">
+                <div>
+                    @foreach ($errors->all() as $error)
+                        {{ $error }}. <br>
+                    @endforeach
+                </div>
+            </div>
+        @endif
         <form action="{{ route('login') }}" method="POST" class="w-full grid gap-8">
             @csrf
             <div class="grid gap-6">

@@ -30,6 +30,9 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'role' => ['required', Rule::exists('roles', 'id')],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ], [
+            'email.unique' => "L'email a déjà été pris",
+            'password.min' => "Le mot de passe doit comporter au moins 8 caractères."
         ]);
     }
 

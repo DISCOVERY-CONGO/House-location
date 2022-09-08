@@ -1,5 +1,6 @@
 import '../css/app.css';
 import './bootstrap'
+import './frontend/modules/modal'
 
 import Turbolinks from 'turbolinks'
 Turbolinks.start()

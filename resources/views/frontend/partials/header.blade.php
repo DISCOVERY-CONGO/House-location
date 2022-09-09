@@ -187,6 +187,34 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
+                                @elseif(auth()->user()->role_id == \App\Enums\UserRoleEnum::DEALER_ROLE)
+                                    <a href="{{ route('commissioner.backend.index') }}"
+                                       class="flex w-full items-center px-6 py-2.5 transition hover:bg-gray-100 text-gray-600">
+                                        Profile
+                                    </a>
+                                    <a
+                                        href="{{ route('logout') }}"
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                        class="flex w-full items-center px-6 py-2.5 transition hover:bg-gray-100 text-gray-600">
+                                        Deconnexion
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                @elseif(auth()->user()->role_id == \App\Enums\UserRoleEnum::ADMINS_ROLE)
+                                    <a href="{{ route('admins.backend.index') }}"
+                                       class="flex w-full items-center px-6 py-2.5 transition hover:bg-gray-100 text-gray-600">
+                                        Profile
+                                    </a>
+                                    <a
+                                        href="{{ route('logout') }}"
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                        class="flex w-full items-center px-6 py-2.5 transition hover:bg-gray-100 text-gray-600">
+                                        Deconnexion
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
                                 @endif
                             @else
                                 <a href="{{ route('register') }}"

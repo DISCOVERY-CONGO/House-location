@@ -1,5 +1,6 @@
 const mix = require('laravel-mix');
 const tailwindcss = require('tailwindcss');
+const path = require('path');
 require('laravel-mix-purgecss');
 
 mix.js('resources/js/app.js', 'public/js')
@@ -24,4 +25,7 @@ mix.js('resources/js/app.js', 'public/js')
     .postCss('resources/css/backend.css', 'public/backend')
     .postCss('resources/css/app.css', 'public/css', [
         require("tailwindcss"),
-    ]).purgeCss();
+    ]).purgeCss()
+    .alias({
+        ziggy: path.resolve('vendor/tightenco/ziggy/dist'),
+    });

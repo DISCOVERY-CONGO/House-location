@@ -162,7 +162,7 @@
                         <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 md:gap-6 ">
 
                             @foreach($apartments as $apartment)
-                                <turbo-frame id="{{$apartments}}">
+                                <turbo-frame id="{{$apartment->id}}">
                                 @include('frontend.components._service', with($apartment))
                                 </turbo-frame>
                             @endforeach

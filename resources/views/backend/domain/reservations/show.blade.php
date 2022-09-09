@@ -52,7 +52,7 @@
             @if($reservation->status == false)
                 <div class="alert alert-danger alert-icon " role="alert">
                     <em class="icon ni ni-alert-circle"></em>
-                    Cette appartement ne pas encore activé. Veillez l'activer pour qu'elle soie visible
+                    Cette reservation est en attente
                 </div>
             @endif
             <div class="nk-block nk-block-lg">

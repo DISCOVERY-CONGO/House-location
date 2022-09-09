@@ -74,7 +74,7 @@
 
                     <div class="py-7 flex flex-col gap-5 z-30">
                         <div class="flex flex-wrap gap-2">
-                            <div class="flex items-center">
+                            <div class="flex items-center sm:w-max w-full">
                                 <a href="tel:+243990416691" class="flex justify-center w-full gap-4 px-8 py-3 rounded-full bg-purple-600 text-white">
                                     <span class="flex items-center">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
@@ -84,19 +84,21 @@
                                     <span>Nous contactez</span>
                                 </a>
                             </div>
-                            <div class="px-3 py-2 text-white bg-green-600 flex items-center justify-center rounded-md">
-                                {{ ucfirst($apartment->type->name) ?? "" }}
-                            </div>
-                            @php
-                                $reservations = \App\Models\House::query()
-                                    ->where('id', '=', $apartment->id)
-                                    ->withCount(['reservations' => function($builder) {
-                                        $builder->where('status', false);
-                                    }])
-                                    ->firstOrFail()
-                            @endphp
-                            <div class="px-3 py-2 text-white bg-orange-600 flex items-center justify-center rounded-md">
-                                 {{ $reservations->reservations_count }} reservations en attente
+                            <div class="grid grid-cols-2 sm:flex items-center sm:w-max w-full gap-2">
+                                <div class="p-2 sm:px-3 sm:py-2 text-white md:text-base text-sm bg-green-600 flex items-center justify-center rounded-md ">
+                                    {{ ucfirst($apartment->type->name) ?? "" }}
+                                </div>
+                                @php
+                                    $reservations = \App\Models\House::query()
+                                        ->where('id', '=', $apartment->id)
+                                        ->withCount(['reservations' => function($builder) {
+                                            $builder->where('status', false);
+                                        }])
+                                        ->firstOrFail()
+                                @endphp
+                                <div class="p-2 sm:px-3 sm:py-2  text-white bg-orange-600 flex items-center justify-center rounded-md">
+                                    {{ $reservations->reservations_count }} En attente
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -170,7 +172,7 @@
                                       d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
                                       clip-rule="evenodd" />
                             </svg>
-                            <span>A 2 Heures de votre position actuelle</span>
+                            <span id="location"></span>
                         </div>
                     </div>
 

@@ -61,7 +61,7 @@
     </div>
     <div class="py-3 px-3 border-t border-gray-300 flex justify-between">
         <div class="flex items-center">
-            <span class="line-clamp-1 text-sm">{{ $apartment->detail->number_pieces ?? 0 }} Pieces, {{ $apartment->detail->number_room ?? 0 }} Chambres ....</span>
+            <span class="line-clamp-1 text-sm">{{ $apartment->detail->number_pieces ?? 0 }} Pieces, {{ $apartment->detail->number_rooms ?? 0 }} Chambres ....</span>
         </div>
         <div class="flex items-center min-w-max">
             <span class="px-2 py-0.5 rounded-full bg-purple-200 text-gray-600 text-sm">{{ ucfirst($apartment->type->name) ?? '' }}</span>

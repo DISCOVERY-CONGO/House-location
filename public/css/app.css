@@ -2352,11 +2352,11 @@ video {
 .h-44{
   height: 11rem;
 }
-.h-20{
-  height: 5rem;
-}
 .h-screen{
   height: 100vh;
+}
+.h-20{
+  height: 5rem;
 }
 .h-14{
   height: 3.5rem;
@@ -3005,6 +3005,9 @@ video {
 .pt-3{
   padding-top: 0.75rem;
 }
+.pt-20{
+  padding-top: 5rem;
+}
 .pt-16{
   padding-top: 4rem;
 }
@@ -3025,9 +3028,6 @@ video {
 }
 .pr-3{
   padding-right: 0.75rem;
-}
-.pt-20{
-  padding-top: 5rem;
 }
 .text-center{
   text-align: center;

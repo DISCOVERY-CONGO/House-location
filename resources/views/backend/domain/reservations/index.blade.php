@@ -23,9 +23,6 @@
                                 <thead>
                                 <tr class="nk-tb-item nk-tb-head text-center">
                                     <th class="nk-tb-col tb-col-md">
-                                        <span class="sub-text">Images</span>
-                                    </th>
-                                    <th class="nk-tb-col tb-col-md">
                                         <span class="sub-text">Code Maison</span>
                                     </th>
                                     <th class="nk-tb-col tb-col-md">
@@ -46,16 +43,6 @@
                                 @foreach($reservations as $reservation)
                                     @if($reservation->status == ReservationEnum::CONFIRMED_RESERVATION)
                                         <tr class="nk-tb-item text-center alert alert-primary">
-                                            <td class="nk-tb-col tb-col-md ">
-                                            <span>
-                                                <img
-                                                    src="{{ asset('storage/'.$reservation->house->images) }}"
-                                                    class="img-fluid rounded"
-                                                    height="18%"
-                                                    width="18%"
-                                                    alt="{{ $reservation->house_id }}">
-                                            </span>
-                                            </td>
                                             <td class="nk-tb-col tb-col-md">
                                                 <span>{{ $reservation->house->reference ?? "Pas de code maison" }}</span>
                                             </td>
@@ -100,16 +87,6 @@
                                         </tr>
                                     @else
                                         <tr class="nk-tb-item text-center alert alert-danger">
-                                            <td class="nk-tb-col tb-col-md">
-                                            <span>
-                                                <img
-                                                    src="{{ asset('storage/'.$reservation->house->images) }}"
-                                                    class="img-fluid rounded"
-                                                    height="18%"
-                                                    width="18%"
-                                                    alt="{{ $reservation->house_id }}">
-                                            </span>
-                                            </td>
                                             <td class="nk-tb-col tb-col-md ">
                                                 <span>{{ $reservation->house->reference ?? "Pas de code maison" }}</span>
                                             </td>

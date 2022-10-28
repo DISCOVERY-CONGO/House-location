@@ -20,7 +20,6 @@ class Category extends Model
     public function houses(): BelongsToMany
     {
         return $this
-            ->belongsToMany(House::class, 'house_category')
-            ->withTimestamps();
+            ->belongsToMany(House::class, 'house_category');
     }
 }

@@ -8,18 +8,21 @@ use App\Contracts\CategoryRepositoryInterface;
 use App\Forms\CategoryForm;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
+use App\Services\FlashMessageService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Kris\LaravelFormBuilder\FormBuilder;
 
-class CategoryAdminController extends Controller
+class CategoryAdminController extends BaseBackendController
 {
     public function __construct(
         public FormBuilder $builder,
-        public CategoryRepositoryInterface $repository
+        protected readonly CategoryRepositoryInterface $repository,
+        public FlashMessageService $service
     ) {
+        parent::__construct($this->service);
     }
 
     public function index(): Factory|View|Application
@@ -42,7 +45,10 @@ class CategoryAdminController extends Controller
     public function store(CategoryRequest $request): RedirectResponse
     {
         $this->repository->created($request);
-
+        $this->service->success(
+            'success',
+            "une nouvelle categorie ajouter avec success"
+        );
         return redirect()->route('admins.categories.index');
     }
 
@@ -62,14 +68,20 @@ class CategoryAdminController extends Controller
     public function update(CategoryRequest $request, string $key): RedirectResponse
     {
         $this->repository->updated($key, $request);
-
+        $this->service->success(
+            'success',
+            "une categorie a ete modifier"
+        );
         return redirect()->route('admins.categories.index');
     }
 
     public function destroy(string $key): RedirectResponse
     {
         $this->repository->deleted($key);
-
+        $this->service->success(
+            'success',
+            "une categorie a ete supprimer"
+        );
         return back();
     }
 }

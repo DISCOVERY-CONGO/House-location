@@ -6,7 +6,7 @@ namespace App\Enums;
 
 enum ToiletEnum: string
 {
-    const INTERNE = 'internet';
+    const INTERNE = 'interne';
 
     const EXTERNE = 'externe';
 

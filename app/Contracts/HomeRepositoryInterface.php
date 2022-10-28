@@ -10,6 +10,8 @@ interface HomeRepositoryInterface
 {
     public function getContent();
 
+    public function getAll();
+
     public function getSliders(): Collection|array;
 
     public function getHouseWithManyNotes();

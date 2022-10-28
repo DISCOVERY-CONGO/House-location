@@ -28,6 +28,19 @@ class HomeFrontendRepository implements HomeRepositoryInterface
             ->get();
     }
 
+    public function getAll(): Collection|array
+    {
+        return House::query()
+            ->orderByDesc('created_at')
+            ->when('status',
+                fn ($builder) => $builder->where('status', HouseEnum::VALIDATED_HOUSE)
+            )
+            ->with(['type', 'detail', 'categories'])
+            ->inRandomOrder()
+            ->limit(4)
+            ->get();
+    }
+
     public function getSliders(): Collection|array
     {
         return Slider::query()

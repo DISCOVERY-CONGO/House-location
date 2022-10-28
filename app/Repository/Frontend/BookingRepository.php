@@ -12,7 +12,7 @@ use App\Jobs\ReservationJob;
 use App\Models\Client;
 use App\Models\House;
 use App\Models\Reservation;
-use App\Traits\RandomValues;
+use App\Traits\HasRandomValue;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use LaravelIdea\Helper\App\Models\_IH_Client_QB;
@@ -20,7 +20,7 @@ use LaravelIdea\Helper\App\Models\_IH_Reservation_QB;
 
 class BookingRepository implements BookingHouseRepositoryInterface
 {
-    use RandomValues;
+    use HasRandomValue;
 
     public function stored($attributes): Model|Builder
     {

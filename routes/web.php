@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\Api\Upload\UploadFIleApiController;
 use App\Http\Controllers\Backend\ApartmentAdminController;
 use App\Http\Controllers\Backend\BookingAdminController;
 use App\Http\Controllers\Backend\CancelBookingController;
@@ -78,6 +79,9 @@ Route::group([
         Route::put('invalidApartment/{key}', 'inactive')
             ->name('apartment.inactive');
     });
+
+    Route::post('upload-images', UploadFIleApiController::class);
+    Route::delete('remove-images', [UploadFIleApiController::class, 'destroy']);
 });
 
 Route::group([

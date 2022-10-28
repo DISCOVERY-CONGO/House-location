@@ -2,38 +2,33 @@
 
 declare(strict_types=1);
 
-namespace App\Repository\Backend;
+namespace App\Repository\Backend\House;
 
 use App\Contracts\ApartmentRepositoryInterface;
 use App\Models\House;
-use App\Services\ToastService;
-use App\Traits\ApartmentCrud;
-use App\Traits\RandomValues;
+use App\Services\FlashMessageService;
+use App\Traits\HasRoomCrud;
+use App\Traits\HasRandomValue;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 
 class ApartmentRepository implements ApartmentRepositoryInterface
 {
-    use RandomValues, ApartmentCrud;
-
-    public function __construct(protected ToastService $service)
-    {
-    }
+    use HasRandomValue, HasRoomCrud;
 
     public function getContents(): Collection
     {
         return House::query()
-            ->select([
+            ->latest('id')
+            ->get([
                 'id',
-                'images',
                 'phone_number',
-                'status',
-                'commune',
-                'town',
-            ])
-            ->orderByDesc('created_at')
-            ->get();
+                'address',
+                'prices',
+                'warranty_price',
+                'status'
+            ]);
     }
 
     public function show(string $key): Model|Builder
@@ -44,15 +39,11 @@ class ApartmentRepository implements ApartmentRepositoryInterface
                 'user_id',
                 'prices',
                 'warranty_price',
-                'commune',
-                'town',
-                'district',
                 'address',
                 'phone_number',
                 'email',
                 'latitude',
                 'longitude',
-                'images',
                 'status',
                 'reference',
                 'type_id',
@@ -68,17 +59,10 @@ class ApartmentRepository implements ApartmentRepositoryInterface
     {
         $room = $this->show(key: $key);
         if ($room->status) {
-            $this->service->errors(
-                messages: 'Appartement dois être suspendue avant d’être suspendue'
-            );
 
             return null;
         }
         $room->delete();
-        $this->service->success(
-            messages: 'Appartement a été suspéndue pour des raisons de sécurité'
-        );
-
         return $room;
     }
 }

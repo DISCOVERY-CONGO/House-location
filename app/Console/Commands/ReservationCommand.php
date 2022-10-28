@@ -51,10 +51,6 @@ class ReservationCommand extends Command
         }
     }
 
-    /**
-     * @param Carbon $date
-     * @return Reservation[]|Builder[]|Collection|_IH_Reservation_C|_IH_Reservation_QB[]
-     */
     public function getLastedReservation(Carbon $date): array|_IH_Reservation_C|Collection
     {
         return Reservation::query()

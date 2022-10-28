@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Repository\Backend\CancelBookingRepository;
+use App\Repository\Backend\Booking\CancelBookingRepository;
 use Illuminate\Http\RedirectResponse;
 
 class CancelBookingController extends Controller

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Repository\Backend;
+namespace App\Repository\Backend\Booking;
 
 use App\Enums\ReservationEnum;
 use App\Models\Reservation;

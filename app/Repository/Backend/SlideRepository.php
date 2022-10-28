@@ -7,17 +7,17 @@ namespace App\Repository\Backend;
 use App\Contracts\SlideRepositoryInterface;
 use App\Http\Requests\SlideRequest;
 use App\Models\Slider;
-use App\Services\ToastService;
-use App\Traits\ImageUploader;
+use App\Services\FlashMessageService;
+use App\Traits\HasUpload;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 class SlideRepository implements SlideRepositoryInterface
 {
-    use ImageUploader;
+    use HasUpload;
 
-    public function __construct(protected ToastService $service)
+    public function __construct(protected FlashMessageService $service)
     {
     }
 

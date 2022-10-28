@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Enums\Address;
+use App\Enums\HouseEnum;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -20,20 +23,26 @@ class House extends Model
     protected $fillable = [
         'prices',
         'warranty_price',
-        'commune',
-        'town',
-        'district',
         'address',
-        'phone_number',
-        'email',
         'latitude',
         'longitude',
-        'images',
         'status',
         'reference',
         'type_id',
         'user_id',
     ];
+
+    protected $casts = [
+        'address' => Address::class
+    ];
+
+    protected function data(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => json_decode($value, true),
+            set: fn ($value) => json_encode($value),
+        );
+    }
 
     public function image(): HasMany
     {
@@ -48,9 +57,7 @@ class House extends Model
     public function categories(): BelongsToMany
     {
         return $this
-            ->belongsToMany(Category::class, 'house_category')
-            ->select(['name'])
-            ->withTimestamps();
+            ->belongsToMany(Category::class, 'house_category');
     }
 
     public function user(): BelongsTo

@@ -6,9 +6,6 @@ namespace App\Enums;
 
 enum HouseEnum: int
 {
-    const VALIDATED_HOUSE = 1;
-
-    const PENDING_HOUSE = 0;
-
-    const INVALIDATED_HOUSE = 0;
+    const ACTIVATE = 1;
+    const PENDING = 0;
 }

@@ -2,20 +2,19 @@
 
 declare(strict_types=1);
 
-namespace App\Repository\Backend;
+namespace App\Repository\Backend\House;
 
 use App\Contracts\ActiveApartmentRepositoryInterface;
 use App\Enums\HouseEnum;
 use App\Events\ActivateApartmentEvent;
-use App\Jobs\ActivateApartmentJob;
 use App\Models\House;
-use App\Services\ToastService;
+use App\Services\FlashMessageService;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class ActiveApartmentRepository implements ActiveApartmentRepositoryInterface
 {
-    public function __construct(protected ToastService $service)
+    public function __construct(protected FlashMessageService $service)
     {
     }
 

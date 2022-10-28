@@ -28,20 +28,6 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <div class="form-control-wrap">
-                    {!! form_row($form->phone_number) !!}
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <div class="form-control-wrap">
-                    {!! form_row($form->email) !!}
-                </div>
-            </div>
-        </div>
     </div>
     <div class="row gy-3">
         <div class="col-md-6">
@@ -69,13 +55,6 @@
             <div class="form-group">
                 <div class="form-control-wrap">
                     {!! form_row($form->number_pieces) !!}
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <div class="form-control-wrap">
-                    {!! form_row($form->images) !!}
                 </div>
             </div>
         </div>
@@ -120,6 +99,20 @@
             <div class="form-group">
                 <div class="form-control-wrap">
                     {!! form_row($form->toilet) !!}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 mt-3">
+            <div class="form-group">
+                <div class="form-control-wrap">
+                    <input
+                        type="file"
+                        name="file"
+                        multiple
+                        data-allow-reorder="true"
+                        data-max-file-size="3MB"
+                        data-max-files="4"
+                    >
                 </div>
             </div>
         </div>

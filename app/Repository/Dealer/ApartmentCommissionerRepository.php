@@ -6,16 +6,16 @@ namespace App\Repository\Dealer;
 
 use App\Contracts\ApartmentCommissionerRepositoryInterface;
 use App\Models\House;
-use App\Traits\ApartmentCrud;
-use App\Traits\ImageUploader;
-use App\Traits\RandomValues;
+use App\Traits\HasRoomCrud;
+use App\Traits\HasUpload;
+use App\Traits\HasRandomValue;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 class ApartmentCommissionerRepository implements ApartmentCommissionerRepositoryInterface
 {
-    use ImageUploader, RandomValues, ApartmentCrud;
+    use HasUpload, HasRandomValue, HasRoomCrud;
 
     public function getContents(): Collection|array
     {

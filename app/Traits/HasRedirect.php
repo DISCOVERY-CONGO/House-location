@@ -8,7 +8,7 @@ use App\Enums\UserRoleEnum;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Auth;
 
-trait RedirectRoute
+trait HasRedirect
 {
     protected string $redirectTo = RouteServiceProvider::HOME;
 

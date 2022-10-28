@@ -4,54 +4,40 @@ declare(strict_types=1);
 
 namespace App\Traits;
 
-use App\Enums\UserRoleEnum;
 use App\Events\ApartmentCreateEvent;
 use App\Models\Detail;
 use App\Models\House;
-use App\Notifications\ApartmentNotification;
-use App\Services\ToastService;
+use App\Models\Image;
+use App\Models\TemporaryImage;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Notification;
 
-trait ApartmentCrud
+trait HasRoomCrud
 {
-    use ImageUploader;
-
-    public function __construct(protected ToastService $service)
-    {
-    }
+    use HasUpload;
 
     public function created($attributes): Builder|Model
     {
-        $apartment = auth()->user()->house()->create([
-            'prices' => $attributes->input('prices'),
-            'warranty_price' => $attributes->input('warranty_price'),
-            'commune' => $attributes->input('commune'),
-            'town' => $attributes->input('town'),
-            'district' => $attributes->input('district'),
-            'address' => $attributes->input('address'),
-            'phone_number' => $attributes->input('phone_number'),
-            'email' => $attributes->input('email'),
-            'latitude' => $attributes->input('latitude'),
-            'longitude' => $attributes->input('longitude'),
-            'images' => $this::uploadFiles($attributes),
-            'reference' => $this->generateRandomTransaction(8),
-            'type_id' => $attributes->input('type'),
-        ]);
-
+        $temporary = TemporaryImage::query()
+            ->where('user_id', '=', auth()->id())
+            ->get();
+        $apartment = $this->storeHouse($attributes);
+        if ($temporary !== null) {
+            $temporary->each(function ($images) use ($apartment) {
+               Image::query()
+                   ->create([
+                       'user_id' => auth()->id(),
+                       'images' => $images->file,
+                       'house_id' => $apartment->id
+                   ]);
+            });
+            $apartment->categories()->attach($attributes->input('categories'));
+            $this->createDetails($apartment, $attributes);
+            $temporary->map(fn($builder) => $builder->delete());
+            return $apartment;
+        }
         $apartment->categories()->attach($attributes->input('categories'));
-
-        $this->createDetails($apartment, $attributes);
-
-        $user = auth()->user();
-
         ApartmentCreateEvent::dispatch($apartment);
-
-        $this->service->success(
-            messages: 'Un nouveau appartement à été ajouter'
-        );
-
         return $apartment;
     }
 
@@ -77,10 +63,6 @@ trait ApartmentCrud
         $house->categories()->attach($attributes->categories);
 
         $this->updateDetails($attributes, $house);
-
-        $this->service->success(
-            messages: 'Un nouveau appartement à été modifier'
-        );
 
         return $house;
     }
@@ -118,5 +100,23 @@ trait ApartmentCrud
         return House::query()
             ->where('id', '=', $key)
             ->firstOrFail();
+    }
+
+    private function storeHouse($attributes)
+    {
+        return auth()->user()->house()->create([
+            'prices' => $attributes->input('prices'),
+            'warranty_price' => $attributes->input('warranty_price'),
+            'address' => [
+                'town' => $attributes->input("town"),
+                'commune' => $attributes->input('commune'),
+                'district' => $attributes->input('district'),
+                'address' => $attributes->input('address'),
+            ],
+            'latitude' => $attributes->input('latitude'),
+            'longitude' => $attributes->input('longitude'),
+            'reference' => $this->generateNumericValues(2000, 9999_9999),
+            'type_id' => $attributes->input('type'),
+        ]);
     }
 }

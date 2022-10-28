@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Repository\Backend\BookingChartRepository;
+use App\Repository\Backend\Booking\BookingChartRepository;
 use Illuminate\Contracts\Support\Renderable;
 
 class HomeAdminController extends Controller

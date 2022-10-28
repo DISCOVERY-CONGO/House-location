@@ -3302,7 +3302,32 @@
   "resolved" "https://registry.npmjs.org/file-type/-/file-type-12.4.2.tgz"
   "version" "12.4.2"
 
-"filepond@^4.30.4":
+"filepond-plugin-file-validate-type@^1.2.8":
+  "integrity" "sha512-UBTqIWbk5+5R0GBELI8svu01MHWjFSLfc9DfCMvFtHKXLdJMxY1p37ChC4YKQjhfODaTuvLnNVRsukMGMFZBBg=="
+  "resolved" "https://registry.npmjs.org/filepond-plugin-file-validate-type/-/filepond-plugin-file-validate-type-1.2.8.tgz"
+  "version" "1.2.8"
+
+"filepond-plugin-image-crop@^2.0.6":
+  "integrity" "sha512-bSy/KND4EP/QtW8MxIj23qgSEPUVRrT8XdktJ+OU9y8xRjFjTG+qcuw1LsycARQYRtzi8cZrD3P4POOITfkywQ=="
+  "resolved" "https://registry.npmjs.org/filepond-plugin-image-crop/-/filepond-plugin-image-crop-2.0.6.tgz"
+  "version" "2.0.6"
+
+"filepond-plugin-image-edit@^1.6.3":
+  "integrity" "sha512-5q3RDaVlfvyI346ckF1DfKw4uN5rfAmUCv7HCG30jBZcGmepg8hFyjVM71uZXYeb4AgLhpCkSPP8Immwig8bzw=="
+  "resolved" "https://registry.npmjs.org/filepond-plugin-image-edit/-/filepond-plugin-image-edit-1.6.3.tgz"
+  "version" "1.6.3"
+
+"filepond-plugin-image-preview@^4.6.11":
+  "integrity" "sha512-0EmQ9HnOb/X0xc5rLcNRhhmdUbp7oiicRwQrcr90ZfVmPJOOZoX3ZGUEsEPj7luMI55huguhcVozdESxtqnuRw=="
+  "resolved" "https://registry.npmjs.org/filepond-plugin-image-preview/-/filepond-plugin-image-preview-4.6.11.tgz"
+  "version" "4.6.11"
+
+"filepond-plugin-image-resize@^2.0.10":
+  "integrity" "sha512-irX+J275u8Ph1KcciCeSQmxeFjbu0+co5XVCkiwdSNnz6KiqrCKN7RXTvEbdgSdDzyi5omr2oP1rKWps5L1RsQ=="
+  "resolved" "https://registry.npmjs.org/filepond-plugin-image-resize/-/filepond-plugin-image-resize-2.0.10.tgz"
+  "version" "2.0.10"
+
+"filepond@^4.30.4", "filepond@>=1.x <5.x", "filepond@>=3.7.2 <5.x", "filepond@>=3.x <5.x", "filepond@>=4.x <5.x":
   "integrity" "sha512-FCwsMvG9iiEs6uobdDrTaKsCgsqys0NuLgPPD8n37AYVYBiiDkrPkk9MSIU5rT2FahYcL1bScYI9huIPtlzqyA=="
   "resolved" "https://registry.npmjs.org/filepond/-/filepond-4.30.4.tgz"
   "version" "4.30.4"

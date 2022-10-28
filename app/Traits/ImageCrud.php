@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 
 trait ImageCrud
 {
-    use ImageUploader;
+    use HasUpload;
 
     public function getContents(): Collection|array
     {

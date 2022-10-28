@@ -10,6 +10,7 @@
         "doctrine/dbal": "^3.4.1",
         "fruitcake/laravel-cors": "^2.2.0",
         "guzzlehttp/guzzle": "^7.4.5",
+        "jessarcher/laravel-castable-data-transfer-object": "^2.2",
         "kris/laravel-form-builder": "^1.51.1",
         "laravel/framework": "^9.25.1",
         "laravel/pint": "^1.1",

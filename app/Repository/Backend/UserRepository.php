@@ -7,17 +7,17 @@ namespace App\Repository\Backend;
 use App\Contracts\UserRepositoryInterface;
 use App\Enums\UserRoleEnum;
 use App\Models\User;
-use App\Services\ToastService;
-use App\Traits\ImageUploader;
+use App\Services\FlashMessageService;
+use App\Traits\HasUpload;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 class UserRepository implements UserRepositoryInterface
 {
-    use ImageUploader;
+    use HasUpload;
 
-    public function __construct(private readonly ToastService $service)
+    public function __construct(private readonly FlashMessageService $service)
     {
     }
 

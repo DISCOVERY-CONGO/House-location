@@ -2,19 +2,18 @@
 
 declare(strict_types=1);
 
-namespace App\Repository\Backend;
+namespace App\Repository\Backend\Booking;
 
 use App\Enums\ReservationEnum;
-use App\Jobs\ConfirmedReservationJob;
 use App\Models\Reservation;
 use App\Models\Transaction;
-use App\Services\ToastService;
+use App\Services\FlashMessageService;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class CancelBookingRepository
 {
-    public function __construct(protected ToastService $service)
+    public function __construct(protected FlashMessageService $service)
     {
     }
 

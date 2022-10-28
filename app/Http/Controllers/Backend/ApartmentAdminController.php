@@ -9,6 +9,7 @@ use App\Forms\ApartmentForm;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ApartmentRequest;
 use App\Http\Requests\UpdateApartmentRequest;
+use App\Services\FlashMessageService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Contracts\View\Factory;
@@ -16,12 +17,14 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Kris\LaravelFormBuilder\FormBuilder;
 
-class ApartmentAdminController extends Controller
+class ApartmentAdminController extends BaseBackendController
 {
     public function __construct(
         public FormBuilder $builder,
-        public ApartmentRepositoryInterface $repository
+        protected readonly ApartmentRepositoryInterface $repository,
+        public FlashMessageService $service
     ) {
+        parent::__construct($this->service);
     }
 
     public function index(): Renderable
@@ -52,7 +55,12 @@ class ApartmentAdminController extends Controller
     {
         $this->repository->created(attributes: $request);
 
-        return redirect()->route('admins.houses.index');
+        $this->service->success(
+            type: 'success',
+            messages: "Une nouvelle maison a ete ajouter"
+        );
+
+        return to_route('admins.houses.index');
     }
 
     public function edit(string $key): Factory|View|Application
@@ -72,13 +80,23 @@ class ApartmentAdminController extends Controller
     {
         $this->repository->updated(key: $key, attributes: $request);
 
-        return redirect()->route('admins.houses.index');
+        $this->service->success(
+            type: 'success',
+            messages: "Une maison a ete modifier"
+        );
+
+        return to_route('admins.houses.index');
     }
 
     public function destroy(string $key): RedirectResponse
     {
         $this->repository->deleted($key);
 
-        return back();
+        $this->service->success(
+            type: 'success',
+            messages: "Une maison a ete supprimer"
+        );
+
+        return to_route('admins.houses.index');
     }
 }

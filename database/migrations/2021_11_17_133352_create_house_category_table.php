@@ -13,14 +13,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('house_category', function (Blueprint $table) {
-            $table->id();
             $table->foreignIdFor(House::class)
                 ->constrained()
                 ->cascadeOnDelete();
             $table->foreignIdFor(Category::class)
                 ->constrained()
                 ->cascadeOnUpdate();
-            $table->timestamps();
         });
     }
 

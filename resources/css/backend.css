@@ -1,5 +1,16 @@
 /* required styles */
-
+@import 'filepond/dist/filepond.min.css';
+@import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
+@import 'filepond-plugin-image-edit/dist/filepond-plugin-image-edit.css';
+.filepond--item {
+    width: calc(50% - 0.5em);
+}
+.filepond--item-panel {
+    border-radius: 0.5em;
+}
+.filepond--item-panel {
+    background-color: #555;
+}
 .leaflet-pane,
 .leaflet-tile,
 .leaflet-marker-icon,

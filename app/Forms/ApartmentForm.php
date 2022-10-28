@@ -31,20 +31,11 @@ class ApartmentForm extends Form
             ->add('address', 'text', [
                 'label' => 'Adresse',
             ])
-            ->add('phone_number', 'text', [
-                'label' => 'N° Téléphone',
-            ])
-            ->add('email', 'text', [
-                'label' => 'Email',
-            ])
             ->add('latitude', 'text', [
                 'label' => 'Latitude',
             ])
             ->add('longitude', 'text', [
                 'label' => 'Longitude',
-            ])
-            ->add('images', 'file', [
-                'label' => 'Image',
             ])
             ->add('categories', 'choice', [
                 'label' => 'Categories',
@@ -70,7 +61,11 @@ class ApartmentForm extends Form
                     'interne_externe' => 'Interne/Externe',
                 ],
                 'attr' => ['class' => 'form-control'],
-                'selected' => ['externe', 'interne', 'interne_externe'],
+                'selected' => [
+                    'externe',
+                    'interne',
+                    'interne_externe'
+                ],
                 'multiple' => false,
             ])
             ->add('electricity', 'choice', [

@@ -6,7 +6,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Traits\RedirectRoute;
+use App\Traits\HasRedirect;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -16,7 +16,7 @@ use Illuminate\Validation\Rule;
 
 class RegisterController extends Controller
 {
-    use RegistersUsers, RedirectRoute;
+    use RegistersUsers, HasRedirect;
 
     public function __construct()
     {

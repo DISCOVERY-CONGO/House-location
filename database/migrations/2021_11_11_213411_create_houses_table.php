@@ -19,17 +19,15 @@ return new class extends Migration
                 ->cascadeOnDelete();
             $table->integer('prices');
             $table->integer('warranty_price')->nullable();
-            $table->string('commune')->nullable();
-            $table->string('town')->nullable();
-            $table->string('district')->nullable();
-            $table->string('address')->nullable();
+            $table->json('address')->default("[]");
             $table->string('phone_number')
                 ->nullable()
                 ->default("+243990416691");
-            $table->string('email')->nullable();
+            $table->string('email')
+                ->nullable()
+                ->default("info@karibukwako.com");
             $table->decimal('latitude')->nullable();
             $table->decimal('longitude')->nullable();
-            $table->text('images');
             $table->boolean('status')
                 ->default(HouseEnum::PENDING_HOUSE);
             $table->string('reference')->unique();

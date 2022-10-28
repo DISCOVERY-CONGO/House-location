@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Traits;
 
-trait RandomValues
+trait HasRandomValue
 {
     public function generateRandomTransaction(int $values): string
     {

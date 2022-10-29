@@ -73,12 +73,7 @@ Route::group([
     Route::put('activeReservation/{key}', [ConfirmBookingController::class, 'confirm'])->name('reservation.active');
     Route::put('cancelReservation/{key}', [CancelBookingController::class, 'inactive'])->name('reservation.inactive');
 
-    Route::controller(ConfirmedApartmentController::class)->group(function () {
-        Route::put('activeApartment/{key}', 'active')
-            ->name('apartment.active');
-        Route::put('invalidApartment/{key}', 'inactive')
-            ->name('apartment.inactive');
-    });
+    Route::post('active-room', ConfirmedApartmentController::class);
 
     Route::post('upload-images', UploadFIleApiController::class);
     Route::delete('remove-images', [UploadFIleApiController::class, 'destroy']);

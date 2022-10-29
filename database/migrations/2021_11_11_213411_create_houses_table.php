@@ -29,7 +29,7 @@ return new class extends Migration
             $table->decimal('latitude')->nullable();
             $table->decimal('longitude')->nullable();
             $table->boolean('status')
-                ->default(HouseEnum::PENDING_HOUSE);
+                ->default(HouseEnum::PENDING);
             $table->string('reference')->unique();
             $table->timestamps();
             $table->softDeletes();

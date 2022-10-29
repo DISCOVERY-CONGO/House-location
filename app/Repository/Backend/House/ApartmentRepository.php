@@ -34,34 +34,15 @@ class ApartmentRepository implements ApartmentRepositoryInterface
     public function show(string $key): Model|Builder
     {
         $house = House::query()
-            ->select([
-                'id',
-                'user_id',
-                'prices',
-                'warranty_price',
-                'address',
-                'phone_number',
-                'email',
-                'latitude',
-                'longitude',
-                'status',
-                'reference',
-                'type_id',
-            ])
-            ->with(['categories'])
             ->where('id', '=', $key)
-            ->firstOrFail();
+            ->first();
 
-        return $house->load(['type:id,name', 'detail']);
+        return $house->load(['type:id,name', 'detail', 'categories']);
     }
 
     public function deleted(string $key): Model|Builder|int|null
     {
         $room = $this->show(key: $key);
-        if ($room->status) {
-
-            return null;
-        }
         $room->delete();
         return $room;
     }

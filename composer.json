@@ -25,6 +25,7 @@
         "realrashid/sweet-alert": "^5.1",
         "spatie/laravel-cookie-consent": "^3.2",
         "spatie/laravel-newsletter": "^4.11",
+        "spatie/laravel-view-models": "^1.5",
         "tightenco/ziggy": "^1.4",
         "tonysm/turbo-laravel": "^1.5"
     },

@@ -58,13 +58,13 @@ class ApartmentForm extends Form
                 'choices' => [
                     'externe' => 'Externe',
                     'interne' => 'Interne',
-                    'interne_externe' => 'Interne/Externe',
+                    'autre' => 'Autres',
                 ],
                 'attr' => ['class' => 'form-control'],
                 'selected' => [
                     'externe',
                     'interne',
-                    'interne_externe'
+                    'autre'
                 ],
                 'multiple' => false,
             ])

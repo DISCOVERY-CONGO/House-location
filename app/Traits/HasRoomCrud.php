@@ -43,27 +43,27 @@ trait HasRoomCrud
 
     public function updated(string $key, $attributes): Model|Builder
     {
+        $draft = TemporaryImage::query()
+            ->where('user_id', '=', auth()->id())
+            ->get();
         $house = $this->getHouse(key: $key);
-        $this->removePathOfImages($house);
-        $house->categories()->detach($attributes->categories);
-        $house->update([
-            'prices' => $attributes->input('prices'),
-            'warranty_price' => $attributes->input('warranty_price'),
-            'commune' => $attributes->input('commune'),
-            'town' => $attributes->input('town'),
-            'district' => $attributes->input('district'),
-            'address' => $attributes->input('address'),
-            'phone_number' => $attributes->input('phone_number'),
-            'email' => $attributes->input('email'),
-            'latitude' => $attributes->input('latitude'),
-            'longitude' => $attributes->input('longitude'),
-            'images' => $this::uploadFiles($attributes),
-            'type_id' => $attributes->input('type'),
-        ]);
-        $house->categories()->attach($attributes->categories);
-
+        $this->updateHouse($house, $attributes);
+        if ($draft !== null) {
+            $draft->each(function ($images) use ($house) {
+                Image::query()
+                    ->create([
+                        'user_id' => auth()->id(),
+                        'images' => $images->file,
+                        'house_id' => $house->id
+                    ]);
+            });
+            $house->categories()->sync($attributes->input('categories'));
+            $this->updateDetails($attributes, $house);
+            $draft->map(fn($builder) => $builder->delete());
+            return $house;
+        }
+        $house->categories()->sync($attributes->input('category'));
         $this->updateDetails($attributes, $house);
-
         return $house;
     }
 
@@ -105,6 +105,24 @@ trait HasRoomCrud
     private function storeHouse($attributes)
     {
         return auth()->user()->house()->create([
+            'prices' => $attributes->input('prices'),
+            'warranty_price' => $attributes->input('warranty_price'),
+            'address' => [
+                'town' => $attributes->input("town"),
+                'commune' => $attributes->input('commune'),
+                'district' => $attributes->input('district'),
+                'address' => $attributes->input('address'),
+            ],
+            'latitude' => $attributes->input('latitude'),
+            'longitude' => $attributes->input('longitude'),
+            'reference' => $this->generateNumericValues(2000, 9999_9999),
+            'type_id' => $attributes->input('type'),
+        ]);
+    }
+
+    private function updateHouse(Model $house, $attributes): void
+    {
+        $house->update([
             'prices' => $attributes->input('prices'),
             'warranty_price' => $attributes->input('warranty_price'),
             'address' => [

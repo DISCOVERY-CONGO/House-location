@@ -10,11 +10,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ApartmentRequest;
 use App\Http\Requests\UpdateApartmentRequest;
 use App\Services\FlashMessageService;
+use App\ViewModels\Backend\EditHouseViewModel;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Kris\LaravelFormBuilder\FormBuilder;
 
 class ApartmentAdminController extends BaseBackendController
@@ -63,17 +65,11 @@ class ApartmentAdminController extends BaseBackendController
         return to_route('admins.houses.index');
     }
 
-    public function edit(string $key): Factory|View|Application
+    public function edit(string|int $key): Factory|View|Application
     {
-        $room = $this->repository->show(key: $key);
+        $viewModel = new EditHouseViewModel($key);
 
-        $form = $this->builder->create(ApartmentForm::class, [
-            'method' => 'PUT',
-            'url' => route('admins.houses.update', $room->id),
-            'model' => $room,
-        ]);
-
-        return view('backend.domain.apartments.create', compact('form', 'room'));
+        return view('backend.domain.apartments.edit', compact( 'viewModel'));
     }
 
     public function update(UpdateApartmentRequest $request, string $key): RedirectResponse

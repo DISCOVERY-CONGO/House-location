@@ -18,10 +18,6 @@ class ImageCommissionerRepository implements ImageCommissionerRepositoryInterfac
     use HasUpload;
     use ImageCrud;
 
-    public function __construct(public FlashMessageService $service)
-    {
-    }
-
     public function getImages(): Collection
     {
         return Image::query()

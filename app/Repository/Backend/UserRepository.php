@@ -17,10 +17,6 @@ class UserRepository implements UserRepositoryInterface
 {
     use HasUpload;
 
-    public function __construct(private readonly FlashMessageService $service)
-    {
-    }
-
     public function getContents(): Collection|array
     {
         return User::query()
@@ -40,20 +36,14 @@ class UserRepository implements UserRepositoryInterface
     public function show(string $key): Model|Builder|null
     {
         $user = $this->getUser(key: $key);
-
         return $user->load(['commissioner']);
     }
 
     public function deleted(string $key): Model|Builder|null
     {
         $user = $this->getUser(key: $key);
-        if ($user->images) {
-            $this->removePathOfImages($user);
-        }
+        $user->images ? $this->removePathOfImages($user) : null;
         $user->delete();
-
-        $this->service->success("Commissionnaire supprimer avec succes");
-
         return $user;
     }
 

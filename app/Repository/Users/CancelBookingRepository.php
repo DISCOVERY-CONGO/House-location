@@ -20,9 +20,6 @@ class CancelBookingRepository implements CancelBookingRepositoryInterface
             ->firstOrFail();
         ReservationCancelEvent::dispatch($reservation);
         $reservation->delete();
-
-        alert()->info('Information', "Votre reservation pour la maison  a ete annuler");
-
         return $reservation;
     }
 }

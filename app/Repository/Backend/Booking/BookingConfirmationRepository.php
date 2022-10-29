@@ -17,10 +17,6 @@ class BookingConfirmationRepository
 {
     use HasRandomValue;
 
-    public function __construct(protected FlashMessageService $service)
-    {
-    }
-
     public function confirmed(string $request): Model|Builder|Reservation
     {
         $reservation = Reservation::query()
@@ -38,9 +34,6 @@ class BookingConfirmationRepository
             ]);
 
         ReservationEvent::dispatch($reservation, $transaction);
-
-        $this->service->success("La reservation $reservation->id, a ete confirmer");
-
         return $reservation;
     }
 }

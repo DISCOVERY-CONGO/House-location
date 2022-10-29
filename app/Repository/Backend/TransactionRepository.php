@@ -14,10 +14,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class TransactionRepository implements TransactionRepositoryInterface
 {
-    public function __construct(protected FlashMessageService $service)
-    {
-    }
-
     public function getTransactions(): Collection|array
     {
         return Transaction::query()
@@ -67,8 +63,6 @@ class TransactionRepository implements TransactionRepositoryInterface
     {
         $transaction = $this->showTransaction($key);
         $transaction->delete();
-
-        $this->service->success("La transaction $transaction->code_transaction a ete annuler");
         return $transaction;
     }
 }

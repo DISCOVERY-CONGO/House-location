@@ -13,10 +13,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class CancelBookingRepository
 {
-    public function __construct(protected FlashMessageService $service)
-    {
-    }
-
     public function inactive(string $request): Model|Builder|Reservation
     {
         $reservation = Reservation::query()
@@ -25,14 +21,10 @@ class CancelBookingRepository
         $reservation->update([
             'status' => ReservationEnum::INVALIDATED_RESERVATION,
         ]);
-
         Transaction::query()
             ->where('reservation_id', '=', $reservation->id)
             ->where('client_id', '=', $reservation->client_id)
             ->delete();
-
-        $this->service->success("La reservation $reservation->id, a ete supprimer");
-
         return $reservation;
     }
 }

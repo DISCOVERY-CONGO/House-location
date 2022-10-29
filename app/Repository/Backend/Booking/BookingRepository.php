@@ -14,10 +14,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class BookingRepository implements BookingRepositoryInterface
 {
-    public function __construct(protected FlashMessageService $service)
-    {
-    }
-
     public function getContents(): Collection|array
     {
         return Reservation::query()
@@ -44,9 +40,6 @@ class BookingRepository implements BookingRepositoryInterface
         $reservation = $this->getReservation(key: $key);
         ReservationCancelEvent::dispatch($reservation);
         $reservation->delete();
-
-        $this->service->success("La reservation $reservation->id a ete supprimer");
-
         return $reservation;
     }
 

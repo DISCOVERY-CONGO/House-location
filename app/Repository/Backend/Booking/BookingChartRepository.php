@@ -14,7 +14,7 @@ class BookingChartRepository
 {
     public function getBookingConfirmed(): array
     {
-        $reservations = $this->getReservations()
+        $bookings = $this->getReservations()
             ->where('status', '=', ReservationEnum::CONFIRMED_RESERVATION)
             ->where('created_at', '>', Carbon::today()->subDay(6))
             ->groupBy('day_name', 'day')
@@ -22,7 +22,7 @@ class BookingChartRepository
             ->get();
         $data = [];
 
-        foreach ($reservations as $row) {
+        foreach ($bookings as $row) {
             $data['label'][] = $row->day_name;
             $data['data'][] = (int) $row->count;
         }

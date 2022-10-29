@@ -13,8 +13,4 @@ class ImageRepository implements ImageRepositoryInterface
 {
     use HasUpload;
     use ImageCrud;
-
-    public function __construct(protected FlashMessageService $service)
-    {
-    }
 }

@@ -7,7 +7,6 @@ namespace App\Repository\Users;
 use App\Contracts\BookingUserRepositoryInterface;
 use App\Models\Client;
 use App\Models\Reservation;
-use http\Client\Curl\User;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class BookingUserRepository implements BookingUserRepositoryInterface

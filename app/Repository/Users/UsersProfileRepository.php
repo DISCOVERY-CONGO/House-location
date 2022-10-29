@@ -22,23 +22,16 @@ class UsersProfileRepository implements UpdateUserRepositoryInterface
         $user = User::query()
             ->where('id', '=', $key)
             ->first();
-
         $client = Client::query()
             ->where('user_id', '=', $user->id)
             ->first();
-
         $this->updateClient($client, $request);
-
         $user->update([
             'email' => $request->input('email'),
             'name' => $request->input('username'),
             'images' => self::uploadFiles($request),
             'password' => Hash::make($request->input('password')),
         ]);
-
-
-        alert()->info('Information', "Votre compte vien d'etre modifier avec success");
-
         return back();
     }
 

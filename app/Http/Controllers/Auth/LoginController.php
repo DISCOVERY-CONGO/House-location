@@ -10,7 +10,8 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
-    use AuthenticatesUsers, HasRedirect;
+    use AuthenticatesUsers;
+    use HasRedirect;
 
     public function __construct()
     {

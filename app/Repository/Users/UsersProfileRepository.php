@@ -37,7 +37,7 @@ class UsersProfileRepository implements UpdateUserRepositoryInterface
         ]);
 
 
-        alert()->info('Information',"Votre compte vien d'etre modifier avec success");
+        alert()->info('Information', "Votre compte vien d'etre modifier avec success");
 
         return back();
     }

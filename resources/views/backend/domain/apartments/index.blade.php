@@ -23,12 +23,6 @@
                                             <em class="icon ni ni-plus mr-1"></em> Create
                                         </a>
                                     </li>
-                                    <li class="preview-item">
-                                        <a href="{{ route('admins.trashedApartments.index') }}"
-                                           class="btn btn-outline-secondary btn-sm">
-                                            <em class="icon ni ni-histroy mr-1"></em> Historique
-                                        </a>
-                                    </li>
                                 </ul>
                             </div>
                         </div>

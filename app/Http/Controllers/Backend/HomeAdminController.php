@@ -20,7 +20,9 @@ class HomeAdminController extends Controller
         $unconfirmedReservation = $this->repository->getBookingUnConfirmed();
         $notifications = auth()->user()->unreadNotifications();
 
-        return view('backend.dashboard',
-            compact('confirmedReservation', 'unconfirmedReservation', 'notifications'));
+        return view(
+            'backend.dashboard',
+            compact('confirmedReservation', 'unconfirmedReservation', 'notifications')
+        );
     }
 }

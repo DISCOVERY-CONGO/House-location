@@ -13,7 +13,7 @@ use Illuminate\Contracts\View\View;
 
 class ClientBackendController extends Controller
 {
-    public function __construct(protected  readonly ClientRepositoryInterface $repository)
+    public function __construct(protected readonly ClientRepositoryInterface $repository)
     {
     }
 

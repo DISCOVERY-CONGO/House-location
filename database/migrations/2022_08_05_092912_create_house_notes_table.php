@@ -12,14 +12,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('house_notes', function (Blueprint $table) {
-            $table->id();
             $table->foreignIdFor(House::class)
                 ->constrained()
                 ->cascadeOnDelete();
             $table->integer('note');
             $table->string('comment')->nullable();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

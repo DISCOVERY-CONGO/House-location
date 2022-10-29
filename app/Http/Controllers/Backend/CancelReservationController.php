@@ -9,7 +9,6 @@ use Illuminate\Http\RedirectResponse;
 
 class CancelReservationController extends Controller
 {
-
     public function __construct(protected InactiveRepository $repository)
     {
     }

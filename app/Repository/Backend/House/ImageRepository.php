@@ -11,7 +11,8 @@ use App\Traits\ImageCrud;
 
 class ImageRepository implements ImageRepositoryInterface
 {
-    use HasUpload, ImageCrud;
+    use HasUpload;
+    use ImageCrud;
 
     public function __construct(protected FlashMessageService $service)
     {

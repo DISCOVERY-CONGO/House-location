@@ -14,9 +14,11 @@ use Illuminate\Queue\SerializesModels;
 
 class ReservationCancelEvent
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+    use Dispatchable;
+    use InteractsWithSockets;
+    use SerializesModels;
 
-    public function __construct(public  $reservation)
+    public function __construct(public $reservation)
     {
         //
     }

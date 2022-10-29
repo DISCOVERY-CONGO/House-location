@@ -23,7 +23,6 @@ return new class extends Migration
             $table->date('payment_date');
             $table->string('code_transaction');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

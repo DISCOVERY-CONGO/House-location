@@ -17,8 +17,7 @@ class UploadFIleApiController extends Controller
 {
     public function __construct(
         protected readonly UploadFileRepository $repository
-    )
-    {
+    ) {
     }
 
     public function __invoke(UploadFileRequest $request): Model|Builder

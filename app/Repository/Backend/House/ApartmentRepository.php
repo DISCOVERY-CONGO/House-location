@@ -15,7 +15,8 @@ use Illuminate\Support\Collection;
 
 class ApartmentRepository implements ApartmentRepositoryInterface
 {
-    use HasRandomValue, HasRoomCrud;
+    use HasRandomValue;
+    use HasRoomCrud;
 
     public function getContents(): Collection
     {

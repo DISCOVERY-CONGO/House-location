@@ -15,7 +15,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class ApartmentCommissionerRepository implements ApartmentCommissionerRepositoryInterface
 {
-    use HasUpload, HasRandomValue, HasRoomCrud;
+    use HasUpload;
+    use HasRandomValue;
+    use HasRoomCrud;
 
     public function getContents(): Collection|array
     {

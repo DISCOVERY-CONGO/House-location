@@ -29,29 +29,32 @@ class HomeApiController extends Controller
         return json_encode([
             'apartments' => $this->repository->getContent(),
             'sliders' => $this->repository->getSliders(),
-            'all'=>$this->repository->getAll()
+            'all' => $this->repository->getAll()
         ]);
     }
 
-    public function details_homes(Request $request){
+    public function details_homes(Request $request)
+    {
         return json_encode(
             \App\Models\House::query()
                 ->where('id', '=', $request->id)
-                ->withCount(['reservations' => function($builder) {
+                ->withCount(['reservations' => function ($builder) {
                     $builder->where('status', false);
                 }])
                 ->firstOrFail()
         );
     }
 
-    public function reservation(Request $request){
+    public function reservation(Request $request)
+    {
         $house = House::query()
             ->select([
                 'id',
                 'prices',
             ])
             ->where('id', '=', $request->apartment)
-            ->when('status',
+            ->when(
+                'status',
                 fn ($builder) => $builder->where('status', HouseEnum::VALIDATED_HOUSE)
             )
             ->first();
@@ -62,7 +65,8 @@ class HomeApiController extends Controller
                 'last_name' => $request->email,
                 'phones_number' => $request->phone_number,
                 'email' => $request->email,
-            ]);;
+            ]);
+        ;
 
         $reservation = Reservation::query()
             ->create([

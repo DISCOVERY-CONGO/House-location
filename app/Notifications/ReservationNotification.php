@@ -25,7 +25,7 @@ class ReservationNotification extends Notification implements ShouldQueue
 
     public function toMail($notifiable): MailMessage
     {
-        return (new MailMessage)
+        return (new MailMessage())
             ->subject('Order Status')
             ->from(env('MAIL_FROM_ADDRESS'), 'Sender')
             ->greeting('Hello!')

@@ -18,7 +18,6 @@ return new class extends Migration
                 ->cascadeOnDelete();
             $table->Integer('note');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

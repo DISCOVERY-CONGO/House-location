@@ -42,7 +42,7 @@ class ImageCommissionerController extends Controller
     {
         $image = $this->repository->show(key: $key);
 
-        return view('dealers.domain.images.edit', compact( 'image'));
+        return view('dealers.domain.images.edit', compact('image'));
     }
 
     public function update(string $key, ImageRequest $attributes): RedirectResponse

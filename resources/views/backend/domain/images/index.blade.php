@@ -39,10 +39,10 @@
                                         <span class="sub-text">Image</span>
                                     </th>
                                     <th class="nk-tb-col tb-col-md">
-                                        <span class="sub-text">Apartement</span>
+                                        <span class="sub-text">Identifiant Maison</span>
                                     </th>
                                     <th class="nk-tb-col tb-col-md">
-                                        <span class="sub-text">Utilisateurs</span>
+                                        <span class="sub-text">Utilisateur</span>
                                     </th>
                                     <th class="nk-tb-col nk-tb-col-tools text-right">
                                         <span class="sub-text">Actions</span>

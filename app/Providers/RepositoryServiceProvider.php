@@ -24,7 +24,6 @@ use App\Contracts\NotificationRepositoryInterface;
 use App\Contracts\SearchRepositoryInterface;
 use App\Contracts\SlideRepositoryInterface;
 use App\Contracts\TransactionRepositoryInterface;
-use App\Contracts\TrashedRepositoryInterface;
 use App\Contracts\UpdateUserRepositoryInterface;
 use App\Contracts\UserRepositoryInterface;
 use App\Http\Controllers\UseCase\Auth\FacebookAuth\Interfaces\FacebookAuthRepositoryInterface;
@@ -38,7 +37,6 @@ use App\Repository\Backend\House\ImageRepository;
 use App\Repository\Backend\NotificationRepository;
 use App\Repository\Backend\SlideRepository;
 use App\Repository\Backend\TransactionRepository;
-use App\Repository\Backend\TrashedRepository;
 use App\Repository\Backend\UserRepository;
 use App\Repository\Dealer\ApartmentCommissionerRepository;
 use App\Repository\Dealer\HomeCommissionerRepository;
@@ -64,7 +62,6 @@ class RepositoryServiceProvider extends ServiceProvider
         HomeRepositoryInterface::class => HomeFrontendRepository::class,
         NewsLetterRepositoryInterface::class => NewsLetterRepository::class,
         ActiveApartmentRepositoryInterface::class => ActiveApartmentRepository::class,
-        TrashedRepositoryInterface::class => TrashedRepository::class,
         CategoryHomeRepositoryInterface::class => HomeCategory::class,
         BookingHouseRepositoryInterface::class => Reservation::class,
         ImageRepositoryInterface::class => ImageRepository::class,

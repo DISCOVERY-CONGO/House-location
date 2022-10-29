@@ -12,7 +12,9 @@ use Illuminate\Queue\SerializesModels;
 
 class ReservationEvent
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+    use Dispatchable;
+    use InteractsWithSockets;
+    use SerializesModels;
 
     public function __construct(public $reservation, public $transaction)
     {

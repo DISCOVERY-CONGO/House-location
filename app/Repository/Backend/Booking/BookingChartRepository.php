@@ -37,7 +37,7 @@ class BookingChartRepository
         $resultats = $this->getReservations()
             ->where('status', '=', ReservationEnum::PENDING_RESERVATION)
             ->where('created_at', '>', Carbon::today()->subDay(6))
-            ->groupBy('day_name','day')
+            ->groupBy('day_name', 'day')
             ->orderBy('day')
             ->get();
         $data = [];

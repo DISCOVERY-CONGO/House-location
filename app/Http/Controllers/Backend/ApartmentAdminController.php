@@ -69,7 +69,7 @@ class ApartmentAdminController extends BaseBackendController
     {
         $viewModel = new EditHouseViewModel($key);
 
-        return view('backend.domain.apartments.edit', compact( 'viewModel'));
+        return view('backend.domain.apartments.edit', compact('viewModel'));
     }
 
     public function update(UpdateApartmentRequest $request, string $key): RedirectResponse

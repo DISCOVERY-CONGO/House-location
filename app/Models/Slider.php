@@ -6,11 +6,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Slider extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     protected $fillable = [
         'title',
@@ -20,6 +19,6 @@ class Slider extends Model
 
     public function images(): string
     {
-        return asset('storage/'.$this->images);
+        return asset('storage/' . $this->images);
     }
 }

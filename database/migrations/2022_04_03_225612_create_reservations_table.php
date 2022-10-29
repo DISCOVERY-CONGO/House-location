@@ -26,7 +26,6 @@ return new class extends Migration
                 ->default(ReservationEnum::PENDING_RESERVATION);
             $table->text('messages');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

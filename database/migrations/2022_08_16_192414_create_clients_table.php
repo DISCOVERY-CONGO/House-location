@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->string('phones_number')->nullable();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

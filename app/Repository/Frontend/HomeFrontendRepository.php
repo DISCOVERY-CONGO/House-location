@@ -19,7 +19,8 @@ class HomeFrontendRepository implements HomeRepositoryInterface
     {
         return House::query()
             ->orderByDesc('created_at')
-            ->when('status',
+            ->when(
+                'status',
                 fn ($builder) => $builder->where('status', HouseEnum::VALIDATED_HOUSE)
             )
             ->with(['type', 'detail', 'categories'])
@@ -32,7 +33,8 @@ class HomeFrontendRepository implements HomeRepositoryInterface
     {
         return House::query()
             ->orderByDesc('created_at')
-            ->when('status',
+            ->when(
+                'status',
                 fn ($builder) => $builder->where('status', HouseEnum::VALIDATED_HOUSE)
             )
             ->with(['type', 'detail', 'categories'])

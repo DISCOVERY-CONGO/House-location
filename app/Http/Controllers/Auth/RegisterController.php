@@ -16,7 +16,8 @@ use Illuminate\Validation\Rule;
 
 class RegisterController extends Controller
 {
-    use RegistersUsers, HasRedirect;
+    use RegistersUsers;
+    use HasRedirect;
 
     public function __construct()
     {

@@ -28,7 +28,7 @@ class CancelBookingRepository
 
         Transaction::query()
             ->where('reservation_id', '=', $reservation->id)
-            ->where('client_id','=', $reservation->client_id)
+            ->where('client_id', '=', $reservation->client_id)
             ->delete();
 
         $this->service->success("La reservation $reservation->id, a ete supprimer");

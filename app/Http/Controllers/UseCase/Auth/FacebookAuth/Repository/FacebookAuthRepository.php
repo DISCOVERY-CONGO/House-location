@@ -14,7 +14,6 @@ use Socialite;
 
 class FacebookAuthRepository implements FacebookAuthRepositoryInterface
 {
-
     public function redirectToFacebook()
     {
         return Socialite::driver('facebook')->redirect();
@@ -28,9 +27,9 @@ class FacebookAuthRepository implements FacebookAuthRepositoryInterface
                 ->where('facebook_id', '=', $user->id)
                 ->first();
 
-            if($facebookId){
+            if ($facebookId) {
                 Auth::login($facebookId);
-            }else{
+            } else {
                 $createUser = User::query()
                     ->create([
                         'name' => $user->name,
@@ -43,9 +42,7 @@ class FacebookAuthRepository implements FacebookAuthRepositoryInterface
                 Auth::login($createUser);
             }
             return route('users.users.index');
-
         } catch (RedirectException $exception) {
-
         }
     }
 }

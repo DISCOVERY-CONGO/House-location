@@ -32,7 +32,7 @@ class BookingRepository implements BookingHouseRepositoryInterface
 
         BookingEvent::dispatch($reservation);
 
-        alert()->success('Felicitation','Votre reservation a ete envoyer avec success');
+        alert()->success('Felicitation', 'Votre reservation a ete envoyer avec success');
 
         return $reservation;
     }
@@ -58,7 +58,8 @@ class BookingRepository implements BookingHouseRepositoryInterface
                 'prices',
             ])
             ->where('id', '=', $attributes->input('apartment'))
-            ->when('status',
+            ->when(
+                'status',
                 fn ($builder) => $builder->where('status', HouseEnum::VALIDATED_HOUSE)
             )
             ->first();

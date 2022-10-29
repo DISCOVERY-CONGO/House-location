@@ -20,7 +20,7 @@ class InvoiceUserController extends Controller
     {
         $invoices = $this->repository->download($invoiceRequest);
         $pdf = PDF::loadView('testPDF', $invoices);
-        $invoice = now().'_invoice.pdf';
+        $invoice = now() . '_invoice.pdf';
         return $pdf->download("$invoice");
     }
 }

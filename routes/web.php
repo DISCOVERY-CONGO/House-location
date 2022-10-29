@@ -44,17 +44,15 @@ Route::group([
     'as' => 'admins.',
     'middleware' => ['admins', 'auth'],
 ], function () {
-    Route::resource('backend', HomeAdminController::class)->except(['show', 'create', 'store', 'update', 'edit', 'destroy']);
+    Route::resource('backend', HomeAdminController::class)
+        ->except(['show', 'create', 'store', 'update', 'edit', 'destroy']);
     Route::resource('houses', ApartmentAdminController::class);
     Route::resource('categories', CategoryAdminController::class);
-    Route::resource('users', UsersAdminController::class)->except(['create', 'store', 'update', 'edit']);
-    Route::resource('reservations', BookingAdminController::class)->except(['create', 'store', 'update', 'edit']);
+    Route::resource('users', UsersAdminController::class)
+        ->except(['create', 'store', 'update', 'edit']);
+    Route::resource('reservations', BookingAdminController::class)
+        ->except(['create', 'store', 'update', 'edit']);
     Route::resource('image', ImagesAdminController::class);
-    Route::resource('trashedApartments', TrashedAdminController::class)->except(['show', 'create', 'store', 'update', 'edit', 'destroy']);
-    Route::controller(TrashedAdminController::class)->group(function () {
-        Route::put('trashedApartments/{key}', 'restore')->name('trashed.restore');
-        Route::delete('trashedApartments/{key}', 'delete')->name('trashed.delete');
-    });
 
     Route::resource('slides', SlideAdminController::class);
 
@@ -119,7 +117,7 @@ Route::controller(BookingController::class)->group(function () {
 Route::group([
     'prefix' => 'auth',
     'as' => 'auth.',
-], function (){
+], function () {
     Route::get('facebook', [FacebookAuthController::class, 'redirectToFacebook'])->name('facebook.auth');
     Route::get('callback/facebook', [FacebookAuthController::class, 'authToFacebook'])->name('facebook.callback');
 });

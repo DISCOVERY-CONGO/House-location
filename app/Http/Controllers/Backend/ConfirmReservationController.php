@@ -11,7 +11,6 @@ use Illuminate\Http\RedirectResponse;
 
 class ConfirmReservationController extends Controller
 {
-
     public function __construct(protected ConfirmRepository $repository)
     {
     }

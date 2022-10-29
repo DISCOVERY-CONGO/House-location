@@ -24,7 +24,7 @@ trait HasRoomCrud
         $apartment = $this->storeHouse($attributes);
         if ($temporary !== null) {
             $temporary->each(function ($images) use ($apartment) {
-               Image::query()
+                Image::query()
                    ->create([
                        'user_id' => auth()->id(),
                        'images' => $images->file,

@@ -14,7 +14,7 @@ class ConfirmedApartmentController extends Controller
 {
     public function __construct(
         public ActiveApartmentRepositoryInterface $repository
-    ){
+    ) {
     }
 
     public function __invoke(ActiveRoom $activeRoom): JsonResponse
@@ -26,5 +26,4 @@ class ConfirmedApartmentController extends Controller
             'room' => $room,
         ]);
     }
-
 }

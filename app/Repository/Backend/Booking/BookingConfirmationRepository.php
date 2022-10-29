@@ -29,7 +29,7 @@ class BookingConfirmationRepository
         $reservation->update([
             'status' => ReservationEnum::CONFIRMED_RESERVATION,
         ]);
-        $transaction =Transaction::query()
+        $transaction = Transaction::query()
             ->create([
                 'client_id' => $reservation->client_id,
                 'reservation_id' => $reservation->id,

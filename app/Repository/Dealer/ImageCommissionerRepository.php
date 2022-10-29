@@ -15,7 +15,8 @@ use Illuminate\Support\Collection;
 
 class ImageCommissionerRepository implements ImageCommissionerRepositoryInterface
 {
-    use HasUpload, ImageCrud;
+    use HasUpload;
+    use ImageCrud;
 
     public function __construct(public FlashMessageService $service)
     {

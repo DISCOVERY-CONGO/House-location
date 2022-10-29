@@ -24,7 +24,7 @@ class ActivateApartmentNotification extends Notification
 
     public function toMail($notifiable): MailMessage
     {
-        return (new MailMessage)
+        return (new MailMessage())
             ->greeting('Hello!')
             ->line('One of your invoices has been paid!')
             ->view('frontend.domain.email.reservation')

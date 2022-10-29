@@ -11,9 +11,10 @@ use Illuminate\Queue\SerializesModels;
 
 class ReservationCancelEmail extends Mailable
 {
-    use Queueable, SerializesModels;
+    use Queueable;
+    use SerializesModels;
 
-    public function __construct(public  $reservation)
+    public function __construct(public $reservation)
     {
         //
     }

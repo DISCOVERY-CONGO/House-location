@@ -32,7 +32,6 @@ return new class extends Migration
                 ->default(HouseEnum::PENDING);
             $table->string('reference')->unique();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

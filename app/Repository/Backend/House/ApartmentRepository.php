@@ -44,7 +44,6 @@ class ApartmentRepository implements ApartmentRepositoryInterface
     public function deleted(string $key): Model|Builder|int|null
     {
         $room = $this->show(key: $key);
-
         $room->delete();
         return $room;
     }

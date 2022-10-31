@@ -68,9 +68,6 @@
                                         <td class="nk-tb-col">
                                             <span class="tb-lead">
                                                 <div class="d-flex justify-content-center">
-                                                    <a href="{{ route('admins.image.edit', $image->id) }}" class="btn btn-dim btn-primary btn-sm">
-                                                        <em class="icon ni ni-edit"></em>
-                                                    </a>
                                                      <a
                                                          class="btn btn-dim btn-danger btn-sm"
                                                          href="#"

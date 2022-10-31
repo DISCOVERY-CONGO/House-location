@@ -194,6 +194,16 @@
                                                     </span>
                                                 </div>
                                             </div>
+                                            <div class="profile-ud-item">
+                                                <div class="profile-ud wider">
+                                                    <span class="profile-ud-label">Code reference</span>
+                                                    <span class="profile-ud-value">
+                                                        <span class="badge badge-circle badge-outline-primary">
+                                                            {{ $room->reference ?? "" }}
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="nk-divider divider md"></div>

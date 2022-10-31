@@ -6,13 +6,17 @@ namespace App\Http\Controllers\Backend;
 
 use App\Contracts\UserRepositoryInterface;
 use App\Http\Controllers\Controller;
+use App\Services\FlashMessageService;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\RedirectResponse;
 
-class UsersAdminController extends Controller
+class UsersAdminController extends BaseBackendController
 {
-    public function __construct(public UserRepositoryInterface $repository)
-    {
+    public function __construct(
+        protected readonly UserRepositoryInterface $repository,
+        public FlashMessageService $service
+    ) {
+        parent::__construct($this->service);
     }
 
     public function index(): Renderable
@@ -32,6 +36,11 @@ class UsersAdminController extends Controller
     public function destroy(string $key): RedirectResponse
     {
         $this->repository->deleted(key:  $key);
+
+        $this->service->success(
+            'success',
+            "Une un gestionnaire supprimer avec success"
+        );
 
         return back();
     }

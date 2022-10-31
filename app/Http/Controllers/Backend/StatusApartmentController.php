@@ -10,7 +10,7 @@ use App\Http\Requests\ActiveRoom;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 
-class ConfirmedApartmentController extends Controller
+class StatusApartmentController extends Controller
 {
     public function __construct(
         public ActiveApartmentRepositoryInterface $repository

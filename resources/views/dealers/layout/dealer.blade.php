@@ -43,6 +43,6 @@
     <script src="{{ asset('admins/js/scripts.js') }}"></script>
     <script src="{{ asset('backend/backend.js') }}"></script>
     @yield('scripts')
-    @flasher_render
+    @include('sweetalert::alert')
 </body>
 </html>

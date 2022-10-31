@@ -8,8 +8,8 @@ use App\Http\Controllers\Backend\BookingAdminController;
 use App\Http\Controllers\Backend\CancelBookingController;
 use App\Http\Controllers\Backend\CategoryAdminController;
 use App\Http\Controllers\Backend\ClientBackendController;
-use App\Http\Controllers\Backend\ConfirmBookingController;
-use App\Http\Controllers\Backend\ConfirmedApartmentController;
+use App\Http\Controllers\Backend\StatusBookingController;
+use App\Http\Controllers\Backend\StatusApartmentController;
 use App\Http\Controllers\Backend\HomeAdminController;
 use App\Http\Controllers\Backend\ImagesAdminController;
 use App\Http\Controllers\Backend\NotificationAdminController;
@@ -68,10 +68,9 @@ Route::group([
     Route::delete('notification/{key}', [NotificationAdminController::class, 'delete'])->name('notification.delete');
     Route::get('notification/markRead', [NotificationAdminController::class, 'markAllReads'])->name('notification.markReads');
 
-    Route::put('activeReservation/{key}', [ConfirmBookingController::class, 'confirm'])->name('reservation.active');
-    Route::put('cancelReservation/{key}', [CancelBookingController::class, 'inactive'])->name('reservation.inactive');
+    Route::put('activeReservation/{key}', [StatusBookingController::class, 'confirm'])->name('reservation.active');
 
-    Route::post('active-room', ConfirmedApartmentController::class);
+    Route::post('active-room', StatusApartmentController::class);
 
     Route::post('upload-images', UploadFIleApiController::class);
     Route::delete('remove-images', [UploadFIleApiController::class, 'destroy']);
@@ -85,6 +84,9 @@ Route::group([
     Route::resource('backend', HomeCommissionerController::class);
     Route::resource('houses', ApartmentCommissionerController::class);
     Route::resource('imageHouses', ImageCommissionerController::class);
+
+    Route::post('upload-images', UploadFIleApiController::class)->name('images.upload');
+    Route::delete('remove-images', [UploadFIleApiController::class, 'destroy'])->name('images.delete');
 });
 
 Route::group([

@@ -31,17 +31,11 @@ class DealerForm extends Form
             ->add('address', 'text', [
                 'label' => 'Adresse',
             ])
-            ->add('email', 'text', [
-                'label' => 'Email',
-            ])
             ->add('latitude', 'text', [
                 'label' => 'Latitude',
             ])
             ->add('longitude', 'text', [
                 'label' => 'Longitude',
-            ])
-            ->add('images', 'file', [
-                'label' => 'Image',
             ])
             ->add('categories', 'choice', [
                 'label' => 'Categories',
@@ -64,10 +58,14 @@ class DealerForm extends Form
                 'choices' => [
                     'externe' => 'Externe',
                     'interne' => 'Interne',
-                    'interne_externe' => 'Interne/Externe',
+                    'autre' => 'Autres',
                 ],
                 'attr' => ['class' => 'form-control'],
-                'selected' => ['externe', 'interne', 'interne_externe'],
+                'selected' => [
+                    'externe',
+                    'interne',
+                    'autre'
+                ],
                 'multiple' => false,
             ])
             ->add('electricity', 'choice', [

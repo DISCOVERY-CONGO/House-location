@@ -5,19 +5,19 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Backend;
 
 use App\Contracts\ImageRepositoryInterface;
-use App\Forms\ImageForm;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\ImageRequest;
+use App\Services\FlashMessageService;
+use App\ViewModels\StoreImagesViewModel;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\RedirectResponse;
-use Kris\LaravelFormBuilder\FormBuilder;
 
-final class ImagesAdminController extends Controller
+final class ImagesAdminController extends BaseBackendController
 {
     public function __construct(
-        public ImageRepositoryInterface $repository,
-        public FormBuilder $builder
+        protected  readonly  ImageRepositoryInterface $repository,
+        public FlashMessageService $service
     ) {
+        parent::__construct($this->service);
     }
 
     public function index(): Renderable
@@ -29,37 +29,19 @@ final class ImagesAdminController extends Controller
 
     public function create(): Renderable
     {
-        $form = $this->builder->create(ImageForm::class, [
-            'method' => 'POST',
-            'url' => route('admins.image.store'),
-        ]);
+        $viewModel = new StoreImagesViewModel();
 
-        return view('backend.domain.images.create', compact('form'));
+        return view('backend.domain.images.create', compact('viewModel'));
     }
 
     public function store(ImageRequest $attributes): RedirectResponse
     {
         $this->repository->created(attributes: $attributes);
 
-        return redirect()->route('admins.image.index');
-    }
-
-    public function edit(string $key): Renderable
-    {
-        $image = $this->repository->show(key: $key);
-
-        $form = $this->builder->create(ImageForm::class, [
-            'method' => 'PUT',
-            'url' => route('admins.image.update', $image->id),
-            'model' => $image,
-        ]);
-
-        return view('backend.domain.images.create', compact('form', 'image'));
-    }
-
-    public function update(string $key, ImageRequest $attributes): RedirectResponse
-    {
-        $this->repository->updated(key: $key, attributes: $attributes);
+        $this->service->success(
+            'success',
+            "Les images ajouter a la salle"
+        );
 
         return redirect()->route('admins.image.index');
     }
@@ -67,6 +49,12 @@ final class ImagesAdminController extends Controller
     public function destroy(string $key): RedirectResponse
     {
         $this->repository->deleted(key: $key);
+
+        $this->service->success(
+            'success',
+            "Les images  de la maison on ete supprimer"
+        );
+
 
         return back();
     }

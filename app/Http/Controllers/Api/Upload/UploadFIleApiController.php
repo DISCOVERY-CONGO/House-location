@@ -22,6 +22,7 @@ class UploadFIleApiController extends Controller
 
     public function __invoke(UploadFileRequest $request): Model|Builder
     {
+        dd($request->all());
         return $this->repository->upload($request);
     }
 

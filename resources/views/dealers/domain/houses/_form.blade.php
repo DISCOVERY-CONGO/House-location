@@ -1,4 +1,4 @@
-{!! form_start($form) !!}
+{!! form_start($form, $options = ['attr' => ['class' => 'nk-wizard nk-wizard-simple is-alter']]) !!}
     <div class="row gy-3">
         <div class="col-md-6">
             <div class="form-group">
@@ -28,13 +28,8 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <div class="form-control-wrap">
-                    {!! form_row($form->email) !!}
-                </div>
-            </div>
-        </div>
+    </div>
+    <div class="row gy-3">
         <div class="col-md-6">
             <div class="form-group">
                 <div class="form-control-wrap">
@@ -42,8 +37,6 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row gy-3">
         <div class="col-md-6">
             <div class="form-group">
                 <div class="form-control-wrap">
@@ -62,13 +55,6 @@
             <div class="form-group">
                 <div class="form-control-wrap">
                     {!! form_row($form->number_pieces) !!}
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <div class="form-control-wrap">
-                    {!! form_row($form->images) !!}
                 </div>
             </div>
         </div>
@@ -116,6 +102,20 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-12 mt-3">
+            <div class="form-group">
+                <div class="form-control-wrap">
+                    <input
+                        type="file"
+                        name="image"
+                        multiple
+                        data-allow-reorder="true"
+                        data-max-file-size="3MB"
+                        data-max-files="4"
+                    >
+                </div>
+            </div>
+        </div>
         <div class="col-md-12">
             <div class="form-group">
                 <div class="form-control-wrap">
@@ -124,8 +124,7 @@
             </div>
         </div>
     </div>
-
     <div class="justify-content-center mt-3 text-center">
-        <button type="submit" class="btn btn-primary btn-dim rounded-lg">Save</button>
+        <button type="submit" class="btn btn-outline-primary rounded-lg">Save</button>
     </div>
 {!! form_end($form) !!}

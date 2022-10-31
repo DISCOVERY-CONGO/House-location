@@ -8,7 +8,6 @@ use App\Contracts\BookingHouseRepositoryInterface;
 use App\Enums\HouseEnum;
 use App\Enums\ReservationEnum;
 use App\Events\BookingEvent;
-use App\Jobs\ReservationJob;
 use App\Models\Client;
 use App\Models\House;
 use App\Models\Reservation;
@@ -31,8 +30,6 @@ class BookingRepository implements BookingHouseRepositoryInterface
         $reservation = $this->createReservation($house, $attributes, $client);
 
         BookingEvent::dispatch($reservation);
-
-        alert()->success('Felicitation', 'Votre reservation a ete envoyer avec success');
 
         return $reservation;
     }
@@ -60,7 +57,7 @@ class BookingRepository implements BookingHouseRepositoryInterface
             ->where('id', '=', $attributes->input('apartment'))
             ->when(
                 'status',
-                fn ($builder) => $builder->where('status', HouseEnum::VALIDATED_HOUSE)
+                fn ($builder) => $builder->where('status', HouseEnum::ACTIVATE)
             )
             ->first();
     }

@@ -32,7 +32,7 @@ class CategoryRepository implements CategoryHomeRepositoryInterface
     {
         $house = House::query()
             ->when('id', fn ($builder) => $builder->where('id', $key))
-            ->when('status', fn ($builder) => $builder->where('status', HouseEnum::VALIDATED_HOUSE))
+            ->when('status', fn ($builder) => $builder->where('status', HouseEnum::ACTIVATE))
             ->withCount('reservations')
             ->first();
 
@@ -42,7 +42,7 @@ class CategoryRepository implements CategoryHomeRepositoryInterface
     public function getHouseByDetails($house): Collection|array
     {
         return House::query()
-            ->when('status', fn ($builder) => $builder->where('status', HouseEnum::VALIDATED_HOUSE))
+            ->when('status', fn ($builder) => $builder->where('status', HouseEnum::ACTIVATE))
             ->when('prices', fn ($builder) => $builder->where('prices', $house->prices))
             ->orWhere('commune', '=', $house->commune)
             ->get();

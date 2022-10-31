@@ -21,7 +21,7 @@
                                     <div class="md:flex justify-between pb-8">
                                         <div>
                                             <h4 class="text-xl text-white font-semibold">
-                                                {{ $apartments[0]->address ?? "" }}
+                                                {{ $apartments[0]->address->address ?? "" }}
                                             </h4>
                                             <span class="text-sm text-gray-200">
                                                 A 56 minutes de votre position actuelle.
@@ -78,7 +78,7 @@
                                 <div class="h-full sm:p-6 p-4 pt-2 lg:rounded-none md:rounded-tr-2xl md:rounded-b-none md:rounded-tl-none rounded-2xl flex items-end bg-gradient-to-t from-gray-900 overflow-hidden">
                                     <div class="w-full translate-y-24 group-hover:translate-y-0 transition duration-500">
                                         <div class="pb-8">
-                                            <h4 class="mb-4 text-lg text-white font-semibold">{{ $apartments[1]->address ?? "" }}</h4>
+                                            <h4 class="mb-4 text-lg text-white font-semibold">{{ $apartments[1]->address->address ?? "" }}</h4>
                                             <div class="flex items-end gap-2">
                                                 <h3 class="text-2xl font-bold text-purple-400">{{ $apartments[1]->prices }} $</h3>
                                                 <div class="text-xs tracking-wide text-gray-300">
@@ -130,7 +130,7 @@
                                 <div class="h-full sm:p-6 p-4 pt-2 flex items-end lg:rounded-tr-2xl md:rounded-none rounded-2xl bg-gradient-to-t from-gray-900 overflow-hidden">
                                     <div class="w-full translate-y-24 group-hover:translate-y-0 transition duration-500">
                                         <div class="pb-8">
-                                            <h4 class="mb-4 text-lg text-white font-semibold">{{ $apartments[0]->address ?? "" }}</h4>
+                                            <h4 class="mb-4 text-lg text-white font-semibold">{{ $apartments[0]->address->address ?? "" }}</h4>
 
                                             <div class="flex items-end gap-2">
                                                 <h3 class="text-2xl font-bold text-purple-400">{{ $apartments[0]->prices ?? "" }} $</h3>
@@ -184,8 +184,9 @@
                                 <div class="h-full sm:p-6 p-4 pt-2 lg:rounded-none md:rounded-bl-2xl md:rounded-t-none md:rounded-br-none rounded-2xl flex items-end bg-gradient-to-t from-gray-900 overflow-hidden">
                                     <div class="w-full translate-y-24 group-hover:translate-y-0 transition duration-500">
                                         <div class="pb-8">
-                                            <h4 class="mb-4 text-lg text-white font-semibold">{{ $apartments[0]->address ?? 0 }}</h4>
-
+                                            <h4 class="mb-4 text-lg text-white font-semibold">
+                                                {{ $apartments[0]->address->address ?? 0 }}
+                                            </h4>
                                             <div class="flex items-end gap-2">
                                                 <h3 class="text-2xl font-bold text-purple-400">{{ $apartments[0]->prices ?? 0 }} $</h3>
                                                 <div class="text-xs tracking-wide text-gray-300">
@@ -240,7 +241,7 @@
                                     <div class="w-full translate-y-24 group-hover:translate-y-0 transition duration-500">
                                         <div class="pb-8">
                                             <h6 class="mb-4 text-base text-white font-semibold">
-                                                {{ $apartments[1]->address ?? "" }}
+                                                {{ $apartments[1]->address->address ?? "" }}
                                             </h6>
 
                                             <div class="flex items-end gap-2">

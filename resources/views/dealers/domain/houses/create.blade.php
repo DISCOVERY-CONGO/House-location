@@ -46,3 +46,28 @@
     @parent
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
 @endsection
+
+@section('scripts')
+    <script type="module">
+        import * as FilePond from 'filepond';
+        import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
+
+        FilePond.registerPlugin(
+            FilePondPluginImagePreview
+        );
+
+        const inputElement = document.querySelector('input[name="image"]');
+        let _token = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        const pond = FilePond.create(inputElement);
+
+        pond.setOptions({
+            server: {
+                process: {{ route('commissioner.images.upload') }},
+                revert: {{ route('commissioner.images.delete') }},
+                headers: {
+                    'X-CSRF-Token': _token
+                }
+            }
+        })
+    </script>
+@endsection

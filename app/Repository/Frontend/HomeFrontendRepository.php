@@ -21,7 +21,7 @@ class HomeFrontendRepository implements HomeRepositoryInterface
             ->orderByDesc('created_at')
             ->when(
                 'status',
-                fn ($builder) => $builder->where('status', HouseEnum::VALIDATED_HOUSE)
+                fn ($builder) => $builder->where('status', HouseEnum::ACTIVATE)
             )
             ->with(['type', 'detail', 'categories'])
             ->inRandomOrder()
@@ -35,7 +35,7 @@ class HomeFrontendRepository implements HomeRepositoryInterface
             ->orderByDesc('created_at')
             ->when(
                 'status',
-                fn ($builder) => $builder->where('status', HouseEnum::VALIDATED_HOUSE)
+                fn ($builder) => $builder->where('status', HouseEnum::ACTIVATE)
             )
             ->with(['type', 'detail', 'categories'])
             ->inRandomOrder()
@@ -62,7 +62,7 @@ class HomeFrontendRepository implements HomeRepositoryInterface
             ->where('note', '>', 3)
             ->with('house', function ($query) {
                 $query
-                    ->where('status', HouseEnum::VALIDATED_HOUSE);
+                    ->where('status', HouseEnum::ACTIVATE);
             })
             ->orderByDesc('created_at')
             ->get();
@@ -71,7 +71,7 @@ class HomeFrontendRepository implements HomeRepositoryInterface
     public function showApartment(string $key): Model|Builder|House
     {
         $apartment = House::query()
-            ->where('status', '=', HouseEnum::VALIDATED_HOUSE)
+            ->where('status', '=', HouseEnum::ACTIVATE)
             ->where('id', '=', $key)
             ->firstOrFail();
 

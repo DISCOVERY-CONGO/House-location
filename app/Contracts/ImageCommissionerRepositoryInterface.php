@@ -12,7 +12,5 @@ interface ImageCommissionerRepositoryInterface
 
     public function created($attributes);
 
-    public function updated(string $key, $attributes);
-
     public function deleted(string $key);
 }

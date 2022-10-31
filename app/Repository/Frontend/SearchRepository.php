@@ -28,7 +28,7 @@ class SearchRepository implements SearchRepositoryInterface
                 ])
                 ->when(
                     'status',
-                    fn ($builder) => $builder->where('status', HouseEnum::VALIDATED_HOUSE)
+                    fn ($builder) => $builder->where('status', HouseEnum::ACTIVATE)
                 )
                 ->where('deleted_at', '=', null)
                 ->whereHas('detail', function ($builder) use ($request) {

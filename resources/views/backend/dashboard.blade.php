@@ -172,6 +172,7 @@
     <script>
         $(function () {
             const cData = JSON.parse(`<?php echo json_encode($confirmedReservation); ?>`);
+            console.log(cData)
             const ctx = $("#statistics");
             const data = {
                 labels: cData.label,

@@ -126,6 +126,6 @@
     </div>
 
     <div class="justify-content-center mt-3 text-center">
-        <button type="submit" class="btn btn-primary btn-dim rounded-lg">Save</button>
+        <button type="submit" class="btn btn-outline-primary rounded-lg">Save</button>
     </div>
 {!! form_end($form) !!}

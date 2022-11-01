@@ -45,19 +45,19 @@
                                 @foreach($users as $user)
                                     <tr class="nk-tb-item text-center">
                                         <td class="nk-tb-col tb-col-sm">
-                                                <span class="tb-product">
-                                                    @if($user->images)
-                                                        <img
-                                                                src="{{ asset('storage/'.$user->images) }}"
-                                                                alt="{{ $user->name }}"
-                                                                class="thumb">
-                                                    @else
-                                                        <img
-                                                                src="{{ asset('app/images/logo.png') }}"
-                                                                alt="{{ $user->name }}"
-                                                                class="thumb">
-                                                    @endif
-                                                </span>
+                                            <span class="tb-product">
+                                                @if($user->images)
+                                                    <img
+                                                        src="{{ asset('storage/'.$user->images) }}"
+                                                        alt="{{ $user->name }}"
+                                                        class="thumb">
+                                                @else
+                                                    <img
+                                                        src="{{ asset('app/images/logo.png') }}"
+                                                        alt="{{ $user->name }}"
+                                                        class="thumb">
+                                                @endif
+                                            </span>
                                         </td>
                                         <td class="nk-tb-col tb-col-md">
                                             <span>{{ $user->name ?? "" }}</span>
@@ -71,34 +71,25 @@
                                         <td class="nk-tb-col tb-col-md">
                                             @if($user->role_id == \App\Enums\UserRoleEnum::DEALER_ROLE)
                                                 <span class="badge badge-dim badge-success p-1">
-                                                        <em class="icon ni ni-user"></em>
-                                                        <span>Commissionners</span>
-                                                    </span>
+                                                    <em class="icon ni ni-user"></em>
+                                                    <span>Commissionners</span>
+                                                </span>
                                             @endif
                                             @if($user->role_id == \App\Enums\UserRoleEnum::USERS_ROLE)
                                                 <span class="badge badge-dim badge-primary p-1">
-                                                        <em class="icon ni ni-user"></em>
-                                                        <span>Users</span>
-                                                    </span>
+                                                    <em class="icon ni ni-user"></em>
+                                                    <span>Users</span>
+                                                </span>
                                             @endif
                                         </td>
                                         <td class="nk-tb-col">
-                                            <span class="tb-lead">
-                                                <div class="d-flex justify-content-center">
-                                                    <a href="{{ route('admins.users.show', $user->id) }}" class="btn btn-dim btn-primary btn-sm">
-                                                        <em class="icon ni ni-eye"></em>
-                                                    </a>
-                                                    <a
-                                                        class="btn btn-dim btn-danger btn-sm"
-                                                        href="#"
-                                                        onclick="deleteConfirm('delete-dealer-{{$user->id}}')"
-                                                    ><em class="icon ni ni-trash"></em></a>
-                                                    <form action="{{ route('admins.users.destroy', $user->id) }}" method="POST" id="delete-dealer-{{$user->id}}">
-                                                        @method('DELETE')
-                                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                    </form>
-                                                </div>
-                                            </span>
+                                            <div class="tb-lead justify-content-center">
+                                                <a href="{{ route('admins.users.show', $user->id) }}"
+                                                   class="btn btn-outline-primary btn-sm" title="">
+                                                    <em class="icon ni ni-eye-alt-fill"></em>
+                                                    <span>Detail commissionaire</span>
+                                                </a>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach

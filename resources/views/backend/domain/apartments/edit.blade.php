@@ -15,7 +15,7 @@
                 </div>
                 <div class="nk-block-head-content">
                     <a href="{{ $viewModel->indexUrl }}"
-                       class="btn btn-outline-light btn-sm bg-white d-none d-sm-inline-flex">
+                       class="btn btn-outline-primary btn-sm d-none d-sm-inline-flex">
                         <em class="icon ni ni-arrow-left"></em>
                         <span>Back</span>
                     </a>

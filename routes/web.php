@@ -5,7 +5,6 @@ declare(strict_types=1);
 use App\Http\Controllers\Api\Upload\UploadFIleApiController;
 use App\Http\Controllers\Backend\ApartmentAdminController;
 use App\Http\Controllers\Backend\BookingAdminController;
-use App\Http\Controllers\Backend\CancelBookingController;
 use App\Http\Controllers\Backend\CategoryAdminController;
 use App\Http\Controllers\Backend\ClientBackendController;
 use App\Http\Controllers\Backend\StatusBookingController;
@@ -15,7 +14,6 @@ use App\Http\Controllers\Backend\ImagesAdminController;
 use App\Http\Controllers\Backend\NotificationAdminController;
 use App\Http\Controllers\Backend\SlideAdminController;
 use App\Http\Controllers\Backend\TransactionBackendController;
-use App\Http\Controllers\Backend\TrashedAdminController;
 use App\Http\Controllers\Backend\UsersAdminController;
 use App\Http\Controllers\Dealer\ApartmentCommissionerController;
 use App\Http\Controllers\Dealer\HomeCommissionerController;
@@ -36,6 +34,7 @@ use App\Http\Controllers\Users\InvoiceUserController;
 use App\Http\Controllers\Users\UpdateUserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Dealer\Upload\UploadDealerController as ImagesUpload;
 
 Auth::routes();
 
@@ -85,8 +84,8 @@ Route::group([
     Route::resource('houses', ApartmentCommissionerController::class);
     Route::resource('imageHouses', ImageCommissionerController::class);
 
-    Route::post('upload-images', UploadFIleApiController::class)->name('images.upload');
-    Route::delete('remove-images', [UploadFIleApiController::class, 'destroy'])->name('images.delete');
+    Route::post('upload-images', ImagesUpload::class)->name('images.upload');
+    Route::delete('remove-images', [ImagesUpload::class, 'destroy'])->name('images.delete');
 });
 
 Route::group([

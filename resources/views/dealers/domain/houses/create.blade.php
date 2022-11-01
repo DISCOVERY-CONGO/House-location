@@ -65,7 +65,6 @@
         );
 
         const inputElement = document.querySelector('input[name="image"]');
-        console.log(inputElement);
         let _token = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
         const pond = FilePond.create(inputElement);
 

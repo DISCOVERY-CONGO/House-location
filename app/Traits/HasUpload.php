@@ -15,6 +15,12 @@ trait HasUpload
             ->storePublicly('/', ['disk' => 'public']);
     }
 
+    public static function uploadFile(Request $request): string
+    {
+        return $request->file('image')
+            ->storePublicly('/', ['disk' => 'public']);
+    }
+
     public static function uploadPreview(Request $request): string
     {
         return $request->file('file')
@@ -33,7 +39,6 @@ trait HasUpload
         Storage::disk('public')
             ->delete($model->images);
     }
-
     public static function uploadMultiple($images)
     {
         return $images->store('/images/', ['disk' =>   'public']);

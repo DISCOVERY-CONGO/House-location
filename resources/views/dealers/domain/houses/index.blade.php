@@ -57,7 +57,7 @@
                                 </thead>
                                 <tbody>
                                 @foreach($houses as $room)
-                                    <tr class="nk-tb-item">
+                                    <tr class="nk-tb-item {{ $room->status === 0 ? 'alert alert-danger' : '' }}">
                                         <td class="nk-tb-col tb-col-md">
                                             <span>
                                                 {{ $room->address->town ?? "" }}
@@ -80,26 +80,13 @@
                                             <span>{{ $room->phone_number ?? "" }}</span>
                                         </td>
                                         <td class="nk-tb-col">
-                                            <span class="tb-lead">
-                                                <div class="d-flex justify-content-center">
-                                                    <a href="{{ route('commissioner.houses.show', $room->id) }}" class="btn btn-dim btn-primary btn-sm">
-                                                        <em class="icon ni ni-eye"></em>
-                                                    </a>
-                                                    <a href="{{ route('commissioner.houses.edit', $room->id) }}" class="btn btn-dim btn-primary btn-sm">
-                                                        <em class="icon ni ni-edit"></em>
-                                                    </a>
-                                                    <a
-                                                        class="btn btn-dim btn-danger btn-sm"
-                                                        href="#"
-                                                        onclick="deleteConfirm('delete-house-{{$room->id}}')"
-                                                    ><em class="icon ni ni-trash"></em></a>
-
-                                                    <form action="{{ route('commissioner.houses.destroy', $room->id) }}" method="POST" id="delete-house-{{$room->id}}">
-                                                        @method('DELETE')
-                                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                    </form>
-                                                </div>
-                                            </span>
+                                            <div class="tb-lead justify-content-center">
+                                                <a href="{{ route('commissioner.houses.show', $room->id) }}"
+                                                   class="btn btn-outline-primary btn-sm" title="">
+                                                    <em class="icon ni ni-eye-alt-fill"></em>
+                                                    <span>Detail Maison</span>
+                                                </a>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach

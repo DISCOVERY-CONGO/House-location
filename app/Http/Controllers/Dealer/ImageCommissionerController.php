@@ -5,18 +5,22 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Dealer;
 
 use App\Contracts\ImageCommissionerRepositoryInterface;
+use App\Http\Controllers\Backend\BaseBackendController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ImageRequest;
+use App\Services\FlashMessageService;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\RedirectResponse;
 use Kris\LaravelFormBuilder\FormBuilder;
 
-class ImageCommissionerController extends Controller
+class ImageCommissionerController extends BaseBackendController
 {
     public function __construct(
-        public ImageCommissionerRepositoryInterface $repository,
-        public FormBuilder $builder
+        protected readonly ImageCommissionerRepositoryInterface $repository,
+        public FormBuilder $builder,
+        public FlashMessageService $service
     ) {
+        parent::__construct($this->service);
     }
 
     public function index(): Renderable
@@ -35,26 +39,22 @@ class ImageCommissionerController extends Controller
     {
         $this->repository->created(attributes: $attributes);
 
-        return redirect()->route('commissioner.imageHouses.index');
-    }
+        $this->service->success(
+            'success',
+            "une nouvelle photo ajouter a la maison"
+        );
 
-    public function edit(string $key): Renderable
-    {
-        $image = $this->repository->show(key: $key);
-
-        return view('dealers.domain.images.edit', compact('image'));
-    }
-
-    public function update(string $key, ImageRequest $attributes): RedirectResponse
-    {
-        $this->repository->updated(key: $key, attributes: $attributes);
-
-        return redirect()->route('commissioner.imageHouses.index');
+        return to_route('commissioner.imageHouses.index');
     }
 
     public function destroy(string $key): RedirectResponse
     {
         $this->repository->deleted(key: $key);
+
+        $this->service->success(
+            'success',
+            "une photo supprimer avec success"
+        );
 
         return back();
     }

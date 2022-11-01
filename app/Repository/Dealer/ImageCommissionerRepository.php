@@ -24,7 +24,8 @@ class ImageCommissionerRepository implements ImageCommissionerRepositoryInterfac
             ->select([
                 'house_id',
                 'id',
-                'user_id'
+                'user_id',
+                'images'
             ])
             ->where('user_id', '=', auth()->id())
             ->with([

@@ -96,7 +96,7 @@
                                         <div class="info">
                                             <div class="title">Maison/Apartemetns</div>
                                             <div class="count">
-                                                {{ \App\Models\House::query()->where('status', '=', \App\Enums\HouseEnum::VALIDATED_HOUSE)->count() }}
+                                                {{ \App\Models\House::query()->where('status', '=', \App\Enums\HouseEnum::ACTIVATE)->count() }}
                                             </div>
                                         </div>
                                         <em class="icon bg-pink-dim ni ni-building"></em>

@@ -54,7 +54,7 @@ class TransactionRepository implements TransactionRepositoryInterface
             'client:id,name,phones_number',
             'reservation:id,status,messages',
             'reservation:id,house_id' => [
-                'house:id,commune,town,prices',
+                'house:id,prices',
             ],
         ]);
     }

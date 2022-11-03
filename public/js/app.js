@@ -2723,6 +2723,16 @@ if (languesSwitcher) {
   });
 }
 
+btnHumb.addEventListener("click", function (e) {
+  e.preventDefault();
+  toggleNavigation();
+});
+overlayM.addEventListener("click", function (e) {
+  e.preventDefault();
+  console.log("");
+  toggleNavigation();
+});
+
 /***/ }),
 
 /***/ "./resources/js/frontend/config/userModal.js":

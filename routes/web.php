@@ -3,12 +3,12 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\Api\Upload\UploadFIleApiController;
-use App\Http\Controllers\Backend\ApartmentAdminController;
-use App\Http\Controllers\Backend\BookingAdminController;
+use App\Http\Controllers\Backend\Apartments\ApartmentAdminController;
+use App\Http\Controllers\Backend\Apartments\StatusApartmentController;
+use App\Http\Controllers\Backend\Booking\BookingAdminController;
+use App\Http\Controllers\Backend\Booking\StatusBookingBackendController;
 use App\Http\Controllers\Backend\CategoryAdminController;
 use App\Http\Controllers\Backend\ClientBackendController;
-use App\Http\Controllers\Backend\StatusBookingController;
-use App\Http\Controllers\Backend\StatusApartmentController;
 use App\Http\Controllers\Backend\HomeAdminController;
 use App\Http\Controllers\Backend\ImagesAdminController;
 use App\Http\Controllers\Backend\NotificationAdminController;
@@ -18,6 +18,7 @@ use App\Http\Controllers\Backend\UsersAdminController;
 use App\Http\Controllers\Dealer\ApartmentCommissionerController;
 use App\Http\Controllers\Dealer\HomeCommissionerController;
 use App\Http\Controllers\Dealer\ImageCommissionerController;
+use App\Http\Controllers\Dealer\Upload\UploadDealerController as ImagesUpload;
 use App\Http\Controllers\Frontend\AboutController;
 use App\Http\Controllers\Frontend\BookingController;
 use App\Http\Controllers\Frontend\CategoryController;
@@ -25,7 +26,6 @@ use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\HouseController;
 use App\Http\Controllers\Frontend\LocationController;
-use App\Http\Controllers\Frontend\NewsLetterController;
 use App\Http\Controllers\Frontend\SearchLocationController;
 use App\Http\Controllers\UseCase\Auth\FacebookAuth\FacebookAuthController;
 use App\Http\Controllers\Users\CancellingBookingController;
@@ -34,7 +34,6 @@ use App\Http\Controllers\Users\InvoiceUserController;
 use App\Http\Controllers\Users\UpdateUserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Dealer\Upload\UploadDealerController as ImagesUpload;
 
 Auth::routes();
 
@@ -67,7 +66,7 @@ Route::group([
     Route::delete('notification/{key}', [NotificationAdminController::class, 'delete'])->name('notification.delete');
     Route::get('notification/markRead', [NotificationAdminController::class, 'markAllReads'])->name('notification.markReads');
 
-    Route::put('activeReservation/{key}', [StatusBookingController::class, 'confirm'])->name('reservation.active');
+    Route::post('toggle-reservation', StatusBookingBackendController::class)->name('booking.toggle');
 
     Route::post('active-room', StatusApartmentController::class);
 
@@ -109,7 +108,6 @@ Route::get('contact', [ContactController::class, 'index'])->name('contact.index'
 Route::post('contact', [ContactController::class, 'store'])->name('contact.store');
 Route::get('search', [SearchLocationController::class, 'searching'])->name('search.house');
 Route::get('/maisons/{key}', [HouseController::class, 'show'])->name('house.show');
-Route::post('news-letters', [NewsLetterController::class, 'index'])->name('newsletters.send');
 Route::controller(BookingController::class)->group(function () {
     Route::post('reservation', 'store')->name('reservation.store');
     Route::get('confirmation/{key}', 'show')->name('reservation.show');

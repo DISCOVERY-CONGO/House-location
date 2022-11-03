@@ -3,7 +3,7 @@
     class="w-full flex flex-col p-1 rounded-xl border hover:shadow-lg hover:rounded-2xl hover:border-transparent group transition duration-200">
     <div class="w-full rounded-t-md relative">
         <img
-            src="{{ asset('storage/'. $apartment->images) }}"
+            src="{{ asset('storage/'. $apartment->image->first()->images) }}"
             width="300"
             alt="{{ $apartment->town ?? "" }}"
             class="w-full h-44 object-cover rounded-lg group-hover:!rounded-xl group:transition duration-200">
@@ -43,20 +43,38 @@
                     </svg>
                 </span>
                 <span class="line-clamp-1">
-                    {{ ucfirst($apartment->district) ?? "" }}, {{ ucfirst($apartment->town) }}
+                    {{ ucfirst($apartment->address->district) ?? "" }}, {{ ucfirst($apartment->address->town) }}
                 </span>
             </div>
         </div>
         <div class="w-full justify-between flex items-center">
-            <div class="flex items-center gap-1 text-sm">
-                <span>{{ $apartment->warranty_price ?? 0 }} $ Garantie</span>
-            </div>
-            <div class="flex items-center">
-                <h5 class="text-2xl uppercase  leading-none md:text-right font-bold text-purple-500">
-                    {{ $apartment->prices ?? 0 }} $
-                </h5>
-                <span class="text-xs md:text-sm">/mois</span>
-            </div>
+            @if($apartment->type->id === 1)
+                <div class="flex items-center gap-1 text-sm">
+                    <h5 class="text-2xl uppercase  leading-none md:text-right font-bold text-purple-500">
+                        $ {{ $apartment->warranty_price ?? 0 }}
+                    </h5>
+                </div>
+            @elseif($apartment->type->id === 2)
+                <div class="flex items-center gap-1 text-sm">
+                    <span>{{ $apartment->warranty_price ?? 0 }} $ Garantie</span>
+                </div>
+                <div class="flex items-center">
+                    <h5 class="text-2xl uppercase  leading-none md:text-right font-bold text-purple-500">
+                        {{ $apartment->prices ?? 0 }} $
+                    </h5>
+                    <span class="text-xs md:text-sm">/mois</span>
+                </div>
+            @else
+                <div class="flex items-center gap-1 text-sm">
+                    <span>$ {{ $apartment->warranty_price ?? 0 }}</span>
+                </div>
+                <div class="flex items-center">
+                    <h5 class="text-2xl uppercase  leading-none md:text-right font-bold text-purple-500">
+                        {{ $apartment->prices ?? 0 }} $
+                    </h5>
+                    <span class="text-xs md:text-sm">/mois</span>
+                </div>
+            @endif
         </div>
     </div>
     <div class="py-3 px-3 border-t border-gray-300 flex justify-between">

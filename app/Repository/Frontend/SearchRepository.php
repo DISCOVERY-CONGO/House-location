@@ -15,17 +15,6 @@ class SearchRepository implements SearchRepositoryInterface
     {
         if ($request->input('_search') !== null) {
             return House::query()
-                ->select([
-                    'prices',
-                    'warranty_price',
-                    'commune',
-                    'town',
-                    'district',
-                    'address',
-                    'status',
-                    'id',
-                    'deleted_at'
-                ])
                 ->when(
                     'status',
                     fn ($builder) => $builder->where('status', HouseEnum::ACTIVATE)
@@ -41,7 +30,17 @@ class SearchRepository implements SearchRepositoryInterface
                 ->orWhere('district', 'like', '%' . $request->input('_search') . '%')
                 ->orWhere('town', 'like', '%' . $request->input('_search') . '%')
                 ->take(8)
-                ->get();
+                ->get([
+                    'prices',
+                    'warranty_price',
+                    'commune',
+                    'town',
+                    'district',
+                    'address',
+                    'status',
+                    'id',
+                    'deleted_at'
+                ]);
         }
 
         return null;

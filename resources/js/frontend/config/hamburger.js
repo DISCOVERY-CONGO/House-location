@@ -200,3 +200,16 @@ if (languesSwitcher) {
         });
     });
 }
+
+btnHumb.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    toggleNavigation();
+});
+
+overlayM.addEventListener("click", (e) => {
+    e.preventDefault();
+    console.log("");
+    toggleNavigation();
+});
+

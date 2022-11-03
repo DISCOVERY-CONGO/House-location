@@ -16,7 +16,7 @@ class CategoryRepository implements CategoryHomeRepositoryInterface
     {
         $apartments = House::query()
             ->orderByDesc('created_at')
-            ->when('status', fn ($builder) => $builder->where('status', HouseEnum::VALIDATED_HOUSE))
+            ->when('status', fn ($builder) => $builder->where('status', HouseEnum::ACTIVATE))
             ->inRandomOrder();
 
         if ($request->input('category')) {
@@ -36,7 +36,7 @@ class CategoryRepository implements CategoryHomeRepositoryInterface
             ->withCount('reservations')
             ->first();
 
-        return $house->load(['categories', 'image', 'type', 'detail']);
+        return $house->load(['categories', 'image', 'type']);
     }
 
     public function getHouseByDetails($house): Collection|array

@@ -1,4 +1,3 @@
-@php use App\Enums\ElectricityEnum;use App\Enums\ToiletEnum; @endphp
 @extends('frontend.layouts.app')
 
 @section('title')
@@ -22,13 +21,13 @@
                         <div class="swiper-wrapper">
                             <div class="swiper-slide rounded-xl overflow-hidden">
                                 <a
-                                    href="{{ asset('storage/'. $apartment->images) }}"
-                                    title="{{ $apartment->commune }}"
+                                    href="{{ asset('storage/'. $apartment->image->first()->images) }}"
+                                    title="{{ $apartment->address->commune ?? "" }}"
                                     data-fslightbox="houseGallery"
                                    class="w-full h-full">
                                     <img
-                                        src="{{ asset('storage/'. $apartment->images) }}"
-                                        alt="{{ $apartment->commune }}"
+                                        src="{{ asset('storage/'. $apartment->image->first()->images) }}"
+                                        alt="{{$apartment->address->commune ?? "" }}"
                                         class="rounded-xl w-full h-full object-cover transition-all hover:scale-105 duration-300" />
                                 </a>
                             </div>
@@ -38,12 +37,12 @@
                                             <a
                                                 href="{{ asset('storage/'. $image->images) }}"
                                                 data-fslightbox="houseGallery"
-                                                title="{{ $apartment->town ?? "" }}"
+                                                title="{{ $apartment->address->town ?? "" }}"
                                                 class="w-full h-full">
                                                 <img
                                                     src="{{ asset('storage/'. $image->images) }}"
-                                                    title="{{ $apartment->town ?? "" }}"
-                                                    alt="{{ $apartment->town ?? "" }}"
+                                                    title="{{ $apartment->address->commune ?? "" }}"
+                                                    alt="{{ $apartment->address->address ?? "" }}"
                                                     class="rounded-xl w-full h-full object-cover transition-all hover:scale-105 duration-300"/>
                                             </a>
                                         </div>
@@ -55,8 +54,8 @@
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
                                 <img
-                                    src="{{ asset('storage/'. $apartment->images) }}"
-                                    alt="{{ $apartment->commune }}"
+                                    src="{{ asset('storage/'. $apartment->image->first()->images) }}"
+                                    alt="{{ $apartment->address->commune }}"
                                     class="rounded-xl w-full h-full object-cover" />
                             </div>
                             @if($apartment->image)
@@ -131,9 +130,9 @@
                                 <tr>
                                     <td class="p-2 bg-gray-50 text-gray-700">Toilette interieur</td>
                                     <td class="p-2 rounded">
-                                        @if($apartment->detail->toilet == ToiletEnum::INTERNE)
+                                        @if($apartment->detail->toilet == 1)
                                             Toilete Interne
-                                        @elseif($apartment->detail->toilet == ToiletEnum::EXTERNE)
+                                        @elseif($apartment->detail->toilet == 2)
                                             Toilete Externe
                                         @else
                                             Interne/Externe
@@ -151,7 +150,7 @@
                                 <tr>
                                     <td class="p-2 bg-gray-50 text-gray-700">Electricité</td>
                                     <td class="p-2 rounded">
-                                        @if($apartment->detail->electrity  == ElectricityEnum::EXIST_ELECTRICITY)
+                                        @if($apartment->detail->electricity  == \App\Enums\ElectricityEnum::EXIST_ELECTRICITY)
                                             Disponible
                                         @else
                                             Non Disponible

@@ -20,21 +20,17 @@
                             <div class="toggle-expand-content" data-content="pageMenu">
                                 <ul class="nk-block-tools g-3">
                                     <li class="preview-item">
-                                        @if ($reservation->status == false)
-                                            @include('backend.components._update', [
-                                                'route' => route('admins.reservation.active',$reservation->id),
-                                                'button' => 'btn-outline-success btn-sm',
-                                                'icon' => 'ni-check-circle',
-                                                'title' => 'Activer'
-                                            ])
-                                        @else
-                                            @include('backend.components._update', [
-                                                'route' => route('admins.reservation.inactive',$reservation->id),
-                                                'button' => 'btn-outline-danger btn-sm',
-                                                'icon' => 'ni-check-circle',
-                                                'title' => 'Désactiver'
-                                            ])
-                                        @endif
+                                        <div class="custom-control custom-control-md custom-switch">
+                                            <input
+                                                type="checkbox"
+                                                class="custom-control-input"
+                                                name="activated"
+                                                data-id="{{ $reservation->id }}"
+                                                @checked($reservation->status)
+                                                onclick="changeBookingStatus(event.target,{{ $reservation->id }} );"
+                                                id="activated">
+                                            <label class="custom-control-label" for="activated"></label>
+                                        </div>
                                     </li>
                                     <li class="preview-item">
                                         <a href="{{ route('admins.reservations.index') }}"
@@ -49,7 +45,7 @@
                     </div>
                 </div>
             </div>
-            @if($reservation->status == false)
+            @if($reservation->status === false)
                 <div class="alert alert-danger alert-icon " role="alert">
                     <em class="icon ni ni-alert-circle"></em>
                     Cette reservation est en attente
@@ -59,7 +55,7 @@
                 <div class="nk-block">
                     <div class="justify-content text-center p-2">
                         <img
-                                src="{{ asset('storage/'.$reservation->house->images) }}"
+                                src="{{ asset('storage/'.$reservation->house->image->first()->images) }}"
                                 alt="{{ $reservation->name }}"
                                 class="img-fluid img-thumbnail"
                                 height="20%"
@@ -130,4 +126,35 @@
             </div>
         </div>
     </div>
+@endsection
+
+
+@section('scripts')
+    <script>
+        let changeBookingStatus = async (_this, id) => {
+            const status = $(_this).prop('checked') === true ? 1 : 0;
+            let _token = $('meta[name="csrf-token"]').attr('content');
+            let data = {
+                status: status,
+                booking: id
+            }
+            let headers = {
+                'Content-type': 'application/json; charset=UTF-8',
+                'x-csrf-token': _token,
+            }
+            await fetch('{{ route('admins.booking.toggle') }}', {
+                method: "POST",
+                body: JSON.stringify(data),
+                headers: headers
+            })
+                .then(response => response.json())
+                .then(async (data) => {
+                    var result = Object.values(data)
+                    await Swal.fire(`Status Active`, `${result[0]}`, 'success')
+                })
+                .catch(async (error) => {
+                    await Swal.fire("Desoler", "Desoler une erreur est survenue lors de l'execution de cette tache","error")
+                })
+        }
+    </script>
 @endsection

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Backend\Apartments;
 
 use App\Contracts\ApartmentRepositoryInterface;
 use App\Forms\ApartmentForm;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Backend\BaseBackendController;
 use App\Http\Requests\ApartmentRequest;
 use App\Http\Requests\UpdateApartmentRequest;
 use App\Services\FlashMessageService;
@@ -16,7 +16,6 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Kris\LaravelFormBuilder\FormBuilder;
 
 class ApartmentAdminController extends BaseBackendController

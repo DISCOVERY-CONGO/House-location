@@ -3,116 +3,109 @@
 @section('title', "Les apartements par categorie")
 
 @section('content')
-    <section class="lg:px-28 md:px-12 px-6 pt-16 bg-gray-50 pb-16">
-        <div class="lg:max-w-screen-xl mx-auto flex flex-col gap-10">
-            <div class="flex justify-center mx-auto lg:w-5/6">
-                <h1 class="text-gray-600 font-semibold text-3xl text-center">
-                    Pour tout besoin, n'hesitez pas de nous contactactez
-                </h1>
-            </div>
-            <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
-                <div class="flex flex-col gap-4 bg-white shadow-lg shadow-purple-100 rounded-md p-4">
-                    <div class="block mx-auto">
-                        <img src="{{ asset('app/images/icon_phone.png') }}" alt="" class="w-14">
-                    </div>
-                    <div class="w-full text-center block text-xl font-semibold text-gray-500">
-                        <span>Numero telephone</span>
-                    </div>
-                    <div class="w-full text-center block font-semibold text-gray-400 text-base">
-                        <span>+ 243 990 416 691</span>
-                    </div>
-                </div>
+    <div class="w-full flex justify-center overflow-hidden pt-20">
+        <div class="relative w-full max-w-screen-lg lg:max-w-screen-2xl px-4 xs:px-6 sm:px-10 lg:px-12 xl:px-16">
+            <div class="grid lg:grid-cols-2 xl:grid-cols-3 gap-8 pt-10">
+                <div class="col-span-1 xl:col-span-2">
+                    <div class="max-w-[570px] mb-12 lg:mb-0 flex flex-col gap-9">
+                        <div class="flex flex-col gap-6">
+                            <h2 class="flex text-gray-600 font-bold text-3xl md:text-4xl lg:text-5xl leading-snug ">
+                                Prendre contact avec nous
+                            </h2>
+                            <p class="text-sm md:text-base leading-relaxed">
+                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur quam placeat,
+                                neque iusto ipsa alias facere odit minima aut modi perspiciatis nemo? Atque architecto
+                                facere sequi natus sint odit dicta.
+                            </p>
+                        </div>
+                        <div class="flex w-full flex-col gap-8">
+                            <div class="flex max-w-sm w-full gap-6">
+                                <div class="max-w-[2rem] sm:max-w-[3rem] w-full
+                                h-[2rem] sm:h-[3rem] flex items-center justify-center
+                                overflow-hidden bg-purple-600 bg-opacity-5 text-purple-600 rounded ">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                                         fill="currentColor">
+                                        <path fill-rule="evenodd"
+                                              d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                                              clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <div class="w-full">
+                                    <h4 class="font-bold text-gray-600 text-xl mb-1">Adresse physique</h4>
+                                    <p class="text-base text-gray-500">
+                                        Golf Lido, Avenue Des Roches au croisement avec Bd Kilwa
+                                    </p>
+                                </div>
+                            </div>
 
-                <div class="flex flex-col gap-4 bg-white shadow-lg shadow-purple-100 rounded-md p-4">
-                    <div class="block mx-auto">
-                        <img src="{{ asset('app/images/icon_map.png') }}" alt="" class="w-14">
-                    </div>
-                    <div class="w-full text-center block text-xl font-semibold text-gray-500">
-                        <span>Adresse physique</span>
-                    </div>
-                    <div class="w-full text-center block font-semibold text-gray-400 text-base">
-                        <span>7680, Avenue des Roches, Q/Ludo Golf, Lubumbashi</span>
-                    </div>
-                </div>
+                            <div class="flex max-w-sm w-full gap-6">
+                                <div class="max-w-[2rem] sm:max-w-[3rem] w-full
+                                h-[2rem] sm:h-[3rem] flex items-center justify-center
+                                overflow-hidden bg-purple-600 bg-opacity-5 text-purple-600 rounded ">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                                         fill="currentColor">
+                                        <path
+                                            d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                                    </svg>
+                                </div>
+                                <div class="w-full">
+                                    <h4 class="font-bold text-gray-600 text-xl mb-1">Numero telephone</h4>
+                                    <p class="text-base text-gray-500">
+                                        + 243 82 95 16 883
+                                    </p>
+                                </div>
+                            </div>
 
-                <div class="flex flex-col gap-4 bg-white shadow-lg shadow-purple-100 rounded-md p-4">
-                    <div class="block mx-auto">
-                        <img src="{{ asset('app/images/icon_mail.png') }}" alt="" class="w-14">
-                    </div>
-                    <div class="w-full text-center block text-xl font-semibold text-gray-500">
-                        <span>Adresse mail</span>
-                    </div>
-                    <div class="w-full text-center block font-semibold text-gray-400 text-base">
-                        <span>info@karibukwako.com</span>
-                    </div>
-                </div>
-            </div>
-            <div class="py-10"></div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
-                <div class="relative lg:col-span-2  after:absolute after:w-1 after:rounded-full after:h-6 after:top-1.5 after:left-0 after:bg-purple-600">
-                    <div class="flex flex-col pl-4 gap-5">
-                        <h1 class="text-3xl font-semibold text-gray-500">Besoin d'aide ?</h1>
-                        <p class="text-base font-normal text-gray-400">
-                            Pour tout probleme, suggestion, laissez nous un message en completant ce formulaire.
-                            Echangez avec vous est pour nous, un réel plaisir
-                        </p>
+                            <div class="flex max-w-sm w-full gap-6">
+                                <div class="max-w-[2rem] sm:max-w-[3rem] w-full
+                                h-[2rem] sm:h-[3rem] flex items-center justify-center
+                                overflow-hidden bg-purple-600 bg-opacity-5 text-purple-600 rounded ">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                                         fill="currentColor">
+                                        <path fill-rule="evenodd"
+                                              d="M2.94 6.412A2 2 0 002 8.108V16a2 2 0 002 2h12a2 2 0 002-2V8.108a2 2 0 00-.94-1.696l-6-3.75a2 2 0 00-2.12 0l-6 3.75zm2.615 2.423a1 1 0 10-1.11 1.664l5 3.333a1 1 0 001.11 0l5-3.333a1 1 0 00-1.11-1.664L10 11.798 5.555 8.835z"
+                                              clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <div class="w-full">
+                                    <h4 class="font-bold text-dark text-xl mb-1">
+                                        Adresse mail
+                                    </h4>
+                                    <p class="text-base text-body-color">info@yourdomain.com</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="bg-white shadow-2xl rounded-md p-4 sm:p-6 lg:p-12 col-span-1 lg:col-span-3">
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul class="list-unstyled">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                    <form action="{{ route('contact.store') }}" method="post" class="flex flex-col gap-4">
-                        @csrf
-                        <div class="flex flex-col gap-1.5">
-                            <label for="username" class="text-lg font-medium text-gray-400">Nom complet</label>
-                            <input
-                                type="text"
-                                placeholder="Votre nom complet"
-                                name="username"
-                                id="username"
-                                value="{{ old('username') }}"
-                                class="bg-gray-100 focus:bg-white text-sm font-normal text-gray-500 px-4 py-3 rounded-md border-[3px] border-gray-100 outline-none transition duration-300 focus:border-purple-400 focus:shadow-2xl focus:shadow-purple-200">
-                        </div>
-                        <div class="flex flex-col gap-1.5">
-                            <label for="email" class="text-lg font-medium text-gray-400">Adresse mail</label>
-                            <input
-                                type="email"
-                                placeholder="Votre adresse email"
-                                name="email"
-                                id="email"
-                                value="{{ old('email') }}"
-                                class="bg-gray-100 focus:bg-white text-sm font-normal text-gray-500 px-4 py-3 rounded-md border-[3px] border-gray-100 outline-none transition duration-300 focus:border-purple-400 focus:shadow-2xl focus:shadow-purple-200">
-                        </div>
-                        <div class="flex flex-col gap-1.5">
-                            <label for="subject" class="text-lg font-medium text-gray-400">Objet</label>
-                            <input
-                                type="text"
-                                placeholder="Objet du message"
-                                name="subject"
-                                id="subject"
-                                value="{{ old('subject') }}"
-                                class="bg-gray-100 focus:bg-white text-sm font-normal text-gray-500 px-4 py-3 rounded-md border-[3px] border-gray-100 outline-none transition duration-300 focus:border-purple-400 focus:shadow-2xl focus:shadow-purple-200">
-                        </div>
-                        <div class="flex flex-col gap-1.5">
-                            <label for="message" class="text-lg font-medium text-gray-400">Message</label>
-                            <textarea
-                                name="message"
-                                id="message"
-                                class="bg-gray-100 focus:bg-white text-sm resize-none h-20 font-normal text-gray-500 px-4 py-3 rounded-md border-[3px] border-gray-100 outline-none transition duration-300 focus:border-purple-400 focus:shadow-2xl focus:shadow-purple-200">{{ old('message') }}</textarea>
-                        </div>
-                        <div class="flex">
-                            <button class="md:w-4/12 text-center bg-gradient-to-tr from-green-400 to-purple-600 text-sm font-semibold px-6 text-white py-3 rounded-md">Envoyer</button>
-                        </div>
-                    </form>
+                <div class="col-span-1 w-full">
+                    <div class="bg-white w-full relative rounded-lg p-5 sm:p-10 shadow-lg">
+                        <form class="w-full flex flex-col gap-6">
+                            <div class="w-full flex">
+                                <input type="text" placeholder="John Kat"
+                                       class="w-full rounded py-3 px-5 text-gray-600 text-base border border-gray-100 outline-none focus-visible:shadow-none focus:border-purple-600 " />
+                            </div>
+                            <div class="w-full flex">
+                                <input type="email" placeholder="johndoe@gmail.com"
+                                       class="w-full rounded py-3 px-5 text-gray-600 text-base border border-gray-100 outline-none focus-visible:shadow-none focus:border-purple-600 " />
+                            </div>
+                            <div class="w-full flex">
+                                <input type="text" placeholder="+243 97 24 44 966"
+                                       class="w-full rounded py-3 px-5 text-gray-600 text-base border border-gray-100 outline-none focus-visible:shadow-none focus:border-purple-600 " />
+                            </div>
+                            <div class="w-full flex">
+                                <textarea placeholder="Dites quelque chose"
+                                          class="h-44 w-full rounded py-3 px-5 text-gray-600 text-base border border-gray-100 resize-none outline-none focus-visible:shadow-none focus:border-purple-600"></textarea>
+                            </div>
+                            <div>
+                                <button type="submit"
+                                        class="w-full  text-white bg-purple-600 rounded border-2 border-purple-600 py-3 px-6 transition hover:bg-opacity-90 ">
+                                    Envoyer
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 @endsection

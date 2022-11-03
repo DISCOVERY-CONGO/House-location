@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('prices');
             $table->integer('warranty_price')->nullable();
             $table->json('address')->default("[]");
+            $table->json('detail')->default("[]");
             $table->string('phone_number')
                 ->nullable()
                 ->default("+243990416691");

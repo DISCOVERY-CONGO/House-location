@@ -27,10 +27,16 @@
                                                 A 56 minutes de votre position actuelle.
                                             </span>
                                         </div>
-
                                         <div class="md:mt-0 mt-4">
-                                            <h3 class="text-3xl md:text-right font-bold text-purple-400">{{ $apartments[0]->prices ?? "" }} $</h3>
-                                            <span class="text-xs text-gray-200">{{ $apartments[0]->guarantees ?? "" }} $ Garantie</span>
+                                            @if($apartments[0]->type->id === 1)
+                                                <span class="text-xs text-gray-200">{{ $apartments[0]->warranty_price ?? "" }} $ Garantie</span>
+                                            @elseif($apartments[0]->type->id === 2)
+                                                <h3 class="text-3xl md:text-right font-bold text-purple-400">{{ $apartments[0]->prices ?? "" }} $</h3>
+                                                <span class="text-xs text-gray-200">{{ $apartments[0]->warranty_price ?? "" }} $ Garantie</span>
+                                            @else
+                                                <h3 class="text-3xl md:text-right font-bold text-purple-400">{{ $apartments[0]->prices ?? "" }} $</h3>
+                                                <span class="text-xs text-gray-200">$ {{ $apartments[0]->warranty_price ?? "" }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="relative pt-4 flex gap-2 before:absolute before:w-[60%] before:right-0 before:top-0 before:h-[1px] before:bg-gray-500 before:rounded-full">
@@ -41,7 +47,7 @@
                                             </a>
                                         </div>
                                         <div class="translate-y-16 group-hover:translate-y-0 transition delay-200 duration-300 ease-in-out">
-                                            <a href="tel:{{ $apartments[0]->phoneNumber ?? "" }}" aria-label="call" class="w-10 h-10 flex items-center rounded-full bg-purple-600 bg-opacity-0 hover:border-transparent hover:bg-opacity-30 focus:bg-opacity-40 active:scale-95 transition">
+                                            <a href="tel:{{ $apartments[0]->phone_number ?? "" }}" aria-label="call" class="w-10 h-10 flex items-center rounded-full bg-purple-600 bg-opacity-0 hover:border-transparent hover:bg-opacity-30 focus:bg-opacity-40 active:scale-95 transition">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-4 m-auto text-purple-300" viewBox="0 0 16 16">
                                                     <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
                                                 </svg>
@@ -58,7 +64,7 @@
                                 </div>
                             </div>
                         </div>
-                        <img src="{{ asset('storage/'. $apartments[0]->images) }}" class="w-full h-full object-cover rounded-none" alt="{{ $apartments[0]->commune }}">
+                        <img src="{{ asset('storage/'. $apartments[0]->image->first()->images) }}" class="w-full h-full object-cover rounded-none" alt="{{ $apartments[0]->commune }}">
                     </div>
 
                     <div class="grid col-span-12  lg:col-span-6 lg:row-span-2 md:grid-cols-2 gap-2.5 overflow-hidden">
@@ -80,11 +86,22 @@
                                         <div class="pb-8">
                                             <h4 class="mb-4 text-lg text-white font-semibold">{{ $apartments[1]->address->address ?? "" }}</h4>
                                             <div class="flex items-end gap-2">
-                                                <h3 class="text-2xl font-bold text-purple-400">{{ $apartments[1]->prices }} $</h3>
-                                                <div class="text-xs tracking-wide text-gray-300">
-                                                    <span class="block">/ Mois</span>
-                                                    <span class="block">{{ $apartments[1]->guarantees ?? 0 }} $ Garantie</span>
-                                                </div>
+                                                @if($apartments[1]->type->id === 1)
+                                                    <div class="text-xs tracking-wide text-gray-300">
+                                                        <span class="block">$ {{ $apartments[1]->warranty_price ?? 0 }}</span>
+                                                    </div>
+                                                @elseif($apartments[1]->type->id === 2)
+                                                    <h3 class="text-2xl font-bold text-purple-400">{{ $apartments[1]->prices }} $</h3>
+                                                    <div class="text-xs tracking-wide text-gray-300">
+                                                        <span class="block">/ Mois</span>
+                                                        <span class="block">{{ $apartments[1]->warranty_price ?? 0 }} $ Garantie</span>
+                                                    </div>
+                                                @else
+                                                    <h3 class="text-2xl font-bold text-purple-400">{{ $apartments[1]->prices }} $</h3>
+                                                    <div class="text-xs tracking-wide text-gray-300">
+                                                        <span class="block">$ {{ $apartments[1]->warranty_price ?? 0 }}</span>
+                                                    </div>
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="relative pt-4 flex gap-2 group-hover:-mt-4 transition">
@@ -94,7 +111,7 @@
                                                 </a>
                                             </div>
                                             <div class="translate-y-16 group-hover:translate-y-0 transition delay-200 duration-300 ease-in-out">
-                                                <a href="tel:{{ $apartments[1]->phoneNumber ?? 0 }}" aria-label="call" class="w-10 h-10 flex items-center rounded-full bg-purple-600 bg-opacity-0 hover:border-transparent hover:bg-opacity-30 focus:bg-opacity-40 active:scale-95 transition">
+                                                <a href="tel:{{ $apartments[1]->phone_number ?? 0 }}" aria-label="call" class="w-10 h-10 flex items-center rounded-full bg-purple-600 bg-opacity-0 hover:border-transparent hover:bg-opacity-30 focus:bg-opacity-40 active:scale-95 transition">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-4 m-auto text-purple-300" viewBox="0 0 16 16">
                                                         <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
                                                     </svg>
@@ -111,7 +128,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <img src="{{ asset('storage/'.$apartments[1]->images) }}" class="w-full h-full object-cover rounded-none" alt="{{ $apartments[1]->commune }}">
+                            <img src="{{ asset('storage/'. $apartments[1]->image->first()->images) }}" class="w-full h-full object-cover rounded-none" alt="{{ $apartments[1]->commune }}">
                         </div>
 
                         <div class="relative col-span-1 row-span-1 lg:h-60 group transition">
@@ -130,14 +147,24 @@
                                 <div class="h-full sm:p-6 p-4 pt-2 flex items-end lg:rounded-tr-2xl md:rounded-none rounded-2xl bg-gradient-to-t from-gray-900 overflow-hidden">
                                     <div class="w-full translate-y-24 group-hover:translate-y-0 transition duration-500">
                                         <div class="pb-8">
+
                                             <h4 class="mb-4 text-lg text-white font-semibold">{{ $apartments[0]->address->address ?? "" }}</h4>
 
                                             <div class="flex items-end gap-2">
-                                                <h3 class="text-2xl font-bold text-purple-400">{{ $apartments[0]->prices ?? "" }} $</h3>
-                                                <div class="text-xs tracking-wide text-gray-300">
-                                                    <span class="block">/ Mois</span>
-                                                    <span class="block">{{ $apartments[0]->guarantees ?? 0 }} $ Garantie</span>
-                                                </div>
+                                                @if($apartments[0]->type->id === 1)
+                                                    <h3 class="text-2xl font-bold text-purple-400">$ {{ $apartments[0]->warranty_price ?? "" }} </h3>
+                                                @elseif($apartments[0]->type->id === 2)
+                                                    <h3 class="text-2xl font-bold text-purple-400">{{ $apartments[0]->prices }} $</h3>
+                                                    <div class="text-xs tracking-wide text-gray-300">
+                                                        <span class="block">/ Mois</span>
+                                                        <span class="block">{{ $apartments[0]->warranty_price ?? 0 }} $ Garantie</span>
+                                                    </div>
+                                                @else
+                                                    <h3 class="text-2xl font-bold text-purple-400">{{ $apartments[0]->prices }} $</h3>
+                                                    <div class="text-xs tracking-wide text-gray-300">
+                                                        <span class="block">$ {{ $apartments[0]->warranty_price ?? 0 }}</span>
+                                                    </div>
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="relative pt-4 flex gap-2 group-hover:-mt-4 transition">
@@ -148,7 +175,7 @@
                                             </div>
                                             <div
                                                 class="translate-y-16 group-hover:translate-y-0 transition delay-200 duration-300 ease-in-out">
-                                                <a href="tel:{{ $apartments[0]->phoneNumber ?? 0 }}" aria-label="call" class="w-10 h-10 flex items-center rounded-full bg-purple-600 bg-opacity-0 hover:border-transparent hover:bg-opacity-30 focus:bg-opacity-40 active:scale-95 transition">
+                                                <a href="tel:{{ $apartments[0]->phone_number ?? 0 }}" aria-label="call" class="w-10 h-10 flex items-center rounded-full bg-purple-600 bg-opacity-0 hover:border-transparent hover:bg-opacity-30 focus:bg-opacity-40 active:scale-95 transition">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-4 m-auto text-purple-300" viewBox="0 0 16 16">
                                                         <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
                                                     </svg>
@@ -165,7 +192,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <img src="{{ asset('storage/'.$apartments[0]->images) }}" class="w-full h-full object-cover" alt="{{ $apartments[0]->address ?? "0" }}">
+                            <img src="{{ asset('storage/'. $apartments[0]->image->first()->images) }}" class="w-full h-full object-cover" alt="{{ $apartments[0]->address->address ?? "0" }}">
                         </div>
 
                         <div class="relative hidden lg:grid col-span-1 row-span-1 lg:h-60 group transition">
@@ -188,11 +215,20 @@
                                                 {{ $apartments[0]->address->address ?? 0 }}
                                             </h4>
                                             <div class="flex items-end gap-2">
-                                                <h3 class="text-2xl font-bold text-purple-400">{{ $apartments[0]->prices ?? 0 }} $</h3>
-                                                <div class="text-xs tracking-wide text-gray-300">
-                                                    <span class="block">/ Mois</span>
-                                                    <span class="block">{{ $apartments[0]->guarantees ?? 0 }} $ Garantie</span>
-                                                </div>
+                                                @if($apartments[0]->type->id === 1)
+                                                    <h3 class="text-2xl font-bold text-purple-400">$ {{ $apartments[0]->warranty_price ?? "" }} </h3>
+                                                @elseif($apartments[0]->type->id === 2)
+                                                    <h3 class="text-2xl font-bold text-purple-400">{{ $apartments[0]->prices }} $</h3>
+                                                    <div class="text-xs tracking-wide text-gray-300">
+                                                        <span class="block">/ Mois</span>
+                                                        <span class="block">{{ $apartments[0]->warranty_price ?? 0 }} $ Garantie</span>
+                                                    </div>
+                                                @else
+                                                    <h3 class="text-2xl font-bold text-purple-400">{{ $apartments[0]->prices }} $</h3>
+                                                    <div class="text-xs tracking-wide text-gray-300">
+                                                        <span class="block">$ {{ $apartments[0]->warranty_price ?? 0 }}</span>
+                                                    </div>
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="relative pt-4 flex gap-2 group-hover:-mt-4 transition">
@@ -219,9 +255,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <img src="{{ asset('storage/'. $apartments[0]->images) }}"
+                            <img src="{{ asset('storage/'. $apartments[0]->image->first()->images) }}"
                                  class="w-full h-full object-cover"
-                                 alt="{{ $apartments[0]->commune  }}">
+                                 alt="{{ $apartments[0]->address->commune ?? ""  }}">
                         </div>
 
                         <div class="relative hidden lg:grid col-span-1 row-span-1 lg:h-60 group transition">
@@ -245,17 +281,26 @@
                                             </h6>
 
                                             <div class="flex items-end gap-2">
-                                                <h3 class="text-2xl font-bold text-purple-400">{{ $apartments[1]->prices ?? "" }} $</h3>
-                                                <div class="text-xs tracking-wide text-gray-300">
-                                                    <span class="block">/ Mois</span>
-                                                    <span class="block">{{ $apartments[1]->guarantees ?? "" }} $ Garantie</span>
-                                                </div>
+                                                @if($apartments[1]->type->id === 1)
+                                                    <h3 class="text-2xl font-bold text-purple-400">$ {{ $apartments[1]->warranty_price ?? "" }} </h3>
+                                                @elseif($apartments[1]->type->id === 2)
+                                                    <h3 class="text-2xl font-bold text-purple-400">{{ $apartments[1]->prices }} $</h3>
+                                                    <div class="text-xs tracking-wide text-gray-300">
+                                                        <span class="block">/ Mois</span>
+                                                        <span class="block">{{ $apartments[1]->warranty_price ?? 0 }} $ Garantie</span>
+                                                    </div>
+                                                @else
+                                                    <h3 class="text-2xl font-bold text-purple-400">{{ $apartments[1]->prices }} $</h3>
+                                                    <div class="text-xs tracking-wide text-gray-300">
+                                                        <span class="block">$ {{ $apartments[1]->warranty_price ?? 0 }}</span>
+                                                    </div>
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="relative pt-4 flex gap-4 group-hover:-mt-4 transition">
                                             <div class="translate-y-8 group-hover:translate-y-0 transition delay-150 duration-300 ease-in-out">
                                                 <a href="{{ route('house.show', $apartments[1]->id ) }}"
-                                                    class="block w-max py-2 px-6 border border-gray-600 text-white rounded-full hover:border-transparent hover:bg-white hover:text-purple-700 focus:bg-white focus:text-purple-700 active:scale-95 transition">
+                                                   class="block w-max py-2 px-6 border border-gray-600 text-white rounded-full hover:border-transparent hover:bg-white hover:text-purple-700 focus:bg-white focus:text-purple-700 active:scale-95 transition">
                                                     <span class="text-sm font-medium tracking-wide">Savoir plus</span>
                                                 </a>
                                             </div>
@@ -263,9 +308,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <img src="{{ asset('storage/'. $apartments[1]->images ) }}"
+                            <img src="{{ asset('storage/'. $apartments[1]->image->first()->images ) }}"
                                  class="w-full h-full object-cover"
-                                 alt="{{ $apartments[1]->commune ?? "" }}">
+                                 alt="{{ $apartments[1]->address->commune ?? "" }}">
                         </div>
                     </div>
                 </div>

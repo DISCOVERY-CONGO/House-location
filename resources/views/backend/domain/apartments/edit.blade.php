@@ -145,7 +145,7 @@
                                                         class="form-control @error('number_rooms') error @enderror"
                                                         id="number_rooms"
                                                         name="number_rooms"
-                                                        value="{{ old('number_rooms') ?? $viewModel->detail()->number_rooms }}"
+                                                        value="{{ old('number_rooms') ?? $viewModel->house()->detail->number_rooms }}"
                                                         placeholder="Enter number rooms"
                                                         required>
                                                 </div>
@@ -160,7 +160,7 @@
                                                         class="form-control @error('number_pieces') error @enderror"
                                                         id="number_pieces"
                                                         name="number_pieces"
-                                                        value="{{ old('number_pieces') ?? $viewModel->detail()->number_pieces }}"
+                                                        value="{{ old('number_pieces') ?? $viewModel->house()->detail->number_pieces }}"
                                                         placeholder="Enter number pieces"
                                                         required>
                                                 </div>
@@ -229,7 +229,7 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-6 d-none">
                                             <div class="form-group">
                                                 <label class="form-label" for="latitude">Latitude</label>
                                                 <div class="form-control-wrap">
@@ -244,7 +244,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-6 d-none">
                                             <div class="form-group">
                                                 <label class="form-label" for="longitude">Longitude</label>
                                                 <div class="form-control-wrap">
@@ -282,7 +282,7 @@
                                                         id="description"
                                                         name="description"
                                                         placeholder="Write the description"
-                                                    >{{ old('description') ?? $viewModel->detail()->description  }}</textarea>
+                                                    >{{ old('description') ?? $viewModel->house()->detail->description  }}</textarea>
                                                 </div>
                                             </div>
                                         </div>

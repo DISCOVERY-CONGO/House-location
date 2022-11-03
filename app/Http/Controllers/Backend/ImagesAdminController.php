@@ -14,7 +14,7 @@ use Illuminate\Http\RedirectResponse;
 final class ImagesAdminController extends BaseBackendController
 {
     public function __construct(
-        protected  readonly  ImageRepositoryInterface $repository,
+        protected readonly ImageRepositoryInterface $repository,
         public FlashMessageService $service
     ) {
         parent::__construct($this->service);
@@ -54,7 +54,6 @@ final class ImagesAdminController extends BaseBackendController
             'success',
             "Les images  de la maison on ete supprimer"
         );
-
 
         return back();
     }

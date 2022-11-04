@@ -17,13 +17,6 @@ class TransactionRepository implements TransactionRepositoryInterface
     public function getTransactions(): Collection|array
     {
         return Transaction::query()
-            ->select([
-                'id',
-                'client_id',
-                'reservation_id',
-                'payment_date',
-                'code_transaction',
-            ])
             ->with([
                 'client:id,name,phones_number',
                 'reservation:id,status',
@@ -31,30 +24,29 @@ class TransactionRepository implements TransactionRepositoryInterface
             ->whereHas('reservation', function ($builder) {
                 $builder->where('status', ReservationEnum::CONFIRMED_RESERVATION);
             })
-            ->get();
-    }
-
-    public function showTransaction(int $key): Model|Builder
-    {
-        $transaction = Transaction::query()
-            ->select([
+            ->get([
                 'id',
                 'client_id',
                 'reservation_id',
                 'payment_date',
                 'code_transaction',
-            ])
+            ]);
+    }
+
+    public function showTransaction(int $key): Model|Builder
+    {
+        $transaction = Transaction::query()
             ->whereHas('reservation', function ($builder) {
                 $builder->where('status', ReservationEnum::CONFIRMED_RESERVATION);
             })
             ->where('id', '=', $key)
-            ->firstOrFail();
+            ->first();
 
         return $transaction->load([
-            'client:id,name,phones_number',
-            'reservation:id,status,messages',
-            'reservation:id,house_id' => [
-                'house:id,prices',
+            'client',
+            'reservation',
+            'reservation' => [
+                'house',
             ],
         ]);
     }

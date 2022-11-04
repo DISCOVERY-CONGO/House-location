@@ -5,14 +5,18 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Backend\Booking;
 
 use App\Contracts\BookingRepositoryInterface;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Backend\BaseBackendController;
+use App\Services\FlashMessageService;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\RedirectResponse;
 
-class BookingAdminController extends Controller
+class BookingAdminController extends BaseBackendController
 {
-    public function __construct(public BookingRepositoryInterface $repository)
-    {
+    public function __construct(
+        public BookingRepositoryInterface $repository,
+        public FlashMessageService $service
+    ) {
+        parent::__construct($this->service);
     }
 
     public function index(): Renderable
@@ -32,6 +36,11 @@ class BookingAdminController extends Controller
     public function destroy(string $key): RedirectResponse
     {
         $this->repository->deleted(key: $key);
+
+        $this->service->success(
+            'success',
+            "Reservation supprimer avec success"
+        );
 
         return back();
     }

@@ -46,8 +46,9 @@ class AddUserCommand extends Command
                     ->where('id', '=', UserRoleEnum::ADMINS_ROLE)
                     ->first();
                 $role_id = $role->id;
+                $status = 1;
                 $user = User::query()
-                    ->create(compact('name', 'email', 'password', 'role_id'));
+                    ->create(compact('name', 'email', 'password', 'role_id', 'status'));
 
                 $user->save();
                 $this->info(sprintf('User %s <%s> created', $name, $email));

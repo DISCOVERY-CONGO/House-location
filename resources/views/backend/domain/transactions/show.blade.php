@@ -32,7 +32,66 @@
 
             <div class="nk-block nk-block-lg">
                 <div class="nk-block">
-
+                    <div class="card">
+                        <div class="card-inner">
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="room-info">
+                                    <div class="nk-block">
+                                        <div class="profile-ud-list">
+                                            <div class="profile-ud-item">
+                                                <div class="profile-ud wider">
+                                                    <span class="profile-ud-label">Nom client</span>
+                                                    <span class="profile-ud-value">{{ $transaction->client->name ?? "" }}</span>
+                                                </div>
+                                            </div>
+                                            <div class="profile-ud-item">
+                                                <div class="profile-ud wider">
+                                                    <span class="profile-ud-label">Email client</span>
+                                                    <span class="profile-ud-value">{{ $transaction->client->email ?? "" }}</span>
+                                                </div>
+                                            </div>
+                                            <div class="profile-ud-item">
+                                                <div class="profile-ud wider">
+                                                    <span class="profile-ud-label">Phone client</span>
+                                                    <span class="profile-ud-value">{{ $transaction->client->phones_number ?? "" }}</span>
+                                                </div>
+                                            </div>
+                                            <div class="profile-ud-item">
+                                                <div class="profile-ud wider">
+                                                    <span class="profile-ud-label">Reference</span>
+                                                    <span class="profile-ud-value">{{ $transaction->house->reference ?? "" }}</span>
+                                                </div>
+                                            </div>
+                                            <div class="profile-ud-item">
+                                                <div class="profile-ud wider">
+                                                    <span class="profile-ud-label">Commune maison</span>
+                                                    <span class="profile-ud-value">{{ $transaction->house->commune ?? "" }}</span>
+                                                </div>
+                                            </div>
+                                            <div class="profile-ud-item">
+                                                <div class="profile-ud wider">
+                                                    <span class="profile-ud-label">Prix maison</span>
+                                                    <span class="profile-ud-value">{{ $transaction->house->prices ?? "" }} $</span>
+                                                </div>
+                                            </div>
+                                            <div class="profile-ud-item">
+                                                <div class="profile-ud wider">
+                                                    <span class="profile-ud-label">Nombre des pieces</span>
+                                                    <span class="profile-ud-value">{{ $transaction->house->detail->number_rooms ?? "" }} pieces</span>
+                                                </div>
+                                            </div>
+                                            <div class="profile-ud-item">
+                                                <div class="profile-ud wider">
+                                                    <span class="profile-ud-label">Garantie</span>
+                                                    <span class="profile-ud-value">{{ $transaction->house->warranty_price ?? "" }} $</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

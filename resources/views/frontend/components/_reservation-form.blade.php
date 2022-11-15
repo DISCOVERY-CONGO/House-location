@@ -1,4 +1,4 @@
-<form action="{{ route('reservation.store') }}" method="post" class="w-full">
+<form action="{{ route('reservation.store') }}" method="post" class="w-full -mt-3">
     @csrf
     <input
         type="hidden"

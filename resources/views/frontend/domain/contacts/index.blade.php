@@ -13,9 +13,7 @@
                                 Prendre contact avec nous
                             </h2>
                             <p class="text-sm md:text-base leading-relaxed">
-                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur quam placeat,
-                                neque iusto ipsa alias facere odit minima aut modi perspiciatis nemo? Atque architecto
-                                facere sequi natus sint odit dicta.
+                                Vous avez un probleme ou une suggestion veillez nous laissez un message en utilisant notre mail ou nous appeler direction a partir de notre numero
                             </p>
                         </div>
                         <div class="flex w-full flex-col gap-8">
@@ -51,7 +49,7 @@
                                 <div class="w-full">
                                     <h4 class="font-bold text-gray-600 text-xl mb-1">Numero telephone</h4>
                                     <p class="text-base text-gray-500">
-                                        + 243 82 95 16 883
+                                        +243990416691
                                     </p>
                                 </div>
                             </div>
@@ -71,14 +69,14 @@
                                     <h4 class="font-bold text-dark text-xl mb-1">
                                         Adresse mail
                                     </h4>
-                                    <p class="text-base text-body-color">info@yourdomain.com</p>
+                                    <p class="text-base text-body-color">info@karibukwako.com</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-span-1 w-full">
-                    <div class="bg-white w-full relative rounded-lg p-5 sm:p-10 shadow-lg">
+                    <div class="bg-white w-full relative rounded-lg p-5 m-3 sm:p-10 sm:m-6 shadow-lg">
                         <form class="w-full flex flex-col gap-6">
                             <div class="w-full flex">
                                 <input type="text" placeholder="John Kat"

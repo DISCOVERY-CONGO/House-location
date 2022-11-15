@@ -95,7 +95,7 @@
                                         }])
                                         ->firstOrFail()
                                 @endphp
-                                <div class="p-2 sm:px-3 sm:py-2  text-white bg-orange-600 flex items-center justify-center rounded-md">
+                                <div class="p-2 sm:px-3 sm:py-2  text-white  bg-orange-600 hover:bg-orange-800 flex items-center justify-center rounded-lg shadow-lg">
                                     {{ $reservations->reservations_count }} En attente
                                 </div>
                             </div>
@@ -115,19 +115,19 @@
                         <div class="flex py-4 w-full">
                             <table class="w-full rounded-lg table-fixed bg-gray-100">
                                 <tbody>
-                                <tr>
+                                <tr class="border border-b-2">
                                     <td class="p-2 bg-gray-50 text-gray-700">Code Reference</td>
                                     <td class="p-2 rounded">{{ $apartment->reference ?? 0 }}</td>
                                 </tr>
-                                <tr>
+                                <tr class="border border-b-2">
                                     <td class="p-2 bg-gray-50 text-gray-700">Chambres</td>
                                     <td class="p-2 rounded">{{ $apartment->detail->number_rooms ?? 0 }}</td>
                                 </tr>
-                                <tr>
+                                <tr class="border border-b-2">
                                     <td class="p-2 bg-gray-50 text-gray-700">Nombre des pieces</td>
                                     <td class="p-2 rounded">{{ $apartment->detail->number_pieces }}</td>
                                 </tr>
-                                <tr>
+                                <tr class="border border-b-2">
                                     <td class="p-2 bg-gray-50 text-gray-700">Toilette interieur</td>
                                     <td class="p-2 rounded">
                                         @if($apartment->detail->toilet == 1)
@@ -139,15 +139,15 @@
                                         @endif
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr class="border border-b-2">
                                     <td class="p-2 bg-gray-50 text-gray-700">Prix Mensuel</td>
                                     <td class="p-2 rounded">{{ $apartment->prices ?? 0 }} $</td>
                                 </tr>
-                                <tr>
+                                <tr class="border border-b-2">
                                     <td class="p-2 bg-gray-50 text-gray-700">Garatie</td>
                                     <td class="p-2 rounded">{{ $apartment->warranty_price ?? 0 }} $</td>
                                 </tr>
-                                <tr>
+                                <tr class="border border-b-2">
                                     <td class="p-2 bg-gray-50 text-gray-700">Electricité</td>
                                     <td class="p-2 rounded">
                                         @if($apartment->detail->electricity  == \App\Enums\ElectricityEnum::EXIST_ELECTRICITY)

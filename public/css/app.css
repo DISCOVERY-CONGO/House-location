@@ -2299,6 +2299,9 @@ video {
 .m-0{
   margin: 0px;
 }
+.m-3{
+  margin: 0.75rem;
+}
 .mx-auto{
   margin-left: auto;
   margin-right: auto;
@@ -2725,6 +2728,11 @@ video {
   margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
 }
+.space-x-4 > :not([hidden]) ~ :not([hidden]){
+  --tw-space-x-reverse: 0;
+  margin-right: calc(1rem * var(--tw-space-x-reverse));
+  margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
+}
 .overflow-hidden{
   overflow: hidden;
 }
@@ -2780,6 +2788,10 @@ video {
 .border-\[3px\]{
   border-width: 3px;
 }
+.border-x-2{
+  border-left-width: 2px;
+  border-right-width: 2px;
+}
 .border-b{
   border-bottom-width: 1px;
 }
@@ -2791,6 +2803,9 @@ video {
 }
 .border-t-4{
   border-top-width: 4px;
+}
+.border-b-2{
+  border-bottom-width: 2px;
 }
 .border-gray-200{
   --tw-border-opacity: 1;
@@ -3834,6 +3849,11 @@ input::before, input::after, textarea, textarea::before, textarea::after
   background-color: rgb(220 38 38 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-orange-800:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(154 52 18 / var(--tw-bg-opacity));
+}
+
 .hover\:bg-opacity-30:hover{
   --tw-bg-opacity: 0.3;
 }
@@ -4115,6 +4135,9 @@ input::before, input::after, textarea, textarea::before, textarea::after
 @media (min-width: 640px){
   .sm\:col-span-1{
     grid-column: span 1 / span 1;
+  }
+  .sm\:m-6{
+    margin: 1.5rem;
   }
   .sm\:flex{
     display: flex;

@@ -46,7 +46,6 @@
                                 </div>
                             </div>
                         @endforeach
-
                     </div>
                 </div>
                 <div class="absolute bottom-6 left-0 z-50 w-full lg:w-1/2">

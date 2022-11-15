@@ -19,12 +19,15 @@ class ActivateApartmentListener
         //
     }
 
-    public function handle($event): void
+    public function handle(object $event): void
     {
         $admin = User::query()
             ->where('role_id', '=', UserRoleEnum::ADMINS_ROLE)
             ->first();
+        $manager = User::query()
+            ->where('id', '=', $event->room->user_id)
+            ->first();
 
-        Notification::send($admin, new ActivateApartmentNotification($event->room));
+        Notification::send([$admin, $manager], new ActivateApartmentNotification($event->room));
     }
 }

@@ -16,7 +16,7 @@ class ApartmentApiController extends Controller
     public function index(Request $request): JsonResponse
     {
         $outlets = House::query()
-            ->where('status', '=', HouseEnum::VALIDATED_HOUSE)
+            ->where('status', '=', HouseEnum::ACTIVATE)
             ->get();
 
         $geoJSOData = $outlets->map(fn ($outlet) => [

@@ -19,7 +19,7 @@ class ReservationCommand extends Command
 {
     protected $signature = 'reservation:cancel';
 
-    protected $description = 'Command description';
+    protected $description = 'Remove all bookin not confirmed';
 
     public function handle()
     {
@@ -28,7 +28,7 @@ class ReservationCommand extends Command
         $reservations = $this->getLastedReservation($date);
 
         if ($reservations->count() > 0) {
-            foreach ($reservations as $key => $reservation) {
+            foreach ($reservations as $reservation) {
                 if ($reservation->user) {
                     $this->senMailToCustomer($reservation);
                 } else {
@@ -44,9 +44,9 @@ class ReservationCommand extends Command
 
     private function senMailToCustomer(mixed $reservation): void
     {
-        Mail::to($reservation->user->email)
-            ->send(new ReservationCancelEmail($reservation));
         if ($reservation) {
+            Mail::to($reservation->user->email)
+                ->send(new ReservationCancelEmail($reservation));
             $reservation->forceDelete();
         }
     }
@@ -54,15 +54,6 @@ class ReservationCommand extends Command
     public function getLastedReservation(Carbon $date): array|_IH_Reservation_C|Collection
     {
         return Reservation::query()
-            ->select([
-                'id',
-                'user_id',
-                'status',
-                'messages',
-                'created_at',
-                'updated_at',
-                'client_id'
-            ])
             ->whereDate('created_at', $date)
             ->where('status', '=', ReservationEnum::PENDING_RESERVATION)
             ->get();

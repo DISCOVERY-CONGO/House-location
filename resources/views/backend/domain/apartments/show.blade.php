@@ -21,6 +21,12 @@
                             <div class="toggle-expand-content" data-content="pageMenu">
                                 <ul class="nk-block-tools g-3">
                                     <li class="preview-item">
+                                        <a class="btn btn-outline-primary btn-sm" href="{{ route('admins.houses.index') }}">
+                                            <em class="icon ni ni-arrow-long-left"></em>
+                                            <span>Touts les maison</span>
+                                        </a>
+                                    </li>
+                                    <li class="preview-item">
                                         <div class="custom-control custom-control-md custom-switch">
                                             <input
                                                 type="checkbox"
@@ -32,12 +38,6 @@
                                                 id="activated">
                                             <label class="custom-control-label" for="activated"></label>
                                         </div>
-                                    </li>
-                                    <li class="preview-item">
-                                        <a class="btn btn-outline-primary btn-sm" href="{{ route('admins.houses.index') }}">
-                                            <em class="icon ni ni-arrow-long-left"></em>
-                                            <span>Touts les maison</span>
-                                        </a>
                                     </li>
                                     <li class="preview-item">
                                         <a

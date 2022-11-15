@@ -1,5 +1,5 @@
 <footer class="pt-16 w-full flex flex-col">
-    <div class="w-full min-w-full pt-16 relative bg-gray-100 ">
+    <div class="w-full min-w-full pt-16 bg-gray-100 ">
         <div class="relative pb-10 overflow-hidden w-full max-w-screen-lg lg:max-w-screen-2xl px-4 xs:px-6 sm:px-10 lg:px-12 xl:px-16 ">
             <div class="grid grid-col-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
                 <div class="col-span-2 sm:col-span-1 lg:col-span-2 flex flex-col gap-6">
@@ -9,9 +9,8 @@
                     <div class="flex flex-col gap-4">
                         <p class="text-gray-600">Karibu Kwako est une agence immo en lignem vous facilitant la vente, la location ainsi que l'achat des appartements, maisons, etc...</p>
                         <div class="flex flex-col gap-3">
-                            <h3 class="text-gray-600 text-xl md:text-2xl font-semiblod">Suivez nous sur </h3>
-                            <div class="w-max flex  gap-4">
-
+                            <h3 class="text-gray-600 text-xl md:text-2xl font-bold">Suivez nous sur </h3>
+                            <div class="w-max flex gap-4">
                                 <a href="#" title="facebook" target="blank" aria-label="facebook"
                                    class="w-12 h-12 lg:w-10 lg:h-10 flex items-center rounded-full bg-white hover:shadow-md focus:bg-opacity-60 active:scale-95 transition">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -35,25 +34,25 @@
                 <div class="flex flex-col gap-4">
                     <h2 class="xl md:text-2xl font-semibold text-gray-600">Liens rapides</h2>
                     <ul class="py-4 flex flex-col gap-4 text-gray-500">
-                        <li><a href="index.html" class="hover:text-purple-500">Accueil</a></li>
-                        <li><a href="categories.html" class="hover:text-purple-500">Catégories</a></li>
-                        <li><a href="carte.html" class="hover:text-purple-500">Carte</a></li>
-                        <li><a href="about.html" class="hover:text-purple-500">A propos</a></li>
+                        <li><a href="{{ route('home.index') }}" class="hover:text-purple-500">Accueil</a></li>
+                        <li><a href="{{ route('categories.index') }}" class="hover:text-purple-500">Catégories</a></li>
+                        <li><a href="{{ route('location.index') }}" class="hover:text-purple-500">Carte</a></li>
+                        <li><a href="{{ route('abouts.index') }}" class="hover:text-purple-500">A propos</a></li>
                     </ul>
                 </div>
                 <div class="flex flex-col gap-4">
                     <h2 class="xl md:text-2xl font-semibold text-gray-600">Ressources</h2>
                     <ul class="py-4 flex flex-col gap-4 text-gray-500">
-                        <li><a href="index.html" class="hover:text-blue-500">Top categories</a></li>
-                        <li><a href="categories.html" class="hover:text-purple-500">Pret de vous</a></li>
-                        <li><a href="carte.html" class="hover:text-purple-500">skls</a></li>
-                        <li><a href="about.html" class="hover:text-purple-500">sls;</a></li>
+                        <li><a href="{{ route('home.index') }}" class="hover:text-blue-500">Top categories</a></li>
+                        <li><a href="{{ route('categories.index') }}" class="hover:text-purple-500">Pret de vous</a></li>
+                        <li><a href="{{ route('location.index') }}" class="hover:text-purple-500">Carte</a></li>
+                        <li><a href="{{ route('abouts.index') }}" class="hover:text-purple-500">A propos</a></li>
                     </ul>
                 </div>
                 <div class="flex flex-col gap-4">
                     <h2 class="xl md:text-2xl font-semibold text-gray-600">Contacts</h2>
                     <div class="py-4 flex flex-col gap-4 text-gray-500">
-                        <a href="tel:243 97 24 44966" aria-label="call"
+                        <a href="+243990416691" aria-label="call"
                            class="flex items-center gap-2 transition">
                                 <span class="flex items-start min-w-max">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -62,9 +61,9 @@
                                               d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
                                     </svg>
                                 </span>
-                            <span>+ 243 97 24 44966</span>
+                            <span>+243990416691</span>
                         </a>
-                        <a href="mailto:hello@mail.com" aria-label="send mail"
+                        <a href="mailto:info@karibukwako.com" aria-label="send mail"
                            class="flex items-center gap-2 transition">
                                 <span class="min-w-max flex items-start">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -73,7 +72,7 @@
                                             d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z" />
                                     </svg>
                                 </span>
-                            <span>karibu@mail.lorem</span>
+                            <span>info@karibukwako.com</span>
                         </a>
                         <a href="#" aria-label="our physical address"
                            class="flex items-center gap-2 transition">
@@ -85,7 +84,6 @@
                                 </span>
                             <span>karibu@mail.lorem</span>
                         </a>
-                        </ul>
                     </div>
                 </div>
             </div>
@@ -94,8 +92,11 @@
             <div class="flex w-full justify-center bg-gray-200 py-4">
                 <div class="flex justify-center text-center w-full max-w-screen-lg lg:max-w-screen-2xl px-4 xs:px-6 sm:px-10 lg:px-12 xl:px-16">
                     <div class="text-center">
-                        <span class="text-sm tracking-wide">Copyright &copy; <a href="#" class="text-red-600">link-cds</a> <span id="yearCopyRight"></span> | Tous droits
-                            reservés</span>
+                        <span class="text-sm tracking-wide">
+                            Copyright &copy;
+                            <a href="#" class="text-red-600 font-semibold">link-cds</a>
+                            <span id="yearCopyRight"></span> | Tous droitsreservés
+                        </span>
                     </div>
                     <script>
                         document.getElementById('yearCopyRight').innerHTML = new Date().getFullYear()
@@ -103,4 +104,5 @@
                 </div>
             </div>
         </div>
+    </div>
 </footer>

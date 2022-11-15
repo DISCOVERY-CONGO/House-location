@@ -27,12 +27,16 @@ btnHumb.addEventListener("click", (e) => {
 
 overlayM.addEventListener("click", (e) => {
     e.preventDefault();
+    console.log("");
     toggleNavigation();
 });
 
+// select all modalse on current document
 const modals = document.querySelectorAll("[data-modal]");
 
+// check first if there's a modal on the form
 if (modals) {
+    //loop list of all found modals on the document
     modals.forEach((modal) => {
         const toggleModal = () => {
             modal.classList.toggle("opacity-0");
@@ -142,7 +146,9 @@ if (paramBox) {
         document.body.classList.toggle("overflow-y-auto");
     };
 
+    //const btnCloseParam = document.querySelector('[data-close-param]')
     if (btnOpen) {
+        // paramBox.classList.toggle('[data-toggle-openparam]')
         btnOpen.addEventListener("click", (e) => {
             e.preventDefault();
             toggleParam();
@@ -200,16 +206,3 @@ if (languesSwitcher) {
         });
     });
 }
-
-btnHumb.addEventListener("click", (e) => {
-    e.preventDefault();
-
-    toggleNavigation();
-});
-
-overlayM.addEventListener("click", (e) => {
-    e.preventDefault();
-    console.log("");
-    toggleNavigation();
-});
-

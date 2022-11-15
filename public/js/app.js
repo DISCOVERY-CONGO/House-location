@@ -2593,11 +2593,14 @@ btnHumb.addEventListener("click", function (e) {
 });
 overlayM.addEventListener("click", function (e) {
   e.preventDefault();
+  console.log("");
   toggleNavigation();
-});
-var modals = document.querySelectorAll("[data-modal]");
+}); // select all modalse on current document
+
+var modals = document.querySelectorAll("[data-modal]"); // check first if there's a modal on the form
 
 if (modals) {
+  //loop list of all found modals on the document
   modals.forEach(function (modal) {
     var toggleModal = function toggleModal() {
       modal.classList.toggle("opacity-0");
@@ -2678,9 +2681,11 @@ if (paramBox) {
     paramBox.classList.toggle("invisible");
     paramBox.classList.toggle("translate-x-full");
     document.body.classList.toggle("overflow-y-auto");
-  };
+  }; //const btnCloseParam = document.querySelector('[data-close-param]')
+
 
   if (btnOpen) {
+    // paramBox.classList.toggle('[data-toggle-openparam]')
     btnOpen.addEventListener("click", function (e) {
       e.preventDefault();
       toggleParam();
@@ -2722,16 +2727,6 @@ if (languesSwitcher) {
     });
   });
 }
-
-btnHumb.addEventListener("click", function (e) {
-  e.preventDefault();
-  toggleNavigation();
-});
-overlayM.addEventListener("click", function (e) {
-  e.preventDefault();
-  console.log("");
-  toggleNavigation();
-});
 
 /***/ }),
 

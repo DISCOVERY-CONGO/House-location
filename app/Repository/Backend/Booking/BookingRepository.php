@@ -23,7 +23,7 @@ class BookingRepository implements BookingRepositoryInterface
                 'status',
                 'client_id',
             ])
-            ->with(['house:id,reference,images', 'client:id,name,phones_number'])
+            ->with(['house:id,reference', 'client:id,name,phones_number'])
             ->orderByDesc('created_at')
             ->get();
     }

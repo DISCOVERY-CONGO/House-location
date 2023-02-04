@@ -47,7 +47,6 @@ input::before, input::after, textarea, textarea::before, textarea::after
     transition: all .3s ease-in-out;
 }
 
-
 .costumRange::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
@@ -95,7 +94,8 @@ input::before, input::after, textarea, textarea::before, textarea::after
     -ms-transform: translateY(0) !important;
     -o-transform: translateY(0) !important;
     visibility: visible !important;
-    top: 100% !important
+    top: 100% !important;
+    @apply-translate-y-0visible:;
 }
 
 .humbergerIsToggle #line {
@@ -106,12 +106,108 @@ input::before, input::after, textarea, textarea::before, textarea::after
     @apply -rotate-45 -translate-y-1
 }
 
+@layer components {
+    .isActiveLinkProfile{
+        @apply text-purple-600 after:bg-purple-600
+    }
+
+    .costum-bullet {
+        @apply rounded-full flex w-2 h-2
+        bg-gray-400 transition-all duration-300;
+
+    }
+
+    .costum-bullet.costum-bullet-active {
+        @apply w-4  bg-purple-600
+    }
+
+    .homeSwiper .swiper-slide{
+        opacity:0 !important;
+    }
+
+    .homeSwiper .swiper-slide.swiper-slide-active{
+        opacity:1 !important;
+    }
+
+    [data-is-activepage="true"] {
+        @apply relative text-gray-700 after:scale-100 !important
+    }
+
+    .activeBtnPagination {
+        @apply bg-purple-600 text-white transition-all duration-300 !important;
+    }
+
+    .activeBtnPagination:hover {
+        @apply bg-opacity-70;
+    }
+
+    .activeTabBtn {
+        @apply bg-gradient-to-tr from-green-400 to-purple-600 text-white !important;
+    }
+
+    .select-box {
+        @apply relative flex flex-col w-full select-none;
+    }
+
+    .select-box .optionsBox {
+        @apply absolute top-full mt-1 order-1 overflow-hidden bg-gray-100 text-gray-600 max-h-0 w-full opacity-0 transition-all duration-500 rounded-lg border-2 border-purple-100;
+    }
+
+    .selected {
+        @apply bg-gray-100 rounded-lg relative text-gray-600 text-sm;
+    }
 
 
+    .select-box .optionsBox.active {
+        @apply max-h-60 opacity-100 transition-all overflow-y-scroll;
+    }
+
+    .select-box .optionsBox.active+.selected+.angle {
+        @apply rotate-180;
+    }
+
+    .select-box .optionsBox::-webkit-scrollbar {
+        @apply w-1 bg-gray-100 rounded-t-lg;
+    }
+
+    .select-box .optionsBox::-webkit-scrollbar-thumb {
+        @apply bg-purple-600 rounded-t-lg;
+    }
+
+    .select-box .option,
+    .selected {
+        @apply text-gray-500 px-4 py-2.5 cursor-pointer;
+    }
+
+    .select-box .selected {
+        @apply border-2 border-purple-100 select-none;
+        content: " "
+    }
+
+    .select-box .option:hover {
+        @apply bg-gray-200;
+    }
+
+    .select-box label {
+        cursor: pointer;
+    }
+
+    .select-box .option .radio {
+        display: none;
+    }
+
+    .select-box .angle {
+        @apply absolute top-1/2 -translate-y-1/2 right-4 transition-all duration-500;
+    }
+}
 
 @layer components {
+    .shadow-search {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15)
+    }
+}
 
-
+@layer components {
     .isActiveLinkProfile{
         @apply text-purple-600 after:bg-purple-600
     }
@@ -314,12 +410,8 @@ input::before, input::after, textarea, textarea::before, textarea::after
         padding: 0 !important;
         position: absolute !important;
         width: 1px !important;
-        white-space: nowrap !important; }
-
-
-    /*
-        Default template settings:
-    */
+        white-space: nowrap !important;
+    }
 
     .select2-container--default .select2-selection--single {
         /* Selection bar - Self */
@@ -424,7 +516,6 @@ input::before, input::after, textarea, textarea::before, textarea::after
     }
 
     .select2-container--default .select2-results__option[role=group] {
-        /* No clue what this does */
         @apply p-0;
     }
 
@@ -433,7 +524,6 @@ input::before, input::after, textarea, textarea::before, textarea::after
     }
 
     .select2-container--default .select2-results__option[aria-selected=true] {
-        /* The already selected option row color */
         @apply bg-gray-300 dark:text-gray-700;
     }
     .select2-results__option--selected {
@@ -467,15 +557,13 @@ input::before, input::after, textarea, textarea::before, textarea::after
     }
 
     .select2-container--default .select2-results__option--highlighted[aria-selected] {
-        /* Background color and text color of the options rows when select is open */
         @apply bg-gray-100 dark:bg-gray-500 text-gray-700 dark:text-gray-200;
     }
 
     .select2-container--default .select2-results__group {
-        /* Have no idea what this is for */
         @apply cursor-default block;
-        padding: 6px; }
-
+        padding: 6px;
+    }
 }
 
 @layer components {

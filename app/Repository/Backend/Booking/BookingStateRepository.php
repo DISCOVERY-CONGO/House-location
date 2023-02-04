@@ -4,26 +4,26 @@ declare(strict_types=1);
 
 namespace App\Repository\Backend\Booking;
 
-use App\Enums\ReservationEnum;
 use App\Events\ReservationEvent;
+use App\Http\Requests\Backend\StatusBookingRequest;
 use App\Models\Reservation;
 use App\Models\Transaction;
-use App\Services\FlashMessageService;
 use App\Traits\HasRandomValue;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
-class BookingConfirmationRepository
+class BookingStateRepository implements \App\Contracts\BookingStateRepository
 {
     use HasRandomValue;
 
-    public function confirmed(string $request): Model|Builder|Reservation
+    public function handle(StatusBookingRequest $request): Model|Builder|Reservation
     {
+
         $reservation = Reservation::query()
-            ->where('id', '=', $request)
+            ->where('id', '=', $request->input('booking'))
             ->firstOrFail();
         $reservation->update([
-            'status' => ReservationEnum::CONFIRMED_RESERVATION,
+            'status' => $request->input('status'),
         ]);
         $transaction = Transaction::query()
             ->create([
@@ -32,7 +32,6 @@ class BookingConfirmationRepository
                 'payment_date' => now(),
                 'code_transaction' => $this->generateRandomTransaction(10)
             ]);
-
         ReservationEvent::dispatch($reservation, $transaction);
         return $reservation;
     }

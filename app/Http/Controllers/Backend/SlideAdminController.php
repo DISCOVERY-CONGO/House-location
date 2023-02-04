@@ -6,8 +6,9 @@ namespace App\Http\Controllers\Backend;
 
 use App\Contracts\SlideRepositoryInterface;
 use App\Forms\SlideForm;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\SlideRequest;
+use App\Services\FlashMessageService;
+use Barryvdh\Debugbar\Controllers\BaseController;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Contracts\View\Factory;
@@ -15,12 +16,14 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Kris\LaravelFormBuilder\FormBuilder;
 
-class SlideAdminController extends Controller
+class SlideAdminController extends BaseBackendController
 {
     public function __construct(
         public FormBuilder $builder,
-        public SlideRepositoryInterface $repository
+        public SlideRepositoryInterface $repository,
+        public FlashMessageService $service
     ) {
+        parent::__construct($this->service);
     }
 
     public function index(): Renderable
@@ -44,6 +47,11 @@ class SlideAdminController extends Controller
     {
         $this->repository->created(request: $request);
 
+        $this->service->success(
+            'success',
+            "Un nouveau slide a ete ajouter"
+        );
+
         return redirect()->route('admins.slides.index');
     }
 
@@ -64,12 +72,22 @@ class SlideAdminController extends Controller
     {
         $this->repository->updated(key: $key, request: $request);
 
+        $this->service->success(
+            'success',
+            "Un slide a ete motifier"
+        );
+
         return redirect()->route('admins.slides.index');
     }
 
     public function destroy(string $key): RedirectResponse
     {
         $this->repository->deleted($key);
+
+        $this->service->success(
+            'success',
+            "Un slide a ete supprimer"
+        );
 
         return back();
     }

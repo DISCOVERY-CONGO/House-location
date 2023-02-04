@@ -21,23 +21,23 @@
                             <div class="toggle-expand-content" data-content="pageMenu">
                                 <ul class="nk-block-tools g-3">
                                     <li class="preview-item">
+                                        <a class="btn btn-outline-primary btn-sm" href="{{ route('admins.houses.index') }}">
+                                            <em class="icon ni ni-arrow-long-left"></em>
+                                            <span>Touts les maison</span>
+                                        </a>
+                                    </li>
+                                    <li class="preview-item">
                                         <div class="custom-control custom-control-md custom-switch">
                                             <input
                                                 type="checkbox"
                                                 class="custom-control-input"
                                                 name="activated"
                                                 data-id="{{ $room->id }}"
-                                                {{ $room->status ? "checked" : "" }}
+                                                @checked($room->status)
                                                 onclick="changeHouseStatus(event.target,{{ $room->id }} );"
                                                 id="activated">
                                             <label class="custom-control-label" for="activated"></label>
                                         </div>
-                                    </li>
-                                    <li class="preview-item">
-                                        <a class="btn btn-outline-primary btn-sm" href="{{ route('admins.houses.index') }}">
-                                            <em class="icon ni ni-arrow-long-left"></em>
-                                            <span>Touts les maison</span>
-                                        </a>
                                     </li>
                                     <li class="preview-item">
                                         <a
@@ -155,10 +155,10 @@
                                                 <div class="profile-ud wider">
                                                     <span class="profile-ud-label">Electricite</span>
                                                     <span class="profile-ud-value">
-                                                        @if($room->detail->electricity === 0)
-                                                            Pas d'electricite
-                                                        @else
+                                                        @if($room->detail->electricity)
                                                             Avec Electricite
+                                                        @else
+                                                            Pas d'electricite
                                                         @endif
                                                     </span>
                                                 </div>
@@ -186,7 +186,7 @@
                                                 <div class="profile-ud wider">
                                                     <span class="profile-ud-label">Status</span>
                                                     <span class="profile-ud-value">
-                                                        @if($room->status = true)
+                                                        @if($room->status)
                                                             <span class="badge badge-success ms-0">Activée</span>
                                                         @else
                                                             <span class="badge badge-danger ms-0">Désactivée</span>

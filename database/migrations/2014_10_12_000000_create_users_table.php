@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('phone_number')->nullable();
             $table->string('email')->unique();
             $table->string('images')->nullable();
+            $table->integer('status')->default(0);
             $table->integer('role_id')
                 ->default(UserRoleEnum::USERS_ROLE);
             $table->string('password');

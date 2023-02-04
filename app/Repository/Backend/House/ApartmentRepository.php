@@ -38,7 +38,7 @@ class ApartmentRepository implements ApartmentRepositoryInterface
             ->where('id', '=', $key)
             ->first();
 
-        return $house->load(['type:id,name', 'detail', 'categories']);
+        return $house->load(['type:id,name', 'categories']);
     }
 
     public function deleted(string $key): Model|Builder|int|null

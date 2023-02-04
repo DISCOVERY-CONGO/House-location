@@ -7,7 +7,7 @@
 @section('content')
     @include('frontend.partials.carousels')
 
-    @include('frontend.components._section')
+   @include('frontend.components._section')
 
     @if($apartments->count() > 0)
         <section class="w-full flex justify-center overflow-hidden py-10">

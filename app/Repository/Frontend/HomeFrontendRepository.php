@@ -23,7 +23,7 @@ class HomeFrontendRepository implements HomeRepositoryInterface
                 'status',
                 fn ($builder) => $builder->where('status', HouseEnum::ACTIVATE)
             )
-            ->with(['type', 'detail', 'categories'])
+            ->with(['type', 'categories', 'image'])
             ->inRandomOrder()
             ->limit(4)
             ->get();
@@ -37,7 +37,7 @@ class HomeFrontendRepository implements HomeRepositoryInterface
                 'status',
                 fn ($builder) => $builder->where('status', HouseEnum::ACTIVATE)
             )
-            ->with(['type', 'detail', 'categories'])
+            ->with(['type', 'categories', 'image'])
             ->inRandomOrder()
             ->limit(4)
             ->get();
@@ -77,10 +77,8 @@ class HomeFrontendRepository implements HomeRepositoryInterface
 
         return $apartment->load([
             'image',
-            'detail',
             'categories',
             'type',
-            'notes',
         ]);
     }
 }

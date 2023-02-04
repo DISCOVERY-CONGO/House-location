@@ -9,6 +9,7 @@ use App\Contracts\ApartmentCommissionerRepositoryInterface;
 use App\Contracts\ApartmentRepositoryInterface;
 use App\Contracts\BookingHouseRepositoryInterface;
 use App\Contracts\BookingRepositoryInterface;
+use App\Contracts\BookingStateRepository;
 use App\Contracts\BookingUserRepositoryInterface;
 use App\Contracts\CancelBookingRepositoryInterface;
 use App\Contracts\CategoryHomeRepositoryInterface;
@@ -19,7 +20,6 @@ use App\Contracts\HomeRepositoryInterface;
 use App\Contracts\ImageCommissionerRepositoryInterface;
 use App\Contracts\ImageRepositoryInterface;
 use App\Contracts\InvoiceRepositoryInterface;
-use App\Contracts\NewsLetterRepositoryInterface;
 use App\Contracts\NotificationRepositoryInterface;
 use App\Contracts\SearchRepositoryInterface;
 use App\Contracts\SlideRepositoryInterface;
@@ -44,7 +44,6 @@ use App\Repository\Dealer\ImageCommissionerRepository;
 use App\Repository\Frontend\BookingRepository as Reservation;
 use App\Repository\Frontend\CategoryRepository as HomeCategory;
 use App\Repository\Frontend\HomeFrontendRepository;
-use App\Repository\Frontend\NewsLetterRepository;
 use App\Repository\Frontend\SearchRepository;
 use App\Repository\Users\BookingUserRepository;
 use App\Repository\Users\CancelBookingRepository;
@@ -60,7 +59,6 @@ class RepositoryServiceProvider extends ServiceProvider
         BookingRepositoryInterface::class => BookingRepository::class,
         ApartmentRepositoryInterface::class => ApartmentRepository::class,
         HomeRepositoryInterface::class => HomeFrontendRepository::class,
-        NewsLetterRepositoryInterface::class => NewsLetterRepository::class,
         ActiveApartmentRepositoryInterface::class => ActiveApartmentRepository::class,
         CategoryHomeRepositoryInterface::class => HomeCategory::class,
         BookingHouseRepositoryInterface::class => Reservation::class,
@@ -77,7 +75,8 @@ class RepositoryServiceProvider extends ServiceProvider
         ClientRepositoryInterface::class => ClientRepository::class,
         InvoiceRepositoryInterface::class => InvoiceRepository::class,
         NotificationRepositoryInterface::class => NotificationRepository::class,
-        FacebookAuthRepositoryInterface::class => FacebookAuthRepository::class
+        FacebookAuthRepositoryInterface::class => FacebookAuthRepository::class,
+        BookingStateRepository::class => \App\Repository\Backend\Booking\BookingStateRepository::class
     ];
 
     public function register()

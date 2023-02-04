@@ -6,7 +6,6 @@ namespace App\Repository\Backend;
 
 use App\Contracts\CategoryRepositoryInterface;
 use App\Models\Category;
-use App\Services\FlashMessageService;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
@@ -45,6 +44,7 @@ class CategoryRepository implements CategoryRepositoryInterface
         $category->update([
             'name' => $attributes->name,
         ]);
+
         return $category;
     }
 
@@ -52,6 +52,7 @@ class CategoryRepository implements CategoryRepositoryInterface
     {
         $category = $this->getElementByKey($key);
         $category->delete();
+
         return $category;
     }
 }

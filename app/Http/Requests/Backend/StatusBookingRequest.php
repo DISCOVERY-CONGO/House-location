@@ -30,7 +30,7 @@ class StatusBookingRequest extends FormRequest
         return [
             'booking' => [
                 'required',
-                Rule::exists(Reservation::class, 'id')
+                Rule::exists(Reservation::class, 'id'),
             ],
             'status' => [
                 'required',

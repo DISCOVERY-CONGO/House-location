@@ -28,6 +28,7 @@ use Illuminate\Support\Carbon;
  * @property-read House $house
  * @property-read Transaction|null $transaction
  * @property-read User|null $user
+ *
  * @method static ReservationFactory factory(...$parameters)
  * @method static Builder|Reservation newModelQuery()
  * @method static Builder|Reservation newQuery()
@@ -40,6 +41,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Reservation whereStatus($value)
  * @method static Builder|Reservation whereUpdatedAt($value)
  * @method static Builder|Reservation whereUserId($value)
+ *
  * @mixin Eloquent
  */
 class Reservation extends Model
@@ -51,7 +53,7 @@ class Reservation extends Model
         'status',
         'messages',
         'user_id',
-        'client_id'
+        'client_id',
     ];
 
     public function house(): BelongsTo

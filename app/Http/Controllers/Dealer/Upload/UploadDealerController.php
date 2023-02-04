@@ -17,6 +17,7 @@ class UploadDealerController extends Controller
         protected readonly ImagesUploaderRepository $repository
     ) {
     }
+
     public function __invoke(UploadImagesRequest $request): Model|Builder
     {
         return $this->repository->upload($request);

@@ -52,14 +52,13 @@ class BookingChartRepository
         return $data;
     }
 
-
     private function getReservations(): Builder|_IH_Reservation_QB
     {
         return Reservation::query()
             ->select(
-                \DB::raw("COUNT(*) as count"),
-                \DB::raw("DAYNAME(created_at) as day_name"),
-                \DB::raw("DAY(created_at) as day")
+                \DB::raw('COUNT(*) as count'),
+                \DB::raw('DAYNAME(created_at) as day_name'),
+                \DB::raw('DAY(created_at) as day')
             );
     }
 }

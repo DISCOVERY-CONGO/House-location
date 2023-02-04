@@ -9,9 +9,13 @@ use JessArcher\CastableDataTransferObject\CastableDataTransferObject;
 class Detail extends CastableDataTransferObject
 {
     public ?string $number_rooms;
+
     public ?string $number_pieces;
+
     public ?string $toilet;
+
     public ?string $electricity;
+
     public ?string $description;
 
     public function formatString(): string
@@ -21,7 +25,7 @@ class Detail extends CastableDataTransferObject
             $this->number_pieces,
             $this->toilet,
             $this->electricity,
-            $this->description
+            $this->description,
         ]);
     }
 }

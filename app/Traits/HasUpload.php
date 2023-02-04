@@ -33,14 +33,14 @@ trait HasUpload
             ->delete($model->file);
     }
 
-
     public function removePathOfImages($model): void
     {
         Storage::disk('public')
             ->delete($model->images);
     }
+
     public static function uploadMultiple($images)
     {
-        return $images->store('/images/', ['disk' =>   'public']);
+        return $images->store('/images/', ['disk' => 'public']);
     }
 }

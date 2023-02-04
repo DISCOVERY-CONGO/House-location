@@ -81,7 +81,7 @@ class BookingRepository implements BookingHouseRepositoryInterface
                 'user_id' => auth()->id() ?? null,
                 'status' => ReservationEnum::PENDING_RESERVATION,
                 'messages' => $attributes->input('messages'),
-                'client_id' => $client->id
+                'client_id' => $client->id,
             ]);
     }
 }

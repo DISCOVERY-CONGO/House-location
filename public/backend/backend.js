@@ -42859,7 +42859,7 @@ return jQuery;
 /***/ (function(module) {
 
 /*!
-* sweetalert2 v11.4.29
+* sweetalert2 v11.4.8
 * Released under the MIT License.
 */
 (function (global, factory) {
@@ -42870,9 +42870,7 @@ return jQuery;
   const consolePrefix = 'SweetAlert2:';
   /**
    * Filter the unique values into a new array
-   *
-   * @param {Array} arr
-   * @returns {Array}
+   * @param arr
    */
 
   const uniqueArray = arr => {
@@ -42888,16 +42886,20 @@ return jQuery;
   };
   /**
    * Capitalize the first letter of a string
-   *
    * @param {string} str
    * @returns {string}
    */
 
   const capitalizeFirstLetter = str => str.charAt(0).toUpperCase() + str.slice(1);
   /**
+   * @param {NodeList | HTMLCollection | NamedNodeMap} nodeList
+   * @returns {array}
+   */
+
+  const toArray = nodeList => Array.prototype.slice.call(nodeList);
+  /**
    * Standardize console warnings
-   *
-   * @param {string | Array} message
+   * @param {string | array} message
    */
 
   const warn = message => {
@@ -42905,7 +42907,6 @@ return jQuery;
   };
   /**
    * Standardize console errors
-   *
    * @param {string} message
    */
 
@@ -42914,7 +42915,6 @@ return jQuery;
   };
   /**
    * Private global state for `warnOnce`
-   *
    * @type {Array}
    * @private
    */
@@ -42922,7 +42922,6 @@ return jQuery;
   const previousWarnOnceMessages = [];
   /**
    * Show a console warning, but only if it hasn't already been shown
-   *
    * @param {string} message
    */
 
@@ -42934,9 +42933,6 @@ return jQuery;
   };
   /**
    * Show a one-time console warning about deprecated params/methods
-   *
-   * @param {string} deprecatedParam
-   * @param {string} useInstead
    */
 
   const warnAboutDeprecation = (deprecatedParam, useInstead) => {
@@ -42945,36 +42941,13 @@ return jQuery;
   /**
    * If `arg` is a function, call it (with no arguments or context) and return the result.
    * Otherwise, just pass the value through
-   *
-   * @param {Function | any} arg
-   * @returns {any}
+   * @param arg
    */
 
   const callIfFunction = arg => typeof arg === 'function' ? arg() : arg;
-  /**
-   * @param {any} arg
-   * @returns {boolean}
-   */
-
   const hasToPromiseFn = arg => arg && typeof arg.toPromise === 'function';
-  /**
-   * @param {any} arg
-   * @returns {Promise}
-   */
-
   const asPromise = arg => hasToPromiseFn(arg) ? arg.toPromise() : Promise.resolve(arg);
-  /**
-   * @param {any} arg
-   * @returns {boolean}
-   */
-
   const isPromise = arg => arg && Promise.resolve(arg) === arg;
-  /**
-   * @param {Array} arr
-   * @returns {any}
-   */
-
-  const getRandomElement = arr => arr[Math.floor(Math.random() * arr.length)];
 
   const defaultParams = {
     title: '',
@@ -43070,9 +43043,7 @@ return jQuery;
   const toastIncompatibleParams = ['allowOutsideClick', 'allowEnterKey', 'backdrop', 'focusConfirm', 'focusDeny', 'focusCancel', 'returnFocus', 'heightAuto', 'keydownListenerCapture'];
   /**
    * Is valid parameter
-   *
    * @param {string} paramName
-   * @returns {boolean}
    */
 
   const isValidParameter = paramName => {
@@ -43080,9 +43051,7 @@ return jQuery;
   };
   /**
    * Is valid parameter for Swal.update() method
-   *
    * @param {string} paramName
-   * @returns {boolean}
    */
 
   const isUpdatableParameter = paramName => {
@@ -43090,37 +43059,24 @@ return jQuery;
   };
   /**
    * Is deprecated parameter
-   *
    * @param {string} paramName
-   * @returns {string | undefined}
    */
 
   const isDeprecatedParameter = paramName => {
     return deprecatedParams[paramName];
   };
-  /**
-   * @param {string} param
-   */
 
   const checkIfParamIsValid = param => {
     if (!isValidParameter(param)) {
       warn("Unknown parameter \"".concat(param, "\""));
     }
   };
-  /**
-   * @param {string} param
-   */
-
 
   const checkIfToastParamIsValid = param => {
     if (toastIncompatibleParams.includes(param)) {
       warn("The parameter \"".concat(param, "\" is incompatible with toasts"));
     }
   };
-  /**
-   * @param {string} param
-   */
-
 
   const checkIfParamIsDeprecated = param => {
     if (isDeprecatedParameter(param)) {
@@ -43130,7 +43086,7 @@ return jQuery;
   /**
    * Show relevant warnings for given params
    *
-   * @param {SweetAlertOptions} params
+   * @param params
    */
 
 
@@ -43151,11 +43107,6 @@ return jQuery;
   };
 
   const swalPrefix = 'swal2-';
-  /**
-   * @param {string[]} items
-   * @returns {object}
-   */
-
   const prefix = items => {
     const result = {};
 
@@ -43165,7 +43116,7 @@ return jQuery;
 
     return result;
   };
-  const swalClasses = prefix(['container', 'shown', 'height-auto', 'iosfix', 'popup', 'modal', 'no-backdrop', 'no-transition', 'toast', 'toast-shown', 'show', 'hide', 'close', 'title', 'html-container', 'actions', 'confirm', 'deny', 'cancel', 'default-outline', 'footer', 'icon', 'icon-content', 'image', 'input', 'file', 'range', 'select', 'radio', 'checkbox', 'label', 'textarea', 'inputerror', 'input-label', 'validation-message', 'progress-steps', 'active-progress-step', 'progress-step', 'progress-step-line', 'loader', 'loading', 'styled', 'top', 'top-start', 'top-end', 'top-left', 'top-right', 'center', 'center-start', 'center-end', 'center-left', 'center-right', 'bottom', 'bottom-start', 'bottom-end', 'bottom-left', 'bottom-right', 'grow-row', 'grow-column', 'grow-fullscreen', 'rtl', 'timer-progress-bar', 'timer-progress-bar-container', 'scrollbar-measure', 'icon-success', 'icon-warning', 'icon-info', 'icon-question', 'icon-error', 'no-war']);
+  const swalClasses = prefix(['container', 'shown', 'height-auto', 'iosfix', 'popup', 'modal', 'no-backdrop', 'no-transition', 'toast', 'toast-shown', 'show', 'hide', 'close', 'title', 'html-container', 'actions', 'confirm', 'deny', 'cancel', 'default-outline', 'footer', 'icon', 'icon-content', 'image', 'input', 'file', 'range', 'select', 'radio', 'checkbox', 'label', 'textarea', 'inputerror', 'input-label', 'validation-message', 'progress-steps', 'active-progress-step', 'progress-step', 'progress-step-line', 'loader', 'loading', 'styled', 'top', 'top-start', 'top-end', 'top-left', 'top-right', 'center', 'center-start', 'center-end', 'center-left', 'center-right', 'bottom', 'bottom-start', 'bottom-end', 'bottom-left', 'bottom-right', 'grow-row', 'grow-column', 'grow-fullscreen', 'rtl', 'timer-progress-bar', 'timer-progress-bar-container', 'scrollbar-measure', 'icon-success', 'icon-warning', 'icon-info', 'icon-question', 'icon-error']);
   const iconTypes = prefix(['success', 'warning', 'info', 'question', 'error']);
 
   /**
@@ -43175,112 +43126,35 @@ return jQuery;
    */
 
   const getContainer = () => document.body.querySelector(".".concat(swalClasses.container));
-  /**
-   * @param {string} selectorString
-   * @returns {HTMLElement | null}
-   */
-
   const elementBySelector = selectorString => {
     const container = getContainer();
     return container ? container.querySelector(selectorString) : null;
   };
-  /**
-   * @param {string} className
-   * @returns {HTMLElement | null}
-   */
 
   const elementByClass = className => {
     return elementBySelector(".".concat(className));
   };
-  /**
-   * @returns {HTMLElement | null}
-   */
-
 
   const getPopup = () => elementByClass(swalClasses.popup);
-  /**
-   * @returns {HTMLElement | null}
-   */
-
   const getIcon = () => elementByClass(swalClasses.icon);
-  /**
-   * @returns {HTMLElement | null}
-   */
-
   const getTitle = () => elementByClass(swalClasses.title);
-  /**
-   * @returns {HTMLElement | null}
-   */
-
   const getHtmlContainer = () => elementByClass(swalClasses['html-container']);
-  /**
-   * @returns {HTMLElement | null}
-   */
-
   const getImage = () => elementByClass(swalClasses.image);
-  /**
-   * @returns {HTMLElement | null}
-   */
-
   const getProgressSteps = () => elementByClass(swalClasses['progress-steps']);
-  /**
-   * @returns {HTMLElement | null}
-   */
-
   const getValidationMessage = () => elementByClass(swalClasses['validation-message']);
-  /**
-   * @returns {HTMLElement | null}
-   */
-
   const getConfirmButton = () => elementBySelector(".".concat(swalClasses.actions, " .").concat(swalClasses.confirm));
-  /**
-   * @returns {HTMLElement | null}
-   */
-
   const getDenyButton = () => elementBySelector(".".concat(swalClasses.actions, " .").concat(swalClasses.deny));
-  /**
-   * @returns {HTMLElement | null}
-   */
-
   const getInputLabel = () => elementByClass(swalClasses['input-label']);
-  /**
-   * @returns {HTMLElement | null}
-   */
-
   const getLoader = () => elementBySelector(".".concat(swalClasses.loader));
-  /**
-   * @returns {HTMLElement | null}
-   */
-
   const getCancelButton = () => elementBySelector(".".concat(swalClasses.actions, " .").concat(swalClasses.cancel));
-  /**
-   * @returns {HTMLElement | null}
-   */
-
   const getActions = () => elementByClass(swalClasses.actions);
-  /**
-   * @returns {HTMLElement | null}
-   */
-
   const getFooter = () => elementByClass(swalClasses.footer);
-  /**
-   * @returns {HTMLElement | null}
-   */
-
   const getTimerProgressBar = () => elementByClass(swalClasses['timer-progress-bar']);
-  /**
-   * @returns {HTMLElement | null}
-   */
-
   const getCloseButton = () => elementByClass(swalClasses.close); // https://github.com/jkup/focusable/blob/master/index.js
 
   const focusable = "\n  a[href],\n  area[href],\n  input:not([disabled]),\n  select:not([disabled]),\n  textarea:not([disabled]),\n  button:not([disabled]),\n  iframe,\n  object,\n  embed,\n  [tabindex=\"0\"],\n  [contenteditable],\n  audio[controls],\n  video[controls],\n  summary\n";
-  /**
-   * @returns {HTMLElement[]}
-   */
-
   const getFocusableElements = () => {
-    const focusableElementsWithTabindex = Array.from(getPopup().querySelectorAll('[tabindex]:not([tabindex="-1"]):not([tabindex="0"])')) // sort according to tabindex
+    const focusableElementsWithTabindex = toArray(getPopup().querySelectorAll('[tabindex]:not([tabindex="-1"]):not([tabindex="0"])')) // sort according to tabindex
     .sort((a, b) => {
       const tabindexA = parseInt(a.getAttribute('tabindex'));
       const tabindexB = parseInt(b.getAttribute('tabindex'));
@@ -43293,27 +43167,15 @@ return jQuery;
 
       return 0;
     });
-    const otherFocusableElements = Array.from(getPopup().querySelectorAll(focusable)).filter(el => el.getAttribute('tabindex') !== '-1');
+    const otherFocusableElements = toArray(getPopup().querySelectorAll(focusable)).filter(el => el.getAttribute('tabindex') !== '-1');
     return uniqueArray(focusableElementsWithTabindex.concat(otherFocusableElements)).filter(el => isVisible(el));
   };
-  /**
-   * @returns {boolean}
-   */
-
   const isModal = () => {
     return hasClass(document.body, swalClasses.shown) && !hasClass(document.body, swalClasses['toast-shown']) && !hasClass(document.body, swalClasses['no-backdrop']);
   };
-  /**
-   * @returns {boolean}
-   */
-
   const isToast = () => {
     return getPopup() && hasClass(getPopup(), swalClasses.toast);
   };
-  /**
-   * @returns {boolean}
-   */
-
   const isLoading = () => {
     return getPopup().hasAttribute('data-loading');
   };
@@ -43335,10 +43197,10 @@ return jQuery;
     if (html) {
       const parser = new DOMParser();
       const parsed = parser.parseFromString(html, "text/html");
-      Array.from(parsed.querySelector('head').childNodes).forEach(child => {
+      toArray(parsed.querySelector('head').childNodes).forEach(child => {
         elem.appendChild(child);
       });
-      Array.from(parsed.querySelector('body').childNodes).forEach(child => {
+      toArray(parsed.querySelector('body').childNodes).forEach(child => {
         elem.appendChild(child);
       });
     }
@@ -43364,24 +43226,14 @@ return jQuery;
 
     return true;
   };
-  /**
-   * @param {HTMLElement} elem
-   * @param {SweetAlertOptions} params
-   */
 
   const removeCustomClasses = (elem, params) => {
-    Array.from(elem.classList).forEach(className => {
+    toArray(elem.classList).forEach(className => {
       if (!Object.values(swalClasses).includes(className) && !Object.values(iconTypes).includes(className) && !Object.values(params.showClass).includes(className)) {
         elem.classList.remove(className);
       }
     });
   };
-  /**
-   * @param {HTMLElement} elem
-   * @param {SweetAlertOptions} params
-   * @param {string} className
-   */
-
 
   const applyCustomClass = (elem, params, className) => {
     removeCustomClasses(elem, params);
@@ -43396,20 +43248,20 @@ return jQuery;
   };
   /**
    * @param {HTMLElement} popup
-   * @param {import('./renderers/renderInput').InputClass} inputClass
+   * @param {string} inputType
    * @returns {HTMLInputElement | null}
    */
 
-  const getInput = (popup, inputClass) => {
-    if (!inputClass) {
+  const getInput = (popup, inputType) => {
+    if (!inputType) {
       return null;
     }
 
-    switch (inputClass) {
+    switch (inputType) {
       case 'select':
       case 'textarea':
       case 'file':
-        return popup.querySelector(".".concat(swalClasses.popup, " > .").concat(swalClasses[inputClass]));
+        return popup.querySelector(".".concat(swalClasses.popup, " > .").concat(swalClasses[inputType]));
 
       case 'checkbox':
         return popup.querySelector(".".concat(swalClasses.popup, " > .").concat(swalClasses.checkbox, " input"));
@@ -43425,7 +43277,7 @@ return jQuery;
     }
   };
   /**
-   * @param {HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement} input
+   * @param {HTMLInputElement} input
    */
 
   const focusInput = input => {
@@ -43440,7 +43292,7 @@ return jQuery;
   };
   /**
    * @param {HTMLElement | HTMLElement[] | null} target
-   * @param {string | string[] | readonly string[]} classList
+   * @param {string | string[]} classList
    * @param {boolean} condition
    */
 
@@ -43465,7 +43317,7 @@ return jQuery;
   };
   /**
    * @param {HTMLElement | HTMLElement[] | null} target
-   * @param {string | string[] | readonly string[]} classList
+   * @param {string | string[]} classList
    */
 
   const addClass = (target, classList) => {
@@ -43473,7 +43325,7 @@ return jQuery;
   };
   /**
    * @param {HTMLElement | HTMLElement[] | null} target
-   * @param {string | string[] | readonly string[]} classList
+   * @param {string | string[]} classList
    */
 
   const removeClass = (target, classList) => {
@@ -43488,13 +43340,11 @@ return jQuery;
    */
 
   const getDirectChildByClass = (elem, className) => {
-    const children = Array.from(elem.children);
+    const childNodes = toArray(elem.childNodes);
 
-    for (let i = 0; i < children.length; i++) {
-      const child = children[i];
-
-      if (child instanceof HTMLElement && hasClass(child, className)) {
-        return child;
+    for (let i = 0; i < childNodes.length; i++) {
+      if (hasClass(childNodes[i], className)) {
+        return childNodes[i];
       }
     }
   };
@@ -43531,55 +43381,20 @@ return jQuery;
   const hide = elem => {
     elem.style.display = 'none';
   };
-  /**
-   * @param {HTMLElement} parent
-   * @param {string} selector
-   * @param {string} property
-   * @param {string} value
-   */
-
   const setStyle = (parent, selector, property, value) => {
-    /** @type {HTMLElement} */
     const el = parent.querySelector(selector);
 
     if (el) {
       el.style[property] = value;
     }
   };
-  /**
-   * @param {HTMLElement} elem
-   * @param {any} condition
-   * @param {string} display
-   */
-
-  const toggle = function (elem, condition) {
-    let display = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'flex';
+  const toggle = (elem, condition, display) => {
     condition ? show(elem, display) : hide(elem);
-  };
-  /**
-   * borrowed from jquery $(elem).is(':visible') implementation
-   *
-   * @param {HTMLElement} elem
-   * @returns {boolean}
-   */
+  }; // borrowed from jquery $(elem).is(':visible') implementation
 
   const isVisible = elem => !!(elem && (elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length));
-  /**
-   * @returns {boolean}
-   */
-
   const allButtonsAreHidden = () => !isVisible(getConfirmButton()) && !isVisible(getDenyButton()) && !isVisible(getCancelButton());
-  /**
-   * @returns {boolean}
-   */
-
-  const isScrollable = elem => !!(elem.scrollHeight > elem.clientHeight);
-  /**
-   * borrowed from https://stackoverflow.com/a/46352119
-   *
-   * @param {HTMLElement} elem
-   * @returns {boolean}
-   */
+  const isScrollable = elem => !!(elem.scrollHeight > elem.clientHeight); // borrowed from https://stackoverflow.com/a/46352119
 
   const hasCssAnimation = elem => {
     const style = window.getComputedStyle(elem);
@@ -43587,11 +43402,6 @@ return jQuery;
     const transDuration = parseFloat(style.getPropertyValue('transition-duration') || '0');
     return animDuration > 0 || transDuration > 0;
   };
-  /**
-   * @param {number} timer
-   * @param {boolean} reset
-   */
-
   const animateTimerProgressBar = function (timer) {
     let reset = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
     const timerProgressBar = getTimerProgressBar();
@@ -43628,24 +43438,16 @@ return jQuery;
 
   const RESTORE_FOCUS_TIMEOUT = 100;
 
-  /** @type {GlobalState} */
-
   const globalState = {};
 
   const focusPreviousActiveElement = () => {
-    if (globalState.previousActiveElement instanceof HTMLElement) {
+    if (globalState.previousActiveElement && globalState.previousActiveElement.focus) {
       globalState.previousActiveElement.focus();
       globalState.previousActiveElement = null;
     } else if (document.body) {
       document.body.focus();
     }
-  };
-  /**
-   * Restore previous active (focused) element
-   *
-   * @param {boolean} returnFocus
-   * @returns {Promise}
-   */
+  }; // Restore previous active (focused) element
 
 
   const restoreActiveElement = returnFocus => {
@@ -43666,9 +43468,6 @@ return jQuery;
   };
 
   const sweetHTML = "\n <div aria-labelledby=\"".concat(swalClasses.title, "\" aria-describedby=\"").concat(swalClasses['html-container'], "\" class=\"").concat(swalClasses.popup, "\" tabindex=\"-1\">\n   <button type=\"button\" class=\"").concat(swalClasses.close, "\"></button>\n   <ul class=\"").concat(swalClasses['progress-steps'], "\"></ul>\n   <div class=\"").concat(swalClasses.icon, "\"></div>\n   <img class=\"").concat(swalClasses.image, "\" />\n   <h2 class=\"").concat(swalClasses.title, "\" id=\"").concat(swalClasses.title, "\"></h2>\n   <div class=\"").concat(swalClasses['html-container'], "\" id=\"").concat(swalClasses['html-container'], "\"></div>\n   <input class=\"").concat(swalClasses.input, "\" />\n   <input type=\"file\" class=\"").concat(swalClasses.file, "\" />\n   <div class=\"").concat(swalClasses.range, "\">\n     <input type=\"range\" />\n     <output></output>\n   </div>\n   <select class=\"").concat(swalClasses.select, "\"></select>\n   <div class=\"").concat(swalClasses.radio, "\"></div>\n   <label for=\"").concat(swalClasses.checkbox, "\" class=\"").concat(swalClasses.checkbox, "\">\n     <input type=\"checkbox\" />\n     <span class=\"").concat(swalClasses.label, "\"></span>\n   </label>\n   <textarea class=\"").concat(swalClasses.textarea, "\"></textarea>\n   <div class=\"").concat(swalClasses['validation-message'], "\" id=\"").concat(swalClasses['validation-message'], "\"></div>\n   <div class=\"").concat(swalClasses.actions, "\">\n     <div class=\"").concat(swalClasses.loader, "\"></div>\n     <button type=\"button\" class=\"").concat(swalClasses.confirm, "\"></button>\n     <button type=\"button\" class=\"").concat(swalClasses.deny, "\"></button>\n     <button type=\"button\" class=\"").concat(swalClasses.cancel, "\"></button>\n   </div>\n   <div class=\"").concat(swalClasses.footer, "\"></div>\n   <div class=\"").concat(swalClasses['timer-progress-bar-container'], "\">\n     <div class=\"").concat(swalClasses['timer-progress-bar'], "\"></div>\n   </div>\n </div>\n").replace(/(^|\n)\s*/g, '');
-  /**
-   * @returns {boolean}
-   */
 
   const resetOldContainer = () => {
     const oldContainer = getContainer();
@@ -43690,15 +43489,9 @@ return jQuery;
     const popup = getPopup();
     const input = getDirectChildByClass(popup, swalClasses.input);
     const file = getDirectChildByClass(popup, swalClasses.file);
-    /** @type {HTMLInputElement} */
-
     const range = popup.querySelector(".".concat(swalClasses.range, " input"));
-    /** @type {HTMLOutputElement} */
-
     const rangeOutput = popup.querySelector(".".concat(swalClasses.range, " output"));
     const select = getDirectChildByClass(popup, swalClasses.select);
-    /** @type {HTMLInputElement} */
-
     const checkbox = popup.querySelector(".".concat(swalClasses.checkbox, " input"));
     const textarea = getDirectChildByClass(popup, swalClasses.textarea);
     input.oninput = resetValidationMessage;
@@ -43714,20 +43507,11 @@ return jQuery;
 
     range.onchange = () => {
       resetValidationMessage();
-      rangeOutput.value = range.value;
+      range.nextSibling.value = range.value;
     };
   };
-  /**
-   * @param {string | HTMLElement} target
-   * @returns {HTMLElement}
-   */
-
 
   const getTarget = target => typeof target === 'string' ? document.querySelector(target) : target;
-  /**
-   * @param {SweetAlertOptions} params
-   */
-
 
   const setupAccessibility = params => {
     const popup = getPopup();
@@ -43738,20 +43522,14 @@ return jQuery;
       popup.setAttribute('aria-modal', 'true');
     }
   };
-  /**
-   * @param {HTMLElement} targetElement
-   */
-
 
   const setupRTL = targetElement => {
     if (window.getComputedStyle(targetElement).direction === 'rtl') {
       addClass(getContainer(), swalClasses.rtl);
     }
   };
-  /**
-   * Add modal + backdrop + no-war message for Russians to DOM
-   *
-   * @param {SweetAlertOptions} params
+  /*
+   * Add modal + backdrop to DOM
    */
 
 
@@ -43811,11 +43589,6 @@ return jQuery;
       setInnerHtml(target, param.toString());
     }
   };
-  /**
-   * @param {HTMLElement} target
-   * @param {HTMLElement} elem
-   */
-
 
   const handleJqueryElem = (target, elem) => {
     target.textContent = '';
@@ -43828,10 +43601,6 @@ return jQuery;
       target.appendChild(elem.cloneNode(true));
     }
   };
-
-  /**
-   * @returns {'webkitAnimationEnd' | 'animationend' | false}
-   */
 
   const animationEndEvent = (() => {
     // Prevent run in Node env
@@ -43858,12 +43627,7 @@ return jQuery;
     return false;
   })();
 
-  /**
-   * Measure scrollbar width for padding body during modal show/hide
-   * https://github.com/twbs/bootstrap/blob/master/js/src/modal.js
-   *
-   * @returns {number}
-   */
+  // https://github.com/twbs/bootstrap/blob/master/js/src/modal.js
 
   const measureScrollbar = () => {
     const scrollDiv = document.createElement('div');
@@ -43873,11 +43637,6 @@ return jQuery;
     document.body.removeChild(scrollDiv);
     return scrollbarWidth;
   };
-
-  /**
-   * @param {SweetAlert2} instance
-   * @param {SweetAlertOptions} params
-   */
 
   const renderActions = (instance, params) => {
     const actions = getActions();
@@ -43897,11 +43656,6 @@ return jQuery;
     setInnerHtml(loader, params.loaderHtml);
     applyCustomClass(loader, params, 'loader');
   };
-  /**
-   * @param {HTMLElement} actions
-   * @param {HTMLElement} loader
-   * @param {SweetAlertOptions} params
-   */
 
   function renderButtons(actions, loader, params) {
     const confirmButton = getConfirmButton();
@@ -43924,13 +43678,6 @@ return jQuery;
       }
     }
   }
-  /**
-   * @param {HTMLElement} confirmButton
-   * @param {HTMLElement} denyButton
-   * @param {HTMLElement} cancelButton
-   * @param {SweetAlertOptions} params
-   */
-
 
   function handleButtonsStyling(confirmButton, denyButton, cancelButton, params) {
     if (!params.buttonsStyling) {
@@ -43954,12 +43701,6 @@ return jQuery;
       addClass(cancelButton, swalClasses['default-outline']);
     }
   }
-  /**
-   * @param {HTMLElement} button
-   * @param {'confirm' | 'deny' | 'cancel'} buttonType
-   * @param {SweetAlertOptions} params
-   */
-
 
   function renderButton(button, buttonType, params) {
     toggle(button, params["show".concat(capitalizeFirstLetter(buttonType), "Button")], 'inline-block');
@@ -43973,10 +43714,32 @@ return jQuery;
     addClass(button, params["".concat(buttonType, "ButtonClass")]);
   }
 
-  /**
-   * @param {SweetAlert2} instance
-   * @param {SweetAlertOptions} params
-   */
+  function handleBackdropParam(container, backdrop) {
+    if (typeof backdrop === 'string') {
+      container.style.background = backdrop;
+    } else if (!backdrop) {
+      addClass([document.documentElement, document.body], swalClasses['no-backdrop']);
+    }
+  }
+
+  function handlePositionParam(container, position) {
+    if (position in swalClasses) {
+      addClass(container, swalClasses[position]);
+    } else {
+      warn('The "position" parameter is not valid, defaulting to "center"');
+      addClass(container, swalClasses.center);
+    }
+  }
+
+  function handleGrowParam(container, grow) {
+    if (grow && typeof grow === 'string') {
+      const growClass = "grow-".concat(grow);
+
+      if (growClass in swalClasses) {
+        addClass(container, swalClasses[growClass]);
+      }
+    }
+  }
 
   const renderContainer = (instance, params) => {
     const container = getContainer();
@@ -43991,47 +43754,6 @@ return jQuery;
 
     applyCustomClass(container, params, 'container');
   };
-  /**
-   * @param {HTMLElement} container
-   * @param {SweetAlertOptions['backdrop']} backdrop
-   */
-
-  function handleBackdropParam(container, backdrop) {
-    if (typeof backdrop === 'string') {
-      container.style.background = backdrop;
-    } else if (!backdrop) {
-      addClass([document.documentElement, document.body], swalClasses['no-backdrop']);
-    }
-  }
-  /**
-   * @param {HTMLElement} container
-   * @param {SweetAlertOptions['position']} position
-   */
-
-
-  function handlePositionParam(container, position) {
-    if (position in swalClasses) {
-      addClass(container, swalClasses[position]);
-    } else {
-      warn('The "position" parameter is not valid, defaulting to "center"');
-      addClass(container, swalClasses.center);
-    }
-  }
-  /**
-   * @param {HTMLElement} container
-   * @param {SweetAlertOptions['grow']} grow
-   */
-
-
-  function handleGrowParam(container, grow) {
-    if (grow && typeof grow === 'string') {
-      const growClass = "grow-".concat(grow);
-
-      if (growClass in swalClasses) {
-        addClass(container, swalClasses[growClass]);
-      }
-    }
-  }
 
   /**
    * This module contains `WeakMap`s for each effectively-"private  property" that a `Swal` has.
@@ -44049,25 +43771,18 @@ return jQuery;
     domCache: new WeakMap()
   };
 
-  /// <reference path="../../../../sweetalert2.d.ts"/>
-  /** @type {InputClass[]} */
-
-  const inputClasses = ['input', 'file', 'range', 'select', 'radio', 'checkbox', 'textarea'];
-  /**
-   * @param {SweetAlert2} instance
-   * @param {SweetAlertOptions} params
-   */
-
+  const inputTypes = ['input', 'file', 'range', 'select', 'radio', 'checkbox', 'textarea'];
   const renderInput = (instance, params) => {
     const popup = getPopup();
     const innerParams = privateProps.innerParams.get(instance);
     const rerender = !innerParams || params.input !== innerParams.input;
-    inputClasses.forEach(inputClass => {
-      const inputContainer = getDirectChildByClass(popup, swalClasses[inputClass]); // set attributes
+    inputTypes.forEach(inputType => {
+      const inputClass = swalClasses[inputType];
+      const inputContainer = getDirectChildByClass(popup, inputClass); // set attributes
 
-      setAttributes(inputClass, params.inputAttributes); // set class
+      setAttributes(inputType, params.inputAttributes); // set class
 
-      inputContainer.className = swalClasses[inputClass];
+      inputContainer.className = inputClass;
 
       if (rerender) {
         hide(inputContainer);
@@ -44083,9 +43798,6 @@ return jQuery;
       setCustomClass(params);
     }
   };
-  /**
-   * @param {SweetAlertOptions} params
-   */
 
   const showInput = params => {
     if (!renderInputType[params.input]) {
@@ -44094,16 +43806,12 @@ return jQuery;
 
     const inputContainer = getInputContainer(params.input);
     const input = renderInputType[params.input](inputContainer, params);
-    show(inputContainer); // input autofocus
+    show(input); // input autofocus
 
     setTimeout(() => {
       focusInput(input);
     });
   };
-  /**
-   * @param {HTMLInputElement} input
-   */
-
 
   const removeAttributes = input => {
     for (let i = 0; i < input.attributes.length; i++) {
@@ -44114,14 +43822,9 @@ return jQuery;
       }
     }
   };
-  /**
-   * @param {InputClass} inputClass
-   * @param {SweetAlertOptions['inputAttributes']} inputAttributes
-   */
 
-
-  const setAttributes = (inputClass, inputAttributes) => {
-    const input = getInput(getPopup(), inputClass);
+  const setAttributes = (inputType, inputAttributes) => {
+    const input = getInput(getPopup(), inputType);
 
     if (!input) {
       return;
@@ -44133,35 +43836,20 @@ return jQuery;
       input.setAttribute(attr, inputAttributes[attr]);
     }
   };
-  /**
-   * @param {SweetAlertOptions} params
-   */
-
 
   const setCustomClass = params => {
     const inputContainer = getInputContainer(params.input);
 
-    if (typeof params.customClass === 'object') {
+    if (params.customClass) {
       addClass(inputContainer, params.customClass.input);
     }
   };
-  /**
-   * @param {HTMLInputElement | HTMLTextAreaElement} input
-   * @param {SweetAlertOptions} params
-   */
-
 
   const setInputPlaceholder = (input, params) => {
     if (!input.placeholder || params.inputPlaceholder) {
       input.placeholder = params.inputPlaceholder;
     }
   };
-  /**
-   * @param {Input} input
-   * @param {Input} prependTo
-   * @param {SweetAlertOptions} params
-   */
-
 
   const setInputLabel = (input, prependTo, params) => {
     if (params.inputLabel) {
@@ -44170,88 +43858,47 @@ return jQuery;
       const labelClass = swalClasses['input-label'];
       label.setAttribute('for', input.id);
       label.className = labelClass;
-
-      if (typeof params.customClass === 'object') {
-        addClass(label, params.customClass.inputLabel);
-      }
-
+      addClass(label, params.customClass.inputLabel);
       label.innerText = params.inputLabel;
       prependTo.insertAdjacentElement('beforebegin', label);
     }
   };
-  /**
-   * @param {SweetAlertOptions['input']} inputType
-   * @returns {HTMLElement}
-   */
-
 
   const getInputContainer = inputType => {
-    return getDirectChildByClass(getPopup(), swalClasses[inputType] || swalClasses.input);
+    const inputClass = swalClasses[inputType] ? swalClasses[inputType] : swalClasses.input;
+    return getDirectChildByClass(getPopup(), inputClass);
   };
-  /**
-   * @param {HTMLInputElement | HTMLOutputElement | HTMLTextAreaElement} input
-   * @param {SweetAlertOptions['inputValue']} inputValue
-   */
-
-
-  const checkAndSetInputValue = (input, inputValue) => {
-    if (['string', 'number'].includes(typeof inputValue)) {
-      input.value = "".concat(inputValue);
-    } else if (!isPromise(inputValue)) {
-      warn("Unexpected type of inputValue! Expected \"string\", \"number\" or \"Promise\", got \"".concat(typeof inputValue, "\""));
-    }
-  };
-  /** @type Record<string, (input: Input | HTMLElement, params: SweetAlertOptions) => Input> */
-
 
   const renderInputType = {};
-  /**
-   * @param {HTMLInputElement} input
-   * @param {SweetAlertOptions} params
-   * @returns {HTMLInputElement}
-   */
 
   renderInputType.text = renderInputType.email = renderInputType.password = renderInputType.number = renderInputType.tel = renderInputType.url = (input, params) => {
-    checkAndSetInputValue(input, params.inputValue);
+    if (typeof params.inputValue === 'string' || typeof params.inputValue === 'number') {
+      input.value = params.inputValue;
+    } else if (!isPromise(params.inputValue)) {
+      warn("Unexpected type of inputValue! Expected \"string\", \"number\" or \"Promise\", got \"".concat(typeof params.inputValue, "\""));
+    }
+
     setInputLabel(input, input, params);
     setInputPlaceholder(input, params);
     input.type = params.input;
     return input;
   };
-  /**
-   * @param {HTMLInputElement} input
-   * @param {SweetAlertOptions} params
-   * @returns {HTMLInputElement}
-   */
-
 
   renderInputType.file = (input, params) => {
     setInputLabel(input, input, params);
     setInputPlaceholder(input, params);
     return input;
   };
-  /**
-   * @param {HTMLInputElement} range
-   * @param {SweetAlertOptions} params
-   * @returns {HTMLInputElement}
-   */
-
 
   renderInputType.range = (range, params) => {
     const rangeInput = range.querySelector('input');
     const rangeOutput = range.querySelector('output');
-    checkAndSetInputValue(rangeInput, params.inputValue);
+    rangeInput.value = params.inputValue;
     rangeInput.type = params.input;
-    checkAndSetInputValue(rangeOutput, params.inputValue);
+    rangeOutput.value = params.inputValue;
     setInputLabel(rangeInput, range, params);
     return range;
   };
-  /**
-   * @param {HTMLSelectElement} select
-   * @param {SweetAlertOptions} params
-   * @returns {HTMLSelectElement}
-   */
-
 
   renderInputType.select = (select, params) => {
     select.textContent = '';
@@ -44268,47 +43915,27 @@ return jQuery;
     setInputLabel(select, select, params);
     return select;
   };
-  /**
-   * @param {HTMLInputElement} radio
-   * @returns {HTMLInputElement}
-   */
-
 
   renderInputType.radio = radio => {
     radio.textContent = '';
     return radio;
   };
-  /**
-   * @param {HTMLLabelElement} checkboxContainer
-   * @param {SweetAlertOptions} params
-   * @returns {HTMLInputElement}
-   */
-
 
   renderInputType.checkbox = (checkboxContainer, params) => {
+    /** @type {HTMLInputElement} */
     const checkbox = getInput(getPopup(), 'checkbox');
     checkbox.value = '1';
     checkbox.id = swalClasses.checkbox;
     checkbox.checked = Boolean(params.inputValue);
     const label = checkboxContainer.querySelector('span');
     setInnerHtml(label, params.inputPlaceholder);
-    return checkbox;
+    return checkboxContainer;
   };
-  /**
-   * @param {HTMLTextAreaElement} textarea
-   * @param {SweetAlertOptions} params
-   * @returns {HTMLTextAreaElement}
-   */
-
 
   renderInputType.textarea = (textarea, params) => {
-    checkAndSetInputValue(textarea, params.inputValue);
+    textarea.value = params.inputValue;
     setInputPlaceholder(textarea, params);
     setInputLabel(textarea, textarea, params);
-    /**
-     * @param {HTMLElement} el
-     * @returns {number}
-     */
 
     const getMargin = el => parseInt(window.getComputedStyle(el).marginLeft) + parseInt(window.getComputedStyle(el).marginRight); // https://github.com/sweetalert2/sweetalert2/issues/2291
 
@@ -44337,11 +43964,6 @@ return jQuery;
     return textarea;
   };
 
-  /**
-   * @param {SweetAlert2} instance
-   * @param {SweetAlertOptions} params
-   */
-
   const renderContent = (instance, params) => {
     const htmlContainer = getHtmlContainer();
     applyCustomClass(htmlContainer, params, 'htmlContainer'); // Content as HTML
@@ -44361,11 +43983,6 @@ return jQuery;
     renderInput(instance, params);
   };
 
-  /**
-   * @param {SweetAlert2} instance
-   * @param {SweetAlertOptions} params
-   */
-
   const renderFooter = (instance, params) => {
     const footer = getFooter();
     toggle(footer, params.footer);
@@ -44378,11 +43995,6 @@ return jQuery;
     applyCustomClass(footer, params, 'footer');
   };
 
-  /**
-   * @param {SweetAlert2} instance
-   * @param {SweetAlertOptions} params
-   */
-
   const renderCloseButton = (instance, params) => {
     const closeButton = getCloseButton();
     setInnerHtml(closeButton, params.closeButtonHtml); // Custom class
@@ -44391,11 +44003,6 @@ return jQuery;
     toggle(closeButton, params.showCloseButton);
     closeButton.setAttribute('aria-label', params.closeButtonAriaLabel);
   };
-
-  /**
-   * @param {SweetAlert2} instance
-   * @param {SweetAlertOptions} params
-   */
 
   const renderIcon = (instance, params) => {
     const innerParams = privateProps.innerParams.get(instance);
@@ -44409,14 +44016,12 @@ return jQuery;
     }
 
     if (!params.icon && !params.iconHtml) {
-      hide(icon);
-      return;
+      return hide(icon);
     }
 
     if (params.icon && Object.keys(iconTypes).indexOf(params.icon) === -1) {
       error("Unknown icon! Expected \"success\", \"error\", \"warning\", \"info\" or \"question\", got \"".concat(params.icon, "\""));
-      hide(icon);
-      return;
+      return hide(icon);
     }
 
     show(icon); // Custom or default content
@@ -44426,10 +44031,6 @@ return jQuery;
 
     addClass(icon, params.showClass.icon);
   };
-  /**
-   * @param {HTMLElement} icon
-   * @param {SweetAlertOptions} params
-   */
 
   const applyStyles = (icon, params) => {
     for (const iconType in iconTypes) {
@@ -44451,8 +44052,6 @@ return jQuery;
   const adjustSuccessIconBackgroundColor = () => {
     const popup = getPopup();
     const popupBackgroundColor = window.getComputedStyle(popup).getPropertyValue('background-color');
-    /** @type {NodeListOf<HTMLElement>} */
-
     const successIconParts = popup.querySelectorAll('[class^=swal2-success-circular-line], .swal2-success-fix');
 
     for (let i = 0; i < successIconParts.length; i++) {
@@ -44462,40 +44061,25 @@ return jQuery;
 
   const successIconHtml = "\n  <div class=\"swal2-success-circular-line-left\"></div>\n  <span class=\"swal2-success-line-tip\"></span> <span class=\"swal2-success-line-long\"></span>\n  <div class=\"swal2-success-ring\"></div> <div class=\"swal2-success-fix\"></div>\n  <div class=\"swal2-success-circular-line-right\"></div>\n";
   const errorIconHtml = "\n  <span class=\"swal2-x-mark\">\n    <span class=\"swal2-x-mark-line-left\"></span>\n    <span class=\"swal2-x-mark-line-right\"></span>\n  </span>\n";
-  /**
-   * @param {HTMLElement} icon
-   * @param {SweetAlertOptions} params
-   */
 
   const setContent = (icon, params) => {
-    let oldContent = icon.innerHTML;
-    let newContent;
+    icon.textContent = '';
 
     if (params.iconHtml) {
-      newContent = iconContent(params.iconHtml);
+      setInnerHtml(icon, iconContent(params.iconHtml));
     } else if (params.icon === 'success') {
-      newContent = successIconHtml;
-      oldContent = oldContent.replace(/ style=".*?"/g, ''); // undo adjustSuccessIconBackgroundColor()
+      setInnerHtml(icon, successIconHtml);
     } else if (params.icon === 'error') {
-      newContent = errorIconHtml;
+      setInnerHtml(icon, errorIconHtml);
     } else {
       const defaultIconHtml = {
         question: '?',
         warning: '!',
         info: 'i'
       };
-      newContent = iconContent(defaultIconHtml[params.icon]);
-    }
-
-    if (oldContent.trim() !== newContent.trim()) {
-      setInnerHtml(icon, newContent);
+      setInnerHtml(icon, iconContent(defaultIconHtml[params.icon]));
     }
   };
-  /**
-   * @param {HTMLElement} icon
-   * @param {SweetAlertOptions} params
-   */
-
 
   const setColor = (icon, params) => {
     if (!params.iconColor) {
@@ -44511,18 +44095,8 @@ return jQuery;
 
     setStyle(icon, '.swal2-success-ring', 'borderColor', params.iconColor);
   };
-  /**
-   * @param {string} content
-   * @returns {string}
-   */
-
 
   const iconContent = content => "<div class=\"".concat(swalClasses['icon-content'], "\">").concat(content, "</div>");
-
-  /**
-   * @param {SweetAlert2} instance
-   * @param {SweetAlertOptions} params
-   */
 
   const renderImage = (instance, params) => {
     const image = getImage();
@@ -44543,10 +44117,23 @@ return jQuery;
     applyCustomClass(image, params, 'image');
   };
 
-  /**
-   * @param {SweetAlert2} instance
-   * @param {SweetAlertOptions} params
-   */
+  const createStepElement = step => {
+    const stepEl = document.createElement('li');
+    addClass(stepEl, swalClasses['progress-step']);
+    setInnerHtml(stepEl, step);
+    return stepEl;
+  };
+
+  const createLineElement = params => {
+    const lineEl = document.createElement('li');
+    addClass(lineEl, swalClasses['progress-step-line']);
+
+    if (params.progressStepsDistance) {
+      lineEl.style.width = params.progressStepsDistance;
+    }
+
+    return lineEl;
+  };
 
   const renderProgressSteps = (instance, params) => {
     const progressStepsContainer = getProgressSteps();
@@ -44576,38 +44163,6 @@ return jQuery;
       }
     });
   };
-  /**
-   * @param {string} step
-   * @returns {HTMLLIElement}
-   */
-
-  const createStepElement = step => {
-    const stepEl = document.createElement('li');
-    addClass(stepEl, swalClasses['progress-step']);
-    setInnerHtml(stepEl, step);
-    return stepEl;
-  };
-  /**
-   * @param {SweetAlertOptions} params
-   * @returns {HTMLLIElement}
-   */
-
-
-  const createLineElement = params => {
-    const lineEl = document.createElement('li');
-    addClass(lineEl, swalClasses['progress-step-line']);
-
-    if (params.progressStepsDistance) {
-      applyNumericalStyle(lineEl, 'width', params.progressStepsDistance);
-    }
-
-    return lineEl;
-  };
-
-  /**
-   * @param {SweetAlert2} instance
-   * @param {SweetAlertOptions} params
-   */
 
   const renderTitle = (instance, params) => {
     const title = getTitle();
@@ -44624,11 +44179,6 @@ return jQuery;
 
     applyCustomClass(title, params, 'title');
   };
-
-  /**
-   * @param {SweetAlert2} instance
-   * @param {SweetAlertOptions} params
-   */
 
   const renderPopup = (instance, params) => {
     const container = getContainer();
@@ -44659,10 +44209,6 @@ return jQuery;
 
     addClasses(popup, params);
   };
-  /**
-   * @param {HTMLElement} popup
-   * @param {SweetAlertOptions} params
-   */
 
   const addClasses = (popup, params) => {
     // Default Class + showClass when updating Swal.update({})
@@ -44687,11 +44233,6 @@ return jQuery;
       addClass(popup, swalClasses["icon-".concat(params.icon)]);
     }
   };
-
-  /**
-   * @param {SweetAlert2} instance
-   * @param {SweetAlertOptions} params
-   */
 
   const render = (instance, params) => {
     renderPopup(instance, params);
@@ -44723,7 +44264,7 @@ return jQuery;
   // reader’s list of elements (headings, form controls, landmarks, etc.) in the document.
 
   const setAriaHidden = () => {
-    const bodyChildren = Array.from(document.body.children);
+    const bodyChildren = toArray(document.body.children);
     bodyChildren.forEach(el => {
       if (el === getContainer() || el.contains(getContainer())) {
         return;
@@ -44737,7 +44278,7 @@ return jQuery;
     });
   };
   const unsetAriaHidden = () => {
-    const bodyChildren = Array.from(document.body.children);
+    const bodyChildren = toArray(document.body.children);
     bodyChildren.forEach(el => {
       if (el.hasAttribute('data-previous-aria-hidden')) {
         el.setAttribute('aria-hidden', el.getAttribute('data-previous-aria-hidden'));
@@ -44769,10 +44310,7 @@ return jQuery;
 
   const getSwalParams = templateContent => {
     const result = {};
-    /** @type {HTMLElement[]} */
-
-    const swalParams = Array.from(templateContent.querySelectorAll('swal-param'));
-    swalParams.forEach(param => {
+    toArray(templateContent.querySelectorAll('swal-param')).forEach(param => {
       showWarningsForAttributes(param, ['name', 'value']);
       const paramName = param.getAttribute('name');
       const value = param.getAttribute('value');
@@ -44794,10 +44332,7 @@ return jQuery;
 
   const getSwalButtons = templateContent => {
     const result = {};
-    /** @type {HTMLElement[]} */
-
-    const swalButtons = Array.from(templateContent.querySelectorAll('swal-button'));
-    swalButtons.forEach(button => {
+    toArray(templateContent.querySelectorAll('swal-button')).forEach(button => {
       showWarningsForAttributes(button, ['type', 'color', 'aria-label']);
       const type = button.getAttribute('type');
       result["".concat(type, "ButtonText")] = button.innerHTML;
@@ -44900,14 +44435,12 @@ return jQuery;
         result.inputValue = input.getAttribute('value');
       }
     }
-    /** @type {HTMLElement[]} */
 
-
-    const inputOptions = Array.from(templateContent.querySelectorAll('swal-input-option'));
+    const inputOptions = templateContent.querySelectorAll('swal-input-option');
 
     if (inputOptions.length) {
       result.inputOptions = {};
-      inputOptions.forEach(option => {
+      toArray(inputOptions).forEach(option => {
         showWarningsForAttributes(option, ['value']);
         const optionValue = option.getAttribute('value');
         const optionName = option.innerHTML;
@@ -44947,7 +44480,7 @@ return jQuery;
 
   const showWarningsForElements = templateContent => {
     const allowedElements = swalStringParams.concat(['swal-param', 'swal-button', 'swal-image', 'swal-icon', 'swal-input', 'swal-input-option']);
-    Array.from(templateContent.children).forEach(el => {
+    toArray(templateContent.children).forEach(el => {
       const tagName = el.tagName.toLowerCase();
 
       if (allowedElements.indexOf(tagName) === -1) {
@@ -44962,7 +44495,7 @@ return jQuery;
 
 
   const showWarningsForAttributes = (el, allowedAttributes) => {
-    Array.from(el.attributes).forEach(attribute => {
+    toArray(el.attributes).forEach(attribute => {
       if (allowedAttributes.indexOf(attribute.name) === -1) {
         warn(["Unrecognized attribute \"".concat(attribute.name, "\" on <").concat(el.tagName.toLowerCase(), ">."), "".concat(allowedAttributes.length ? "Allowed attributes are: ".concat(allowedAttributes.join(', ')) : 'To set the value, use HTML within the element.')]);
       }
@@ -44970,29 +44503,14 @@ return jQuery;
   };
 
   var defaultInputValidators = {
-    /**
-     * @param {string} string
-     * @param {string} validationMessage
-     * @returns {Promise<void | string>}
-     */
     email: (string, validationMessage) => {
       return /^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9.-]+\.[a-zA-Z0-9-]{2,24}$/.test(string) ? Promise.resolve() : Promise.resolve(validationMessage || 'Invalid email address');
     },
-
-    /**
-     * @param {string} string
-     * @param {string} validationMessage
-     * @returns {Promise<void | string>}
-     */
     url: (string, validationMessage) => {
       // taken from https://stackoverflow.com/a/3809435 with a small change from #1306 and #2013
       return /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-z]{2,63}\b([-a-zA-Z0-9@:%_+.~#?&/=]*)$/.test(string) ? Promise.resolve() : Promise.resolve(validationMessage || 'Invalid URL');
     }
   };
-
-  /**
-   * @param {SweetAlertOptions} params
-   */
 
   function setDefaultInputValidators(params) {
     // Use default `inputValidator` for supported input types if not provided
@@ -45004,10 +44522,6 @@ return jQuery;
       });
     }
   }
-  /**
-   * @param {SweetAlertOptions} params
-   */
-
 
   function validateCustomTargetElement(params) {
     // Determine if the custom target element is valid
@@ -45019,7 +44533,7 @@ return jQuery;
   /**
    * Set type, text and actions on popup
    *
-   * @param {SweetAlertOptions} params
+   * @param params
    */
 
 
@@ -45158,17 +44672,10 @@ return jQuery;
   const lockBodyScroll = () => {
     const container = getContainer();
     let preventTouchMove;
-    /**
-     * @param {TouchEvent} e
-     */
 
     container.ontouchstart = e => {
       preventTouchMove = shouldPreventTouchMove(e);
     };
-    /**
-     * @param {TouchEvent} e
-     */
-
 
     container.ontouchmove = e => {
       if (preventTouchMove) {
@@ -45177,11 +44684,6 @@ return jQuery;
       }
     };
   };
-  /**
-   * @param {TouchEvent} event
-   * @returns {boolean}
-   */
-
 
   const shouldPreventTouchMove = event => {
     const target = event.target;
@@ -45195,7 +44697,7 @@ return jQuery;
       return true;
     }
 
-    if (!isScrollable(container) && target instanceof HTMLElement && target.tagName !== 'INPUT' && // #1603
+    if (!isScrollable(container) && target.tagName !== 'INPUT' && // #1603
     target.tagName !== 'TEXTAREA' && // #2266
     !(isScrollable(getHtmlContainer()) && // #1944
     getHtmlContainer().contains(target))) {
@@ -45240,7 +44742,7 @@ return jQuery;
   /**
    * Open popup, add necessary classes and styles, fix scrollbar
    *
-   * @param {SweetAlertOptions} params
+   * @param params
    */
 
   const openPopup = params => {
@@ -45274,9 +44776,6 @@ return jQuery;
 
     removeClass(container, swalClasses['no-transition']);
   };
-  /**
-   * @param {AnimationEvent} event
-   */
 
   const swalOpenAnimationFinished = event => {
     const popup = getPopup();
@@ -45289,11 +44788,6 @@ return jQuery;
     popup.removeEventListener(animationEndEvent, swalOpenAnimationFinished);
     container.style.overflowY = 'auto';
   };
-  /**
-   * @param {HTMLElement} container
-   * @param {HTMLElement} popup
-   */
-
 
   const setScrollingVisibility = (container, popup) => {
     if (animationEndEvent && hasCssAnimation(popup)) {
@@ -45303,12 +44797,6 @@ return jQuery;
       container.style.overflowY = 'auto';
     }
   };
-  /**
-   * @param {HTMLElement} container
-   * @param {boolean} scrollbarPadding
-   * @param {string} initialBodyOverflow
-   */
-
 
   const fixScrollContainer = (container, scrollbarPadding, initialBodyOverflow) => {
     iOSfix();
@@ -45322,12 +44810,6 @@ return jQuery;
       container.scrollTop = 0;
     });
   };
-  /**
-   * @param {HTMLElement} container
-   * @param {HTMLElement} popup
-   * @param {SweetAlertOptions} params
-   */
-
 
   const addClasses$1 = (container, popup, params) => {
     addClass(container, params.showClass.backdrop); // this workaround with opacity is needed for https://github.com/sweetalert2/sweetalert2/issues/2059
@@ -45370,8 +44852,8 @@ return jQuery;
     }
 
     show(loader);
-    popup.setAttribute('data-loading', 'true');
-    popup.setAttribute('aria-busy', 'true');
+    popup.setAttribute('data-loading', true);
+    popup.setAttribute('aria-busy', true);
     popup.focus();
   };
 
@@ -45661,10 +45143,6 @@ return jQuery;
 
   const clickCancel = () => getCancelButton() && getCancelButton().click();
 
-  /**
-   * @param {GlobalState} globalState
-   */
-
   const removeKeydownHandler = globalState => {
     if (globalState.keydownTarget && globalState.keydownHandlerAdded) {
       globalState.keydownTarget.removeEventListener('keydown', globalState.keydownHandler, {
@@ -45673,13 +45151,6 @@ return jQuery;
       globalState.keydownHandlerAdded = false;
     }
   };
-  /**
-   * @param {SweetAlert2} instance
-   * @param {GlobalState} globalState
-   * @param {SweetAlertOptions} innerParams
-   * @param {*} dismissWith
-   */
-
   const addKeydownHandler = (instance, globalState, innerParams, dismissWith) => {
     removeKeydownHandler(globalState);
 
@@ -45693,12 +45164,7 @@ return jQuery;
       });
       globalState.keydownHandlerAdded = true;
     }
-  };
-  /**
-   * @param {SweetAlertOptions} innerParams
-   * @param {number} index
-   * @param {number} increment
-   */
+  }; // Focus handling
 
   const setFocus = (innerParams, index, increment) => {
     const focusableElements = getFocusableElements(); // search for visible elements and select the next possible match
@@ -45720,11 +45186,6 @@ return jQuery;
   };
   const arrowKeysNextButton = ['ArrowRight', 'ArrowDown'];
   const arrowKeysPreviousButton = ['ArrowLeft', 'ArrowUp'];
-  /**
-   * @param {SweetAlert2} instance
-   * @param {KeyboardEvent} e
-   * @param {function} dismissWith
-   */
 
   const keydownHandler = (instance, e, dismissWith) => {
     const innerParams = privateProps.innerParams.get(instance);
@@ -45759,12 +45220,6 @@ return jQuery;
       handleEsc(e, innerParams, dismissWith);
     }
   };
-  /**
-   * @param {SweetAlert2} instance
-   * @param {KeyboardEvent} e
-   * @param {SweetAlertOptions} innerParams
-   */
-
 
   const handleEnter = (instance, e, innerParams) => {
     // https://github.com/sweetalert2/sweetalert2/issues/2386
@@ -45772,7 +45227,7 @@ return jQuery;
       return;
     }
 
-    if (e.target && instance.getInput() && e.target instanceof HTMLElement && e.target.outerHTML === instance.getInput().outerHTML) {
+    if (e.target && instance.getInput() && e.target.outerHTML === instance.getInput().outerHTML) {
       if (['textarea', 'file'].includes(innerParams.input)) {
         return; // do not submit
       }
@@ -45781,11 +45236,6 @@ return jQuery;
       e.preventDefault();
     }
   };
-  /**
-   * @param {KeyboardEvent} e
-   * @param {SweetAlertOptions} innerParams
-   */
-
 
   const handleTab = (e, innerParams) => {
     const targetElement = e.target;
@@ -45810,17 +45260,13 @@ return jQuery;
     e.stopPropagation();
     e.preventDefault();
   };
-  /**
-   * @param {string} key
-   */
-
 
   const handleArrows = key => {
     const confirmButton = getConfirmButton();
     const denyButton = getDenyButton();
     const cancelButton = getCancelButton();
 
-    if (document.activeElement instanceof HTMLElement && ![confirmButton, denyButton, cancelButton].includes(document.activeElement)) {
+    if (![confirmButton, denyButton, cancelButton].includes(document.activeElement)) {
       return;
     }
 
@@ -45834,7 +45280,7 @@ return jQuery;
         return;
       }
 
-      if (buttonToFocus instanceof HTMLButtonElement && isVisible(buttonToFocus)) {
+      if (isVisible(buttonToFocus) && buttonToFocus instanceof HTMLButtonElement) {
         break;
       }
     }
@@ -45843,12 +45289,6 @@ return jQuery;
       buttonToFocus.focus();
     }
   };
-  /**
-   * @param {KeyboardEvent} e
-   * @param {SweetAlertOptions} innerParams
-   * @param {function} dismissWith
-   */
-
 
   const handleEsc = (e, innerParams, dismissWith) => {
     if (callIfFunction(innerParams.allowEscapeKey)) {
@@ -46118,7 +45558,7 @@ return jQuery;
       if (isUpdatableParameter(param)) {
         validUpdatableParams[param] = params[param];
       } else {
-        warn("Invalid parameter to update: ".concat(param));
+        warn("Invalid parameter to update: \"".concat(param, "\". Updatable params are listed here: https://github.com/sweetalert2/sweetalert2/blob/master/src/utils/params.js\n\nIf you think this parameter should be updatable, request it here: https://github.com/sweetalert2/sweetalert2/issues/new?template=02_feature_request.md"));
       }
     });
     return validUpdatableParams;
@@ -46138,6 +45578,12 @@ return jQuery;
     if (domCache.popup && globalState.swalCloseEventFinishedCallback) {
       globalState.swalCloseEventFinishedCallback();
       delete globalState.swalCloseEventFinishedCallback;
+    } // Check if there is a swal disposal defer timer
+
+
+    if (globalState.deferDisposalTimer) {
+      clearTimeout(globalState.deferDisposalTimer);
+      delete globalState.deferDisposalTimer;
     }
 
     if (typeof innerParams.didDestroy === 'function') {
@@ -46146,13 +45592,9 @@ return jQuery;
 
     disposeSwal(this);
   }
-  /**
-   * @param {SweetAlert2} instance
-   */
 
   const disposeSwal = instance => {
     disposeWeakMaps(instance); // Unset this.params so GC will dispose it (#1569)
-    // @ts-ignore
 
     delete instance.params; // Unset globalState props so GC will dispose globalState (#1569)
 
@@ -46161,14 +45603,9 @@ return jQuery;
 
     delete globalState.currentInstance;
   };
-  /**
-   * @param {SweetAlert2} instance
-   */
-
 
   const disposeWeakMaps = instance => {
     // If the current instance is awaiting a promise result, we keep the privateMethods to call them once the promise result is retrieved #2335
-    // @ts-ignore
     if (instance.isAwaitingPromise()) {
       unsetWeakMaps(privateProps, instance);
       privateProps.awaitingPromise.set(instance, true);
@@ -46177,11 +45614,6 @@ return jQuery;
       unsetWeakMaps(privateProps, instance);
     }
   };
-  /**
-   * @param {object} obj
-   * @param {SweetAlert2} instance
-   */
-
 
   const unsetWeakMaps = (obj, instance) => {
     for (const i in obj) {
@@ -46213,10 +45645,6 @@ return jQuery;
     _destroy: _destroy
   });
 
-  /**
-   * @param {SweetAlert2} instance
-   */
-
   const handleConfirmButtonClick = instance => {
     const innerParams = privateProps.innerParams.get(instance);
     instance.disableButtons();
@@ -46227,10 +45655,6 @@ return jQuery;
       confirm(instance, true);
     }
   };
-  /**
-   * @param {SweetAlert2} instance
-   */
-
   const handleDenyButtonClick = instance => {
     const innerParams = privateProps.innerParams.get(instance);
     instance.disableButtons();
@@ -46241,26 +45665,18 @@ return jQuery;
       deny(instance, false);
     }
   };
-  /**
-   * @param {SweetAlert2} instance
-   * @param {Function} dismissWith
-   */
-
   const handleCancelButtonClick = (instance, dismissWith) => {
     instance.disableButtons();
     dismissWith(DismissReason.cancel);
   };
-  /**
-   * @param {SweetAlert2} instance
-   * @param {'confirm' | 'deny'} type
-   */
 
-  const handleConfirmOrDenyWithInput = (instance, type) => {
+  const handleConfirmOrDenyWithInput = (instance, type
+  /* 'confirm' | 'deny' */
+  ) => {
     const innerParams = privateProps.innerParams.get(instance);
 
     if (!innerParams.input) {
-      error("The \"input\" parameter is needed to be set when using returnInputValueOn".concat(capitalizeFirstLetter(type)));
-      return;
+      return error("The \"input\" parameter is needed to be set when using returnInputValueOn".concat(capitalizeFirstLetter(type)));
     }
 
     const inputValue = getInputValue(instance, innerParams);
@@ -46276,14 +45692,10 @@ return jQuery;
       confirm(instance, inputValue);
     }
   };
-  /**
-   * @param {SweetAlert2} instance
-   * @param {string} inputValue
-   * @param {'confirm' | 'deny'} type
-   */
 
-
-  const handleInputValidator = (instance, inputValue, type) => {
+  const handleInputValidator = (instance, inputValue, type
+  /* 'confirm' | 'deny' */
+  ) => {
     const innerParams = privateProps.innerParams.get(instance);
     instance.disableInput();
     const validationPromise = Promise.resolve().then(() => asPromise(innerParams.inputValidator(inputValue, innerParams.validationMessage)));
@@ -46300,11 +45712,6 @@ return jQuery;
       }
     });
   };
-  /**
-   * @param {SweetAlert2} instance
-   * @param {any} value
-   */
-
 
   const deny = (instance, value) => {
     const innerParams = privateProps.innerParams.get(instance || undefined);
@@ -46322,48 +45729,30 @@ return jQuery;
           instance.hideLoading();
           handleAwaitingPromise(instance);
         } else {
-          instance.close({
+          instance.closePopup({
             isDenied: true,
             value: typeof preDenyValue === 'undefined' ? value : preDenyValue
           });
         }
       }).catch(error$$1 => rejectWith(instance || undefined, error$$1));
     } else {
-      instance.close({
+      instance.closePopup({
         isDenied: true,
         value
       });
     }
   };
-  /**
-   * @param {SweetAlert2} instance
-   * @param {any} value
-   */
-
 
   const succeedWith = (instance, value) => {
-    instance.close({
+    instance.closePopup({
       isConfirmed: true,
       value
     });
   };
-  /**
-   *
-   * @param {SweetAlert2} instance
-   * @param {string} error
-   */
-
 
   const rejectWith = (instance, error$$1) => {
-    // @ts-ignore
     instance.rejectPromise(error$$1);
   };
-  /**
-   *
-   * @param {SweetAlert2} instance
-   * @param {any} value
-   */
-
 
   const confirm = (instance, value) => {
     const innerParams = privateProps.innerParams.get(instance || undefined);
@@ -46688,7 +46077,7 @@ return jQuery;
         }
       }); // @ts-ignore
 
-      const promise = currentInstance._main(currentInstance.params);
+      const promise = this._main(this.params);
 
       privateProps.promise.set(this, promise);
     }
@@ -46698,7 +46087,6 @@ return jQuery;
       showWarningsForParams(Object.assign({}, mixinParams, userParams));
 
       if (globalState.currentInstance) {
-        // @ts-ignore
         globalState.currentInstance._destroy();
 
         if (isModal()) {
@@ -46706,7 +46094,7 @@ return jQuery;
         }
       }
 
-      globalState.currentInstance = currentInstance;
+      globalState.currentInstance = this;
       const innerParams = prepareParams(userParams, mixinParams);
       setParameters(innerParams);
       Object.freeze(innerParams); // clear the previous timer
@@ -46718,10 +46106,10 @@ return jQuery;
 
 
       clearTimeout(globalState.restoreFocusTimeout);
-      const domCache = populateDomCache(currentInstance);
-      render(currentInstance, innerParams);
-      privateProps.innerParams.set(currentInstance, innerParams);
-      return swalPromise(currentInstance, domCache, innerParams);
+      const domCache = populateDomCache(this);
+      render(this, innerParams);
+      privateProps.innerParams.set(this, innerParams);
+      return swalPromise(this, domCache, innerParams);
     } // `catch` cannot be the name of a module export, so we define our thenable methods here instead
 
 
@@ -46779,11 +46167,6 @@ return jQuery;
     params.hideClass = Object.assign({}, defaultParams.hideClass, params.hideClass);
     return params;
   };
-  /**
-   * @param {SweetAlert2} instance
-   * @returns {DomCache}
-   */
-
 
   const populateDomCache = instance => {
     const domCache = {
@@ -46801,12 +46184,6 @@ return jQuery;
     privateProps.domCache.set(instance, domCache);
     return domCache;
   };
-  /**
-   * @param {GlobalState} globalState
-   * @param {SweetAlertOptions} innerParams
-   * @param {function} dismissWith
-   */
-
 
   const setupTimer = (globalState$$1, innerParams, dismissWith) => {
     const timerProgressBar = getTimerProgressBar();
@@ -46830,11 +46207,6 @@ return jQuery;
       }
     }
   };
-  /**
-   * @param {DomCache} domCache
-   * @param {SweetAlertOptions} innerParams
-   */
-
 
   const initFocus = (domCache, innerParams) => {
     if (innerParams.toast) {
@@ -46849,12 +46221,6 @@ return jQuery;
       setFocus(innerParams, -1, 1);
     }
   };
-  /**
-   * @param {DomCache} domCache
-   * @param {SweetAlertOptions} innerParams
-   * @returns {boolean}
-   */
-
 
   const focusButton = (domCache, innerParams) => {
     if (innerParams.focusDeny && isVisible(domCache.denyButton)) {
@@ -46879,34 +46245,7 @@ return jQuery;
     if (document.activeElement instanceof HTMLElement && typeof document.activeElement.blur === 'function') {
       document.activeElement.blur();
     }
-  }; // This anti-war message will only be shown to Russian users visiting Russian sites
-
-
-  if (typeof window !== 'undefined' && /^ru\b/.test(navigator.language) && location.host.match(/\.(ru|su|xn--p1ai)$/)) {
-    if (Math.random() < 0.1) {
-      const noWar = document.createElement('div');
-      noWar.className = 'leave-russia-now-and-apply-your-skills-to-the-world';
-      const video = getRandomElement([{
-        text: "\u0412 \u043D\u0438\u0436\u0435\u043F\u0440\u0438\u0432\u0435\u0434\u0451\u043D\u043D\u043E\u043C \u0432\u0438\u0434\u0435\u043E \u043E\u0431\u044A\u044F\u0441\u043D\u044F\u0435\u0442\u0441\u044F \u043A\u0430\u043A \u043A\u0430\u0436\u0434\u044B\u0439 \u0438\u0437 \u043D\u0430\u0441 \u043C\u043E\u0436\u0435\u0442 \u043F\u043E\u043C\u043E\u0447\u044C \u0432 \u0442\u043E\u043C,\n        <strong>\u0447\u0442\u043E\u0431\u044B \u044D\u0442\u0430 \u0431\u0435\u0441\u0441\u043C\u044B\u0441\u043B\u0435\u043D\u043D\u0430\u044F \u0438 \u0431\u0435\u0441\u0447\u0435\u043B\u043E\u0432\u0435\u0447\u043D\u0430\u044F \u0432\u043E\u0439\u043D\u0430 \u043E\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u043B\u0430\u0441\u044C</strong>:",
-        id: '4CfDhaRkw7I'
-      }, {
-        text: 'Эмпатия - главное <strong>человеческое</strong> чувство. Способность сопереживать. <strong>Способность поставить себя на место другого.</strong>',
-        id: 's-GLAIY4DXA'
-      }]);
-      setInnerHtml(noWar, "\n      <div>\n        \u0415\u0441\u043B\u0438 \u043C\u044B \u043D\u0435 \u043E\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u043C \u0432\u043E\u0439\u043D\u0443, \u043E\u043D\u0430 \u043F\u0440\u0438\u0434\u0435\u0442 \u0432 \u0434\u043E\u043C <strong>\u043A\u0430\u0436\u0434\u043E\u0433\u043E \u0438\u0437 \u043D\u0430\u0441</strong> \u0438 \u0435\u0451 \u043F\u043E\u0441\u043B\u0435\u0434\u0441\u0442\u0432\u0438\u044F \u0431\u0443\u0434\u0443\u0442 <strong>\u0443\u0436\u0430\u0441\u0430\u044E\u0449\u0438\u043C\u0438</strong>.\n      </div>\n      <div>\n        \u041F\u0443\u0442\u0438\u043D\u0441\u043A\u0438\u0439 \u0440\u0435\u0436\u0438\u043C \u0437\u0430 20 \u0441 \u043B\u0438\u0448\u043D\u0438\u043C \u043B\u0435\u0442 \u0441\u0432\u043E\u0435\u0433\u043E \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u043E\u0432\u0430\u043D\u0438\u044F \u0432\u0434\u043E\u043B\u0431\u0438\u043B \u043D\u0430\u043C, \u0447\u0442\u043E \u043C\u044B \u0431\u0435\u0441\u0441\u0438\u043B\u044C\u043D\u044B \u0438 \u043E\u0434\u0438\u043D \u0447\u0435\u043B\u043E\u0432\u0435\u043A \u043D\u0435 \u043C\u043E\u0436\u0435\u0442 \u043D\u0438\u0447\u0435\u0433\u043E \u0441\u0434\u0435\u043B\u0430\u0442\u044C. <strong>\u042D\u0442\u043E \u043D\u0435 \u0442\u0430\u043A!</strong>\n      </div>\n      <div>\n        ".concat(video.text, "\n      </div>\n      <iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/").concat(video.id, "\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n      <div>\n        \u041D\u0435\u0442 \u0432\u043E\u0439\u043D\u0435!\n      </div>\n      "));
-      const closeButton = document.createElement('button');
-      closeButton.innerHTML = '&times;';
-
-      closeButton.onclick = () => noWar.remove();
-
-      noWar.appendChild(closeButton);
-      window.addEventListener('load', () => {
-        setTimeout(() => {
-          document.body.appendChild(noWar);
-        }, 1000);
-      });
-    }
-  } // Assign instance methods from src/instanceMethods/*.js to prototype
+  }; // Assign instance methods from src/instanceMethods/*.js to prototype
 
 
   Object.assign(SweetAlert.prototype, instanceMethods); // Assign static methods from src/staticMethods/*.js to constructor
@@ -46921,7 +46260,7 @@ return jQuery;
     };
   });
   SweetAlert.DismissReason = DismissReason;
-  SweetAlert.version = '11.4.29';
+  SweetAlert.version = '11.4.8';
 
   const Swal = SweetAlert; // @ts-ignore
 
@@ -46932,7 +46271,7 @@ return jQuery;
 }));
 if (typeof this !== 'undefined' && this.Sweetalert2){  this.swal = this.sweetAlert = this.Swal = this.SweetAlert = this.Sweetalert2}
 
-"undefined"!=typeof document&&function(e,t){var n=e.createElement("style");if(e.getElementsByTagName("head")[0].appendChild(n),n.styleSheet)n.styleSheet.disabled||(n.styleSheet.cssText=t);else try{n.innerHTML=t}catch(e){n.innerText=t}}(document,".swal2-popup.swal2-toast{box-sizing:border-box;grid-column:1/4!important;grid-row:1/4!important;grid-template-columns:1fr 99fr 1fr;padding:1em;overflow-y:hidden;background:#fff;box-shadow:0 0 1px hsla(0deg,0%,0%,.075),0 1px 2px hsla(0deg,0%,0%,.075),1px 2px 4px hsla(0deg,0%,0%,.075),1px 3px 8px hsla(0deg,0%,0%,.075),2px 4px 16px hsla(0deg,0%,0%,.075);pointer-events:all}.swal2-popup.swal2-toast>*{grid-column:2}.swal2-popup.swal2-toast .swal2-title{margin:.5em 1em;padding:0;font-size:1em;text-align:initial}.swal2-popup.swal2-toast .swal2-loading{justify-content:center}.swal2-popup.swal2-toast .swal2-input{height:2em;margin:.5em;font-size:1em}.swal2-popup.swal2-toast .swal2-validation-message{font-size:1em}.swal2-popup.swal2-toast .swal2-footer{margin:.5em 0 0;padding:.5em 0 0;font-size:.8em}.swal2-popup.swal2-toast .swal2-close{grid-column:3/3;grid-row:1/99;align-self:center;width:.8em;height:.8em;margin:0;font-size:2em}.swal2-popup.swal2-toast .swal2-html-container{margin:.5em 1em;padding:0;overflow:initial;font-size:1em;text-align:initial}.swal2-popup.swal2-toast .swal2-html-container:empty{padding:0}.swal2-popup.swal2-toast .swal2-loader{grid-column:1;grid-row:1/99;align-self:center;width:2em;height:2em;margin:.25em}.swal2-popup.swal2-toast .swal2-icon{grid-column:1;grid-row:1/99;align-self:center;width:2em;min-width:2em;height:2em;margin:0 .5em 0 0}.swal2-popup.swal2-toast .swal2-icon .swal2-icon-content{display:flex;align-items:center;font-size:1.8em;font-weight:700}.swal2-popup.swal2-toast .swal2-icon.swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line]{top:.875em;width:1.375em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left]{left:.3125em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right]{right:.3125em}.swal2-popup.swal2-toast .swal2-actions{justify-content:flex-start;height:auto;margin:0;margin-top:.5em;padding:0 .5em}.swal2-popup.swal2-toast .swal2-styled{margin:.25em .5em;padding:.4em .6em;font-size:1em}.swal2-popup.swal2-toast .swal2-success{border-color:#a5dc86}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line]{position:absolute;width:1.6em;height:3em;transform:rotate(45deg);border-radius:50%}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=left]{top:-.8em;left:-.5em;transform:rotate(-45deg);transform-origin:2em 2em;border-radius:4em 0 0 4em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=right]{top:-.25em;left:.9375em;transform-origin:0 1.5em;border-radius:0 4em 4em 0}.swal2-popup.swal2-toast .swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-popup.swal2-toast .swal2-success .swal2-success-fix{top:0;left:.4375em;width:.4375em;height:2.6875em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line]{height:.3125em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=tip]{top:1.125em;left:.1875em;width:.75em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=long]{top:.9375em;right:.1875em;width:1.375em}.swal2-popup.swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-tip{-webkit-animation:swal2-toast-animate-success-line-tip .75s;animation:swal2-toast-animate-success-line-tip .75s}.swal2-popup.swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-long{-webkit-animation:swal2-toast-animate-success-line-long .75s;animation:swal2-toast-animate-success-line-long .75s}.swal2-popup.swal2-toast.swal2-show{-webkit-animation:swal2-toast-show .5s;animation:swal2-toast-show .5s}.swal2-popup.swal2-toast.swal2-hide{-webkit-animation:swal2-toast-hide .1s forwards;animation:swal2-toast-hide .1s forwards}.swal2-container{display:grid;position:fixed;z-index:1060;top:0;right:0;bottom:0;left:0;box-sizing:border-box;grid-template-areas:\"top-start     top            top-end\" \"center-start  center         center-end\" \"bottom-start  bottom-center  bottom-end\";grid-template-rows:minmax(-webkit-min-content,auto) minmax(-webkit-min-content,auto) minmax(-webkit-min-content,auto);grid-template-rows:minmax(min-content,auto) minmax(min-content,auto) minmax(min-content,auto);height:100%;padding:.625em;overflow-x:hidden;transition:background-color .1s;-webkit-overflow-scrolling:touch}.swal2-container.swal2-backdrop-show,.swal2-container.swal2-noanimation{background:rgba(0,0,0,.4)}.swal2-container.swal2-backdrop-hide{background:0 0!important}.swal2-container.swal2-bottom-start,.swal2-container.swal2-center-start,.swal2-container.swal2-top-start{grid-template-columns:minmax(0,1fr) auto auto}.swal2-container.swal2-bottom,.swal2-container.swal2-center,.swal2-container.swal2-top{grid-template-columns:auto minmax(0,1fr) auto}.swal2-container.swal2-bottom-end,.swal2-container.swal2-center-end,.swal2-container.swal2-top-end{grid-template-columns:auto auto minmax(0,1fr)}.swal2-container.swal2-top-start>.swal2-popup{align-self:start}.swal2-container.swal2-top>.swal2-popup{grid-column:2;align-self:start;justify-self:center}.swal2-container.swal2-top-end>.swal2-popup,.swal2-container.swal2-top-right>.swal2-popup{grid-column:3;align-self:start;justify-self:end}.swal2-container.swal2-center-left>.swal2-popup,.swal2-container.swal2-center-start>.swal2-popup{grid-row:2;align-self:center}.swal2-container.swal2-center>.swal2-popup{grid-column:2;grid-row:2;align-self:center;justify-self:center}.swal2-container.swal2-center-end>.swal2-popup,.swal2-container.swal2-center-right>.swal2-popup{grid-column:3;grid-row:2;align-self:center;justify-self:end}.swal2-container.swal2-bottom-left>.swal2-popup,.swal2-container.swal2-bottom-start>.swal2-popup{grid-column:1;grid-row:3;align-self:end}.swal2-container.swal2-bottom>.swal2-popup{grid-column:2;grid-row:3;justify-self:center;align-self:end}.swal2-container.swal2-bottom-end>.swal2-popup,.swal2-container.swal2-bottom-right>.swal2-popup{grid-column:3;grid-row:3;align-self:end;justify-self:end}.swal2-container.swal2-grow-fullscreen>.swal2-popup,.swal2-container.swal2-grow-row>.swal2-popup{grid-column:1/4;width:100%}.swal2-container.swal2-grow-column>.swal2-popup,.swal2-container.swal2-grow-fullscreen>.swal2-popup{grid-row:1/4;align-self:stretch}.swal2-container.swal2-no-transition{transition:none!important}.swal2-popup{display:none;position:relative;box-sizing:border-box;grid-template-columns:minmax(0,100%);width:32em;max-width:100%;padding:0 0 1.25em;border:none;border-radius:5px;background:#fff;color:#545454;font-family:inherit;font-size:1rem}.swal2-popup:focus{outline:0}.swal2-popup.swal2-loading{overflow-y:hidden}.swal2-title{position:relative;max-width:100%;margin:0;padding:.8em 1em 0;color:inherit;font-size:1.875em;font-weight:600;text-align:center;text-transform:none;word-wrap:break-word}.swal2-actions{display:flex;z-index:1;box-sizing:border-box;flex-wrap:wrap;align-items:center;justify-content:center;width:auto;margin:1.25em auto 0;padding:0}.swal2-actions:not(.swal2-loading) .swal2-styled[disabled]{opacity:.4}.swal2-actions:not(.swal2-loading) .swal2-styled:hover{background-image:linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.1))}.swal2-actions:not(.swal2-loading) .swal2-styled:active{background-image:linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.2))}.swal2-loader{display:none;align-items:center;justify-content:center;width:2.2em;height:2.2em;margin:0 1.875em;-webkit-animation:swal2-rotate-loading 1.5s linear 0s infinite normal;animation:swal2-rotate-loading 1.5s linear 0s infinite normal;border-width:.25em;border-style:solid;border-radius:100%;border-color:#2778c4 transparent #2778c4 transparent}.swal2-styled{margin:.3125em;padding:.625em 1.1em;transition:box-shadow .1s;box-shadow:0 0 0 3px transparent;font-weight:500}.swal2-styled:not([disabled]){cursor:pointer}.swal2-styled.swal2-confirm{border:0;border-radius:.25em;background:initial;background-color:#7066e0;color:#fff;font-size:1em}.swal2-styled.swal2-confirm:focus{box-shadow:0 0 0 3px rgba(112,102,224,.5)}.swal2-styled.swal2-deny{border:0;border-radius:.25em;background:initial;background-color:#dc3741;color:#fff;font-size:1em}.swal2-styled.swal2-deny:focus{box-shadow:0 0 0 3px rgba(220,55,65,.5)}.swal2-styled.swal2-cancel{border:0;border-radius:.25em;background:initial;background-color:#6e7881;color:#fff;font-size:1em}.swal2-styled.swal2-cancel:focus{box-shadow:0 0 0 3px rgba(110,120,129,.5)}.swal2-styled.swal2-default-outline:focus{box-shadow:0 0 0 3px rgba(100,150,200,.5)}.swal2-styled:focus{outline:0}.swal2-styled::-moz-focus-inner{border:0}.swal2-footer{justify-content:center;margin:1em 0 0;padding:1em 1em 0;border-top:1px solid #eee;color:inherit;font-size:1em}.swal2-timer-progress-bar-container{position:absolute;right:0;bottom:0;left:0;grid-column:auto!important;overflow:hidden;border-bottom-right-radius:5px;border-bottom-left-radius:5px}.swal2-timer-progress-bar{width:100%;height:.25em;background:rgba(0,0,0,.2)}.swal2-image{max-width:100%;margin:2em auto 1em}.swal2-close{z-index:2;align-items:center;justify-content:center;width:1.2em;height:1.2em;margin-top:0;margin-right:0;margin-bottom:-1.2em;padding:0;overflow:hidden;transition:color .1s,box-shadow .1s;border:none;border-radius:5px;background:0 0;color:#ccc;font-family:serif;font-family:monospace;font-size:2.5em;cursor:pointer;justify-self:end}.swal2-close:hover{transform:none;background:0 0;color:#f27474}.swal2-close:focus{outline:0;box-shadow:inset 0 0 0 3px rgba(100,150,200,.5)}.swal2-close::-moz-focus-inner{border:0}.swal2-html-container{z-index:1;justify-content:center;margin:1em 1.6em .3em;padding:0;overflow:auto;color:inherit;font-size:1.125em;font-weight:400;line-height:normal;text-align:center;word-wrap:break-word;word-break:break-word}.swal2-checkbox,.swal2-file,.swal2-input,.swal2-radio,.swal2-select,.swal2-textarea{margin:1em 2em 3px}.swal2-file,.swal2-input,.swal2-textarea{box-sizing:border-box;width:auto;transition:border-color .1s,box-shadow .1s;border:1px solid #d9d9d9;border-radius:.1875em;background:0 0;box-shadow:inset 0 1px 1px rgba(0,0,0,.06),0 0 0 3px transparent;color:inherit;font-size:1.125em}.swal2-file.swal2-inputerror,.swal2-input.swal2-inputerror,.swal2-textarea.swal2-inputerror{border-color:#f27474!important;box-shadow:0 0 2px #f27474!important}.swal2-file:focus,.swal2-input:focus,.swal2-textarea:focus{border:1px solid #b4dbed;outline:0;box-shadow:inset 0 1px 1px rgba(0,0,0,.06),0 0 0 3px rgba(100,150,200,.5)}.swal2-file::-moz-placeholder,.swal2-input::-moz-placeholder,.swal2-textarea::-moz-placeholder{color:#ccc}.swal2-file::placeholder,.swal2-input::placeholder,.swal2-textarea::placeholder{color:#ccc}.swal2-range{margin:1em 2em 3px;background:#fff}.swal2-range input{width:80%}.swal2-range output{width:20%;color:inherit;font-weight:600;text-align:center}.swal2-range input,.swal2-range output{height:2.625em;padding:0;font-size:1.125em;line-height:2.625em}.swal2-input{height:2.625em;padding:0 .75em}.swal2-file{width:75%;margin-right:auto;margin-left:auto;background:0 0;font-size:1.125em}.swal2-textarea{height:6.75em;padding:.75em}.swal2-select{min-width:50%;max-width:100%;padding:.375em .625em;background:0 0;color:inherit;font-size:1.125em}.swal2-checkbox,.swal2-radio{align-items:center;justify-content:center;background:#fff;color:inherit}.swal2-checkbox label,.swal2-radio label{margin:0 .6em;font-size:1.125em}.swal2-checkbox input,.swal2-radio input{flex-shrink:0;margin:0 .4em}.swal2-input-label{display:flex;justify-content:center;margin:1em auto 0}.swal2-validation-message{align-items:center;justify-content:center;margin:1em 0 0;padding:.625em;overflow:hidden;background:#f0f0f0;color:#666;font-size:1em;font-weight:300}.swal2-validation-message::before{content:\"!\";display:inline-block;width:1.5em;min-width:1.5em;height:1.5em;margin:0 .625em;border-radius:50%;background-color:#f27474;color:#fff;font-weight:600;line-height:1.5em;text-align:center}.swal2-icon{position:relative;box-sizing:content-box;justify-content:center;width:5em;height:5em;margin:2.5em auto .6em;border:.25em solid transparent;border-radius:50%;border-color:#000;font-family:inherit;line-height:5em;cursor:default;-webkit-user-select:none;-moz-user-select:none;user-select:none}.swal2-icon .swal2-icon-content{display:flex;align-items:center;font-size:3.75em}.swal2-icon.swal2-error{border-color:#f27474;color:#f27474}.swal2-icon.swal2-error .swal2-x-mark{position:relative;flex-grow:1}.swal2-icon.swal2-error [class^=swal2-x-mark-line]{display:block;position:absolute;top:2.3125em;width:2.9375em;height:.3125em;border-radius:.125em;background-color:#f27474}.swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left]{left:1.0625em;transform:rotate(45deg)}.swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right]{right:1em;transform:rotate(-45deg)}.swal2-icon.swal2-error.swal2-icon-show{-webkit-animation:swal2-animate-error-icon .5s;animation:swal2-animate-error-icon .5s}.swal2-icon.swal2-error.swal2-icon-show .swal2-x-mark{-webkit-animation:swal2-animate-error-x-mark .5s;animation:swal2-animate-error-x-mark .5s}.swal2-icon.swal2-warning{border-color:#facea8;color:#f8bb86}.swal2-icon.swal2-warning.swal2-icon-show{-webkit-animation:swal2-animate-error-icon .5s;animation:swal2-animate-error-icon .5s}.swal2-icon.swal2-warning.swal2-icon-show .swal2-icon-content{-webkit-animation:swal2-animate-i-mark .5s;animation:swal2-animate-i-mark .5s}.swal2-icon.swal2-info{border-color:#9de0f6;color:#3fc3ee}.swal2-icon.swal2-info.swal2-icon-show{-webkit-animation:swal2-animate-error-icon .5s;animation:swal2-animate-error-icon .5s}.swal2-icon.swal2-info.swal2-icon-show .swal2-icon-content{-webkit-animation:swal2-animate-i-mark .8s;animation:swal2-animate-i-mark .8s}.swal2-icon.swal2-question{border-color:#c9dae1;color:#87adbd}.swal2-icon.swal2-question.swal2-icon-show{-webkit-animation:swal2-animate-error-icon .5s;animation:swal2-animate-error-icon .5s}.swal2-icon.swal2-question.swal2-icon-show .swal2-icon-content{-webkit-animation:swal2-animate-question-mark .8s;animation:swal2-animate-question-mark .8s}.swal2-icon.swal2-success{border-color:#a5dc86;color:#a5dc86}.swal2-icon.swal2-success [class^=swal2-success-circular-line]{position:absolute;width:3.75em;height:7.5em;transform:rotate(45deg);border-radius:50%}.swal2-icon.swal2-success [class^=swal2-success-circular-line][class$=left]{top:-.4375em;left:-2.0635em;transform:rotate(-45deg);transform-origin:3.75em 3.75em;border-radius:7.5em 0 0 7.5em}.swal2-icon.swal2-success [class^=swal2-success-circular-line][class$=right]{top:-.6875em;left:1.875em;transform:rotate(-45deg);transform-origin:0 3.75em;border-radius:0 7.5em 7.5em 0}.swal2-icon.swal2-success .swal2-success-ring{position:absolute;z-index:2;top:-.25em;left:-.25em;box-sizing:content-box;width:100%;height:100%;border:.25em solid rgba(165,220,134,.3);border-radius:50%}.swal2-icon.swal2-success .swal2-success-fix{position:absolute;z-index:1;top:.5em;left:1.625em;width:.4375em;height:5.625em;transform:rotate(-45deg)}.swal2-icon.swal2-success [class^=swal2-success-line]{display:block;position:absolute;z-index:2;height:.3125em;border-radius:.125em;background-color:#a5dc86}.swal2-icon.swal2-success [class^=swal2-success-line][class$=tip]{top:2.875em;left:.8125em;width:1.5625em;transform:rotate(45deg)}.swal2-icon.swal2-success [class^=swal2-success-line][class$=long]{top:2.375em;right:.5em;width:2.9375em;transform:rotate(-45deg)}.swal2-icon.swal2-success.swal2-icon-show .swal2-success-line-tip{-webkit-animation:swal2-animate-success-line-tip .75s;animation:swal2-animate-success-line-tip .75s}.swal2-icon.swal2-success.swal2-icon-show .swal2-success-line-long{-webkit-animation:swal2-animate-success-line-long .75s;animation:swal2-animate-success-line-long .75s}.swal2-icon.swal2-success.swal2-icon-show .swal2-success-circular-line-right{-webkit-animation:swal2-rotate-success-circular-line 4.25s ease-in;animation:swal2-rotate-success-circular-line 4.25s ease-in}.swal2-progress-steps{flex-wrap:wrap;align-items:center;max-width:100%;margin:1.25em auto;padding:0;background:0 0;font-weight:600}.swal2-progress-steps li{display:inline-block;position:relative}.swal2-progress-steps .swal2-progress-step{z-index:20;flex-shrink:0;width:2em;height:2em;border-radius:2em;background:#2778c4;color:#fff;line-height:2em;text-align:center}.swal2-progress-steps .swal2-progress-step.swal2-active-progress-step{background:#2778c4}.swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step{background:#add8e6;color:#fff}.swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step-line{background:#add8e6}.swal2-progress-steps .swal2-progress-step-line{z-index:10;flex-shrink:0;width:2.5em;height:.4em;margin:0 -1px;background:#2778c4}[class^=swal2]{-webkit-tap-highlight-color:transparent}.swal2-show{-webkit-animation:swal2-show .3s;animation:swal2-show .3s}.swal2-hide{-webkit-animation:swal2-hide .15s forwards;animation:swal2-hide .15s forwards}.swal2-noanimation{transition:none}.swal2-scrollbar-measure{position:absolute;top:-9999px;width:50px;height:50px;overflow:scroll}.swal2-rtl .swal2-close{margin-right:initial;margin-left:0}.swal2-rtl .swal2-timer-progress-bar{right:0;left:auto}.leave-russia-now-and-apply-your-skills-to-the-world{display:flex;position:fixed;z-index:1939;top:0;right:0;bottom:0;left:0;flex-direction:column;align-items:center;justify-content:center;padding:25px 0 20px;background:#20232a;color:#fff;text-align:center}.leave-russia-now-and-apply-your-skills-to-the-world div{max-width:560px;margin:10px;line-height:146%}.leave-russia-now-and-apply-your-skills-to-the-world iframe{max-width:100%;max-height:55.5555555556vmin;margin:16px auto}.leave-russia-now-and-apply-your-skills-to-the-world strong{border-bottom:2px dashed #fff}.leave-russia-now-and-apply-your-skills-to-the-world button{display:flex;position:fixed;z-index:1940;top:0;right:0;align-items:center;justify-content:center;width:48px;height:48px;margin-right:10px;margin-bottom:-10px;border:none;background:0 0;color:#aaa;font-size:48px;font-weight:700;cursor:pointer}.leave-russia-now-and-apply-your-skills-to-the-world button:hover{color:#fff}@-webkit-keyframes swal2-toast-show{0%{transform:translateY(-.625em) rotateZ(2deg)}33%{transform:translateY(0) rotateZ(-2deg)}66%{transform:translateY(.3125em) rotateZ(2deg)}100%{transform:translateY(0) rotateZ(0)}}@keyframes swal2-toast-show{0%{transform:translateY(-.625em) rotateZ(2deg)}33%{transform:translateY(0) rotateZ(-2deg)}66%{transform:translateY(.3125em) rotateZ(2deg)}100%{transform:translateY(0) rotateZ(0)}}@-webkit-keyframes swal2-toast-hide{100%{transform:rotateZ(1deg);opacity:0}}@keyframes swal2-toast-hide{100%{transform:rotateZ(1deg);opacity:0}}@-webkit-keyframes swal2-toast-animate-success-line-tip{0%{top:.5625em;left:.0625em;width:0}54%{top:.125em;left:.125em;width:0}70%{top:.625em;left:-.25em;width:1.625em}84%{top:1.0625em;left:.75em;width:.5em}100%{top:1.125em;left:.1875em;width:.75em}}@keyframes swal2-toast-animate-success-line-tip{0%{top:.5625em;left:.0625em;width:0}54%{top:.125em;left:.125em;width:0}70%{top:.625em;left:-.25em;width:1.625em}84%{top:1.0625em;left:.75em;width:.5em}100%{top:1.125em;left:.1875em;width:.75em}}@-webkit-keyframes swal2-toast-animate-success-line-long{0%{top:1.625em;right:1.375em;width:0}65%{top:1.25em;right:.9375em;width:0}84%{top:.9375em;right:0;width:1.125em}100%{top:.9375em;right:.1875em;width:1.375em}}@keyframes swal2-toast-animate-success-line-long{0%{top:1.625em;right:1.375em;width:0}65%{top:1.25em;right:.9375em;width:0}84%{top:.9375em;right:0;width:1.125em}100%{top:.9375em;right:.1875em;width:1.375em}}@-webkit-keyframes swal2-show{0%{transform:scale(.7)}45%{transform:scale(1.05)}80%{transform:scale(.95)}100%{transform:scale(1)}}@keyframes swal2-show{0%{transform:scale(.7)}45%{transform:scale(1.05)}80%{transform:scale(.95)}100%{transform:scale(1)}}@-webkit-keyframes swal2-hide{0%{transform:scale(1);opacity:1}100%{transform:scale(.5);opacity:0}}@keyframes swal2-hide{0%{transform:scale(1);opacity:1}100%{transform:scale(.5);opacity:0}}@-webkit-keyframes swal2-animate-success-line-tip{0%{top:1.1875em;left:.0625em;width:0}54%{top:1.0625em;left:.125em;width:0}70%{top:2.1875em;left:-.375em;width:3.125em}84%{top:3em;left:1.3125em;width:1.0625em}100%{top:2.8125em;left:.8125em;width:1.5625em}}@keyframes swal2-animate-success-line-tip{0%{top:1.1875em;left:.0625em;width:0}54%{top:1.0625em;left:.125em;width:0}70%{top:2.1875em;left:-.375em;width:3.125em}84%{top:3em;left:1.3125em;width:1.0625em}100%{top:2.8125em;left:.8125em;width:1.5625em}}@-webkit-keyframes swal2-animate-success-line-long{0%{top:3.375em;right:2.875em;width:0}65%{top:3.375em;right:2.875em;width:0}84%{top:2.1875em;right:0;width:3.4375em}100%{top:2.375em;right:.5em;width:2.9375em}}@keyframes swal2-animate-success-line-long{0%{top:3.375em;right:2.875em;width:0}65%{top:3.375em;right:2.875em;width:0}84%{top:2.1875em;right:0;width:3.4375em}100%{top:2.375em;right:.5em;width:2.9375em}}@-webkit-keyframes swal2-rotate-success-circular-line{0%{transform:rotate(-45deg)}5%{transform:rotate(-45deg)}12%{transform:rotate(-405deg)}100%{transform:rotate(-405deg)}}@keyframes swal2-rotate-success-circular-line{0%{transform:rotate(-45deg)}5%{transform:rotate(-45deg)}12%{transform:rotate(-405deg)}100%{transform:rotate(-405deg)}}@-webkit-keyframes swal2-animate-error-x-mark{0%{margin-top:1.625em;transform:scale(.4);opacity:0}50%{margin-top:1.625em;transform:scale(.4);opacity:0}80%{margin-top:-.375em;transform:scale(1.15)}100%{margin-top:0;transform:scale(1);opacity:1}}@keyframes swal2-animate-error-x-mark{0%{margin-top:1.625em;transform:scale(.4);opacity:0}50%{margin-top:1.625em;transform:scale(.4);opacity:0}80%{margin-top:-.375em;transform:scale(1.15)}100%{margin-top:0;transform:scale(1);opacity:1}}@-webkit-keyframes swal2-animate-error-icon{0%{transform:rotateX(100deg);opacity:0}100%{transform:rotateX(0);opacity:1}}@keyframes swal2-animate-error-icon{0%{transform:rotateX(100deg);opacity:0}100%{transform:rotateX(0);opacity:1}}@-webkit-keyframes swal2-rotate-loading{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}@keyframes swal2-rotate-loading{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}@-webkit-keyframes swal2-animate-question-mark{0%{transform:rotateY(-360deg)}100%{transform:rotateY(0)}}@keyframes swal2-animate-question-mark{0%{transform:rotateY(-360deg)}100%{transform:rotateY(0)}}@-webkit-keyframes swal2-animate-i-mark{0%{transform:rotateZ(45deg);opacity:0}25%{transform:rotateZ(-25deg);opacity:.4}50%{transform:rotateZ(15deg);opacity:.8}75%{transform:rotateZ(-5deg);opacity:1}100%{transform:rotateX(0);opacity:1}}@keyframes swal2-animate-i-mark{0%{transform:rotateZ(45deg);opacity:0}25%{transform:rotateZ(-25deg);opacity:.4}50%{transform:rotateZ(15deg);opacity:.8}75%{transform:rotateZ(-5deg);opacity:1}100%{transform:rotateX(0);opacity:1}}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){overflow:hidden}body.swal2-height-auto{height:auto!important}body.swal2-no-backdrop .swal2-container{background-color:transparent!important;pointer-events:none}body.swal2-no-backdrop .swal2-container .swal2-popup{pointer-events:all}body.swal2-no-backdrop .swal2-container .swal2-modal{box-shadow:0 0 10px rgba(0,0,0,.4)}@media print{body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){overflow-y:scroll!important}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown)>[aria-hidden=true]{display:none}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) .swal2-container{position:static!important}}body.swal2-toast-shown .swal2-container{box-sizing:border-box;width:360px;max-width:100%;background-color:transparent;pointer-events:none}body.swal2-toast-shown .swal2-container.swal2-top{top:0;right:auto;bottom:auto;left:50%;transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-top-end,body.swal2-toast-shown .swal2-container.swal2-top-right{top:0;right:0;bottom:auto;left:auto}body.swal2-toast-shown .swal2-container.swal2-top-left,body.swal2-toast-shown .swal2-container.swal2-top-start{top:0;right:auto;bottom:auto;left:0}body.swal2-toast-shown .swal2-container.swal2-center-left,body.swal2-toast-shown .swal2-container.swal2-center-start{top:50%;right:auto;bottom:auto;left:0;transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-center{top:50%;right:auto;bottom:auto;left:50%;transform:translate(-50%,-50%)}body.swal2-toast-shown .swal2-container.swal2-center-end,body.swal2-toast-shown .swal2-container.swal2-center-right{top:50%;right:0;bottom:auto;left:auto;transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-left,body.swal2-toast-shown .swal2-container.swal2-bottom-start{top:auto;right:auto;bottom:0;left:0}body.swal2-toast-shown .swal2-container.swal2-bottom{top:auto;right:auto;bottom:0;left:50%;transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-end,body.swal2-toast-shown .swal2-container.swal2-bottom-right{top:auto;right:0;bottom:0;left:auto}");
+"undefined"!=typeof document&&function(e,t){var n=e.createElement("style");if(e.getElementsByTagName("head")[0].appendChild(n),n.styleSheet)n.styleSheet.disabled||(n.styleSheet.cssText=t);else try{n.innerHTML=t}catch(e){n.innerText=t}}(document,".swal2-popup.swal2-toast{box-sizing:border-box;grid-column:1/4!important;grid-row:1/4!important;grid-template-columns:1fr 99fr 1fr;padding:1em;overflow-y:hidden;background:#fff;box-shadow:0 0 1px rgba(0,0,0,.075),0 1px 2px rgba(0,0,0,.075),1px 2px 4px rgba(0,0,0,.075),1px 3px 8px rgba(0,0,0,.075),2px 4px 16px rgba(0,0,0,.075);pointer-events:all}.swal2-popup.swal2-toast>*{grid-column:2}.swal2-popup.swal2-toast .swal2-title{margin:.5em 1em;padding:0;font-size:1em;text-align:initial}.swal2-popup.swal2-toast .swal2-loading{justify-content:center}.swal2-popup.swal2-toast .swal2-input{height:2em;margin:.5em;font-size:1em}.swal2-popup.swal2-toast .swal2-validation-message{font-size:1em}.swal2-popup.swal2-toast .swal2-footer{margin:.5em 0 0;padding:.5em 0 0;font-size:.8em}.swal2-popup.swal2-toast .swal2-close{grid-column:3/3;grid-row:1/99;align-self:center;width:.8em;height:.8em;margin:0;font-size:2em}.swal2-popup.swal2-toast .swal2-html-container{margin:.5em 1em;padding:0;font-size:1em;text-align:initial}.swal2-popup.swal2-toast .swal2-html-container:empty{padding:0}.swal2-popup.swal2-toast .swal2-loader{grid-column:1;grid-row:1/99;align-self:center;width:2em;height:2em;margin:.25em}.swal2-popup.swal2-toast .swal2-icon{grid-column:1;grid-row:1/99;align-self:center;width:2em;min-width:2em;height:2em;margin:0 .5em 0 0}.swal2-popup.swal2-toast .swal2-icon .swal2-icon-content{display:flex;align-items:center;font-size:1.8em;font-weight:700}.swal2-popup.swal2-toast .swal2-icon.swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line]{top:.875em;width:1.375em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left]{left:.3125em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right]{right:.3125em}.swal2-popup.swal2-toast .swal2-actions{justify-content:flex-start;height:auto;margin:0;margin-top:.5em;padding:0 .5em}.swal2-popup.swal2-toast .swal2-styled{margin:.25em .5em;padding:.4em .6em;font-size:1em}.swal2-popup.swal2-toast .swal2-success{border-color:#a5dc86}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line]{position:absolute;width:1.6em;height:3em;transform:rotate(45deg);border-radius:50%}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=left]{top:-.8em;left:-.5em;transform:rotate(-45deg);transform-origin:2em 2em;border-radius:4em 0 0 4em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=right]{top:-.25em;left:.9375em;transform-origin:0 1.5em;border-radius:0 4em 4em 0}.swal2-popup.swal2-toast .swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-popup.swal2-toast .swal2-success .swal2-success-fix{top:0;left:.4375em;width:.4375em;height:2.6875em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line]{height:.3125em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=tip]{top:1.125em;left:.1875em;width:.75em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=long]{top:.9375em;right:.1875em;width:1.375em}.swal2-popup.swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-tip{-webkit-animation:swal2-toast-animate-success-line-tip .75s;animation:swal2-toast-animate-success-line-tip .75s}.swal2-popup.swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-long{-webkit-animation:swal2-toast-animate-success-line-long .75s;animation:swal2-toast-animate-success-line-long .75s}.swal2-popup.swal2-toast.swal2-show{-webkit-animation:swal2-toast-show .5s;animation:swal2-toast-show .5s}.swal2-popup.swal2-toast.swal2-hide{-webkit-animation:swal2-toast-hide .1s forwards;animation:swal2-toast-hide .1s forwards}.swal2-container{display:grid;position:fixed;z-index:1060;top:0;right:0;bottom:0;left:0;box-sizing:border-box;grid-template-areas:\"top-start     top            top-end\" \"center-start  center         center-end\" \"bottom-start  bottom-center  bottom-end\";grid-template-rows:minmax(-webkit-min-content,auto) minmax(-webkit-min-content,auto) minmax(-webkit-min-content,auto);grid-template-rows:minmax(min-content,auto) minmax(min-content,auto) minmax(min-content,auto);height:100%;padding:.625em;overflow-x:hidden;transition:background-color .1s;-webkit-overflow-scrolling:touch}.swal2-container.swal2-backdrop-show,.swal2-container.swal2-noanimation{background:rgba(0,0,0,.4)}.swal2-container.swal2-backdrop-hide{background:0 0!important}.swal2-container.swal2-bottom-start,.swal2-container.swal2-center-start,.swal2-container.swal2-top-start{grid-template-columns:minmax(0,1fr) auto auto}.swal2-container.swal2-bottom,.swal2-container.swal2-center,.swal2-container.swal2-top{grid-template-columns:auto minmax(0,1fr) auto}.swal2-container.swal2-bottom-end,.swal2-container.swal2-center-end,.swal2-container.swal2-top-end{grid-template-columns:auto auto minmax(0,1fr)}.swal2-container.swal2-top-start>.swal2-popup{align-self:start}.swal2-container.swal2-top>.swal2-popup{grid-column:2;align-self:start;justify-self:center}.swal2-container.swal2-top-end>.swal2-popup,.swal2-container.swal2-top-right>.swal2-popup{grid-column:3;align-self:start;justify-self:end}.swal2-container.swal2-center-left>.swal2-popup,.swal2-container.swal2-center-start>.swal2-popup{grid-row:2;align-self:center}.swal2-container.swal2-center>.swal2-popup{grid-column:2;grid-row:2;align-self:center;justify-self:center}.swal2-container.swal2-center-end>.swal2-popup,.swal2-container.swal2-center-right>.swal2-popup{grid-column:3;grid-row:2;align-self:center;justify-self:end}.swal2-container.swal2-bottom-left>.swal2-popup,.swal2-container.swal2-bottom-start>.swal2-popup{grid-column:1;grid-row:3;align-self:end}.swal2-container.swal2-bottom>.swal2-popup{grid-column:2;grid-row:3;justify-self:center;align-self:end}.swal2-container.swal2-bottom-end>.swal2-popup,.swal2-container.swal2-bottom-right>.swal2-popup{grid-column:3;grid-row:3;align-self:end;justify-self:end}.swal2-container.swal2-grow-fullscreen>.swal2-popup,.swal2-container.swal2-grow-row>.swal2-popup{grid-column:1/4;width:100%}.swal2-container.swal2-grow-column>.swal2-popup,.swal2-container.swal2-grow-fullscreen>.swal2-popup{grid-row:1/4;align-self:stretch}.swal2-container.swal2-no-transition{transition:none!important}.swal2-popup{display:none;position:relative;box-sizing:border-box;grid-template-columns:minmax(0,100%);width:32em;max-width:100%;padding:0 0 1.25em;border:none;border-radius:5px;background:#fff;color:#545454;font-family:inherit;font-size:1rem}.swal2-popup:focus{outline:0}.swal2-popup.swal2-loading{overflow-y:hidden}.swal2-title{position:relative;max-width:100%;margin:0;padding:.8em 1em 0;color:inherit;font-size:1.875em;font-weight:600;text-align:center;text-transform:none;word-wrap:break-word}.swal2-actions{display:flex;z-index:1;box-sizing:border-box;flex-wrap:wrap;align-items:center;justify-content:center;width:auto;margin:1.25em auto 0;padding:0}.swal2-actions:not(.swal2-loading) .swal2-styled[disabled]{opacity:.4}.swal2-actions:not(.swal2-loading) .swal2-styled:hover{background-image:linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.1))}.swal2-actions:not(.swal2-loading) .swal2-styled:active{background-image:linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.2))}.swal2-loader{display:none;align-items:center;justify-content:center;width:2.2em;height:2.2em;margin:0 1.875em;-webkit-animation:swal2-rotate-loading 1.5s linear 0s infinite normal;animation:swal2-rotate-loading 1.5s linear 0s infinite normal;border-width:.25em;border-style:solid;border-radius:100%;border-color:#2778c4 transparent #2778c4 transparent}.swal2-styled{margin:.3125em;padding:.625em 1.1em;transition:box-shadow .1s;box-shadow:0 0 0 3px transparent;font-weight:500}.swal2-styled:not([disabled]){cursor:pointer}.swal2-styled.swal2-confirm{border:0;border-radius:.25em;background:initial;background-color:#7066e0;color:#fff;font-size:1em}.swal2-styled.swal2-confirm:focus{box-shadow:0 0 0 3px rgba(112,102,224,.5)}.swal2-styled.swal2-deny{border:0;border-radius:.25em;background:initial;background-color:#dc3741;color:#fff;font-size:1em}.swal2-styled.swal2-deny:focus{box-shadow:0 0 0 3px rgba(220,55,65,.5)}.swal2-styled.swal2-cancel{border:0;border-radius:.25em;background:initial;background-color:#6e7881;color:#fff;font-size:1em}.swal2-styled.swal2-cancel:focus{box-shadow:0 0 0 3px rgba(110,120,129,.5)}.swal2-styled.swal2-default-outline:focus{box-shadow:0 0 0 3px rgba(100,150,200,.5)}.swal2-styled:focus{outline:0}.swal2-styled::-moz-focus-inner{border:0}.swal2-footer{justify-content:center;margin:1em 0 0;padding:1em 1em 0;border-top:1px solid #eee;color:inherit;font-size:1em}.swal2-timer-progress-bar-container{position:absolute;right:0;bottom:0;left:0;grid-column:auto!important;overflow:hidden;border-bottom-right-radius:5px;border-bottom-left-radius:5px}.swal2-timer-progress-bar{width:100%;height:.25em;background:rgba(0,0,0,.2)}.swal2-image{max-width:100%;margin:2em auto 1em}.swal2-close{z-index:2;align-items:center;justify-content:center;width:1.2em;height:1.2em;margin-top:0;margin-right:0;margin-bottom:-1.2em;padding:0;overflow:hidden;transition:color .1s,box-shadow .1s;border:none;border-radius:5px;background:0 0;color:#ccc;font-family:serif;font-family:monospace;font-size:2.5em;cursor:pointer;justify-self:end}.swal2-close:hover{transform:none;background:0 0;color:#f27474}.swal2-close:focus{outline:0;box-shadow:inset 0 0 0 3px rgba(100,150,200,.5)}.swal2-close::-moz-focus-inner{border:0}.swal2-html-container{z-index:1;justify-content:center;margin:1em 1.6em .3em;padding:0;overflow:auto;color:inherit;font-size:1.125em;font-weight:400;line-height:normal;text-align:center;word-wrap:break-word;word-break:break-word}.swal2-checkbox,.swal2-file,.swal2-input,.swal2-radio,.swal2-select,.swal2-textarea{margin:1em 2em 3px}.swal2-file,.swal2-input,.swal2-textarea{box-sizing:border-box;width:auto;transition:border-color .1s,box-shadow .1s;border:1px solid #d9d9d9;border-radius:.1875em;background:inherit;box-shadow:inset 0 1px 1px rgba(0,0,0,.06),0 0 0 3px transparent;color:inherit;font-size:1.125em}.swal2-file.swal2-inputerror,.swal2-input.swal2-inputerror,.swal2-textarea.swal2-inputerror{border-color:#f27474!important;box-shadow:0 0 2px #f27474!important}.swal2-file:focus,.swal2-input:focus,.swal2-textarea:focus{border:1px solid #b4dbed;outline:0;box-shadow:inset 0 1px 1px rgba(0,0,0,.06),0 0 0 3px rgba(100,150,200,.5)}.swal2-file::-moz-placeholder,.swal2-input::-moz-placeholder,.swal2-textarea::-moz-placeholder{color:#ccc}.swal2-file:-ms-input-placeholder,.swal2-input:-ms-input-placeholder,.swal2-textarea:-ms-input-placeholder{color:#ccc}.swal2-file::placeholder,.swal2-input::placeholder,.swal2-textarea::placeholder{color:#ccc}.swal2-range{margin:1em 2em 3px;background:#fff}.swal2-range input{width:80%}.swal2-range output{width:20%;color:inherit;font-weight:600;text-align:center}.swal2-range input,.swal2-range output{height:2.625em;padding:0;font-size:1.125em;line-height:2.625em}.swal2-input{height:2.625em;padding:0 .75em}.swal2-file{width:75%;margin-right:auto;margin-left:auto;background:inherit;font-size:1.125em}.swal2-textarea{height:6.75em;padding:.75em}.swal2-select{min-width:50%;max-width:100%;padding:.375em .625em;background:inherit;color:inherit;font-size:1.125em}.swal2-checkbox,.swal2-radio{align-items:center;justify-content:center;background:#fff;color:inherit}.swal2-checkbox label,.swal2-radio label{margin:0 .6em;font-size:1.125em}.swal2-checkbox input,.swal2-radio input{flex-shrink:0;margin:0 .4em}.swal2-input-label{display:flex;justify-content:center;margin:1em auto 0}.swal2-validation-message{align-items:center;justify-content:center;margin:1em 0 0;padding:.625em;overflow:hidden;background:#f0f0f0;color:#666;font-size:1em;font-weight:300}.swal2-validation-message::before{content:\"!\";display:inline-block;width:1.5em;min-width:1.5em;height:1.5em;margin:0 .625em;border-radius:50%;background-color:#f27474;color:#fff;font-weight:600;line-height:1.5em;text-align:center}.swal2-icon{position:relative;box-sizing:content-box;justify-content:center;width:5em;height:5em;margin:2.5em auto .6em;border:.25em solid transparent;border-radius:50%;border-color:#000;font-family:inherit;line-height:5em;cursor:default;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.swal2-icon .swal2-icon-content{display:flex;align-items:center;font-size:3.75em}.swal2-icon.swal2-error{border-color:#f27474;color:#f27474}.swal2-icon.swal2-error .swal2-x-mark{position:relative;flex-grow:1}.swal2-icon.swal2-error [class^=swal2-x-mark-line]{display:block;position:absolute;top:2.3125em;width:2.9375em;height:.3125em;border-radius:.125em;background-color:#f27474}.swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left]{left:1.0625em;transform:rotate(45deg)}.swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right]{right:1em;transform:rotate(-45deg)}.swal2-icon.swal2-error.swal2-icon-show{-webkit-animation:swal2-animate-error-icon .5s;animation:swal2-animate-error-icon .5s}.swal2-icon.swal2-error.swal2-icon-show .swal2-x-mark{-webkit-animation:swal2-animate-error-x-mark .5s;animation:swal2-animate-error-x-mark .5s}.swal2-icon.swal2-warning{border-color:#facea8;color:#f8bb86}.swal2-icon.swal2-warning.swal2-icon-show{-webkit-animation:swal2-animate-error-icon .5s;animation:swal2-animate-error-icon .5s}.swal2-icon.swal2-warning.swal2-icon-show .swal2-icon-content{-webkit-animation:swal2-animate-i-mark .5s;animation:swal2-animate-i-mark .5s}.swal2-icon.swal2-info{border-color:#9de0f6;color:#3fc3ee}.swal2-icon.swal2-info.swal2-icon-show{-webkit-animation:swal2-animate-error-icon .5s;animation:swal2-animate-error-icon .5s}.swal2-icon.swal2-info.swal2-icon-show .swal2-icon-content{-webkit-animation:swal2-animate-i-mark .8s;animation:swal2-animate-i-mark .8s}.swal2-icon.swal2-question{border-color:#c9dae1;color:#87adbd}.swal2-icon.swal2-question.swal2-icon-show{-webkit-animation:swal2-animate-error-icon .5s;animation:swal2-animate-error-icon .5s}.swal2-icon.swal2-question.swal2-icon-show .swal2-icon-content{-webkit-animation:swal2-animate-question-mark .8s;animation:swal2-animate-question-mark .8s}.swal2-icon.swal2-success{border-color:#a5dc86;color:#a5dc86}.swal2-icon.swal2-success [class^=swal2-success-circular-line]{position:absolute;width:3.75em;height:7.5em;transform:rotate(45deg);border-radius:50%}.swal2-icon.swal2-success [class^=swal2-success-circular-line][class$=left]{top:-.4375em;left:-2.0635em;transform:rotate(-45deg);transform-origin:3.75em 3.75em;border-radius:7.5em 0 0 7.5em}.swal2-icon.swal2-success [class^=swal2-success-circular-line][class$=right]{top:-.6875em;left:1.875em;transform:rotate(-45deg);transform-origin:0 3.75em;border-radius:0 7.5em 7.5em 0}.swal2-icon.swal2-success .swal2-success-ring{position:absolute;z-index:2;top:-.25em;left:-.25em;box-sizing:content-box;width:100%;height:100%;border:.25em solid rgba(165,220,134,.3);border-radius:50%}.swal2-icon.swal2-success .swal2-success-fix{position:absolute;z-index:1;top:.5em;left:1.625em;width:.4375em;height:5.625em;transform:rotate(-45deg)}.swal2-icon.swal2-success [class^=swal2-success-line]{display:block;position:absolute;z-index:2;height:.3125em;border-radius:.125em;background-color:#a5dc86}.swal2-icon.swal2-success [class^=swal2-success-line][class$=tip]{top:2.875em;left:.8125em;width:1.5625em;transform:rotate(45deg)}.swal2-icon.swal2-success [class^=swal2-success-line][class$=long]{top:2.375em;right:.5em;width:2.9375em;transform:rotate(-45deg)}.swal2-icon.swal2-success.swal2-icon-show .swal2-success-line-tip{-webkit-animation:swal2-animate-success-line-tip .75s;animation:swal2-animate-success-line-tip .75s}.swal2-icon.swal2-success.swal2-icon-show .swal2-success-line-long{-webkit-animation:swal2-animate-success-line-long .75s;animation:swal2-animate-success-line-long .75s}.swal2-icon.swal2-success.swal2-icon-show .swal2-success-circular-line-right{-webkit-animation:swal2-rotate-success-circular-line 4.25s ease-in;animation:swal2-rotate-success-circular-line 4.25s ease-in}.swal2-progress-steps{flex-wrap:wrap;align-items:center;max-width:100%;margin:1.25em auto;padding:0;background:inherit;font-weight:600}.swal2-progress-steps li{display:inline-block;position:relative}.swal2-progress-steps .swal2-progress-step{z-index:20;flex-shrink:0;width:2em;height:2em;border-radius:2em;background:#2778c4;color:#fff;line-height:2em;text-align:center}.swal2-progress-steps .swal2-progress-step.swal2-active-progress-step{background:#2778c4}.swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step{background:#add8e6;color:#fff}.swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step-line{background:#add8e6}.swal2-progress-steps .swal2-progress-step-line{z-index:10;flex-shrink:0;width:2.5em;height:.4em;margin:0 -1px;background:#2778c4}[class^=swal2]{-webkit-tap-highlight-color:transparent}.swal2-show{-webkit-animation:swal2-show .3s;animation:swal2-show .3s}.swal2-hide{-webkit-animation:swal2-hide .15s forwards;animation:swal2-hide .15s forwards}.swal2-noanimation{transition:none}.swal2-scrollbar-measure{position:absolute;top:-9999px;width:50px;height:50px;overflow:scroll}.swal2-rtl .swal2-close{margin-right:initial;margin-left:0}.swal2-rtl .swal2-timer-progress-bar{right:0;left:auto}@-webkit-keyframes swal2-toast-show{0%{transform:translateY(-.625em) rotateZ(2deg)}33%{transform:translateY(0) rotateZ(-2deg)}66%{transform:translateY(.3125em) rotateZ(2deg)}100%{transform:translateY(0) rotateZ(0)}}@keyframes swal2-toast-show{0%{transform:translateY(-.625em) rotateZ(2deg)}33%{transform:translateY(0) rotateZ(-2deg)}66%{transform:translateY(.3125em) rotateZ(2deg)}100%{transform:translateY(0) rotateZ(0)}}@-webkit-keyframes swal2-toast-hide{100%{transform:rotateZ(1deg);opacity:0}}@keyframes swal2-toast-hide{100%{transform:rotateZ(1deg);opacity:0}}@-webkit-keyframes swal2-toast-animate-success-line-tip{0%{top:.5625em;left:.0625em;width:0}54%{top:.125em;left:.125em;width:0}70%{top:.625em;left:-.25em;width:1.625em}84%{top:1.0625em;left:.75em;width:.5em}100%{top:1.125em;left:.1875em;width:.75em}}@keyframes swal2-toast-animate-success-line-tip{0%{top:.5625em;left:.0625em;width:0}54%{top:.125em;left:.125em;width:0}70%{top:.625em;left:-.25em;width:1.625em}84%{top:1.0625em;left:.75em;width:.5em}100%{top:1.125em;left:.1875em;width:.75em}}@-webkit-keyframes swal2-toast-animate-success-line-long{0%{top:1.625em;right:1.375em;width:0}65%{top:1.25em;right:.9375em;width:0}84%{top:.9375em;right:0;width:1.125em}100%{top:.9375em;right:.1875em;width:1.375em}}@keyframes swal2-toast-animate-success-line-long{0%{top:1.625em;right:1.375em;width:0}65%{top:1.25em;right:.9375em;width:0}84%{top:.9375em;right:0;width:1.125em}100%{top:.9375em;right:.1875em;width:1.375em}}@-webkit-keyframes swal2-show{0%{transform:scale(.7)}45%{transform:scale(1.05)}80%{transform:scale(.95)}100%{transform:scale(1)}}@keyframes swal2-show{0%{transform:scale(.7)}45%{transform:scale(1.05)}80%{transform:scale(.95)}100%{transform:scale(1)}}@-webkit-keyframes swal2-hide{0%{transform:scale(1);opacity:1}100%{transform:scale(.5);opacity:0}}@keyframes swal2-hide{0%{transform:scale(1);opacity:1}100%{transform:scale(.5);opacity:0}}@-webkit-keyframes swal2-animate-success-line-tip{0%{top:1.1875em;left:.0625em;width:0}54%{top:1.0625em;left:.125em;width:0}70%{top:2.1875em;left:-.375em;width:3.125em}84%{top:3em;left:1.3125em;width:1.0625em}100%{top:2.8125em;left:.8125em;width:1.5625em}}@keyframes swal2-animate-success-line-tip{0%{top:1.1875em;left:.0625em;width:0}54%{top:1.0625em;left:.125em;width:0}70%{top:2.1875em;left:-.375em;width:3.125em}84%{top:3em;left:1.3125em;width:1.0625em}100%{top:2.8125em;left:.8125em;width:1.5625em}}@-webkit-keyframes swal2-animate-success-line-long{0%{top:3.375em;right:2.875em;width:0}65%{top:3.375em;right:2.875em;width:0}84%{top:2.1875em;right:0;width:3.4375em}100%{top:2.375em;right:.5em;width:2.9375em}}@keyframes swal2-animate-success-line-long{0%{top:3.375em;right:2.875em;width:0}65%{top:3.375em;right:2.875em;width:0}84%{top:2.1875em;right:0;width:3.4375em}100%{top:2.375em;right:.5em;width:2.9375em}}@-webkit-keyframes swal2-rotate-success-circular-line{0%{transform:rotate(-45deg)}5%{transform:rotate(-45deg)}12%{transform:rotate(-405deg)}100%{transform:rotate(-405deg)}}@keyframes swal2-rotate-success-circular-line{0%{transform:rotate(-45deg)}5%{transform:rotate(-45deg)}12%{transform:rotate(-405deg)}100%{transform:rotate(-405deg)}}@-webkit-keyframes swal2-animate-error-x-mark{0%{margin-top:1.625em;transform:scale(.4);opacity:0}50%{margin-top:1.625em;transform:scale(.4);opacity:0}80%{margin-top:-.375em;transform:scale(1.15)}100%{margin-top:0;transform:scale(1);opacity:1}}@keyframes swal2-animate-error-x-mark{0%{margin-top:1.625em;transform:scale(.4);opacity:0}50%{margin-top:1.625em;transform:scale(.4);opacity:0}80%{margin-top:-.375em;transform:scale(1.15)}100%{margin-top:0;transform:scale(1);opacity:1}}@-webkit-keyframes swal2-animate-error-icon{0%{transform:rotateX(100deg);opacity:0}100%{transform:rotateX(0);opacity:1}}@keyframes swal2-animate-error-icon{0%{transform:rotateX(100deg);opacity:0}100%{transform:rotateX(0);opacity:1}}@-webkit-keyframes swal2-rotate-loading{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}@keyframes swal2-rotate-loading{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}@-webkit-keyframes swal2-animate-question-mark{0%{transform:rotateY(-360deg)}100%{transform:rotateY(0)}}@keyframes swal2-animate-question-mark{0%{transform:rotateY(-360deg)}100%{transform:rotateY(0)}}@-webkit-keyframes swal2-animate-i-mark{0%{transform:rotateZ(45deg);opacity:0}25%{transform:rotateZ(-25deg);opacity:.4}50%{transform:rotateZ(15deg);opacity:.8}75%{transform:rotateZ(-5deg);opacity:1}100%{transform:rotateX(0);opacity:1}}@keyframes swal2-animate-i-mark{0%{transform:rotateZ(45deg);opacity:0}25%{transform:rotateZ(-25deg);opacity:.4}50%{transform:rotateZ(15deg);opacity:.8}75%{transform:rotateZ(-5deg);opacity:1}100%{transform:rotateX(0);opacity:1}}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){overflow:hidden}body.swal2-height-auto{height:auto!important}body.swal2-no-backdrop .swal2-container{background-color:transparent!important;pointer-events:none}body.swal2-no-backdrop .swal2-container .swal2-popup{pointer-events:all}body.swal2-no-backdrop .swal2-container .swal2-modal{box-shadow:0 0 10px rgba(0,0,0,.4)}@media print{body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){overflow-y:scroll!important}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown)>[aria-hidden=true]{display:none}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) .swal2-container{position:static!important}}body.swal2-toast-shown .swal2-container{box-sizing:border-box;width:360px;max-width:100%;background-color:transparent;pointer-events:none}body.swal2-toast-shown .swal2-container.swal2-top{top:0;right:auto;bottom:auto;left:50%;transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-top-end,body.swal2-toast-shown .swal2-container.swal2-top-right{top:0;right:0;bottom:auto;left:auto}body.swal2-toast-shown .swal2-container.swal2-top-left,body.swal2-toast-shown .swal2-container.swal2-top-start{top:0;right:auto;bottom:auto;left:0}body.swal2-toast-shown .swal2-container.swal2-center-left,body.swal2-toast-shown .swal2-container.swal2-center-start{top:50%;right:auto;bottom:auto;left:0;transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-center{top:50%;right:auto;bottom:auto;left:50%;transform:translate(-50%,-50%)}body.swal2-toast-shown .swal2-container.swal2-center-end,body.swal2-toast-shown .swal2-container.swal2-center-right{top:50%;right:0;bottom:auto;left:auto;transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-left,body.swal2-toast-shown .swal2-container.swal2-bottom-start{top:auto;right:auto;bottom:0;left:0}body.swal2-toast-shown .swal2-container.swal2-bottom{top:auto;right:auto;bottom:0;left:50%;transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-end,body.swal2-toast-shown .swal2-container.swal2-bottom-right{top:auto;right:0;bottom:0;left:auto}");
 
 /***/ })
 

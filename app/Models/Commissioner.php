@@ -29,6 +29,7 @@ use Illuminate\Support\Carbon;
  * @property-read Collection|House[] $apartments
  * @property-read int|null $apartments_count
  * @property-read User $user
+ *
  * @method static CommissionerFactory factory(...$parameters)
  * @method static Builder|Commissioner newModelQuery()
  * @method static Builder|Commissioner newQuery()
@@ -42,6 +43,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Commissioner whereUpdatedAt($value)
  * @method static Builder|Commissioner whereUserId($value)
  * @method static Builder|Commissioner whereVille($value)
+ *
  * @mixin Eloquent
  */
 class Commissioner extends Model

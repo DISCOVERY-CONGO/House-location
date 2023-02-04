@@ -7,7 +7,6 @@ namespace App\Repository\Backend;
 use App\Contracts\TransactionRepositoryInterface;
 use App\Enums\ReservationEnum;
 use App\Models\Transaction;
-use App\Services\FlashMessageService;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -55,6 +54,7 @@ class TransactionRepository implements TransactionRepositoryInterface
     {
         $transaction = $this->showTransaction($key);
         $transaction->delete();
+
         return $transaction;
     }
 }

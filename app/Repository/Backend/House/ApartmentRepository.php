@@ -6,9 +6,8 @@ namespace App\Repository\Backend\House;
 
 use App\Contracts\ApartmentRepositoryInterface;
 use App\Models\House;
-use App\Services\FlashMessageService;
-use App\Traits\HasRoomCrud;
 use App\Traits\HasRandomValue;
+use App\Traits\HasRoomCrud;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
@@ -28,7 +27,7 @@ class ApartmentRepository implements ApartmentRepositoryInterface
                 'address',
                 'prices',
                 'warranty_price',
-                'status'
+                'status',
             ]);
     }
 
@@ -45,6 +44,7 @@ class ApartmentRepository implements ApartmentRepositoryInterface
     {
         $room = $this->show(key: $key);
         $room->delete();
+
         return $room;
     }
 }

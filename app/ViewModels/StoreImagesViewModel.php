@@ -13,7 +13,9 @@ use Spatie\ViewModels\ViewModel;
 class StoreImagesViewModel extends ViewModel
 {
     public string $storeUrl;
+
     public string $indexUrl;
+
     public function __construct()
     {
         $this->indexUrl = action([ImagesAdminController::class, 'index']);
@@ -26,7 +28,7 @@ class StoreImagesViewModel extends ViewModel
             ->latest()
             ->get([
                 'id',
-                'reference'
+                'reference',
             ]);
     }
 }

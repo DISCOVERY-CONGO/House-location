@@ -8,9 +8,6 @@ use App\Enums\UserRoleEnum;
 use App\Models\Client;
 use App\Models\User;
 use App\Notifications\BookingNotification;
-use App\Notifications\ReservationNotification;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Notification;
 
 class BookingListener
@@ -22,13 +19,13 @@ class BookingListener
 
     public function handle($event): void
     {
-        $client = User::query()
+        $user = User::query()
             ->where('role_id', '=', UserRoleEnum::USERS_ROLE)
             ->orWhere('role_id', '=', UserRoleEnum::ADMINS_ROLE)
             ->first();
         $clients = Client::query()
-            ->where('id', '=', $client->id)
+            ->where('id', '=', $user->id)
             ->first();
-        Notification::send([$clients, $client], new BookingNotification($event->reservation));
+        Notification::send([$clients, $user], new BookingNotification($event->reservation));
     }
 }

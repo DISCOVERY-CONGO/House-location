@@ -9,11 +9,9 @@ use App\Mail\ReservationCancelEmail;
 use App\Models\Reservation;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Mail;
 use LaravelIdea\Helper\App\Models\_IH_Reservation_C;
-use LaravelIdea\Helper\App\Models\_IH_Reservation_QB;
 
 class ReservationCommand extends Command
 {
@@ -36,9 +34,9 @@ class ReservationCommand extends Command
                     $this->error("Supprimer pour les utilisateurs n'ayant un compte");
                 }
             }
-            $this->info("La reservation  a ete supprimer");
+            $this->info('La reservation  a ete supprimer');
         } else {
-            $this->error("Aucune reservation disponible pour cette date");
+            $this->error('Aucune reservation disponible pour cette date');
         }
     }
 

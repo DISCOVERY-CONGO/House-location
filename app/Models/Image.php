@@ -10,10 +10,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\DB;
 
 /**
  * App\Models\Image
@@ -26,6 +23,7 @@ use Illuminate\Support\Facades\DB;
  * @property Carbon|null $updated_at
  * @property-read House $houses
  * @property-read User $user
+ *
  * @method static ImageFactory factory(...$parameters)
  * @method static Builder|Image newModelQuery()
  * @method static Builder|Image newQuery()
@@ -36,6 +34,7 @@ use Illuminate\Support\Facades\DB;
  * @method static Builder|Image whereImages($value)
  * @method static Builder|Image whereUpdatedAt($value)
  * @method static Builder|Image whereUserId($value)
+ *
  * @mixin Eloquent
  */
 class Image extends Model

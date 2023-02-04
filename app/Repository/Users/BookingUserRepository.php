@@ -24,9 +24,10 @@ class BookingUserRepository implements BookingUserRepositoryInterface
                 ->create([
                     'name' => auth()->user()->name,
                     'email' => auth()->user()->email,
-                    'user_id' => $user->id
+                    'user_id' => $user->id,
                 ]);
         }
+
         return Reservation::query()
             ->select([
                 'id',

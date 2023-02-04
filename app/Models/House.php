@@ -6,7 +6,6 @@ namespace App\Models;
 
 use App\Enums\Address;
 use App\Enums\Detail;
-use App\Enums\HouseEnum;
 use Database\Factories\HouseFactory;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
@@ -17,7 +16,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Notifications\DatabaseNotificationCollection;
 use Illuminate\Notifications\Notifiable;
@@ -55,6 +53,7 @@ use Illuminate\Support\Carbon;
  * @property-read int|null $reservations_count
  * @property-read Type $type
  * @property-read User $user
+ *
  * @method static HouseFactory factory(...$parameters)
  * @method static Builder|House newModelQuery()
  * @method static Builder|House newQuery()
@@ -73,8 +72,11 @@ use Illuminate\Support\Carbon;
  * @method static Builder|House whereUpdatedAt($value)
  * @method static Builder|House whereUserId($value)
  * @method static Builder|House whereWarrantyPrice($value)
+ *
  * @mixin Eloquent
+ *
  * @property string $detail
+ *
  * @method static Builder|House whereDetail($value)
  */
 class House extends Model
@@ -97,7 +99,7 @@ class House extends Model
 
     protected $casts = [
         'address' => Address::class,
-        'detail' => Detail::class
+        'detail' => Detail::class,
     ];
 
     protected function data(): Attribute
@@ -140,8 +142,8 @@ class House extends Model
         $title = __('app.show_detail_title', [
             'name' => $this->key, 'type' => __('outlet.outlet'),
         ]);
-        $link = '<a href="' . route('categories.index', $this) . '"';
-        $link .= ' title="' . $title . '">';
+        $link = '<a href="'.route('categories.index', $this).'"';
+        $link .= ' title="'.$title.'">';
         $link .= $this->address;
         $link .= '</a>';
 
@@ -151,7 +153,7 @@ class House extends Model
     public function getCoordinateAttribute(): ?string
     {
         if ($this->address) {
-            return $this->latitude . ', ' . $this->longitude;
+            return $this->latitude.', '.$this->longitude;
         }
 
         return null;
@@ -161,14 +163,14 @@ class House extends Model
     {
         $mapPopupContent = '';
         $mapPopupContent .= '<div class="my-2 font-weight-bold text-red-900">
-            <strong>' . 'Nom: ' . '</strong>
-            <br>' . $this->address . '</div>';
+            <strong>'.'Nom: '.'</strong>
+            <br>'.$this->address.'</div>';
         $mapPopupContent .= '<div class="my-2 font-weight-bold text-red-900">
-            <strong>' . 'Commune: ' . '</strong>
-            <br>' . $this->commune . '</div>';
+            <strong>'.'Commune: '.'</strong>
+            <br>'.$this->commune.'</div>';
         $mapPopupContent .= '<div class="my-2"><stroong>
-            <a href="' . route('categories.show', $this->key) . '" title="' . $this->key . '">
-                ' . 'Voir plus' . '
+            <a href="'.route('categories.show', $this->key).'" title="'.$this->key.'">
+                '.'Voir plus'.'
             </a>
         </stroong></div>';
 

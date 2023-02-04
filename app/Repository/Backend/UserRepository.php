@@ -7,7 +7,6 @@ namespace App\Repository\Backend;
 use App\Contracts\UserRepositoryInterface;
 use App\Enums\UserRoleEnum;
 use App\Models\User;
-use App\Services\FlashMessageService;
 use App\Traits\HasUpload;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -26,7 +25,7 @@ class UserRepository implements UserRepositoryInterface
                 'role_id',
                 'images',
                 'email',
-                'phone_number'
+                'phone_number',
             ])
             ->where('role_id', '=', UserRoleEnum::DEALER_ROLE)
             ->with('commissioner')
@@ -36,6 +35,7 @@ class UserRepository implements UserRepositoryInterface
     public function show(string $key): Model|Builder|null
     {
         $user = $this->getUser(key: $key);
+
         return $user->load(['commissioner']);
     }
 
@@ -44,6 +44,7 @@ class UserRepository implements UserRepositoryInterface
         $user = $this->getUser(key: $key);
         $user->images ? $this->removePathOfImages($user) : null;
         $user->delete();
+
         return $user;
     }
 

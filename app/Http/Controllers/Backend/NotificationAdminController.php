@@ -29,9 +29,10 @@ class NotificationAdminController extends Controller
         foreach ($notifications as $notification) {
             $notify = $notification->where('id', $id)->first();
             $notify->markAsRead();
+
             return response()->json([
                 'success' => 'Data is successfully added',
-                'notifications' => $notifications
+                'notifications' => $notifications,
             ]);
         }
     }

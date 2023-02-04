@@ -30,20 +30,20 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
         ApartmentCreateEvent::class => [
-            ApartmentCreateListener::class
+            ApartmentCreateListener::class,
         ],
         ReservationEvent::class => [
-            ReservationListener::class
+            ReservationListener::class,
         ],
         ReservationCancelEvent::class => [
-            ReservationCancelListener::class
+            ReservationCancelListener::class,
         ],
         ActivateApartmentEvent::class => [
-            ActivateApartmentListener::class
+            ActivateApartmentListener::class,
         ],
         BookingEvent::class => [
-            BookingListener::class
-        ]
+            BookingListener::class,
+        ],
     ];
 
     /**

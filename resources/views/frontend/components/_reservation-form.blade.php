@@ -57,7 +57,6 @@
                     name="messages"
                     id="messages"
                     class="resize-none h-36 relative peer transition-all focus:border-purple-600 border-[3px] border-gray-200 outline-none rounded-xl px-4 py-3 w-full text-sm text-gray-400 placeholder-transparent"
-                    required
                 >{{ old('messages') }}</textarea>
                 <label
                     for="messages"

@@ -58,7 +58,7 @@ class ApartmentAdminController extends BaseBackendController
 
         $this->service->success(
             type: 'success',
-            messages: "Une nouvelle maison a ete ajouter"
+            messages: 'Une nouvelle maison a ete ajouter'
         );
 
         return to_route('admins.houses.index');
@@ -77,7 +77,7 @@ class ApartmentAdminController extends BaseBackendController
 
         $this->service->success(
             type: 'success',
-            messages: "Une maison a ete modifier"
+            messages: 'Une maison a ete modifier'
         );
 
         return to_route('admins.houses.index');
@@ -89,7 +89,7 @@ class ApartmentAdminController extends BaseBackendController
 
         $this->service->success(
             type: 'success',
-            messages: "Une maison a ete supprimer"
+            messages: 'Une maison a ete supprimer'
         );
 
         return to_route('admins.houses.index');

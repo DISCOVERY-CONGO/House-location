@@ -24,7 +24,7 @@ return new class extends Migration
                 ->cascadeOnDelete();
             $table->boolean('status')
                 ->default(ReservationEnum::PENDING_RESERVATION);
-            $table->text('messages');
+            $table->longText('messages')->nullable();
             $table->timestamps();
         });
     }

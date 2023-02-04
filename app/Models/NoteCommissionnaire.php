@@ -21,6 +21,7 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property-read User $commissioner
+ *
  * @method static NoteCommissionnaireFactory factory(...$parameters)
  * @method static Builder|NoteCommissionnaire newModelQuery()
  * @method static Builder|NoteCommissionnaire newQuery()
@@ -30,6 +31,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|NoteCommissionnaire whereId($value)
  * @method static Builder|NoteCommissionnaire whereNote($value)
  * @method static Builder|NoteCommissionnaire whereUpdatedAt($value)
+ *
  * @mixin Eloquent
  */
 class NoteCommissionnaire extends Model

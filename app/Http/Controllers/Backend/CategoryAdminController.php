@@ -6,7 +6,6 @@ namespace App\Http\Controllers\Backend;
 
 use App\Contracts\CategoryRepositoryInterface;
 use App\Forms\CategoryForm;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use App\Services\FlashMessageService;
 use Illuminate\Contracts\Foundation\Application;
@@ -47,8 +46,9 @@ class CategoryAdminController extends BaseBackendController
         $this->repository->created($request);
         $this->service->success(
             'success',
-            "une nouvelle categorie ajouter avec success"
+            'une nouvelle categorie ajouter avec success'
         );
+
         return redirect()->route('admins.categories.index');
     }
 
@@ -70,8 +70,9 @@ class CategoryAdminController extends BaseBackendController
         $this->repository->updated($key, $request);
         $this->service->success(
             'success',
-            "une categorie a ete modifier"
+            'une categorie a ete modifier'
         );
+
         return redirect()->route('admins.categories.index');
     }
 
@@ -80,8 +81,9 @@ class CategoryAdminController extends BaseBackendController
         $this->repository->deleted($key);
         $this->service->success(
             'success',
-            "une categorie a ete supprimer"
+            'une categorie a ete supprimer'
         );
+
         return back();
     }
 }

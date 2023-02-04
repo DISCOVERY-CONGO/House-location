@@ -34,6 +34,7 @@ class SearchLocationController extends Controller
                 ])->render(),
             ]);
         }
+
         return response()->json([
             'success' => false,
             'empty' => view('frontend.components._empty')->render(),

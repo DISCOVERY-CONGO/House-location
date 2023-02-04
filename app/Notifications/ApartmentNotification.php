@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Notification;
 
 class ApartmentNotification extends Notification
@@ -20,7 +18,7 @@ class ApartmentNotification extends Notification
 
     public function via(mixed $notifiable): array
     {
-        return ['database'];
+        return ['database', 'mail'];
     }
 
     public function toArray(mixed $notifiable): array
@@ -29,7 +27,7 @@ class ApartmentNotification extends Notification
             'commune' => $this->apartment->commune,
             'user' => $this->apartment->user->name,
             'email' => $this->apartment->user->email,
-            'user_id' => $this->apartment->user->id
+            'user_id' => $this->apartment->user->id,
         ];
     }
 }

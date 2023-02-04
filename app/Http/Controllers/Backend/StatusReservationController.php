@@ -11,6 +11,5 @@ class StatusReservationController extends Controller
 {
     public function confirm(string $request): RedirectResponse
     {
-
     }
 }

@@ -20,6 +20,7 @@ use Illuminate\Support\Carbon;
  * @property string|null $images
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ *
  * @method static SliderFactory factory(...$parameters)
  * @method static Builder|Slider newModelQuery()
  * @method static Builder|Slider newQuery()
@@ -30,6 +31,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Slider whereImages($value)
  * @method static Builder|Slider whereTitle($value)
  * @method static Builder|Slider whereUpdatedAt($value)
+ *
  * @mixin Eloquent
  */
 class Slider extends Model
@@ -44,6 +46,6 @@ class Slider extends Model
 
     public function images(): string
     {
-        return asset('storage/' . $this->images);
+        return asset('storage/'.$this->images);
     }
 }

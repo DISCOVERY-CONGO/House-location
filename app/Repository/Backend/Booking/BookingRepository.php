@@ -7,7 +7,6 @@ namespace App\Repository\Backend\Booking;
 use App\Contracts\BookingRepositoryInterface;
 use App\Events\ReservationCancelEvent;
 use App\Models\Reservation;
-use App\Services\FlashMessageService;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -40,6 +39,7 @@ class BookingRepository implements BookingRepositoryInterface
         $reservation = $this->getReservation(key: $key);
         ReservationCancelEvent::dispatch($reservation);
         $reservation->delete();
+
         return $reservation;
     }
 

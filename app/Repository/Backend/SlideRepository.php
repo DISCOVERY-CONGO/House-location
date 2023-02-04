@@ -7,7 +7,6 @@ namespace App\Repository\Backend;
 use App\Contracts\SlideRepositoryInterface;
 use App\Http\Requests\SlideRequest;
 use App\Models\Slider;
-use App\Services\FlashMessageService;
 use App\Traits\HasUpload;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -65,6 +64,7 @@ class SlideRepository implements SlideRepositoryInterface
             'images' => self::uploadFiles($request),
             'description' => $request->input('description'),
         ]);
+
         return $slide;
     }
 
@@ -72,6 +72,7 @@ class SlideRepository implements SlideRepositoryInterface
     {
         $slide = $this->show($key);
         $slide->delete();
+
         return $slide;
     }
 }

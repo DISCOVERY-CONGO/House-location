@@ -21,6 +21,7 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property-read User $user
+ *
  * @method static TemoignageFactory factory(...$parameters)
  * @method static Builder|Temoignage newModelQuery()
  * @method static Builder|Temoignage newQuery()
@@ -30,6 +31,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Temoignage whereNote($value)
  * @method static Builder|Temoignage whereUpdatedAt($value)
  * @method static Builder|Temoignage whereUserId($value)
+ *
  * @mixin Eloquent
  */
 class Temoignage extends Model

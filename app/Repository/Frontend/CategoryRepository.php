@@ -21,7 +21,7 @@ class CategoryRepository implements CategoryHomeRepositoryInterface
 
         if ($request->input('category')) {
             $apartments->whereHas('categories', function ($query) use ($request) {
-                $query->where('name', 'like', '%' . $request->input('category') . '%');
+                $query->where('name', 'like', '%'.$request->input('category').'%');
             });
         }
 

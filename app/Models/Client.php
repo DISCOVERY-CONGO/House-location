@@ -36,6 +36,7 @@ use Illuminate\Support\Carbon;
  * @property-read int|null $reservations_count
  * @property-read Transaction|null $transaction
  * @property-read User|null $user
+ *
  * @method static ClientFactory factory(...$parameters)
  * @method static Builder|Client newModelQuery()
  * @method static Builder|Client newQuery()
@@ -49,6 +50,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Client wherePhonesNumber($value)
  * @method static Builder|Client whereUpdatedAt($value)
  * @method static Builder|Client whereUserId($value)
+ *
  * @mixin Eloquent
  */
 class Client extends Model

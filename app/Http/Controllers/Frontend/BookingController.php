@@ -6,7 +6,6 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Contracts\BookingHouseRepositoryInterface;
 use App\Http\Controllers\Backend\BaseBackendController;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\ReservationRequest;
 use App\Services\FlashMessageService;
 use Illuminate\Contracts\Support\Renderable;
@@ -17,8 +16,7 @@ class BookingController extends BaseBackendController
     public function __construct(
         public BookingHouseRepositoryInterface $repository,
         public FlashMessageService $service
-    )
-    {
+    ) {
         parent::__construct($this->service);
     }
 

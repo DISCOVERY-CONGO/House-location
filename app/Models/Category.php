@@ -22,6 +22,7 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $updated_at
  * @property-read Collection|House[] $houses
  * @property-read int|null $houses_count
+ *
  * @method static CategoryFactory factory(...$parameters)
  * @method static Builder|Category newModelQuery()
  * @method static Builder|Category newQuery()
@@ -30,6 +31,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Category whereId($value)
  * @method static Builder|Category whereName($value)
  * @method static Builder|Category whereUpdatedAt($value)
+ *
  * @mixin Eloquent
  */
 class Category extends Model

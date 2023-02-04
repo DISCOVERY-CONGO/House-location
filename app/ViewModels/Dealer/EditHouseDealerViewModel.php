@@ -20,6 +20,7 @@ use Spatie\ViewModels\ViewModel;
 class EditHouseDealerViewModel extends ViewModel
 {
     public string|null $indexUrl = null;
+
     public string $updateUrl;
 
     public function __construct(

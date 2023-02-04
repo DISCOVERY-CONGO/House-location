@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Repository\Users;
 
 use App\Contracts\UpdateUserRepositoryInterface;
-use App\Enums\UserRoleEnum;
 use App\Models\Client;
 use App\Models\User;
 use App\Traits\HasUpload;
@@ -18,7 +17,6 @@ class UsersProfileRepository implements UpdateUserRepositoryInterface
 
     public function updated(string $key, $request): RedirectResponse
     {
-
         $user = User::query()
             ->where('id', '=', $key)
             ->first();
@@ -32,6 +30,7 @@ class UsersProfileRepository implements UpdateUserRepositoryInterface
             'images' => self::uploadFiles($request),
             'password' => Hash::make($request->input('password')),
         ]);
+
         return back();
     }
 

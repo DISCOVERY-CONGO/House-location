@@ -5,10 +5,8 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Dealer;
 
 use App\Contracts\ApartmentCommissionerRepositoryInterface;
-use App\Forms\ApartmentForm;
 use App\Forms\DealerForm;
 use App\Http\Controllers\Backend\BaseBackendController;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\ApartmentRequest;
 use App\Http\Requests\UpdateApartmentRequest;
 use App\Services\FlashMessageService;
@@ -79,7 +77,7 @@ class ApartmentCommissionerController extends BaseBackendController
 
         $this->service->success(
             'success',
-            "Vous venez de mettre a jours cette maison"
+            'Vous venez de mettre a jours cette maison'
         );
 
         return to_route('commissioner.houses.index');
@@ -91,7 +89,7 @@ class ApartmentCommissionerController extends BaseBackendController
 
         $this->service->success(
             'success',
-            "Vous venez de supprimer cette maison"
+            'Vous venez de supprimer cette maison'
         );
 
         return to_route('commissioner.houses.index');

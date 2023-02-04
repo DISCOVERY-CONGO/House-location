@@ -39,7 +39,7 @@ class BookingAdminController extends BaseBackendController
 
         $this->service->success(
             'success',
-            "Reservation supprimer avec success"
+            'Reservation supprimer avec success'
         );
 
         return back();

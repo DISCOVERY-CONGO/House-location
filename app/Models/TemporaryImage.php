@@ -20,6 +20,7 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property-read User $user
+ *
  * @method static Builder|TemporaryImage newModelQuery()
  * @method static Builder|TemporaryImage newQuery()
  * @method static Builder|TemporaryImage query()
@@ -28,6 +29,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|TemporaryImage whereId($value)
  * @method static Builder|TemporaryImage whereUpdatedAt($value)
  * @method static Builder|TemporaryImage whereUserId($value)
+ *
  * @mixin Eloquent
  */
 class TemporaryImage extends Model
@@ -36,7 +38,7 @@ class TemporaryImage extends Model
 
     protected $fillable = [
         'user_id',
-        'file'
+        'file',
     ];
 
     public function user(): BelongsTo

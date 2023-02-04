@@ -7,7 +7,6 @@ namespace App\Http\Controllers\Frontend;
 use App\Contracts\HomeRepositoryInterface;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 

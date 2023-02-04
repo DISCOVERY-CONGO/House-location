@@ -22,6 +22,7 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $updated_at
  * @property-read Collection|House[] $houses
  * @property-read int|null $houses_count
+ *
  * @method static TypeFactory factory(...$parameters)
  * @method static Builder|Type newModelQuery()
  * @method static Builder|Type newQuery()
@@ -30,6 +31,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Type whereId($value)
  * @method static Builder|Type whereName($value)
  * @method static Builder|Type whereUpdatedAt($value)
+ *
  * @mixin Eloquent
  */
 class Type extends Model

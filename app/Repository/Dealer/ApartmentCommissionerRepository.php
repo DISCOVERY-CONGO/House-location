@@ -6,9 +6,9 @@ namespace App\Repository\Dealer;
 
 use App\Contracts\ApartmentCommissionerRepositoryInterface;
 use App\Models\House;
+use App\Traits\HasRandomValue;
 use App\Traits\HasRoomCrud;
 use App\Traits\HasUpload;
-use App\Traits\HasRandomValue;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;

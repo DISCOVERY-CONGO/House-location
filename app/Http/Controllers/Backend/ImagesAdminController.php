@@ -40,7 +40,7 @@ final class ImagesAdminController extends BaseBackendController
 
         $this->service->success(
             'success',
-            "Les images ajouter a la salle"
+            'Les images ajouter a la salle'
         );
 
         return redirect()->route('admins.image.index');
@@ -52,7 +52,7 @@ final class ImagesAdminController extends BaseBackendController
 
         $this->service->success(
             'success',
-            "Les images  de la maison on ete supprimer"
+            'Les images  de la maison on ete supprimer'
         );
 
         return back();

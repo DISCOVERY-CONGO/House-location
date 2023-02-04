@@ -24,6 +24,7 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $updated_at
  * @property-read Client $client
  * @property-read Reservation $reservation
+ *
  * @method static TransactionFactory factory(...$parameters)
  * @method static Builder|Transaction newModelQuery()
  * @method static Builder|Transaction newQuery()
@@ -35,6 +36,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Transaction wherePaymentDate($value)
  * @method static Builder|Transaction whereReservationId($value)
  * @method static Builder|Transaction whereUpdatedAt($value)
+ *
  * @mixin Eloquent
  */
 class Transaction extends Model

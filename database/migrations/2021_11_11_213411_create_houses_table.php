@@ -19,14 +19,14 @@ return new class extends Migration
                 ->cascadeOnDelete();
             $table->integer('prices');
             $table->integer('warranty_price')->nullable();
-            $table->json('address')->default("[]");
-            $table->json('detail')->default("[]");
+            $table->json('address')->default('[]');
+            $table->json('detail')->default('[]');
             $table->string('phone_number')
                 ->nullable()
-                ->default("+243990416691");
+                ->default('+243990416691');
             $table->string('email')
                 ->nullable()
-                ->default("info@karibukwako.com");
+                ->default('info@karibukwako.com');
             $table->decimal('latitude')->nullable();
             $table->decimal('longitude')->nullable();
             $table->boolean('status')

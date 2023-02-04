@@ -27,15 +27,17 @@ trait HasRoomCrud
                    ->create([
                        'user_id' => auth()->id(),
                        'images' => $images->file,
-                       'house_id' => $apartment->id
+                       'house_id' => $apartment->id,
                    ]);
             });
             $apartment->categories()->attach($attributes->input('categories'));
-            $temporary->map(fn($builder) => $builder->delete());
+            $temporary->map(fn ($builder) => $builder->delete());
+
             return $apartment;
         }
         $apartment->categories()->attach($attributes->input('categories'));
         ApartmentCreateEvent::dispatch($apartment);
+
         return $apartment;
     }
 
@@ -52,14 +54,16 @@ trait HasRoomCrud
                     ->create([
                         'user_id' => auth()->id(),
                         'images' => $images->file,
-                        'house_id' => $house->id
+                        'house_id' => $house->id,
                     ]);
             });
             $house->categories()->sync($attributes->input('categories'));
-            $draft->map(fn($builder) => $builder->delete());
+            $draft->map(fn ($builder) => $builder->delete());
+
             return $house;
         }
         $house->categories()->sync($attributes->input('category'));
+
         return $house;
     }
 
@@ -76,7 +80,7 @@ trait HasRoomCrud
             'prices' => $attributes->input('prices'),
             'warranty_price' => $attributes->input('warranty_price'),
             'address' => [
-                'town' => $attributes->input("town"),
+                'town' => $attributes->input('town'),
                 'commune' => $attributes->input('commune'),
                 'district' => $attributes->input('district'),
                 'address' => $attributes->input('address'),
@@ -86,7 +90,7 @@ trait HasRoomCrud
                 'number_pieces' => $attributes->input('number_pieces'),
                 'toilet' => $attributes->input('toilet'),
                 'electricity' => $attributes->input('electricity'),
-                'description' => $attributes->input('description')
+                'description' => $attributes->input('description'),
             ],
             'latitude' => $attributes->input('latitude'),
             'longitude' => $attributes->input('longitude'),
@@ -101,7 +105,7 @@ trait HasRoomCrud
             'prices' => $attributes->input('prices'),
             'warranty_price' => $attributes->input('warranty_price'),
             'address' => [
-                'town' => $attributes->input("town"),
+                'town' => $attributes->input('town'),
                 'commune' => $attributes->input('commune'),
                 'district' => $attributes->input('district'),
                 'address' => $attributes->input('address'),
@@ -111,7 +115,7 @@ trait HasRoomCrud
                 'number_pieces' => $attributes->input('number_pieces'),
                 'toilet' => $attributes->input('toilet'),
                 'electricity' => $attributes->input('electricity'),
-                'description' => $attributes->input('description')
+                'description' => $attributes->input('description'),
             ],
             'latitude' => $attributes->input('latitude'),
             'longitude' => $attributes->input('longitude'),

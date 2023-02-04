@@ -5,12 +5,9 @@ declare(strict_types=1);
 namespace App\Repository\Dealer;
 
 use App\Contracts\ImageCommissionerRepositoryInterface;
-use App\Models\House;
 use App\Models\Image;
-use App\Models\User;
-use App\Services\FlashMessageService;
-use App\Traits\ImageCrud;
 use App\Traits\HasUpload;
+use App\Traits\ImageCrud;
 use Illuminate\Support\Collection;
 
 class ImageCommissionerRepository implements ImageCommissionerRepositoryInterface
@@ -25,12 +22,12 @@ class ImageCommissionerRepository implements ImageCommissionerRepositoryInterfac
                 'house_id',
                 'id',
                 'user_id',
-                'images'
+                'images',
             ])
             ->where('user_id', '=', auth()->id())
             ->with([
                 'user',
-                'houses'
+                'houses',
             ])
             ->orderByDesc('created_at')
             ->get();

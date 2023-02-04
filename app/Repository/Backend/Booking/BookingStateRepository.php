@@ -18,7 +18,6 @@ class BookingStateRepository implements \App\Contracts\BookingStateRepository
 
     public function handle(StatusBookingRequest $request): Model|Builder|Reservation
     {
-
         $reservation = Reservation::query()
             ->where('id', '=', $request->input('booking'))
             ->firstOrFail();
@@ -30,9 +29,10 @@ class BookingStateRepository implements \App\Contracts\BookingStateRepository
                 'client_id' => $reservation->client_id,
                 'reservation_id' => $reservation->id,
                 'payment_date' => now(),
-                'code_transaction' => $this->generateRandomTransaction(10)
+                'code_transaction' => $this->generateRandomTransaction(10),
             ]);
         ReservationEvent::dispatch($reservation, $transaction);
+
         return $reservation;
     }
 }

@@ -20,7 +20,7 @@ class UploadFileRequest extends FormRequest
                 'required',
                 'image',
                 'mimes:jpeg,jpg,png,svg',
-            ]
+            ],
         ];
     }
 }

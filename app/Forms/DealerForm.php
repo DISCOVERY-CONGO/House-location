@@ -64,7 +64,7 @@ class DealerForm extends Form
                 'selected' => [
                     'externe',
                     'interne',
-                    'autre'
+                    'autre',
                 ],
                 'multiple' => false,
             ])

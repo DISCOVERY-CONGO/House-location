@@ -21,6 +21,7 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property-read House $house
+ *
  * @method static HouseNoteFactory factory(...$parameters)
  * @method static Builder|HouseNote newModelQuery()
  * @method static Builder|HouseNote newQuery()
@@ -30,6 +31,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|HouseNote whereHouseId($value)
  * @method static Builder|HouseNote whereNote($value)
  * @method static Builder|HouseNote whereUpdatedAt($value)
+ *
  * @mixin Eloquent
  */
 class HouseNote extends Model

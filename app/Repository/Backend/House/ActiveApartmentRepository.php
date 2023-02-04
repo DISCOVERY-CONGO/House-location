@@ -22,6 +22,7 @@ class ActiveApartmentRepository implements ActiveApartmentRepositoryInterface
             'status' => $activeRoom->input('status'),
         ]);
         ActivateApartmentEvent::dispatch($room);
+
         return $room;
     }
 }

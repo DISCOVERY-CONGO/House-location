@@ -27,17 +27,17 @@ class AddUserCommand extends Command
 
         process :
             $name = ucwords($this->anticipate('name', ['admin', 'Place manager']));
-            $email = strtolower($this->ask('email'));
-            $password = $this->secret('password');
+        $email = strtolower($this->ask('email'));
+        $password = $this->secret('password');
 
-            $validator = validator(
-                compact('name', 'email', 'password'),
-                [
-                    'name' => ['required', 'string', 'max:255'],
-                    'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-                    'password' => ['required', 'string', 'min:8'],
-                ]
-            );
+        $validator = validator(
+            compact('name', 'email', 'password'),
+            [
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'string', 'min:8'],
+            ]
+        );
 
         if (! $validator->fails()) {
             try {

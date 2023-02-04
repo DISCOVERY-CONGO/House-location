@@ -15,13 +15,13 @@
                                                 <h1 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-white lg:text-gray-600 z-40">
                                                     {{ ucfirst($slide->title) ?? "" }}
                                                 </h1>
-                                                <p class="text-sm md:text-base text-gray-100 lg:text-gray-500 lg:line-clamp-4 z-40">
+                                                <p class="text-md leading-loose md:text-base text-gray-100 lg:text-gray-500 lg:line-clamp-4 z-40 tracking-wide">
                                                     {{ ucfirst($slide->description) ?? "" }}
                                                 </p>
                                             </div>
                                                 <div class="flex sm:flex-row flex-col gap-4 z-40  pb-8 lg:pb-0">
                                                     <a href="{{ route('categories.index') }}"
-                                                       class="w-full z-40 sm:w-auto flex items-center justify-center rounded-md px-5 py-2.5 bg-purple-600 text-white transition border-2 border-purple-600 hover:border-purple-800 hover:bg-purple-800">
+                                                       class="w-full z-40 sm:w-auto flex items-center justify-center rounded-md px-5 py-2.5 bg-purple-[#e2d2f6] text-gray-600 transition border-2 border-purple-600 hover:border-purple-800 hover:text-white hover:bg-purple-800">
                                                         Trouver une maison
                                                     </a>
                                                 </div>

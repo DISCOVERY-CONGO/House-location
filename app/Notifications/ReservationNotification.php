@@ -20,7 +20,7 @@ class ReservationNotification extends Notification implements ShouldQueue
 
     public function via($notifiable): array
     {
-        return ['database'];
+        return ['database', 'mail'];
     }
 
     public function toMail($notifiable): MailMessage
@@ -39,7 +39,7 @@ class ReservationNotification extends Notification implements ShouldQueue
         return [
             'transaction_code' => $this->transaction->code_transaction,
             'email' => $this->reservation->client->email,
-            'price' => $this->reservation->house->prices
+            'price' => $this->reservation->house->prices,
         ];
     }
 }

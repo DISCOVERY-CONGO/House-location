@@ -14,21 +14,21 @@ class InvoiceRepository implements InvoiceRepositoryInterface
 {
     public function download($invoiceRequest): Model|Builder|Reservation|_IH_Reservation_QB
     {
-        $invoice =  Reservation::query()
+        $invoice = Reservation::query()
             ->select([
                 'client_id',
                 'user_id',
                 'house_id',
                 'messages',
-                'id'
+                'id',
             ])
-            ->where('id', '=', $invoiceRequest->input("id"))
+            ->where('id', '=', $invoiceRequest->input('id'))
             ->firstOrFail();
 
         return $invoice->load([
             'house',
             'client',
-            'transaction'
+            'transaction',
         ]);
     }
 }

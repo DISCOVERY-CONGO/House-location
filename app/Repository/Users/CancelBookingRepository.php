@@ -20,6 +20,7 @@ class CancelBookingRepository implements CancelBookingRepositoryInterface
             ->firstOrFail();
         ReservationCancelEvent::dispatch($reservation);
         $reservation->delete();
+
         return $reservation;
     }
 }

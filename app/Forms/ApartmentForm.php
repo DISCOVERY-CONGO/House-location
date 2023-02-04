@@ -64,7 +64,7 @@ class ApartmentForm extends Form
                 'selected' => [
                     'externe',
                     'interne',
-                    'autre'
+                    'autre',
                 ],
                 'multiple' => false,
             ])

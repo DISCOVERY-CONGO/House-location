@@ -10,8 +10,4 @@ use Illuminate\Http\Request;
 
 class RedirectException extends Exception
 {
-    public function render(Request $request): RedirectResponse
-    {
-        return redirect()->route('login');
-    }
 }

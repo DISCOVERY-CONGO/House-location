@@ -9,10 +9,12 @@ use JessArcher\CastableDataTransferObject\CastableDataTransferObject;
 class Address extends CastableDataTransferObject
 {
     public ?string $town;
-    public ?string $commune;
-    public ?string $district;
-    public ?string $address;
 
+    public ?string $commune;
+
+    public ?string $district;
+
+    public ?string $address;
 
     public function formatString(): string
     {
@@ -20,7 +22,7 @@ class Address extends CastableDataTransferObject
             $this->town,
             $this->commune,
             $this->district,
-            $this->address
+            $this->address,
         ]);
     }
 }

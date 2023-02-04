@@ -11,9 +11,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Client;
 use App\Models\House;
 use App\Models\Reservation;
-use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
 class HomeApiController extends Controller
@@ -29,7 +26,7 @@ class HomeApiController extends Controller
         return json_encode([
             'apartments' => $this->repository->getContent(),
             'sliders' => $this->repository->getSliders(),
-            'all' => $this->repository->getAll()
+            'all' => $this->repository->getAll(),
         ]);
     }
 
@@ -66,7 +63,6 @@ class HomeApiController extends Controller
                 'phones_number' => $request->phone_number,
                 'email' => $request->email,
             ]);
-        ;
 
         $reservation = Reservation::query()
             ->create([
@@ -74,7 +70,7 @@ class HomeApiController extends Controller
                 'user_id' => auth()->id() ?? null,
                 'status' => ReservationEnum::PENDING_RESERVATION,
                 'messages' => $request->messages,
-                'client_id' => $client->id
+                'client_id' => $client->id,
             ]);
 
         BookingEvent::dispatch($reservation);

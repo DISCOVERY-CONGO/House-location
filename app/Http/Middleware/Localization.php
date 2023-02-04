@@ -16,7 +16,7 @@ class Localization
     /**
      * Handle an incoming request.
      *
-     * @param Request $request
+     * @param  Request  $request
      * @param  \Closure(Request): (Response|RedirectResponse)  $next
      * @return Response|RedirectResponse
      */
@@ -25,6 +25,7 @@ class Localization
         if (Session::has('locale')) {
             App::setLocale(Session::get('locale'));
         }
+
         return $next($request);
     }
 }

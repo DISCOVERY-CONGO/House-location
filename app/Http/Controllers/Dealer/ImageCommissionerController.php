@@ -6,7 +6,6 @@ namespace App\Http\Controllers\Dealer;
 
 use App\Contracts\ImageCommissionerRepositoryInterface;
 use App\Http\Controllers\Backend\BaseBackendController;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\ImageRequest;
 use App\Services\FlashMessageService;
 use Illuminate\Contracts\Support\Renderable;
@@ -41,7 +40,7 @@ class ImageCommissionerController extends BaseBackendController
 
         $this->service->success(
             'success',
-            "une nouvelle photo ajouter a la maison"
+            'une nouvelle photo ajouter a la maison'
         );
 
         return to_route('commissioner.imageHouses.index');
@@ -53,7 +52,7 @@ class ImageCommissionerController extends BaseBackendController
 
         $this->service->success(
             'success',
-            "une photo supprimer avec success"
+            'une photo supprimer avec success'
         );
 
         return back();

@@ -8,7 +8,6 @@ use App\Contracts\SlideRepositoryInterface;
 use App\Forms\SlideForm;
 use App\Http\Requests\SlideRequest;
 use App\Services\FlashMessageService;
-use Barryvdh\Debugbar\Controllers\BaseController;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Contracts\View\Factory;
@@ -49,7 +48,7 @@ class SlideAdminController extends BaseBackendController
 
         $this->service->success(
             'success',
-            "Un nouveau slide a ete ajouter"
+            'Un nouveau slide a ete ajouter'
         );
 
         return redirect()->route('admins.slides.index');
@@ -74,7 +73,7 @@ class SlideAdminController extends BaseBackendController
 
         $this->service->success(
             'success',
-            "Un slide a ete motifier"
+            'Un slide a ete motifier'
         );
 
         return redirect()->route('admins.slides.index');
@@ -86,7 +85,7 @@ class SlideAdminController extends BaseBackendController
 
         $this->service->success(
             'success',
-            "Un slide a ete supprimer"
+            'Un slide a ete supprimer'
         );
 
         return back();

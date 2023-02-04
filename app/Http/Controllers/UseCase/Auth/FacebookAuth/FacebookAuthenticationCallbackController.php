@@ -7,18 +7,9 @@ namespace App\Http\Controllers\UseCase\Auth\FacebookAuth;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\UseCase\Auth\FacebookAuth\Interfaces\FacebookAuthRepositoryInterface;
 
-class FacebookAuthController extends Controller
+final class FacebookAuthenticationCallbackController extends Controller
 {
-    public function __construct(protected FacebookAuthRepositoryInterface $repository)
-    {
-    }
-
-    public function redirectToFacebook()
-    {
-        return $this->repository->authToFacebook();
-    }
-
-    public function authToFacebook()
+    public function __invoke(FacebookAuthRepositoryInterface $repository)
     {
         return $this->repository->redirectToFacebook();
     }

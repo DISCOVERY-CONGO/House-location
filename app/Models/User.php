@@ -46,6 +46,7 @@ use Laravel\Sanctum\PersonalAccessToken;
  * @property-read Role|null $role
  * @property-read Collection|PersonalAccessToken[] $tokens
  * @property-read int|null $tokens_count
+ *
  * @method static UserFactory factory(...$parameters)
  * @method static Builder|User newModelQuery()
  * @method static Builder|User newQuery()
@@ -63,6 +64,7 @@ use Laravel\Sanctum\PersonalAccessToken;
  * @method static Builder|User whereRememberToken($value)
  * @method static Builder|User whereRoleId($value)
  * @method static Builder|User whereUpdatedAt($value)
+ *
  * @mixin Eloquent
  */
 class User extends Authenticatable
@@ -79,6 +81,8 @@ class User extends Authenticatable
         'images',
         'role_id',
         'password',
+        'google_id',
+        'facebook_id'
     ];
 
     protected $hidden = [

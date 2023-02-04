@@ -28,6 +28,10 @@ use App\Contracts\UpdateUserRepositoryInterface;
 use App\Contracts\UserRepositoryInterface;
 use App\Http\Controllers\UseCase\Auth\FacebookAuth\Interfaces\FacebookAuthRepositoryInterface;
 use App\Http\Controllers\UseCase\Auth\FacebookAuth\Repository\FacebookAuthRepository;
+use App\Http\Controllers\UseCase\Auth\Google\Repository\GoogleAuthenticationCallbackRepository;
+use App\Http\Controllers\UseCase\Auth\Google\Repository\GoogleAuthenticationRepository;
+use App\Http\Controllers\UseCase\Contract\SocialAuthenticationCallbackInterface;
+use App\Http\Controllers\UseCase\Contract\SocialAuthenticationInterface;
 use App\Repository\Backend\Booking\BookingRepository;
 use App\Repository\Backend\CategoryRepository;
 use App\Repository\Backend\ClientRepository;
@@ -76,7 +80,9 @@ class RepositoryServiceProvider extends ServiceProvider
         InvoiceRepositoryInterface::class => InvoiceRepository::class,
         NotificationRepositoryInterface::class => NotificationRepository::class,
         FacebookAuthRepositoryInterface::class => FacebookAuthRepository::class,
-        BookingStateRepository::class => \App\Repository\Backend\Booking\BookingStateRepository::class
+        BookingStateRepository::class => \App\Repository\Backend\Booking\BookingStateRepository::class,
+        SocialAuthenticationInterface::class => GoogleAuthenticationRepository::class,
+        SocialAuthenticationCallbackInterface::class => GoogleAuthenticationCallbackRepository::class,
     ];
 
     public function register()

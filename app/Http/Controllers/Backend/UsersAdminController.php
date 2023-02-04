@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Backend;
 
 use App\Contracts\UserRepositoryInterface;
-use App\Http\Controllers\Controller;
 use App\Services\FlashMessageService;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\RedirectResponse;
@@ -39,7 +38,7 @@ class UsersAdminController extends BaseBackendController
 
         $this->service->success(
             'success',
-            "Une un gestionnaire supprimer avec success"
+            'Une un gestionnaire supprimer avec success'
         );
 
         return back();

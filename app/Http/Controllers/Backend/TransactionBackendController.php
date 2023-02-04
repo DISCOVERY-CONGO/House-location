@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Backend;
 
 use App\Contracts\TransactionRepositoryInterface;
-use App\Http\Controllers\Controller;
 use App\Services\FlashMessageService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Support\Renderable;
@@ -42,7 +41,7 @@ class TransactionBackendController extends BaseBackendController
 
         $this->service->success(
             'success',
-            "Une transaction a ete supprimer"
+            'Une transaction a ete supprimer'
         );
 
         return back();

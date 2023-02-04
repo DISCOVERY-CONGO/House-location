@@ -9,7 +9,6 @@ use App\Models\TemporaryImage;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use LaravelIdea\Helper\App\Models\_IH_Image_QB;
 
 trait ImageCrud
 {
@@ -45,12 +44,14 @@ trait ImageCrud
                     ->create([
                         'user_id' => auth()->id(),
                         'house_id' => $attributes->input('house'),
-                        'images' => $item->file
+                        'images' => $item->file,
                     ]);
             }
-            $temporary->map(fn($builder) => $builder->delete());
+            $temporary->map(fn ($builder) => $builder->delete());
+
             return $temporary;
         }
+
         return null;
     }
 
@@ -59,6 +60,7 @@ trait ImageCrud
         $image = $this->show(key: $key);
         $this->removePathOfImages($image) ?? null;
         $image->delete();
+
         return $image;
     }
 

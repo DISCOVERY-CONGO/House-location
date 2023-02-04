@@ -9,9 +9,7 @@ use App\Http\Requests\UploadFileRequest;
 use App\Repository\Backend\Upload\UploadFileRepository;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 class UploadFIleApiController extends Controller
 {

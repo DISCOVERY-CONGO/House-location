@@ -19,7 +19,7 @@ class ImagesUploaderRepository
         return TemporaryImage::query()
             ->create([
                 'user_id' => auth()->id(),
-                'file' => self::uploadFile($request)
+                'file' => self::uploadFile($request),
             ]);
     }
 
@@ -31,6 +31,7 @@ class ImagesUploaderRepository
             ->first();
         $this->removePreview($image);
         $image->delete();
+
         return $image;
     }
 }

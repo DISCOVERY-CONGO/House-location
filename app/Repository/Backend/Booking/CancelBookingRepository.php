@@ -7,7 +7,6 @@ namespace App\Repository\Backend\Booking;
 use App\Enums\ReservationEnum;
 use App\Models\Reservation;
 use App\Models\Transaction;
-use App\Services\FlashMessageService;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -25,6 +24,7 @@ class CancelBookingRepository
             ->where('reservation_id', '=', $reservation->id)
             ->where('client_id', '=', $reservation->client_id)
             ->delete();
+
         return $reservation;
     }
 }

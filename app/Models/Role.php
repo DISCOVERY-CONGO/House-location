@@ -11,7 +11,6 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 
 /**
@@ -24,6 +23,7 @@ use Illuminate\Support\Carbon;
  * @property string|null $deleted_at
  * @property-read Collection|User[] $users
  * @property-read int|null $users_count
+ *
  * @method static RoleFactory factory(...$parameters)
  * @method static Builder|Role newModelQuery()
  * @method static Builder|Role newQuery()
@@ -33,6 +33,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Role whereId($value)
  * @method static Builder|Role whereName($value)
  * @method static Builder|Role whereUpdatedAt($value)
+ *
  * @mixin Eloquent
  */
 class Role extends Model

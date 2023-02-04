@@ -7,9 +7,6 @@ namespace App\Listeners;
 use App\Enums\UserRoleEnum;
 use App\Models\User;
 use App\Notifications\ActivateApartmentNotification;
-use App\Notifications\ApartmentNotification;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Notification;
 
 class ActivateApartmentListener

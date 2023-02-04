@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
@@ -24,7 +23,7 @@ class ReservationCancelEmail extends Mailable
         return $this
             ->from(env('MAIL_FROM_ADDRESS'), 'Example')
             ->view('frontend.domain.email.reservation', [
-                'reservation' => $this->reservation
+                'reservation' => $this->reservation,
             ]);
     }
 }

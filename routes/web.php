@@ -35,6 +35,7 @@ use App\Http\Controllers\Users\InvoiceUserController;
 use App\Http\Controllers\Users\UpdateUserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controlles\testControl;
 
 Auth::routes();
 
